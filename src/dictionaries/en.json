@@ -1,0 +1,12 @@
+{
+  "home": {
+    "title": "Welcome to our Cultural Resources Platform",
+    "subtitle": "Discover and share cultural heritage"
+  },
+  "navigation": {
+    "home": "Home",
+    "resources": "Resources",
+    "submit": "Submit"
+  }
+}
+

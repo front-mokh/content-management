@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  resources Resource[]
+}
+
+model Author {
+  id        String   @id @default(uuid())
+  firstName String
+  lastName  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  resources Resource[]
+}
+
+model Type {
+  id    String @id @default(uuid())
+  label String @unique
+
+  resources  Resource[]
+  category   Category   @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  categoryId String
+}
+
+model Category {
+  id    String @id @default(uuid())
+  label String @unique
+
+  resources Resource[]
+  types     Type[]
+}
+
+model Resource {
+  id String @id @default(uuid())
+
+  categoryId  String
+  typeId      String
+  title       String
+  description String
+  path        String
+  submittedAt DateTime  @default(now())
+  reviewedAt  DateTime?
+  publishedAt DateTime?
+  views       BigInt    @default(0)
+  upvotes     BigInt    @default(0)
+  status      Status    @default(PENDING)
+
+  category  Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  type      Type     @relation(fields: [typeId], references: [id], onDelete: Restrict)
+  handler   User?    @relation(fields: [handlerId], references: [id], onDelete: Restrict)
+  handlerId String?
+  author    Author?  @relation(fields: [authorId], references: [id], onDelete: Restrict)
+  authorId  String?
+
+  submissions Submission[]
+}
+
+model Submission {
+  id        String  @id @default(uuid())
+  firstName String
+  lastName  String
+  email     String
+  phone     String?
+  message   String?
+
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Restrict)
+  resourceId String
+}
+
+enum Status {
+  PENDING
+  REVIEWING
+  APPROVED
+  PUBLISHED
+  REJECTED
+}
