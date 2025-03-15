@@ -34,8 +34,11 @@ model Author {
 }
 
 model Type {
-  id    String @id @default(uuid())
-  label String @unique
+  id          String   @id @default(uuid())
+  label       String   @unique
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   resources  Resource[]
   category   Category   @relation(fields: [categoryId], references: [id], onDelete: Restrict)
@@ -43,8 +46,11 @@ model Type {
 }
 
 model Category {
-  id    String @id @default(uuid())
-  label String @unique
+  id          String   @id @default(uuid())
+  label       String   @unique
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   resources Resource[]
   types     Type[]
@@ -72,7 +78,7 @@ model Resource {
   author    Author?  @relation(fields: [authorId], references: [id], onDelete: Restrict)
   authorId  String?
 
-  submissions Submission[]
+  submission Submission[]
 }
 
 model Submission {
