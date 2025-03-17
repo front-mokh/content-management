@@ -15,7 +15,6 @@ import TextAreaField from "./TextAreaField";
 import { toast } from "sonner";
 import { createCategory } from "@/lib/services";
 
-// Define the schema for category validation
 const addCategorySchema = z.object({
   label: z.string().min(1, "Le nom de la catégorie est obligatoire"),
   description: z

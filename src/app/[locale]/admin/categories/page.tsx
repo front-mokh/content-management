@@ -1,4 +1,6 @@
 import AddCategoryDialog from "@/components/custom/AddCategoryDialog";
+import DeleteAction from "@/components/custom/DeleteAction";
+import DeleteCategoryDialog from "@/components/custom/DeleteCategoryDialog";
 import UpdateAction from "@/components/custom/UpdateAction";
 import UpdateCategoryDialog from "@/components/custom/UpdateCategoryDialog";
 import { Button } from "@/components/ui/button";
@@ -13,6 +15,7 @@ import {
 } from "@/components/ui/table";
 import { getAllCategories } from "@/lib/services";
 import { formatDate } from "@/lib/utils";
+import { Delete } from "lucide-react";
 import React from "react";
 
 export default async function CategoriesPage() {
@@ -51,6 +54,10 @@ export default async function CategoriesPage() {
                     <div className="space-x-2">
                       <UpdateCategoryDialog
                         trigger={<UpdateAction />}
+                        category={category}
+                      />
+                      <DeleteCategoryDialog
+                        trigger={<DeleteAction />}
                         category={category}
                       />
                     </div>

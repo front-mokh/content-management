@@ -37,7 +37,9 @@ export async function updateCategory(
 }
 
 export async function deleteCategory(id: string): Promise<Category> {
-  return prisma.category.delete({ where: { id } });
+  const category = await prisma.category.delete({ where: { id } });
+  revalidatePath("/admin/categories");
+  return category;
 }
 
 export async function getAllCategories(
