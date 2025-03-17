@@ -1,9 +1,14 @@
+"use server";
+
+import { revalidatePath } from "next/cache";
 import { prisma } from "../db";
 import { CreateAuthorInput, UpdateAuthorInput } from "../db/schema";
 import { Author, Resource } from "@prisma/client";
 
 export async function createAuthor(data: CreateAuthorInput): Promise<Author> {
-  return prisma.author.create({ data });
+  const author = await prisma.author.create({ data });
+  revalidatePath("/admin/authors");
+  return author;
 }
 
 export async function getAuthorById(id: string): Promise<Author | null> {
@@ -14,22 +19,38 @@ export async function updateAuthor(
   id: string,
   data: UpdateAuthorInput
 ): Promise<Author> {
-  return prisma.author.update({ where: { id }, data });
+  const author = await prisma.author.update({ where: { id }, data });
+  revalidatePath("/admin/authors");
+  return author;
 }
 
 export async function deleteAuthor(id: string): Promise<Author> {
-  return prisma.author.delete({ where: { id } });
+  const author = await prisma.author.delete({ where: { id } });
+  revalidatePath("/admin/authors");
+  return author;
 }
 
 export async function getAllAuthors(
   skip?: number,
   take?: number
-): Promise<Author[]> {
-  return prisma.author.findMany({
+): Promise<(Author & { resourceCount: number })[]> {
+  const authors = await prisma.author.findMany({
     skip,
     take,
     orderBy: { lastName: "asc" },
+    include: {
+      _count: {
+        select: {
+          resources: true
+        }
+      }
+    }
   });
+
+  return authors.map(author => ({
+    ...author,
+    resourceCount: author._count.resources
+  }));
 }
 
 export async function getAuthorResources(
