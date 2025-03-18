@@ -1,9 +1,14 @@
+"use server";
+
 import { prisma } from "../db";
 import { CreateTypeInput, UpdateTypeInput } from "../db/schema";
 import { Type, Resource } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export async function createType(data: CreateTypeInput): Promise<Type> {
-  return prisma.type.create({ data });
+  const type = await prisma.type.create({ data });
+  revalidatePath("/admin/types");
+  return type;
 }
 
 export async function getTypeById(id: string): Promise<Type | null> {
@@ -18,11 +23,15 @@ export async function updateType(
   id: string,
   data: UpdateTypeInput
 ): Promise<Type> {
-  return prisma.type.update({ where: { id }, data });
+  const type = await prisma.type.update({ where: { id }, data }); 
+  revalidatePath("/admin/types");
+  return type;
 }
 
 export async function deleteType(id: string): Promise<Type> {
-  return prisma.type.delete({ where: { id } });
+  const type = await prisma.type.delete({ where: { id } });
+  revalidatePath("/admin/types");
+  return type
 }
 
 export async function getAllTypes(

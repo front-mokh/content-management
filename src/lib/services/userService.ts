@@ -1,9 +1,13 @@
+"use server";
 import { prisma } from "../db";
 import { CreateUserInput, UpdateUserInput } from "../db/schema";
 import { User, Resource } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export async function createUser(data: CreateUserInput): Promise<User> {
-  return prisma.user.create({ data });
+  const user = await prisma.user.create({ data });
+  revalidatePath("/admin/users");
+  return user;
 }
 
 export async function getUserById(id: string): Promise<User | null> {
@@ -20,11 +24,16 @@ export async function updateUser(
   id: string,
   data: UpdateUserInput
 ): Promise<User> {
-  return prisma.user.update({ where: { id }, data });
+  const user = await prisma.user.update({ where: { id }, data });
+  revalidatePath("/admin/users");
+  return user;  
 }
 
+
 export async function deleteUser(id: string): Promise<User> {
-  return prisma.user.delete({ where: { id } });
+  const user = await prisma.user.delete({ where: { id } });
+  revalidatePath("/admin/users");
+  return user;
 }
 
 export async function getAllUsers(
