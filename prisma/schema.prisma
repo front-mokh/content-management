@@ -39,7 +39,6 @@ model Type {
   description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-
   resources  Resource[]
   category   Category   @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   categoryId String
