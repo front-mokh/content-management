@@ -3,9 +3,20 @@ import { prisma } from "../db";
 import { CreateUserInput, UpdateUserInput } from "../db/schema";
 import { User, Resource } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { hash } from "bcrypt";
 
-export async function createUser(data: CreateUserInput): Promise<User> {
-  const user = await prisma.user.create({ data });
+
+
+export async function createUser(data: CreateUserInput) {
+ 
+  const hashedPassword = await hash(data.password, 10);
+  
+  const user = await prisma.user.create({
+    data: {
+      email: data.email,
+      password: hashedPassword
+    }
+  });
   revalidatePath("/admin/users");
   return user;
 }
@@ -14,10 +25,10 @@ export async function getUserById(id: string): Promise<User | null> {
   return prisma.user.findUnique({ where: { id } });
 }
 
-export async function getUserByUsername(
-  username: string
+export async function getUserByEmail(
+  email: string
 ): Promise<User | null> {
-  return prisma.user.findUnique({ where: { username } });
+  return prisma.user.findUnique({ where: { email } });
 }
 
 export async function updateUser(
@@ -26,9 +37,8 @@ export async function updateUser(
 ): Promise<User> {
   const user = await prisma.user.update({ where: { id }, data });
   revalidatePath("/admin/users");
-  return user;  
+  return user;
 }
-
 
 export async function deleteUser(id: string): Promise<User> {
   const user = await prisma.user.delete({ where: { id } });
@@ -43,7 +53,7 @@ export async function getAllUsers(
   return prisma.user.findMany({
     skip,
     take,
-    orderBy: { username: "asc" },
+    orderBy: { email: "asc" },
   });
 }
 
