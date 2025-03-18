@@ -1,18 +1,16 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 import { PrismaClient } from "@prisma/client";
-import { writeFile } from "fs/promises";
 import { join } from "path";
 import { randomUUID } from "crypto";
 import fs from "fs/promises";
 import path from "path";
+import { auth } from "../../auth";
 
 const prisma = new PrismaClient();
 
-// Define the schema for resource creation
 const addResourceSchema = z.object({
   title: z.string().min(1, "Le titre est obligatoire"),
   description: z.string().min(1, "La description est obligatoire"),
@@ -28,28 +26,22 @@ export async function createResourceWithFile(
   file: File
 ) {
   try {
-    // Validate input data
     const validatedData = addResourceSchema.parse(data);
 
-    // Get the current user ID (you'll need to implement auth in your application)
-    // This is just a placeholder - replace with your actual auth logic
     const session = await getSessionOrThrow();
     const userId = session.user.id;
 
-    // Process the file
     const fileUrl = await processUploadedFile(file);
 
-    // Use a transaction to ensure both operations succeed or fail together
     const resource = await prisma.$transaction(async (tx) => {
-      // Create the resource
       const newResource = await tx.resource.create({
         data: {
           title: validatedData.title,
           description: validatedData.description,
           path: fileUrl,
-          status: "PENDING", // Default status
-          views: 0n,
-          upvotes: 0n,
+          status: "PENDING",
+          views: 0,
+          upvotes: 0,
           category: {
             connect: { id: validatedData.categoryId },
           },
@@ -70,16 +62,11 @@ export async function createResourceWithFile(
       return newResource;
     });
 
-    // Revalidate the resources page
     revalidatePath("/resources");
 
     return { success: true, data: resource };
   } catch (error) {
     console.error("Error creating resource:", error);
-
-    // Clean up any created files in case of error
-    // Note: We would need to know the file path here, which we don't
-    // This is why handling this in a transaction is important
 
     return {
       success: false,
@@ -122,7 +109,7 @@ async function processUploadedFile(file: File): Promise<string> {
 // Replace this with your actual auth logic
 async function getSessionOrThrow() {
   // This is a placeholder - implement your actual session management
-  const session = { user: { id: "user-id-placeholder" } };
+  const session = await auth();
 
   if (!session?.user?.id) {
     throw new Error("Vous devez être connecté pour effectuer cette action");
@@ -131,8 +118,6 @@ async function getSessionOrThrow() {
   return session;
 }
 
-// A cleanup job that should run periodically to remove orphaned files
-// This could be triggered by a cron job or similar mechanism
 export async function cleanupOrphanedFiles() {
   try {
     const uploadDir = join(process.cwd(), "public", "uploads");

@@ -49,7 +49,7 @@ const links = [
   },
   {
     title: "Resources",
-    url: "resources",
+    url: "/admin/resources",
     icon: Bot,
   },
   {
@@ -76,7 +76,7 @@ const links = [
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props} className="bg-white">
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader></SidebarHeader>
       <SidebarContent>
         <NavMain items={links} />

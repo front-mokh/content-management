@@ -5,6 +5,7 @@ import {
   ResourceFilters,
 } from "../db/schema";
 import { Resource, Status, Submission } from "@prisma/client";
+import { FullResource } from "../types";
 
 export async function createResource(
   data: CreateResourceInput
@@ -45,7 +46,7 @@ export async function getAllResources(
   filters?: ResourceFilters,
   skip?: number,
   take?: number
-): Promise<Resource[]> {
+): Promise<FullResource[]> {
   return prisma.resource.findMany({
     where: filters,
     skip,
