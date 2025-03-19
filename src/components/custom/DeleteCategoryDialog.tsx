@@ -22,7 +22,7 @@ export default function DeleteCategoryDialog({
 
       showToast("success", "Catégorie supprimée avec succès");
     } catch {
-      showToast("error", "Échec de la suppression du produit");
+      showToast("error", "Échec de la suppression de la catégorie");
     }
     setIsDeleting(false);
   };
@@ -30,8 +30,8 @@ export default function DeleteCategoryDialog({
   return (
     <DeleteConfirmationDialog
       trigger={trigger}
-      title={`Supprimer le produit "${category.label}"`}
-      description={`Êtes-vous sûr de vouloir supprimer le produit ${category.label}`}
+      title={`Supprimer la catégorie "${category.label}"`}
+      description={`Êtes-vous sûr de vouloir supprimer la catégorie ${category.label}`}
       isDeleting={isDeleting}
       onConfirm={handleDelete}
     />

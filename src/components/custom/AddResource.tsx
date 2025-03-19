@@ -29,7 +29,6 @@ import {
 import { FileUpload } from "@/components/custom/FileUpload";
 import { createResourceWithFile } from "@/lib/createResource";
 
-// Define the schema for resource creation
 const addResourceSchema = z.object({
   title: z.string().min(1, "Le titre est obligatoire"),
   description: z.string().min(1, "La description est obligatoire"),
@@ -89,7 +88,6 @@ export default function AddResourcePage({
   };
 
   const onSubmit = async (values: CreateResourceInput) => {
-    // Validate file is selected
     if (!selectedFile) {
       setFileError("Le fichier est obligatoire");
       return;
@@ -97,7 +95,6 @@ export default function AddResourcePage({
 
     setIsSubmitting(true);
     try {
-      // The server action now handles both the resource creation and file upload
       const result = await createResourceWithFile(values, selectedFile);
 
       if (!result.success) {
@@ -105,7 +102,7 @@ export default function AddResourcePage({
       }
 
       toast.success("Ressource ajoutée avec succès");
-      router.push("/resources");
+      router.push("/admin/resources");
       router.refresh();
     } catch (error) {
       console.error(error);

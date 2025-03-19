@@ -1,10 +1,13 @@
+"use server";
 import { prisma } from "../db";
 import {
   CreateResourceInput,
   UpdateResourceInput,
   ResourceFilters,
 } from "../db/schema";
-import { Resource, Status, Submission } from "@prisma/client";
+import { Resource, ResourceStatus, Submission } from "@prisma/client";
+import { FullResource } from "../types";
+import { revalidatePath } from "next/cache";
 
 export async function createResource(
   data: CreateResourceInput
@@ -12,12 +15,14 @@ export async function createResource(
   return prisma.resource.create({
     data: {
       ...data,
-      status: data.status || Status.PENDING,
+      status: data.status || ResourceStatus.UNPUBLISHED,
     },
   });
 }
 
-export async function getResourceById(id: string): Promise<Resource | null> {
+export async function getResourceById(
+  id: string
+): Promise<FullResource | null> {
   return prisma.resource.findUnique({
     where: { id },
     include: {
@@ -25,7 +30,6 @@ export async function getResourceById(id: string): Promise<Resource | null> {
       type: true,
       author: true,
       handler: true,
-      submissions: true,
     },
   });
 }
@@ -45,12 +49,37 @@ export async function getAllResources(
   filters?: ResourceFilters,
   skip?: number,
   take?: number
-): Promise<Resource[]> {
+): Promise<FullResource[]> {
   return prisma.resource.findMany({
     where: filters,
     skip,
     take,
-    orderBy: { submittedAt: "desc" },
+    orderBy: { createdAt: "desc" },
+    include: {
+      category: true,
+      type: true,
+      author: true,
+      handler: true,
+    },
+  });
+}
+
+export async function getPublishedResources(): Promise<FullResource[]> {
+  return prisma.resource.findMany({
+    where: { status: "PUBLISHED" },
+    orderBy: { createdAt: "desc" },
+    include: {
+      category: true,
+      type: true,
+      author: true,
+      handler: true,
+    },
+  });
+}
+export async function getUnpublishedResources(): Promise<FullResource[]> {
+  return prisma.resource.findMany({
+    where: { status: "UNPUBLISHED" },
+    orderBy: { createdAt: "desc" },
     include: {
       category: true,
       type: true,
@@ -74,32 +103,25 @@ export async function incrementResourceUpvotes(id: string): Promise<Resource> {
   });
 }
 
-export async function updateResourceStatus(
-  id: string,
-  status: Status,
-  handlerId?: string
-): Promise<Resource> {
-  const data: Partial<Resource> = { status };
-
-  // Set appropriate timestamps based on status
-  if (status === Status.REVIEWING) {
-    data.reviewedAt = new Date();
-  }
-  if (status === Status.PUBLISHED) {
-    data.publishedAt = new Date();
-  }
-
-  // Assign handler if provided
-  if (handlerId) {
-    data.handlerId = handlerId;
-  }
-
-  return prisma.resource.update({
+export async function publishResource(id: string) {
+  const resource = prisma.resource.update({
     where: { id },
-    data,
+    data: { status: "PUBLISHED" },
   });
+  revalidatePath("/admin/resources/unpublished");
+  revalidatePath("/admin/resources/published");
+  return resource;
 }
 
+export async function unPublishResource(id: string) {
+  const resource = prisma.resource.update({
+    where: { id },
+    data: { status: "UNPUBLISHED" },
+  });
+  revalidatePath("/admin/resources/unpublished");
+  revalidatePath("/admin/resources/published");
+  return resource;
+}
 export async function getResourceSubmissions(
   resourceId: string
 ): Promise<Submission[]> {

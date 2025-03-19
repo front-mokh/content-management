@@ -15,6 +15,8 @@ datasource db {
 
 model User {
   id        String   @id @default(uuid())
+  firstName String
+  lastName  String
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
@@ -63,12 +65,10 @@ model Resource {
   title       String
   description String
   path        String
-  submittedAt DateTime  @default(now())
-  reviewedAt  DateTime?
   publishedAt DateTime?
-  views       BigInt    @default(0)
-  upvotes     BigInt    @default(0)
-  status      Status    @default(PENDING)
+  views       BigInt         @default(0)
+  upvotes     BigInt         @default(0)
+  status      ResourceStatus @default(UNPUBLISHED)
 
   category  Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   type      Type     @relation(fields: [typeId], references: [id], onDelete: Restrict)
@@ -78,6 +78,9 @@ model Resource {
   authorId  String?
 
   submission Submission[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Submission {
@@ -92,10 +95,7 @@ model Submission {
   resourceId String
 }
 
-enum Status {
-  PENDING
-  REVIEWING
-  APPROVED
+enum ResourceStatus {
+  UNPUBLISHED
   PUBLISHED
-  REJECTED
 }

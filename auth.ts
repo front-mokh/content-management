@@ -33,32 +33,27 @@ export const authConfig: NextAuthConfig = {
           });
 
           if (!user) {
-            // Create new user if not found
-            const hash = saltAndHashPassword(credentials.password);
-            user = await prisma.user.create({
-              data: {
-                email,
-                password: hash, // Make sure this field matches your schema
-              },
-            });
-            return user;
-          } else {
-            // Verify password for existing user
-            const isMatch = bcrypt.compareSync(
-              credentials.password as string,
-              user.password
-            );
-
-            if (!isMatch) {
-              console.log("Password mismatch");
-              return null; // Return null instead of throwing an error
-            }
-
-            return user;
+            return null;
           }
+
+          const isMatch = bcrypt.compareSync(
+            credentials.password as string,
+            user.password
+          );
+
+          if (!isMatch) {
+            console.log("Password mismatch");
+            return null;
+          }
+
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.lastName.toUpperCase() + " " + user.firstName,
+          };
         } catch (error) {
           console.error("Authorization error:", error);
-          return null; // Return null for any errors
+          return null;
         }
       },
     }),
@@ -70,12 +65,16 @@ export const authConfig: NextAuthConfig = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.email = user.email;
+        token.name = user.name;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
+        session.user.email = token.email as string;
+        session.user.name = token.name as string;
       }
       return session;
     },
