@@ -1,23 +1,10 @@
 "use client";
 
 import * as React from "react";
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react";
+import { BookOpen, Bot, Settings2, SquareTerminal } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
-import { NavUser } from "@/components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
+
 import {
   Sidebar,
   SidebarContent,
@@ -49,8 +36,18 @@ const links = [
   },
   {
     title: "Resources",
-    url: "/admin/resources",
+    url: "/admin/resources/unpublished",
     icon: Bot,
+    items: [
+      {
+        title: "Non Publiées",
+        url: "/admin/resources/unpublished",
+      },
+      {
+        title: "Publiées",
+        url: "/admin/resources/published",
+      },
+    ],
   },
   {
     title: "Catégories",

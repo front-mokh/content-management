@@ -39,7 +39,7 @@ export async function createResourceWithFile(
           title: validatedData.title,
           description: validatedData.description,
           path: fileUrl,
-          status: "PENDING",
+          status: "UNPUBLISHED",
           views: 0,
           upvotes: 0,
           category: {
@@ -105,10 +105,7 @@ async function processUploadedFile(file: File): Promise<string> {
   }
 }
 
-// Helper function to get the current session
-// Replace this with your actual auth logic
 async function getSessionOrThrow() {
-  // This is a placeholder - implement your actual session management
   const session = await auth();
 
   if (!session?.user?.id) {
