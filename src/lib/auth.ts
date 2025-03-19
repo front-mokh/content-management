@@ -42,6 +42,7 @@ export const loginWithCredentials = async (formData: FormData) => {
 
   try {
     await signIn("credentials", rawFormData);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error instanceof AuthError) {
       switch (error.type) {
