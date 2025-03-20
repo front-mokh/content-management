@@ -1,7 +1,7 @@
 // app/admin/submissions/[id]/edit/page.tsx
 import { getSubmissionById } from "@/lib/services";
 import { notFound } from "next/navigation";
-import EditSubmissionForm from "@/components/custom/EditSubmissionForm";
+import EditSubmissionForm from "@/components/submission/EditSubmissionForm";
 
 export default async function EditSubmissionPage({
   params,
