@@ -1,48 +1,19 @@
 "use client";
-import AddUserDialog from "@/components/users/AddUserDialog";
-import CustomPagination from "@/components/custom/CustomPagination";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { usePagination } from "@/hooks/use-pagination";
 import { User } from "@prisma/client";
 import React from "react";
 import UsersTable from "./UsersTable";
+import AddUserDialog from "@/components/users/AddUserDialog";
+import Page from "@/components/custom/Page";
 
-export default function UsersPage({
-  users,
-}: {
-  users: User[];
-}) {
-  const { currentPage, totalPages, pageItems, handlePageChange } =
-    usePagination<User>(users, 3);
-
+export default function UsersPage({ users }: { users: User[] }) {
   return (
-    <div className="h-full">
-      <Card className="h-full">
-        <CardHeader>
-          <CardTitle>Gestion des Utilisateurs</CardTitle>
-          <AddUserDialog />
-        </CardHeader>
-        <CardContent>
-          <UsersTable users={pageItems} />
-        </CardContent>
-        <CardFooter>
-          {totalPages > 1 && (
-            <div className="mt-6">
-              <CustomPagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-              />
-            </div>
-          )}
-        </CardFooter>
-      </Card>
-    </div>
+    <Page
+      title="Gestion des Utilisateurs"
+      description="Créer, modifier et gérer les comptes utilisateurs du système"
+      backButtonHref="" 
+      actions={<AddUserDialog />}
+    >
+      <UsersTable users={users} />
+    </Page>
   );
 }

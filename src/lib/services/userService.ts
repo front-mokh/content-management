@@ -11,9 +11,12 @@ export async function createUser(data: CreateUserInput) {
  
   const hashedPassword = await hash(data.password, 10);
   
+  console.log("data",data);
   const user = await prisma.user.create({
     data: {
       email: data.email,
+      firstName: data.firstName, 
+      lastName: data.lastName,   
       password: hashedPassword
     }
   });
@@ -35,7 +38,16 @@ export async function updateUser(
   id: string,
   data: UpdateUserInput
 ): Promise<User> {
-  const user = await prisma.user.update({ where: { id }, data });
+  const user = await prisma.user.update({
+    where: { id },
+    data: {
+      // Include all updatable fields
+      email: data.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      // Add password update if needed (ensure to hash if updating)
+    }
+  });
   revalidatePath("/admin/users");
   return user;
 }

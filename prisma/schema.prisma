@@ -52,14 +52,12 @@ model Category {
   description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-
   resources Resource[]
   types     Type[]
 }
 
 model Resource {
   id String @id @default(uuid())
-
   categoryId  String
   typeId      String
   title       String
@@ -69,33 +67,41 @@ model Resource {
   views       BigInt         @default(0)
   upvotes     BigInt         @default(0)
   status      ResourceStatus @default(UNPUBLISHED)
-
   category  Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   type      Type     @relation(fields: [typeId], references: [id], onDelete: Restrict)
   handler   User?    @relation(fields: [handlerId], references: [id], onDelete: Restrict)
   handlerId String?
   author    Author?  @relation(fields: [authorId], references: [id], onDelete: Restrict)
   authorId  String?
-
-  submission Submission[]
-
+  submission  Submission? @relation(fields: [submissionId], references: [id], onDelete: SetNull)
+  submissionId String?     @unique 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Submission {
-  id        String  @id @default(uuid())
+  id        String           @id @default(uuid())
   firstName String
   lastName  String
   email     String
   phone     String?
   message   String?
-
-  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Restrict)
-  resourceId String
+  filepath  String  
+  author    String  
+  status    SubmissionStatus @default(PENDING)
+  resource  Resource?        @relation
+  createdAt DateTime         @default(now())    
+  updatedAt DateTime         @updatedAt
 }
 
 enum ResourceStatus {
   UNPUBLISHED
   PUBLISHED
+}
+
+
+enum SubmissionStatus {
+  ACCEPTED
+  PENDING
+  REJECTED
 }
