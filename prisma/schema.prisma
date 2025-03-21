@@ -104,4 +104,5 @@ enum SubmissionStatus {
   ACCEPTED
   PENDING
   REJECTED
+  CONVERTED
 }

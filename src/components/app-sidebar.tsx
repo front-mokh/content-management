@@ -16,21 +16,25 @@ import {
 const links = [
   {
     title: "Soumissions",
-    url: "submissions",
+    url: "/admin/submissions/pending",
     icon: SquareTerminal,
     isActive: true,
     items: [
       {
         title: "En Attente",
-        url: "submissions/pending",
+        url: "/admin/submissions/pending",
+      },    
+      {
+        title: "Rejetées",
+        url: "/admin/submissions/rejected",
       },
       {
         title: "Approuvées",
-        url: "submissions/approved",
+        url: "/admin/submissions/accepted",
       },
       {
-        title: "Rejetées",
-        url: "submissions/rejected",
+        title: "Convertis",
+        url: "/admin/submissions/converted",
       },
     ],
   },
@@ -56,17 +60,17 @@ const links = [
   },
   {
     title: "Types",
-    url: "types",
+    url: "/admin/types",
     icon: Settings2,
   },
   {
     title: "Authors",
-    url: "authors",
+    url: "/admin/authors",
     icon: Settings2,
   },
   {
     title: "Utilisateurs",
-    url: "users",
+    url: "/admin/users",
     icon: Settings2,
   },
 ];

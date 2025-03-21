@@ -113,6 +113,7 @@ export async function publishResource(id: string) {
   return resource;
 }
 
+
 export async function unPublishResource(id: string) {
   const resource = prisma.resource.update({
     where: { id },

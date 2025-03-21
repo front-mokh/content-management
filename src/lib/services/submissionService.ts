@@ -80,6 +80,13 @@ export async function getRejectedSubmissions(): Promise<Submission[]> {
     orderBy: { createdAt: "desc" },
   });
 }
+export async function getConvertedSubmissions(): Promise<Submission[]> {
+  return prisma.submission.findMany({
+    where: { status: SubmissionStatus.CONVERTED },
+    orderBy: { createdAt: "desc" },
+  });
+}
+
 
 export async function acceptSubmission(id: string) {
   const submission = await prisma.submission.update({
@@ -104,7 +111,7 @@ export async function rejectSubmission(id: string) {
 }
 
 export async function convertSubmissionToResource(id: string) {
-  // Get the submission
+  
   const submission = await prisma.submission.findUnique({
     where: { id },
   });
@@ -116,15 +123,13 @@ export async function convertSubmissionToResource(id: string) {
   // Create a resource from the submission
   const resource = await prisma.resource.create({
     data: {
-      title: submission.author,
-      description: submission.message || "Soumission convertie en ressource",
+      title: "",
+      description:" ",
       path: submission.filepath,
       status: "UNPUBLISHED",
-      categoryId: "", // This needs to be set during conversion
-      typeId: "", // This needs to be set during conversion
-      submission: {
-        connect: { id: submission.id },
-      },
+      categoryId: "", 
+      typeId: "", 
+      submissionId: submission.id
     },
   });
 
@@ -134,7 +139,9 @@ export async function convertSubmissionToResource(id: string) {
     data: { status: SubmissionStatus.ACCEPTED },
   });
 
-  revalidatePath("/admin/submissions/pending");
+  
   revalidatePath("/admin/submissions/accepted");
+  revalidatePath("/admin/submissions/converted");
+  revalidatePath("/admin/resources/unpublished");
   return resource;
 }
