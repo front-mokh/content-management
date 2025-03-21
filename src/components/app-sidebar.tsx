@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { BookOpen, Bot, Settings2, SquareTerminal } from "lucide-react";
+import { BookOpen,BookDown,Inbox, Bot, UsersRound,Contact, FolderOpenDot } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 
@@ -17,7 +17,7 @@ const links = [
   {
     title: "Soumissions",
     url: "/admin/submissions",
-    icon: SquareTerminal,
+    icon: BookDown,
     isActive: true,
     items: [
       {
@@ -41,7 +41,7 @@ const links = [
   {
     title: "Resources",
     url: "/admin/resources/unpublished",
-    icon: Bot,
+    icon: FolderOpenDot,
     items: [
       {
         title: "Non Publiées",
@@ -61,17 +61,17 @@ const links = [
   {
     title: "Types",
     url: "/admin/types",
-    icon: Settings2,
+    icon: Inbox,
   },
   {
-    title: "Authors",
+    title: "Auteurs",
     url: "/admin/authors",
-    icon: Settings2,
+    icon: Contact,
   },
   {
     title: "Utilisateurs",
     url: "/admin/users",
-    icon: Settings2,
+    icon: UsersRound,
   },
 ];
 
