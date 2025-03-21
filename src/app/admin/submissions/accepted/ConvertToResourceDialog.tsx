@@ -1,32 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Submission } from "@prisma/client";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import CustomDialog from "@/components/custom/CustomDialog";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import TextField from "@/components/custom/TextField";
 import TextAreaField from "@/components/custom/TextAreaField";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { convertSubmissionToResource } from "@/lib/convertSubmissionToResource";
+import SelectField from "@/components/fields/SelectField";
+import { convertSubmissionToResource } from "@/lib/services/convert-submission";
 import { FileText } from "lucide-react";
 
 const convertToResourceSchema = z.object({
@@ -40,25 +26,24 @@ const convertToResourceSchema = z.object({
 type ConvertToResourceInput = z.infer<typeof convertToResourceSchema>;
 
 export default function ConvertToResourceDialog({
-  open,
-  onOpenChange,
+  trigger,
   submission,
   categories,
   types,
   authors,
 }: {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+  trigger: React.ReactNode;
   submission: Submission;
   categories: { id: string; label: string }[];
   types: { id: string; label: string; categoryId: string }[];
   authors: { id: string; firstName: string; lastName: string }[];
 }) {
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
   const [filteredTypes, setFilteredTypes] = useState<
-    { id: string; label: string }[]
+    { value: string; label: string }[]
   >([]);
 
   const form = useForm<ConvertToResourceInput>({
@@ -72,15 +57,50 @@ export default function ConvertToResourceDialog({
     },
   });
 
-  // Update filtered types when category changes
-  const handleCategoryChange = (value: string) => {
-    setSelectedCategoryId(value);
-    form.setValue("categoryId", value);
-    form.setValue("typeId", ""); // Reset type when category changes
-
-    const filtered = types.filter((type) => type.categoryId === value);
-    setFilteredTypes(filtered);
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+    if (!open) {
+      resetForm();
+    }
   };
+
+  const resetForm = () => {
+    form.reset({
+      title: submission.author || "",
+      description: submission.message || "",
+      categoryId: "",
+      typeId: "",
+      authorId: "",
+    });
+    setSelectedCategoryId("");
+    setFilteredTypes([]);
+    setIsSubmitting(false);
+  };
+
+  // Watch for changes to categoryId
+  useEffect(() => {
+    const subscription = form.watch((value, { name }) => {
+      if (name === "categoryId" && value.categoryId) {
+        const categoryId = value.categoryId as string;
+        setSelectedCategoryId(categoryId);
+        
+        // Filter types based on selected category
+        const filtered = types
+          .filter((type) => type.categoryId === categoryId)
+          .map(type => ({
+            value: type.id,
+            label: type.label
+          }));
+        
+        setFilteredTypes(filtered);
+        
+        // Reset typeId when category changes
+        form.setValue("typeId", "");
+      }
+    });
+    
+    return () => subscription.unsubscribe();
+  }, [form, types]);
 
   const onSubmit = async (values: ConvertToResourceInput) => {
     setIsSubmitting(true);
@@ -91,7 +111,7 @@ export default function ConvertToResourceDialog({
       });
 
       toast.success("Soumission convertie en ressource avec succès");
-      onOpenChange(false);
+      handleOpenChange(false);
       router.refresh();
     } catch (error) {
       console.error(error);
@@ -110,140 +130,95 @@ export default function ConvertToResourceDialog({
     return path.split('/').pop() || path;
   };
 
+  // Prepare options for SelectField components
+  const categoryOptions = categories.map(category => ({
+    value: category.id,
+    label: category.label
+  }));
+
+  const authorOptions = authors.map(author => ({
+    value: author.id,
+    label: `${author.firstName} ${author.lastName}`
+  }));
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-xl">
-        <DialogHeader>
-          <DialogTitle>Convertir en ressource</DialogTitle>
-          <DialogDescription>
-            Complétez les informations pour convertir cette soumission en ressource
-          </DialogDescription>
-        </DialogHeader>
+    <CustomDialog
+      trigger={trigger}
+      title="Convertir en ressource"
+      isOpen={isOpen}
+      onOpenChange={handleOpenChange}
+    >
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <TextField
+            control={form.control}
+            name="title"
+            label="Titre"
+            placeholder="Titre de la ressource"
+          />
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <TextField
+          <TextAreaField
+            control={form.control}
+            name="description"
+            label="Description"
+            placeholder="Description détaillée de la ressource"
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <SelectField
               control={form.control}
-              name="title"
-              label="Titre"
-              placeholder="Titre de la ressource"
+              name="categoryId"
+              label="Catégorie"
+              placeholder="Sélectionnez une catégorie"
+              options={categoryOptions}
             />
 
-            <TextAreaField
+            <SelectField
               control={form.control}
-              name="description"
-              label="Description"
-              placeholder="Description détaillée de la ressource"
+              name="typeId"
+              label="Type"
+              placeholder={selectedCategoryId ? "Sélectionnez un type" : "Sélectionnez d'abord une catégorie"}
+              options={filteredTypes}
+              disabled={!selectedCategoryId || isSubmitting}
             />
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Catégorie</label>
-                <Select
-                  onValueChange={handleCategoryChange}
-                  defaultValue={form.getValues("categoryId")}
-                  disabled={isSubmitting}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Sélectionnez une catégorie" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {categories.map((category) => (
-                      <SelectItem key={category.id} value={category.id}>
-                        {category.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {form.formState.errors.categoryId && (
-                  <p className="text-sm text-red-500">
-                    {form.formState.errors.categoryId.message}
-                  </p>
-                )}
-              </div>
+          <SelectField
+            control={form.control}
+            name="authorId"
+            label="Auteur (optionnel)"
+            placeholder="Sélectionnez un auteur"
+            options={authorOptions}
+          />
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Type</label>
-                <Select
-                  onValueChange={(value) => form.setValue("typeId", value)}
-                  defaultValue={form.getValues("typeId")}
-                  disabled={!selectedCategoryId || isSubmitting}
-                >
-                  <SelectTrigger>
-                    <SelectValue
-                      placeholder={
-                        selectedCategoryId
-                          ? "Sélectionnez un type"
-                          : "Sélectionnez d'abord une catégorie"
-                      }
-                    />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {filteredTypes.map((type) => (
-                      <SelectItem key={type.id} value={type.id}>
-                        {type.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {form.formState.errors.typeId && (
-                  <p className="text-sm text-red-500">
-                    {form.formState.errors.typeId.message}
-                  </p>
-                )}
+          <div className="p-4 border rounded-md bg-slate-50">
+            <div className="flex items-center space-x-2">
+              <FileText className="h-6 w-6 text-blue-500" />
+              <div>
+                <p className="text-sm font-medium">Fichier de la soumission</p>
+                <p className="text-xs text-muted-foreground">{getFilename(submission.filepath)}</p>
               </div>
             </div>
+          </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Auteur (optionnel)</label>
-              <Select
-                onValueChange={(value) => form.setValue("authorId", value)}
-                defaultValue={form.getValues("authorId")}
-                disabled={isSubmitting}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Sélectionnez un auteur" />
-                </SelectTrigger>
-                <SelectContent>
-                  {authors.map((author) => (
-                    <SelectItem key={author.id} value={author.id}>
-                      {author.firstName} {author.lastName}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="p-4 border rounded-md">
-              <div className="flex items-center space-x-2">
-                <FileText className="h-6 w-6 text-blue-500" />
-                <div>
-                  <p className="text-sm font-medium">Fichier de la soumission</p>
-                  <p className="text-xs text-muted-foreground">{getFilename(submission.filepath)}</p>
-                </div>
-              </div>
-            </div>
-          </form>
-        </Form>
-
-        <DialogFooter>
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => onOpenChange(false)}
-            disabled={isSubmitting}
-          >
-            Annuler
-          </Button>
-          <Button
-            type="submit"
-            onClick={form.handleSubmit(onSubmit)}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Conversion en cours..." : "Convertir en ressource"}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+          <div className="flex justify-end gap-2 mt-10">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => handleOpenChange(false)}
+              disabled={isSubmitting}
+            >
+              Annuler
+            </Button>
+            <Button 
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Conversion en cours..." : "Convertir en ressource"}
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </CustomDialog>
   );
 }

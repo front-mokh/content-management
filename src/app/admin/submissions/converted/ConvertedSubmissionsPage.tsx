@@ -41,6 +41,7 @@ export default function ConvertedSubmissionsPage({
         <ConvertedSubmissionsTable
           submissions={pageItems}
         />
+       
       </CardContent>
       <CardFooter>
         {totalPages > 1 && (

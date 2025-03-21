@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Submission } from "@prisma/client";
 import { FileStack } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 import ConvertToResourceDialog from "./ConvertToResourceDialog";
 
 export default function ConvertToResourceAction({
@@ -16,23 +16,20 @@ export default function ConvertToResourceAction({
   types: { id: string; label: string; categoryId: string }[];
   authors: { id: string; firstName: string; lastName: string }[];
 }) {
-  const [open, setOpen] = useState(false);
-
+  // The trigger button for the CustomDialog
+  const trigger = (
+    <Button size="icon" variant="ghost">
+      <FileStack className="text-blue-500" />
+    </Button>
+  );
   
   return (
-    <>
-      <Button size={"icon"} variant={"ghost"} onClick={() => setOpen(true)}>
-        <FileStack className="text-blue-500" />
-      </Button>
-      
-      <ConvertToResourceDialog 
-        open={open} 
-        onOpenChange={setOpen} 
-        submission={submission}
-        categories={categories}
-        types={types}
-        authors={authors}
-      />
-    </>
+    <ConvertToResourceDialog
+      trigger={trigger}
+      submission={submission}
+      categories={categories}
+      types={types}
+      authors={authors}
+    />
   );
 }

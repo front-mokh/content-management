@@ -110,6 +110,16 @@ export async function rejectSubmission(id: string) {
   return submission;
 }
 
+export async function convertSubmission(id: string) {
+  const submission = await prisma.submission.update({
+    where: { id },
+    data: { status: SubmissionStatus.CONVERTED },
+  });
+  
+  revalidatePath("/admin/submissions/converted");
+  revalidatePath("/admin/submissions/accepted");
+  return submission;
+}
 export async function convertSubmissionToResource(id: string) {
   
   const submission = await prisma.submission.findUnique({
@@ -134,14 +144,8 @@ export async function convertSubmissionToResource(id: string) {
   });
 
   // Update submission status
-  await prisma.submission.update({
-    where: { id },
-    data: { status: SubmissionStatus.ACCEPTED },
-  });
+  convertSubmission(submission.id)
 
-  
-  revalidatePath("/admin/submissions/accepted");
-  revalidatePath("/admin/submissions/converted");
   revalidatePath("/admin/resources/unpublished");
   return resource;
 }

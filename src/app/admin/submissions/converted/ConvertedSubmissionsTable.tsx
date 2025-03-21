@@ -13,9 +13,7 @@ import {
 import { formatDate } from "@/lib/utils";
 import React from "react";
 import { Submission } from "@prisma/client";
-import { FileStack } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+
 
 
 export default function ConvertedSubmissionsTable({
@@ -72,15 +70,6 @@ export default function ConvertedSubmissionsTable({
               <TableCell>{formatDate(submission.updatedAt)}</TableCell>
               <TableCell className="w-[200px] text-right">
                 <div className="w-fit flex">
-                  <Button
-                    size={"icon"}
-                    variant={"ghost"}
-                    asChild
-                  >
-                    <Link href={`/admin/resources?submissionId=${submission.id}`}>
-                      <FileStack className="text-green-500" />
-                    </Link>
-                  </Button>
                   <ViewAction href={`/admin/submissions/${submission.id}`} />
            
                 </div>
