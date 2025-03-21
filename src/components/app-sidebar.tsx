@@ -16,21 +16,21 @@ import {
 const links = [
   {
     title: "Soumissions",
-    url: "submissions",
+    url: "/admin/submissions",
     icon: SquareTerminal,
     isActive: true,
     items: [
       {
         title: "En Attente",
-        url: "submissions/pending",
+        url: "/admin/submissions/pending",
       },
       {
         title: "Approuvées",
-        url: "submissions/approved",
+        url: "/admin/submissions/approved",
       },
       {
         title: "Rejetées",
-        url: "submissions/rejected",
+        url: "/admin/submissions/rejected",
       },
     ],
   },
@@ -51,22 +51,22 @@ const links = [
   },
   {
     title: "Catégories",
-    url: "categories",
+    url: "/admin/categories",
     icon: BookOpen,
   },
   {
     title: "Types",
-    url: "types",
+    url: "/admin/types",
     icon: Settings2,
   },
   {
     title: "Authors",
-    url: "authors",
+    url: "/admin/authors",
     icon: Settings2,
   },
   {
     title: "Utilisateurs",
-    url: "users",
+    url: "/admin/users",
     icon: Settings2,
   },
 ];
