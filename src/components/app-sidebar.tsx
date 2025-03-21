@@ -16,7 +16,7 @@ import {
 const links = [
   {
     title: "Soumissions",
-    url: "/admin/submissions/pending",
+    url: "/admin/submissions",
     icon: SquareTerminal,
     isActive: true,
     items: [
@@ -55,7 +55,7 @@ const links = [
   },
   {
     title: "Catégories",
-    url: "categories",
+    url: "/admin/categories",
     icon: BookOpen,
   },
   {
