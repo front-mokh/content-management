@@ -1,18 +1,12 @@
 "use client";
 import AddAuthorDialog from "@/components/author/AddAuthorDialog";
 import CustomPagination from "@/components/custom/CustomPagination";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import {CardFooter,} from "@/components/ui/card";
 import { usePagination } from "@/hooks/use-pagination";
 import { Author } from "@prisma/client";
 import React from "react";
 import AuthorsTable from "./AuthorsTable";
-
+import Page from "@/components/custom/Page";
 type AuthorWithResourceCount = Author & { resourceCount: number };
 
 export default function AuthorsPage({
@@ -24,27 +18,26 @@ export default function AuthorsPage({
     usePagination<AuthorWithResourceCount>(authors, 3);
 
   return (
-    <div className="h-full">
-      <Card className="h-full">
-        <CardHeader>
-          <CardTitle>Gestion des Auteurs</CardTitle>
-          <AddAuthorDialog />
-        </CardHeader>
-        <CardContent>
-          <AuthorsTable authors={pageItems} />
-        </CardContent>
-        <CardFooter>
-          {totalPages > 1 && (
-            <div className="mt-6">
-              <CustomPagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-              />
-            </div>
-          )}
+    <Page
+    title="Gestion des Auteurs"
+    description="Créer, modifier et gérer les auteurs des ressources"
+    backButtonHref="" 
+    actions={<AddAuthorDialog />}
+  >
+    <div className="space-y-6">
+    <AuthorsTable authors={pageItems} />
+      
+      {totalPages > 1 && (
+        <CardFooter className="px-0">
+          <CustomPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </CardFooter>
-      </Card>
+      )}
     </div>
+  </Page>
   );
+
 }

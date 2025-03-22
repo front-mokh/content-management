@@ -1,8 +1,8 @@
 "use client";
 import { ReactNode } from "react";
-import { ArrowLeft } from "lucide-react";
-import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
+// import { ArrowLeft } from "lucide-react";
+// import { Button } from "../ui/button";
+// import { useRouter } from "next/navigation";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 
 interface PageProps {
@@ -20,14 +20,14 @@ export default function Page({
   actions,
   children,
 }: PageProps) {
-  const router = useRouter();
-  const handleBack = () => {
-    if (backButtonHref) {
-      router.push(backButtonHref);
-    } else {
-      router.back();
-    }
-  };
+  // const router = useRouter();
+  // const handleBack = () => {
+  //   if (backButtonHref) {
+  //     router.push(backButtonHref);
+  //   } else {
+  //     router.back();
+  //   }
+  // };
 
   return (
     <div className="space-y-6">
@@ -35,7 +35,7 @@ export default function Page({
         {(title || description || actions || backButtonHref !== undefined) && (
           <CardHeader className="flex flex-row items-center justify-between">
             <div className="flex flex-row items-center gap-3">
-              {(backButtonHref !== undefined || backButtonHref === "") && (
+              {/* {(backButtonHref !== undefined || backButtonHref === "") && (
                 <Button
                   variant="outline"
                   size="icon"
@@ -44,7 +44,7 @@ export default function Page({
                 >
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
-              )}
+              )} */}
               <div>
                 {title && <h1 className="md:text-xl font-semibold">{title}</h1>}
                 {description && <p className="text-sm text-muted-foreground mt-1">{description}</p>}

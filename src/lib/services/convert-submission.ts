@@ -1,8 +1,7 @@
 "use server";
 
 import { prisma } from "../db";
-import { Submission, SubmissionStatus } from "@prisma/client";
-import { convertSubmission } from "./submissionService";
+
 type ConvertToResourceInput = {
   title: string;
   description: string;
