@@ -33,8 +33,10 @@ export default function ResourcesTable({
             <TableHead>Type</TableHead>
             <TableHead>Auteur</TableHead>
             <TableHead className="text-center">Fichier</TableHead>
-            <TableHead>Nombre de vues</TableHead>
-            <TableHead>Nombre d&apos;appréciations</TableHead>
+            <TableHead className="text-center">Nombre de vues</TableHead>
+            <TableHead className="text-center">
+              Nombre d&apos;appréciations
+            </TableHead>
             <TableHead>Date de publication</TableHead>
 
             <TableHead className="w-[160px] text-center">Actions</TableHead>
@@ -71,8 +73,8 @@ export default function ResourcesTable({
               <TableCell className="text-center">
                 <FileDownloader path={resource.path} />
               </TableCell>
-              <TableCell>{resource.views}</TableCell>
-              <TableCell>{resource.upvotes}</TableCell>
+              <TableCell className="text-center">{resource.views}</TableCell>
+              <TableCell className="text-center">{resource.upvotes}</TableCell>
 
               <TableCell>{formatDate(resource.publishedAt!)}</TableCell>
               <TableCell className="w-[160px] text-right">

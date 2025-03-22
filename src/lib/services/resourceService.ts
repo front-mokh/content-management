@@ -106,13 +106,12 @@ export async function incrementResourceUpvotes(id: string): Promise<Resource> {
 export async function publishResource(id: string) {
   const resource = prisma.resource.update({
     where: { id },
-    data: { status: "PUBLISHED" },
+    data: { status: "PUBLISHED", publishedAt: new Date() },
   });
   revalidatePath("/admin/resources/unpublished");
   revalidatePath("/admin/resources/published");
   return resource;
 }
-
 
 export async function unPublishResource(id: string) {
   const resource = prisma.resource.update({

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { FullResource } from "@/lib/types";
 import React from "react";
-import ResourcesTable from "./Resourcestable";
+import ResourcesTable from "./ResourcesTable";
 import AddButton from "@/components/custom/AddButton";
 import { usePagination } from "@/hooks/use-pagination";
 import CustomPagination from "@/components/custom/CustomPagination";
