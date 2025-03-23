@@ -81,7 +81,7 @@ export function UpdateUserDialog({
       // Only include password if it's not empty
       const updateData = password ? { ...data, password } : data;
       await updateUser(id, updateData);
-      toast?.success("Utilisateur mis à jour avec succès");
+      toast?.success("Utilisateur mis à jour avec succès"); 
       handleOpenChange(false);
     } catch (error) {
       console.error(error);
