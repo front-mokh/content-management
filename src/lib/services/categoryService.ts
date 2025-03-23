@@ -1,6 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { Category, prisma, Resource } from "../db";
+import { Category, prisma, Resource, Type } from "../db";
 import { CreateCategoryInput, UpdateCategoryInput } from "../db/schema";
 
 export async function createCategory(
@@ -16,6 +16,14 @@ export async function getCategoryById(id: string): Promise<Category | null> {
     where: { id },
     include: { types: true },
   });
+}
+
+export async function getCategoryTypes(categoryId: string): Promise<Type[]> {
+  const category = await prisma.category.findUnique({
+    where: { id: categoryId },
+    include: { types: true },
+  });
+  return category?.types || [];
 }
 
 export async function getCategoryByLabel(

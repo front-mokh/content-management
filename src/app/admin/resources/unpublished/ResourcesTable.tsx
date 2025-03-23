@@ -31,6 +31,7 @@ export default function ResourcesTable({
             <TableHead>Description</TableHead>
             <TableHead>Catégorie</TableHead>
             <TableHead>Type</TableHead>
+            <TableHead>Gestionnaire</TableHead>
             <TableHead>Auteur</TableHead>
             <TableHead className="text-center">Fichier</TableHead>
 
@@ -58,6 +59,15 @@ export default function ResourcesTable({
               </TableCell>
               <TableCell>{resource.category.label}</TableCell>
               <TableCell>{resource.type.label}</TableCell>
+              <TableCell>
+                {resource.handler ? (
+                  resource.handler.lastName.toUpperCase() +
+                  " " +
+                  resource.handler.firstName
+                ) : (
+                  <span className="text-muted-foreground">Non renseigné</span>
+                )}
+              </TableCell>
               <TableCell>
                 {resource.author ? (
                   resource.author?.lastName.toUpperCase() +
