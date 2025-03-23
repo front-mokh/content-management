@@ -5,5 +5,5 @@ export default async function Home({
 }: Readonly<{ params: { locale: string } }>) {
   const dir = await getDictionary(params.locale);
 
-  return <div>{dir.home.title}</div>;
+  return <div></div>;
 }

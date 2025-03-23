@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { getDictionary } from "@/lib/i18n";
-import { SessionProvider } from "next-auth/react";
-import { Toaster } from "sonner";
+import Header from "@/components/custom/Header";
+import Footer from "@/components/custom/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +29,8 @@ export default async function RootLayout({
     locale: string;
   };
 }>) {
-  const dict = await getDictionary(locale);
+  const dictionary = await getDictionary(locale);
 
-  // Set the direction based on locale
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
@@ -39,10 +38,9 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider>
-          {children}
-          <Toaster />
-        </SessionProvider>
+        {/* <Header /> */}
+        {children}
+        {/* <Footer dictionary={dictionary} /> */}
       </body>
     </html>
   );

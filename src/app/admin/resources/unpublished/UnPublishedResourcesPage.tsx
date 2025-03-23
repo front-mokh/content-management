@@ -9,19 +9,52 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { FullResource } from "@/lib/types";
-import React from "react";
+import React, { useState } from "react";
 import ResourcesTable from "./ResourcesTable";
 import AddButton from "@/components/custom/AddButton";
-import { usePagination } from "@/hooks/use-pagination";
 import CustomPagination from "@/components/custom/CustomPagination";
+import { useResourceFiltering } from "@/hooks/use-resource-filtering";
+import { Author, Category, Type, User } from "@prisma/client";
+import { Button } from "@/components/ui/button";
+import { Filter, FilterX, RefreshCw } from "lucide-react";
+import ResourceFilters from "@/components/custom/ResourceFilters";
 
-export default function UnPublishedResourcesPage({
-  resources,
-}: {
+interface ResourcesPageProps {
   resources: FullResource[];
-}) {
-  const { pageItems, currentPage, handlePageChange, totalPages } =
-    usePagination(resources, 10);
+  categories: Category[];
+  types: Type[];
+  authors: Author[];
+  handlers: User[];
+}
+
+export default function ResourcesPage({
+  resources,
+  categories,
+  types,
+  authors,
+  handlers,
+}: ResourcesPageProps) {
+  const {
+    pageItems,
+    currentPage,
+    totalPages,
+    handlePageChange,
+    filters,
+    setFilter,
+    resetFilters,
+    searchTerm,
+    setSearchTerm,
+    filteredItems,
+    isActive,
+  } = useResourceFiltering(resources, 10);
+
+  const [showFilters, setShowFilters] = useState(false);
+
+  const handleShowFilters = () => {
+    setShowFilters(!showFilters);
+    resetFilters();
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -29,27 +62,63 @@ export default function UnPublishedResourcesPage({
           <div>
             <CardTitle>Ressources Non Publiées</CardTitle>
             <CardDescription>
-              Page de gestion des ressources non publiées pour les visiteurs
+              Consultez et gérez toutes vos ressources non publiées
             </CardDescription>
           </div>
-          <AddButton
-            label="Ajouter une ressource"
-            href="/admin/resources/add"
-          />
+          <div className="flex gap-2">
+            {isActive && (
+              <Button
+                variant="outline"
+                onClick={resetFilters}
+                className="flex items-center gap-1"
+              >
+                <RefreshCw size={16} />
+                Réinitialiser
+              </Button>
+            )}
+            <Button variant="outline" onClick={handleShowFilters}>
+              {showFilters ? <FilterX size={16} /> : <Filter size={16} />}
+              {showFilters ? "Masquer les filtres" : "Afficher les filtres"}
+            </Button>
+            <AddButton
+              label="Ajouter une ressource"
+              href="/admin/resources/add"
+            />
+          </div>
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-4">
+        {showFilters && (
+          <ResourceFilters
+            filters={filters}
+            setFilter={setFilter}
+            categories={categories}
+            types={types}
+            authors={authors}
+            handlers={handlers}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
+        )}
+
+        {isActive && (
+          <div className="text-sm text-muted-foreground">
+            {filteredItems.length} ressource
+            {filteredItems.length > 1 ? "s" : ""} trouvée
+            {filteredItems.length > 1 ? "s" : ""}
+          </div>
+        )}
         <ResourcesTable resources={pageItems} />
       </CardContent>
-      <CardFooter>
-        {totalPages > 1 && (
+      {totalPages > 1 && (
+        <CardFooter>
           <CustomPagination
             currentPage={currentPage}
             onPageChange={handlePageChange}
             totalPages={totalPages}
           />
-        )}
-      </CardFooter>
+        </CardFooter>
+      )}
     </Card>
   );
 }
