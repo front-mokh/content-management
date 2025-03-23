@@ -77,7 +77,7 @@ export default function SubmissionForm() {
       toast.success("Soumission envoyée avec succès");
       form.reset();
       setSelectedFile(null);
-      router.push("/submissions/success");
+      router.push("/en/submissions/success");
       router.refresh();
     } catch (error) {
       console.error(error);
