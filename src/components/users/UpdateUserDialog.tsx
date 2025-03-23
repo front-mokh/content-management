@@ -13,7 +13,9 @@ import { User } from "@prisma/client";
 
 const updateUserSchema = z.object({
   id: z.string(),
-  username: z.string().min(1, "Le nom d'utilisateur est obligatoire"),
+  email: z.string().email("Email invalide").min(1, "L'email est obligatoire"),
+  firstName: z.string().min(1, "Le prénom est obligatoire"),
+  lastName: z.string().min(1, "Le nom est obligatoire"),
   password: z.string().optional(),
 });
 
@@ -42,7 +44,9 @@ export function UpdateUserDialog({
     resolver: zodResolver(updateUserSchema),
     defaultValues: {
       id: userData.id,
-      username: userData.username,
+      email: userData.email,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
       password: "",
     },
   });
@@ -51,7 +55,9 @@ export function UpdateUserDialog({
     if (userData) {
       form.reset({
         id: userData.id,
-        username: userData.username,
+        email: userData.email,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
         password: "",
       });
     }
@@ -60,7 +66,9 @@ export function UpdateUserDialog({
   const resetForm = () => {
     form.reset({
       id: userData.id,
-      username: userData.username,
+      email: userData.email,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
       password: "",
     });
     setIsSubmitting(false);
@@ -69,9 +77,9 @@ export function UpdateUserDialog({
   const onSubmit = async (values: UpdateUserInput) => {
     setIsSubmitting(true);
     try {
-      const { id, ...data } = values;
+      const { id, password, ...data } = values;
       // Only include password if it's not empty
-      const updateData = data.password ? data : { username: data.username };
+      const updateData = password ? { ...data, password } : data;
       await updateUser(id, updateData);
       toast?.success("Utilisateur mis à jour avec succès");
       handleOpenChange(false);
@@ -94,16 +102,27 @@ export function UpdateUserDialog({
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <TextField
             control={form.control}
-            name="username"
-            label="Nom d'utilisateur"
-            placeholder="Nom d'utilisateur"
+            name="email"
+            label="Email"
+            placeholder="Email"
+          />
+          <TextField
+            control={form.control}
+            name="firstName"
+            label="Prénom"
+            placeholder="Prénom"
+          />
+          <TextField
+            control={form.control}
+            name="lastName"
+            label="Nom"
+            placeholder="Nom"
           />
           <TextField
             control={form.control}
             name="password"
             label="Nouveau mot de passe (optionnel)"
             placeholder="Laissez vide pour ne pas changer"
-            type="password"
           />
           <div className="flex justify-end gap-2 mt-10">
             <Button
