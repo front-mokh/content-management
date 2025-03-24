@@ -62,7 +62,7 @@ export default function Testimonials() {
                 <div className="flex items-start mb-6 flex-grow">
                   <Quote className="h-10 w-10 text-blue-600 mr-4 opacity-20 group-hover:opacity-40 transition-opacity flex-shrink-0" />
                   <blockquote className="text-gray-700 text-lg italic leading-relaxed flex-grow">
-                    "{testimonial.quote}"
+                    {testimonial.quote}
                   </blockquote>
                 </div>
                 

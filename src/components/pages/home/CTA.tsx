@@ -66,7 +66,7 @@ const CTA = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto"
           >
-            Your contribution can help document and protect the rich cultural legacy of Kabylie. Share your family's stories, artifacts, and memories.
+            Your contribution can help document and protect the rich cultural legacy of Kabylie. Share your family&apos;s stories, artifacts, and memories.
           </motion.p>
 
           <motion.div
