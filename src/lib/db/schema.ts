@@ -5,7 +5,7 @@ import {
   Category,
   Resource,
   Submission,
-  Status,
+  ResourceStatus,
 } from "@prisma/client";
 
 // Types for create operations (omitting auto-generated fields)
@@ -14,13 +14,13 @@ export type CreateAuthorInput = Omit<Author, "id" | "createdAt" | "updatedAt">;
 export type CreateTypeInput = Omit<Type, "id">;
 export type CreateCategoryInput = Omit<
   Category,
-  "id" | "createdAt" | "updatedAt"
+  "id" | "createdAt" | "updatedAt" | "thumbnail"
 >;
 export type CreateResourceInput = Omit<
   Resource,
   "id" | "submittedAt" | "views" | "upvotes" | "status"
 > & {
-  status?: Status;
+  status?: ResourceStatus;
 };
 export type CreateSubmissionInput = Omit<Submission, "id">;
 
@@ -42,5 +42,5 @@ export interface ResourceFilters {
   typeId?: string;
   authorId?: string;
   handlerId?: string;
-  status?: Status;
+  status?: ResourceStatus;
 }

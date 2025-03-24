@@ -10,80 +10,20 @@
         "subtitle": "Our Wide Range of Services for Your Business",
         "description": "We are a leading digital agency that provides a wide range of services to help you achieve your business goals."
     },
-    "features": {
-  "digitalDesign": {
-    "title": "Digital Design & Branding",
-    "description": "We transform your brand identity through comprehensive design solutions, from custom logos and visual elements to engaging website interfaces."
-  },
-  "fullStack": {
-    "title": "Software Development",
-    "description": "We build powerful digital solutions through custom web applications, mobile apps, and responsive websites using modern technologies."
-  },
-  "Web_Applications_Hosting": {
-    "title": "Cloud Hosting & Security",
-    "description": "We ensure your applications perform optimally with our secure cloud hosting solutions, featuring 24/7 monitoring and enterprise-grade infrastructure."
-  },
-  "aiInnovation": {
-    "title": "AI & Process Automation",
-    "description": "We enhance your business efficiency through intelligent automation solutions, custom AI integration, and smart workflow optimization."
-  }
+   "mediaLibrary": {
+        "title": "Media Library",
+        "subtitle": "Discover the rich cultural heritage of Kabylia through our extensive collection of texts, audio recordings, videos, and images.",
+        "searchBar": "Search for a resource",
+        "browseCategories": "Browse Categories",
+        "mostPopular": "Most Popular",
+        "recentlyAdded": "Recently Added",
 
-    },
-    "propritary_solutions": {
-      "Badge": "Our Proprietary Solutions",
-      "title": "Our Ready-to-Use Software Solutions",
-   "description": "Our proprietary solutions are designed to address common needs across various sectors. Combining state-of-the-art technology with innovative design, they simplify and optimize daily operations with efficiency and reliability.",
-  "dzPos": {
-        "title": "DZ-POS: Point of Sale Management System",
-        "desc1": "DZ-POS is a comprehensive point-of-sale solution designed to help you manage your store and all its operations—from inventory tracking to expense and client management.",
-        "desc2": "Featuring robust inventory management, efficient sales tracking, integrated purchase management, and full client handling, DZ-POS provides everything a medium-sized business needs to run smoothly."
-         },
-      "dzClinic": {
-        "title": "DZ-Clinic: Healthcare Management Platform", 
-        "desc1": "An integrated clinic management system that simplifies patient records, appointment scheduling, billing, and medical history tracking for healthcare providers.",
-        "desc2": "Includes secure patient data management, automated appointment reminders, insurance claim processing, and comprehensive reporting tools."
-      },
-     "digitalStore": {
-      "title": "DigitalStore: E-commerce Platform",
-      "desc1": "DigitalStore is a complete, end-to-end e-commerce solution built from scratch, enabling customers to shop directly on your website with a seamless, secure, and responsive experience.",
-      "desc2": "It also features an intuitive admin interface that makes it easy to manage your online store—adding and removing products, processing orders, tracking inventory, and managing customer information—giving you full control over your business operations."
-    }
-
-    },
-  
-    "techStack": {
-      "title": "Our Tech Stack",
-      "subtitle": "Cutting-edge tools to bring your ideas to life",
-      "description": "Our team of passionate professionals leverages state-of-the-art technologies to create custom, robust, and scalable digital experiences that tackle the challenges of an ever-evolving digital world."
-    },
-    "faq": {
-      
-      "title": "Frequently Asked Questions",
-      "subtitle": "We understand the challenges of digital transformation. Here are some common questions from our clients.",
-      "items": {
-        "1": {
-          "quest": "How long does it take to create a website?",
-          "ans": "The timeline for creating a website depends on its complexity and required functionalities. For a basic site, it typically takes between 4 and 8 days, while more elaborate projects may take several weeks to months."
-        },
-        "2": {
-          "quest": "What is the cost of a website?",
-          "ans": "The cost of a website varies based on your specific needs: design, functionality, SEO optimization, etc. We offer solutions tailored to every budget, ranging from turnkey packages to custom developments."
-        },
-        "3": {
-          "quest": "Do you offer both turnkey products and custom development?",
-          "ans": "Yes, we offer a range of pre-developed products to quickly meet standard needs, as well as custom development services for fully tailored solutions that address your specific requirements."
-        },
-        "4": {
-          "quest": "How do you manage the maintenance and continuous evolution of your solutions?",
-          "ans": "We offer flexible maintenance contracts and implement advanced monitoring tools to ensure the longevity and continuous optimization of your systems, while anticipating technological advancements."
-        },
-        "5": {
-          "quest": "How do you ensure the quality and security of your developments?",
-          "ans": "We use agile methodologies, automated testing, regular code reviews, and security audits to ensure that every solution meets the strictest quality and security standards."
-        }
-     
-       
-      }
+        "popular": "Popular",
+        "recent": "Recent",
+        "contribute": "Contribute",
+        "contributeCTA": "Contribute to the Kabylia Media Library",
+        "featured": "Featured",
+        "resources": "Resources"
     },
     
     "about": {
