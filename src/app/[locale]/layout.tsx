@@ -38,9 +38,11 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <Header /> */}
-        {children}
-        {/* <Footer dictionary={dictionary} /> */}
+        <div className="min-h-screen">
+          {/* <Header /> */}
+          {children}
+          {/* <Footer dictionary={dictionary} /> */}
+        </div>
       </body>
     </html>
   );

@@ -1,10 +1,32 @@
 @import "tailwindcss";
 
+
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 
+.clip-triangle {
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
 @theme inline {
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -43,11 +65,18 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Website Styles */
+  --color-website-primary: var(--website-primary);
+  --color-website-accent: var(--website-accent);
+  --color-website-secondary: var(--website-secondary);
+  --color-website-accent-1: var(--website-accent-1);
+  --color-website-background: var(--website-background);
+  --color-website-text: var(--website-text);
+
 }
 
 :root {
-  --background: oklch(95.93% 0.0069 247.9);
-  --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -81,12 +110,13 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
 
   /* Website Styles */
-  --website-primary: #C34A36;
-  --website-secondary: #1A3A63;
-  --website-accent: #677E52;
-  --website-accent-1: #E6B655;
-  --website-background: #F5F1E6;
-  --website-text: #2D2D2D;
+  --website-primary: oklch(56.95% 0.1591 31.7);
+  --website-secondary: oklch(34.69% 0.0813 255.7);
+  --website-accent: oklch(56.3% 0.0701 130.79);
+  --website-accent-1: oklch(80.12% 0.1268 82.68);
+  --website-background: oklch(95.82% 0.0152 90.24);
+  --website-text: oklch(29.72% 0 0);
+  
 
 }
 
@@ -123,6 +153,15 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(0.279 0.041 260.031);
   --sidebar-ring: oklch(0.446 0.043 257.281);
+
+  /* Website Styles */
+  --website-primary: oklch(56.95% 0.1591 31.7);
+    --website-secondary: #1A3A63;
+    --website-accent: #677E52;
+    --website-accent-1: #E6B655;
+    --website-background: #F5F1E6;
+    --website-text: #2D2D2D;
+  
 }
 
 @layer base {
