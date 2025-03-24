@@ -12,7 +12,9 @@ import { toast } from "sonner";
 import { createUser } from "@/lib/services";
 
 const addUserSchema = z.object({
-  username: z.string().min(1, "Le nom d'utilisateur est obligatoire"),
+  email: z.string().email("Email invalide").min(1, "L'email est obligatoire"),
+  firstName: z.string().min(1, "Le prénom est obligatoire"),
+  lastName: z.string().min(1, "Le nom est obligatoire"),
   password: z.string().min(6, "Le mot de passe doit contenir au moins 6 caractères"),
 });
 
@@ -32,14 +34,18 @@ export function AddUserDialog() {
   const form = useForm<CreateUserInput>({
     resolver: zodResolver(addUserSchema),
     defaultValues: {
-      username: "",
+      email: "",
+      firstName: "",
+      lastName: "",
       password: "",
     },
   });
 
   const resetForm = () => {
     form.reset({
-      username: "",
+      email: "",
+      firstName: "",
+      lastName: "",
       password: "",
     });
     setIsSubmitting(false);
@@ -70,16 +76,27 @@ export function AddUserDialog() {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <TextField
             control={form.control}
-            name="username"
-            label="Nom d'utilisateur"
-            placeholder="Nom d'utilisateur"
+            name="email"
+            label="Email"
+            placeholder="Email" 
+          />
+          <TextField
+            control={form.control}
+            name="firstName"
+            label="Prénom"
+            placeholder="Prénom"
+          />
+          <TextField
+            control={form.control}
+            name="lastName"
+            label="Nom"
+            placeholder="Nom"
           />
           <TextField
             control={form.control}
             name="password"
             label="Mot de passe"
             placeholder="Mot de passe"
-            type="password"
           />
           <div className="flex justify-end gap-2 mt-10">
             <Button

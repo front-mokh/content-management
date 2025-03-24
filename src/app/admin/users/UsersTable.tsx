@@ -25,7 +25,9 @@ export default function UsersTable({
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Nom d'utilisateur</TableHead>
+            <TableHead>Email</TableHead>
+            <TableHead>Nom</TableHead>
+            <TableHead>Prénom</TableHead>
             <TableHead>Date de création</TableHead>
             <TableHead>Date de modification</TableHead>
             <TableHead>Actions</TableHead>
@@ -34,7 +36,9 @@ export default function UsersTable({
         <TableBody>
           {users.map((user) => (
             <TableRow key={user.id}>
-              <TableCell className="font-medium">{user.username}</TableCell>
+              <TableCell className="font-medium">{user.email}</TableCell>
+              <TableCell className="font-medium">{user.firstName}</TableCell>
+              <TableCell className="font-medium">{user.lastName}</TableCell>
               <TableCell>{formatDate(user.createdAt)}</TableCell>
               <TableCell>{formatDate(user.updatedAt)}</TableCell>
               <TableCell>

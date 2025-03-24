@@ -68,8 +68,8 @@ export default function ConvertedSubmissionsTable({
                 <FileDownloader path={submission.filepath} />
               </TableCell>
               <TableCell>{formatDate(submission.updatedAt)}</TableCell>
-              <TableCell className="w-[200px] text-right">
-                <div className="w-fit flex">
+              <TableCell className="w-[200px] text-center">
+                <div  className="flex justify-center items-center">
                   <ViewAction href={`/admin/submissions/${submission.id}`} />
            
                 </div>

@@ -20,17 +20,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
 import { Submission } from "@prisma/client";
 import InformationCard from "./InformationCard";
 import TwoColumns from "./TwoColumns";
 import { formatDate } from "@/lib/utils";
 import Page from "./Page";
-
 import ApproveSubmissionAction from "@/app/admin/submissions/ApproveSubmissionAction";
 import RejectSubmissionAction from "@/app/admin/submissions/RejectSubmissionAction";
 import DeleteSubmissionDialog from "@/app/admin/submissions/DeleteSubmissionDialog";
-
 const getSubmissionStatusLabel = (status: string) => {
   switch (status) {
     case "PENDING":
@@ -45,7 +42,7 @@ const getSubmissionStatusLabel = (status: string) => {
       return status;
   }
 };
-
+    
 const getSubmissionStatusColor = (status: string) => {
   switch (status) {
     case "PENDING":
