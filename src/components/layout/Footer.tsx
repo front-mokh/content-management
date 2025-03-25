@@ -92,10 +92,8 @@ export default function Footer() {
               © {currentYear} Tamazight Treasures. All rights reserved.
             </div>
             <div className="mt-4 md:mt-0 space-x-6">
-              <Link href="/privacy-policy" className="hover:text-blue-400 transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms-of-service" className="hover:text-blue-400 transition-colors">
+            
+              <Link href="/en/terms-of-service" className="hover:text-blue-400 transition-colors">
                 Terms of Service
               </Link>
             </div>

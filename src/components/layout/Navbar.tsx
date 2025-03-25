@@ -27,32 +27,38 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link 
-              href="/"
+              href="/en/home"
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
             >
               Home
             </Link>
             <Link 
-              href="/about"
+              href="/en/about"
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
             >
               About
             </Link>
             <Link 
-              href="/database"
+              href="/en/media-library"
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
             >
               Database
             </Link>
             <Link 
-              href="/contribution"
+              href="/en/contribution"
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
             >
               Contribute
             </Link>
-            <Button variant="default" className="bg-blue-600 hover:bg-blue-700">
+            <Link 
+              href="/en/contact"
+              className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+            >
+              Contact Us
+            </Link>
+            {/* <Button variant="default" className="bg-blue-600 hover:bg-blue-700">
               Get Started
-            </Button>
+            </Button> */}
           </nav>
           
           {/* Mobile menu button */}
