@@ -4,8 +4,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Upload, CheckCircle, Clock } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SubmissionForm from "@/components/submission/SubmissionForm";

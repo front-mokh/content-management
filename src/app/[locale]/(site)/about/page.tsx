@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Users, Video, Archive, Upload } from "lucide-react"; // Updated icons
+import {  Video, Archive, Upload } from "lucide-react"; 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";

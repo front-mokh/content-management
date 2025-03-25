@@ -107,7 +107,7 @@ export default function TermsOfServicePage() {
                   <div className="border-b border-gray-200 pb-6">
                     <h3 className="text-2xl font-semibold text-gray-900 mb-3">1. Introduction</h3>
                     <p className="leading-relaxed">
-                      Welcome to Tamazight Treasures ("we," "us," or "our"), a platform dedicated to preserving Kabyle cultural heritage. By accessing or using our website and services (collectively, the "Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, please do not use our Service.
+                      Welcome to Tamazight Treasures (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), a platform dedicated to preserving Kabyle cultural heritage. By accessing or using our website and services (collectively, the &quot;Service&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree, please do not use our Service.
                     </p>
                   </div>
 
@@ -123,7 +123,7 @@ export default function TermsOfServicePage() {
                   <div className="border-b border-gray-200 pb-6">
                     <h3 className="text-2xl font-semibold text-gray-900 mb-3">3. User Content</h3>
                     <p className="leading-relaxed">
-                      You may submit content such as videos, audio, images, or documents ("User Content") to our Service. By submitting User Content, you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, modify, and distribute it solely for the purpose of operating and promoting the Service. You represent that you own or have the necessary rights to submit such content and that it does not violate any laws or third-party rights.
+                      You may submit content such as videos, audio, images, or documents (&quot;User Content&quot;) to our Service. By submitting User Content, you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, modify, and distribute it solely for the purpose of operating and promoting the Service. You represent that you own or have the necessary rights to submit such content and that it does not violate any laws or third-party rights.
                     </p>
                   </div>
 
@@ -160,7 +160,7 @@ export default function TermsOfServicePage() {
                   <div className="border-b border-gray-200 pb-6">
                     <h3 className="text-2xl font-semibold text-gray-900 mb-3">7. Disclaimer of Warranties</h3>
                     <p className="leading-relaxed">
-                      The Service is provided "as is" and "as available" without warranties of any kind, express or implied, including but not limited to fitness for a particular purpose or non-infringement.
+                      The Service is provided &quot;as is&quot; and &quot;as available&quot; without warranties of any kind, express or implied, including but not limited to fitness for a particular purpose or non-infringement.
                     </p>
                   </div>
 
@@ -176,7 +176,7 @@ export default function TermsOfServicePage() {
                   <div className="border-b border-gray-200 pb-6">
                     <h3 className="text-2xl font-semibold text-gray-900 mb-3">9. Changes to Terms</h3>
                     <p className="leading-relaxed">
-                      We may update these Terms from time to time. The updated version will be posted on this page with a revised "Last Updated" date. Your continued use of the Service after such changes constitutes acceptance of the new Terms.
+                      We may update these Terms from time to time. The updated version will be posted on this page with a revised &quot;Last Updated&quot; date. Your continued use of the Service after such changes constitutes acceptance of the new Terms.
                     </p>
                   </div>
 
