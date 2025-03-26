@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { BookOpen,BookDown,Inbox,Layers, UsersRound,Contact, FolderOpenDot } from "lucide-react";
+import { LayoutDashboard,BookOpen,BookDown,Inbox,Layers, UsersRound,Contact, FolderOpenDot } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 
@@ -15,6 +15,11 @@ import {
 } from "@/components/ui/sidebar";
 
 const links = [
+  {
+    title: "Tablau de bord",
+    url: "/admin/dashboard",
+    icon: LayoutDashboard,
+  },
   {
     title: "Soumissions",
     url: "/admin/submissions",
