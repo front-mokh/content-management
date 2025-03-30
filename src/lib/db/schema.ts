@@ -44,3 +44,13 @@ export interface ResourceFilters {
   handlerId?: string;
   status?: ResourceStatus;
 }
+
+export type CreateContactInput = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber?: string;
+  message: string;
+};
+
+export type UpdateContactInput = Partial<CreateContactInput>;
