@@ -16,21 +16,21 @@ const KPISection: React.FC = async  () => {
     {
       title: "Total Resources",
       value: totalResources,
-      subtext: `Unpublished: ${nonpublishedRessources}`,
+     
       icon: <Book className="w-6 h-6" />,
       hoverColor: "bg-teal-500"
     },
     {
       title: "Unpublished Resources",
       value: nonpublishedRessources,
-      icon: <Clock className="w-6 h-6" />,
+      icon: <Inbox className="w-6 h-6" />,
       trend: "neutral",
       hoverColor: "bg-orange-500"
     },
     {
       title: "Pending Submissions",
       value: pendingSubmissionsNumber,
-      icon: <Inbox className="w-6 h-6" />,
+      icon: <Clock className="w-6 h-6" />,
       hoverColor: "bg-purple-500"
     }
   ];

@@ -129,3 +129,40 @@ export async function getResourceSubmissions(
     where: { resourceId },
   });
 }
+
+export async function getPopularResourcesByUpvotes(take: number = 5): Promise<FullResource[]> {
+  return prisma.resource.findMany({
+    where: { status: "PUBLISHED" },
+    orderBy: { upvotes: "desc" },
+    take,
+    include: {
+      category: true,
+      type: true,
+      author: true,
+      handler: true,
+    },
+  });
+}
+
+/**
+ * Get resources count by category
+ */
+export async function getResourcesByCategory() {
+  const categories = await prisma.category.findMany();
+  
+  const categoryResources = await Promise.all(
+    categories.map(async (category) => {
+      const count = await prisma.resource.count({
+        where: { categoryId: category.id },
+      });
+      
+      return {
+        category,
+        count,
+      };
+    })
+  );
+  
+  // Filter out categories with 0 resources
+  return categoryResources.filter((item) => item.count > 0);
+}

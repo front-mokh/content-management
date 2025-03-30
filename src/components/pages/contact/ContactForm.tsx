@@ -13,16 +13,18 @@ import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { createContact } from "@/lib/services/contactService";
 
 const contactSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Please enter a valid email address"),
+  email: z.string().email("Please enter a valid email address").optional(),
+  phoneNumber: z.string().min(1, "Phone number is required"),
   message: z.string().min(1, "Message is required"),
 });
 
-export type ContactFormInput = z.infer<typeof contactSchema>;
 
+export type ContactFormInput = z.infer<typeof contactSchema>;
 export default function ContactForm() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,6 +35,7 @@ export default function ContactForm() {
       firstName: "",
       lastName: "",
       email: "",
+      phoneNumber: "",
       message: "",
     },
   });
@@ -40,12 +43,13 @@ export default function ContactForm() {
   const onSubmit = async (values: ContactFormInput) => {
     setIsSubmitting(true);
     try {
-      // Simulate API call (replace with your actual submission logic)
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Using our contact service to save to database
+      await createContact(values);
       toast.success("Your message has been sent successfully!");
       form.reset();
       router.refresh();
     } catch (error) {
+      console.error("Error submitting contact form:", error);
       toast.error("There was an error sending your message. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -66,7 +70,7 @@ export default function ContactForm() {
     >
       <div className="text-center mb-8">
         <h3 className="text-2xl font-semibold text-gray-900">Get in Touch</h3>
-        <p className="text-gray-500 mt-2">We’ll respond to your message promptly.</p>
+        <p className="text-gray-500 mt-2">We&apos;ll respond to your message promptly.</p>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -102,21 +106,38 @@ export default function ContactForm() {
               )}
             </motion.div>
           </div>
-          <motion.div variants={inputVariants} whileFocus="focus" animate="blur">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email
-            </label>
-            <Input
-              id="email"
-              {...form.register("email")}
-              placeholder="your.email@example.com"
-              className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-0 focus:border-amber-500 transition-all duration-300 shadow-sm hover:shadow-md"
-              disabled={isSubmitting}
-            />
-            {form.formState.errors.email && (
-              <p className="text-sm text-red-500 mt-1">{form.formState.errors.email.message}</p>
-            )}
-          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <motion.div variants={inputVariants} whileFocus="focus" animate="blur">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                Email
+              </label>
+              <Input
+                id="email"
+                {...form.register("email")}
+                placeholder="your.email@example.com"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-0 focus:border-amber-500 transition-all duration-300 shadow-sm hover:shadow-md"
+                disabled={isSubmitting}
+              />
+              {form.formState.errors.email && (
+                <p className="text-sm text-red-500 mt-1">{form.formState.errors.email.message}</p>
+              )}
+            </motion.div>
+            <motion.div variants={inputVariants} whileFocus="focus" animate="blur">
+              <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">
+                Phone Number
+              </label>
+              <Input
+                id="phoneNumber"
+                {...form.register("phoneNumber")}
+                placeholder="Your phone number"
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-0 focus:border-amber-500 transition-all duration-300 shadow-sm hover:shadow-md"
+                disabled={isSubmitting}
+              />
+              {form.formState.errors.phoneNumber && (
+                <p className="text-sm text-red-500 mt-1">{form.formState.errors.phoneNumber.message}</p>
+              )}
+            </motion.div>
+          </div>
           <motion.div variants={inputVariants} whileFocus="focus" animate="blur">
             <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
               Message

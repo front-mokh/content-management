@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { LayoutDashboard,BookOpen,BookDown,Inbox,Layers, UsersRound,Contact, FolderOpenDot } from "lucide-react";
+import { LayoutDashboard,BookOpen,BookDown,Inbox,Layers, UsersRound,Contact, FolderOpenDot, MessageCircleMore } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 
@@ -73,6 +73,11 @@ const links = [
     title: "Auteurs",
     url: "/admin/authors",
     icon: Contact,
+  },
+  {
+    title: "Messages",
+    url: "/admin/contact",
+    icon: MessageCircleMore,
   },
   {
     title: "Utilisateurs",

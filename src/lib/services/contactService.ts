@@ -16,7 +16,7 @@ export type UpdateContactInput = Partial<CreateContactInput>;
 
 export async function createContact(data: CreateContactInput): Promise<Contact> {
   const contact = await prisma.contact.create({ data });
-  revalidatePath("/admin/contacts");
+  revalidatePath("/admin/contact");
   return contact;
 }
 
@@ -29,13 +29,13 @@ export async function updateContact(
   data: UpdateContactInput
 ): Promise<Contact> {
   const contact = await prisma.contact.update({ where: { id }, data });
-  revalidatePath("/admin/contacts");
+  revalidatePath("/admin/contact");
   return contact;
 }
 
 export async function deleteContact(id: string): Promise<Contact> {
   const contact = await prisma.contact.delete({ where: { id } });
-  revalidatePath("/admin/contacts");
+  revalidatePath("/admin/contact");
   return contact;
 }
 
