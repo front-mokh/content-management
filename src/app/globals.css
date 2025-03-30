@@ -77,7 +77,7 @@
   --color-website-accent-1: var(--website-accent-1);
   --color-website-background: var(--website-background);
   --color-website-text: var(--website-text);
-
+  --color-website-dali: var(--website-dali); 
 }
 
 :root {
@@ -113,14 +113,14 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 
-  /* Website Styles */
+  /* Website Styles */ 
   --website-primary: #c84c28;
   --website-secondary: #214184;
   --website-accent: #e8b52c;
   --website-accent-1: oklch(80.12% 0.1268 82.68);
   --website-background: #F8F4E9;
   --website-text: oklch(29.72% 0 0);
-  
+  --website-dali: #FBBF24;
 
 }
 

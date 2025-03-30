@@ -203,7 +203,7 @@ export async function getPopularResourcesByUpvotes(take: number = 5): Promise<Fu
 /**
  * Get resources count by category
  */
-export async function getResourcesByCategory() {
+export async function getResourcesByCategory_d() {
   const categories = await prisma.category.findMany();
   
   const categoryResources = await Promise.all(

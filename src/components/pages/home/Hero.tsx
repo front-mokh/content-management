@@ -12,7 +12,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="relative bg-gradient-to-r from-blue-700 to-blue-900 overflow-hidden">
+    <div className="relative bg-gradient-to-br from-website-secondary to-website-secondary/90 shadow-lg overflow-hidden">
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0 bg-[url('/pattern-kabyle.svg')] bg-repeat opacity-20 animate-pulse"></div>
@@ -80,7 +80,7 @@ export default function Hero() {
             >
               <Button 
                 size="lg" 
-                className="bg-amber-500 hover:bg-amber-600 text-white shadow-lg hover:shadow-amber-500/50 transition-all duration-300 transform hover:-translate-y-1"
+                className="bg-amber-400 hover:bg-amber-600 text-white shadow-lg hover:shadow-amber-500/50 transition-all duration-300 transform hover:-translate-y-1"
               >
                 Explore Database
               </Button>

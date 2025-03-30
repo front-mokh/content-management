@@ -1,5 +1,5 @@
 // src/app/admin/dashboard/StatisticsSectionWrapper.tsx
-import { getPopularResourcesByUpvotes, getResourcesByCategory } from "@/lib/services/resourceService";
+import { getPopularResourcesByUpvotes, getResourcesByCategory_d } from "@/lib/services/resourceService";
 import StatisticsSection from "./StatisticsSection";
 
 export async function StatisticsSectionWrapper() {
@@ -7,7 +7,7 @@ export async function StatisticsSectionWrapper() {
   const topResources = await getPopularResourcesByUpvotes(5);
   
   // Fetch resources by category
-  const categories = await getResourcesByCategory();
+  const categories = await getResourcesByCategory_d();
   
   const categoryStats = categories.map((item) => ({
     name: item.category.label,

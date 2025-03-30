@@ -13,7 +13,7 @@ const CTA = () => {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-r from-blue-700 to-blue-900 overflow-hidden py-24">
+    <section className="relative bg-gradient-to-br from-website-secondary to-website-secondary/90 shadow-lg overflow-hidden py-24">
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0 bg-[url('/pattern-kabyle.svg')] bg-repeat opacity-20 animate-pulse"></div>

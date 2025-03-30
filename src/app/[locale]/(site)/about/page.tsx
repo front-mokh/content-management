@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import {  Video, Archive, Upload } from "lucide-react"; 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+
 
 export default function About() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -37,11 +36,11 @@ export default function About() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navbar />
+      
 
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-blue-700 to-blue-900 py-24 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-website-secondary to-website-secondary/90 shadow-lg py-24 overflow-hidden">
           <div className="absolute inset-0 opacity-15">
             <div className="absolute inset-0 bg-[url('/pattern-kabyle.svg')] bg-repeat opacity-20 animate-pulse"></div>
           </div>
@@ -243,7 +242,7 @@ export default function About() {
         </section>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }
