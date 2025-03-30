@@ -1,41 +1,50 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Search } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-export default function SearchBar() {
-  const [query, setQuery] = useState("");
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function SearchBar({ dictionary }: { dictionary: any }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const query = searchParams.get("q") || "";
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (query.trim()) {
-      router.push(
-        `/media-library/search?q=${encodeURIComponent(query.trim())}`
-      );
+    const formData = new FormData(e.currentTarget);
+    const searchQuery = formData.get("search") as string;
+
+    if (searchQuery.trim()) {
+      const params = new URLSearchParams(searchParams);
+      params.set("q", searchQuery);
+      router.push(`?${params.toString()}`);
+    } else {
+      const params = new URLSearchParams(searchParams);
+      params.delete("q");
+      router.push(`?${params.toString()}`);
     }
   };
 
   return (
-    <form onSubmit={handleSearch} className="relative">
-      <div className="relative flex w-full max-w-xl">
+    <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto">
+      <div className="flex border-2 border-website-primary rounded-full ">
         <Input
           type="text"
-          placeholder="Search for texts, audio, videos, or images..."
-          className="pr-10 bg-white/90 backdrop-blur-sm border-none"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          name="search"
+          placeholder={
+            dictionary.mediaLibrary.searchPlaceholder || "Search resources..."
+          }
+          className="data-[placeholder]:text-white placeholder:text-white/70 text-base text-white/90 w-full py-3 px-4 ring-0 focus:ring-0 focus:border-0 focus-visible:outline-0 focus-visible:ring-0 focus-visible:border-none border-none outline-none focus:outline-none"
+          defaultValue={query}
         />
         <Button
+          size="lg"
           type="submit"
-          size="icon"
-          className="absolute right-0"
-          variant="ghost"
+          className="bg-website-primary hover:bg-website-primary/90 text-white rounded-r-full px-6"
         >
-          <Search className="h-5 w-5 text-gray-500" />
+          {dictionary.mediaLibrary.search || "Search"}
         </Button>
       </div>
     </form>

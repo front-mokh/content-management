@@ -17,6 +17,10 @@
         "browseCategories": "Browse Categories",
         "mostPopular": "Most Popular",
         "recentlyAdded": "Recently Added",
+        "searchResults":"Search Results",
+        "allCategories":"All Categories",
+        "searchPlaceholder": "Search for a resource",
+        "search": "Search",
 
         "popular": "Popular",
         "recent": "Recent",

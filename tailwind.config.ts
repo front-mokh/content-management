@@ -15,6 +15,9 @@ module.exports = {
         "custom-green": "#15803d",
         // Add more as needed
       },
+      fontFamily: {
+        heading: ["var(--font-heading)"],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
