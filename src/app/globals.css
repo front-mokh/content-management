@@ -5,6 +5,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.heading {
+  font-family: var(--font-heading);
+}
+
 .clip-triangle {
   clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
 }
@@ -110,11 +114,11 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
 
   /* Website Styles */
-  --website-primary: oklch(56.95% 0.1591 31.7);
-  --website-secondary: oklch(34.69% 0.0813 255.7);
-  --website-accent: oklch(56.3% 0.0701 130.79);
+  --website-primary: #c84c28;
+  --website-secondary: #214184;
+  --website-accent: #e8b52c;
   --website-accent-1: oklch(80.12% 0.1268 82.68);
-  --website-background: oklch(95.82% 0.0152 90.24);
+  --website-background: #F8F4E9;
   --website-text: oklch(29.72% 0 0);
   
 
@@ -156,11 +160,12 @@
 
   /* Website Styles */
   --website-primary: oklch(56.95% 0.1591 31.7);
-    --website-secondary: #1A3A63;
-    --website-accent: #677E52;
-    --website-accent-1: #E6B655;
-    --website-background: #F5F1E6;
-    --website-text: #2D2D2D;
+    --website-secondary: oklch(34.69% 0.0813 255.7);
+    --website-accent: oklch(56.3% 0.0701 130.79);
+    /* --website-accent-1: oklch(80.12% 0.1268 82.68); */
+    --website-accent-1: oklch(0.8 0.1521 86.31);
+    --website-background: oklch(0.97 0.0152 90.23);
+    --website-text: oklch(29.72% 0 0);
   
 }
 

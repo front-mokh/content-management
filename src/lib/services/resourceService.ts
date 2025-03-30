@@ -130,6 +130,62 @@ export async function getResourceSubmissions(
   });
 }
 
+export const getResourcesByCategory = async ({
+  categoryId,
+  page,
+  typeId,
+  sort = "publishedAt",
+  limit = 10,
+}: {
+  categoryId: string;
+  page: number;
+  typeId?: string;
+  sort?: string;
+  limit?: number;
+}) => {
+  const resources = await prisma.resource.findMany({
+    where: {
+      categoryId,
+      typeId,
+      publishedAt: {
+        not: null,
+      },
+    },
+    include: {
+      category: true,
+      type: true,
+      author: true,
+      handler: true,
+    },
+    orderBy: {
+      [sort]: "desc",
+    },
+    take: limit,
+    skip: (page - 1) * limit,
+  });
+
+  const totalResources = await prisma.resource.count({
+    where: {
+      categoryId,
+      typeId,
+      publishedAt: {
+        not: null,
+      },
+    },
+  });
+
+  const totalPages = Math.ceil(totalResources / limit);
+
+  return {
+    resources,
+    pagination: {
+      currentPage: page,
+      totalPages,
+      totalResources,
+    },
+  };
+};
+
 export async function getPopularResourcesByUpvotes(take: number = 5): Promise<FullResource[]> {
   return prisma.resource.findMany({
     where: { status: "PUBLISHED" },
