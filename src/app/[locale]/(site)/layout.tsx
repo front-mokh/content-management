@@ -8,21 +8,18 @@ export const metadata: Metadata = {
   title: "TamazightTreasures",
   description: "TamazightTreasures is a collection of Tamazight books, music, and movies.",
 };
-
 const libreBaskerville = Libre_Baskerville({
   subsets: ["latin"],
   weight: ["400", "700"],
   display: "swap",
   variable: "--font-heading",
 });
-
 const nunito = Nunito({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-body",
 });
-
 export default async function RootLayout({
   children,
   params: { locale },

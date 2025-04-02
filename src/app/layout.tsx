@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TamazighTreasures",
+  title: "TamazighTs",
   description: "Patrimoine Kabyle",
 };
 
@@ -34,7 +34,6 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-
         <SessionProvider>
         <Navbar />
           {children}
