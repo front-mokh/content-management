@@ -3,7 +3,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -23,7 +22,6 @@ export default function Navbar() {
               <span className="text-2xl font-bold text-amber-500">Treasures</span>
             </Link>
           </div>
-          
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link 
@@ -56,9 +54,7 @@ export default function Navbar() {
             >
               Contact Us
             </Link>
-            {/* <Button variant="default" className="bg-blue-600 hover:bg-blue-700">
-              Get Started
-            </Button> */}
+           
           </nav>
           
           {/* Mobile menu button */}
@@ -106,11 +102,7 @@ export default function Navbar() {
             >
               Contribute
             </Link>
-            <div className="px-3 py-2">
-              <Button className="w-full bg-blue-600 hover:bg-blue-700" onClick={toggleMenu}>
-                Get Started
-              </Button>
-            </div>
+         
           </div>
         </div>
       )}

@@ -104,10 +104,10 @@ export default function Hero() {
               <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 to-amber-600 rounded-lg blur-sm opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
               <div className="relative bg-white p-2 rounded-lg shadow-2xl overflow-hidden">
                 <div className="aspect-video rounded overflow-hidden bg-gray-100">
-                  <div className="w-full h-full bg-[url('/placeholder-kabyle-heritage.jpg')] bg-cover bg-center flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
+                <div className="w-full h-full bg-[url('/kabyle_image.png')] bg-cover bg-center flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span className="text-white text-lg font-semibold px-4 py-2 rounded-full bg-blue-900/70 backdrop-blur-sm">
-                        Play Heritage Video
+                        Explore our rich cultural heritage
                       </span>
                     </div>
                   </div>
