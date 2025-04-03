@@ -1,3 +1,4 @@
+"use client";
 import { ReactNode } from "react";
 
 import {
@@ -8,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useIsMobile } from "@/hooks/use-mobile";
-
+export const dynamic = "force-dynamic";
 type CustomDialogProps = {
   trigger: ReactNode;
   title: string;
@@ -27,7 +28,7 @@ export default function CustomDialog({
   const isControlled = controlledIsOpen !== undefined;
 
   const isMobile = useIsMobile();
-  const width = window.innerWidth - 2 * 16;
+  const width = typeof window !== "undefined" ? window.innerWidth - 2 * 16 : 0;
   return (
     <Dialog
       open={isControlled ? controlledIsOpen : undefined}

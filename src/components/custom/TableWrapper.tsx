@@ -5,7 +5,6 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 import { useSidebar } from "../ui/sidebar";
-
 interface TableWrapperProps {
   children: React.ReactNode;
 }
