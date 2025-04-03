@@ -5,20 +5,25 @@ import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
   title: "TamazighTs",
   description: "Patrimoine Kabyle",
 };
+
 
 export default async function RootLayout({
   children,
