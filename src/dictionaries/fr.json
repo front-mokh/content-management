@@ -1,58 +1,105 @@
 {
-    "hero": {
-"title": "Ohma Core est votre partenaire vers la réussite",
-"subtitle": {
-"part1": "Nous Créons des",
-"highlight": "Solutions Logicielles",
-"part2": "Pour les Entreprises"
-},
-"description": "Nous sommes une agence numérique spécialisée dans le développement de solutions logicielles personnalisées pour les entreprises de toutes tailles. Des sites web et applications web aux applications mobiles, nos solutions vous aident à atteindre vos objectifs commerciaux",
-"primaryCTA": "Voir Nos Services",
-"secondaryCTA": "Contactez-Nous"
-},
-"services": {
-"title": "Nos Services",
-"subtitle": "Notre Large Gamme de Services pour Votre Entreprise",
-"description": "Nous sommes une agence numérique de premier plan qui propose une large gamme de services pour vous aider à atteindre vos objectifs commerciaux."
-},
-"features": {
-"digitalDesign": {
-"title": "Design Numérique & Image de Marque",
-"description": "Nous transformons votre identité de marque grâce à des solutions de design complètes, des logos personnalisés et éléments visuels aux interfaces de sites web engageantes."
-},
-"fullStack": {
-"title": "Développement Logiciel",
-"description": "Nous construisons des solutions numériques puissantes à travers des applications web personnalisées, des applications mobiles et des sites web responsifs utilisant des technologies modernes."
-},
-"Web_Applications_Hosting": {
-"title": "Hébergement Cloud & Sécurité",
-"description": "Nous garantissons les performances optimales de vos applications avec nos solutions d'hébergement cloud sécurisées, incluant une surveillance 24/7 et une infrastructure de niveau entreprise."
-},
-"aiInnovation": {
-"title": "IA & Automatisation des Processus",
-"description": "Nous améliorons l'efficacité de votre entreprise grâce à des solutions d'automatisation intelligentes, l'intégration d'IA personnalisée et l'optimisation intelligente des flux de travail."
-}
-},
+  "hero": {
+    "title": "Ohma Core est votre partenaire vers la réussite",
+    "subtitle": {
+      "part1": "Nous Créons des",
+      "highlight": "Solutions Logicielles",
+      "part2": "Pour les Entreprises"
+    },
+    "description": "Nous sommes une agence numérique spécialisée dans le développement de solutions logicielles personnalisées pour les entreprises de toutes tailles. Des sites web et applications web aux applications mobiles, nos solutions vous aident à atteindre vos objectifs commerciaux",
+    "primaryCTA": "Voir Nos Services",
+    "secondaryCTA": "Contactez-Nous"
+  },
+  "mediaLibrary": {
+    "title": "Bibliothèque Multimédia du Patrimoine Kabyle",
+    "description": "Découvrez le riche patrimoine culturel de la Kabylie à travers notre vaste collection de textes, d'enregistrements audio, de vidéos et d'images.",
+    "searchPlaceholder": "Rechercher par titre, description ou auteur",
+    "sortBy": "Trier par",
+    "sortByOptions": {
+      "newest": "Plus récent",
+      "oldest": "Plus ancien",
+      "mostViewed": "Plus consultés",
+      "mostUpvoted": "Plus appréciés"
+    },
+    "browseCategories": "Parcourir les catégories",
+    "mostPopular": "Les plus populaires",
+    "recentlyAdded": "Ajouts récents",
+    "searchResults": "Résultats de recherche pour",
+    "allCategories": "Toutes les catégories",
+    "noResults": "Aucun résultat trouvé pour votre recherche",
+    "search": "Rechercher",
+    "popular": "Populaire",
+    "recent": "Récent",
+    "filterByType": "Filtrer par type",
+    "contribute": "Contribuer",
+    "contributeCTA": "Contribuer à la Bibliothèque Multimédia de Kabylie",
+    "featured": "À la une",
+    "resources": "Ressources",
+    "backToLibrary": "Retour à la Bibliothèque",
+    "details": {
+      "description": "Description",
+      "metadata": "Métadonnées",
+      "engagement": "Engagement",
+      "download": "Télécharger",
+      "preview": "Aperçu",
+      "category": "Catégorie",
+      "type": "Type",
+      "author": "Auteur",
+      "published": "Publié le",
+      "views": "Vues",
+      "upvotes": "Appréciations",
+      "upvoted": "Vous avez déjà apprécié",
+      "upvote": "Apprécier",
+      "thankYou": "Merci!"
+    }
+  },
+  "contributeCTA": {
+    "title": "Contribuer à la Bibliothèque Multimédia de Kabylie",
+    "description": "Aidez à conserver et à partager la richesse de la culture kabyle en contribuant vos propres ressources à notre bibliothèque numérique.",
+    "button": "Contribuer maintenant !"
+  },
+  "services": {
+    "title": "Nos Services",
+    "subtitle": "Notre Large Gamme de Services pour Votre Entreprise",
+    "description": "Nous sommes une agence numérique de premier plan qui propose une large gamme de services pour vous aider à atteindre vos objectifs commerciaux."
+  },
+  "features": {
+    "digitalDesign": {
+      "title": "Design Numérique & Image de Marque",
+      "description": "Nous transformons votre identité de marque grâce à des solutions de design complètes, des logos personnalisés et éléments visuels aux interfaces de sites web engageantes."
+    },
+    "fullStack": {
+      "title": "Développement Logiciel",
+      "description": "Nous construisons des solutions numériques puissantes à travers des applications web personnalisées, des applications mobiles et des sites web responsifs utilisant des technologies modernes."
+    },
+    "Web_Applications_Hosting": {
+      "title": "Hébergement Cloud & Sécurité",
+      "description": "Nous garantissons les performances optimales de vos applications avec nos solutions d'hébergement cloud sécurisées, incluant une surveillance 24/7 et une infrastructure de niveau entreprise."
+    },
+    "aiInnovation": {
+      "title": "IA & Automatisation des Processus",
+      "description": "Nous améliorons l'efficacité de votre entreprise grâce à des solutions d'automatisation intelligentes, l'intégration d'IA personnalisée et l'optimisation intelligente des flux de travail."
+    }
+  },
   "propritary_solutions": {
-      "Badge": "Nos solutions propriétaires",
-      "title": "Nos solutions logicielles prêtes à l'emploi",
-      "description": "Nos solutions propriétaires sont conçues pour répondre aux besoins communs de divers secteurs. Alliant technologie de pointe et design innovant, elles simplifient et optimisent les opérations quotidiennes avec efficacité et fiabilité.",
-
-   "dzPos": {
-  "title": "DZ-POS : Système de Gestion de Point de Vente",
-  "desc1": "DZ-POS est une solution de point de vente complète conçue pour vous aider à gérer votre magasin et l'ensemble de ses opérations, de la gestion des stocks aux dépenses et à la gestion des clients.",
-  "desc2": "Doté d'une gestion performante des stocks, d'un suivi efficace des ventes, d'une gestion intégrée des achats et d'une prise en charge complète de la clientèle, DZ-POS offre tout ce dont une entreprise de taille moyenne a besoin pour fonctionner en toute fluidité."
-},
+    "Badge": "Nos solutions propriétaires",
+    "title": "Nos solutions logicielles prêtes à l'emploi",
+    "description": "Nos solutions propriétaires sont conçues pour répondre aux besoins communs de divers secteurs. Alliant technologie de pointe et design innovant, elles simplifient et optimisent les opérations quotidiennes avec efficacité et fiabilité.",
+    "dzPos": {
+      "title": "DZ-POS : Système de Gestion de Point de Vente",
+      "desc1": "DZ-POS est une solution de point de vente complète conçue pour vous aider à gérer votre magasin et l'ensemble de ses opérations, de la gestion des stocks aux dépenses et à la gestion des clients.",
+      "desc2": "Doté d'une gestion performante des stocks, d'un suivi efficace des ventes, d'une gestion intégrée des achats et d'une prise en charge complète de la clientèle, DZ-POS offre tout ce dont une entreprise de taille moyenne a besoin pour fonctionner en toute fluidité."
+    },
     "dzClinic": {
       "title": "DZ-Clinic : Plateforme de Gestion de Soins de Santé",
       "desc1": "Un système de gestion de clinique intégré qui simplifie les dossiers des patients, la planification des rendez-vous, la facturation et le suivi des antécédents médicaux pour les prestataires de soins de santé.",
       "desc2": "Comprend une gestion sécurisée des données des patients, des rappels de rendez-vous automatisés, un traitement des demandes d'assurance et des outils de rapport complets."
     },
     "digitalStore": {
-  "title": "DigitalStore : Plateforme de Commerce Électronique",
-  "desc1": "DigitalStore est une solution e-commerce de bout en bout, conçue et développée de A à Z pour permettre à vos clients d'effectuer leurs achats directement sur votre site. Elle offre une expérience d'achat fluide, sécurisée et entièrement responsive.",
-  "desc2": "En parallèle, DigitalStore intègre une interface d'administration intuitive qui simplifie la gestion de votre boutique en ligne : ajout et suppression de produits, suivi des commandes, gestion des stocks et des clients, pour une maîtrise totale de vos opérations commerciales."
-}
+      "title": "DigitalStore : Plateforme de Commerce Électronique",
+      "desc1": "DigitalStore est une solution e-commerce de bout en bout, conçue et développée de A à Z pour permettre à vos clients d'effectuer leurs achats directement sur votre site. Elle offre une expérience d'achat fluide, sécurisée et entièrement responsive.",
+      "desc2": "En parallèle, DigitalStore intègre une interface d'administration intuitive qui simplifie la gestion de votre boutique en ligne : ajout et suppression de produits, suivi des commandes, gestion des stocks et des clients, pour une maîtrise totale de vos opérations commerciales."
+    }
   },
   "faq": {
     "title": "Questions Fréquemment Posées",
@@ -78,8 +125,6 @@
         "quest": "Comment garantissez-vous la qualité et la sécurité de vos développements ?",
         "ans": "Nous utilisons des méthodologies agiles, des tests automatisés, des revues de code régulières et des audits de sécurité afin d’assurer que chaque solution respecte les normes de qualité et de sécurité les plus strictes."
       }
-    
-     
     }
   },
   "techStack": {
@@ -87,58 +132,57 @@
     "subtitle": "Des outils de pointe pour transformer vos idées en réalité",
     "description": "Notre équipe de professionnels passionnés utilise les technologies les plus avancées pour concevoir des expériences numériques sur-mesure, robustes et évolutives, répondant aux défis d'un monde digital en constante évolution."
   },
-    
   "about": {
-  "badge": "À Propos de Nous",
-  "title": {
-    "part1": "",
-    "highlight": "Solutions Digitales",
-    "part2": "de Confiance"  
-  },
-  "paragraph1": "Nous sommes une agence digitale qui transforme vos idées en expériences numériques impactantes. Des sites web aux applications mobiles, nous créons des solutions qui propulsent votre entreprise.",
-  "paragraph2": "Experts en design et développement, nous créons des solutions technologiques innovantes qui s'adaptent à vos besoins. Notre passion pour l'excellence vous aide à prospérer dans un monde digital en constante évolution.",
-  "qualities": {
-    "01": {
-      "title": "Expertise en design et développement",
-      "description": "Une équipe d'experts livrant des solutions numériques exceptionnelles avec précision et créativité."
-    },
-    "02": {
-      "title": "Approche axée sur l'entreprise",
-      "description": "Des solutions sur mesure pour stimuler la croissance de votre entreprise et atteindre vos objectifs stratégiques."
-    },
-    "03": {
-      "title": "Solutions prêtes pour l'avenir",
-      "description": "Faire le lien entre les défis actuels et les opportunités futures grâce à une technologie innovante."
-    }
-  },
-  "secondSection": {
-    "badge": "Pourquoi Collaborer Avec Nous",
+    "badge": "À Propos de Nous",
     "title": {
-      "part1": "Nous",
-      "highlight": "Maîtrisons", 
-      "part2": "Le Processus, de Bout en Bout"
+      "part1": "",
+      "highlight": "Solutions Digitales",
+      "part2": "de Confiance"
     },
-    "description": "De la conception au déploiement, nous livrons des solutions haute performance en utilisant des technologies de pointe. Notre équipe d'experts veille à ce que chaque projet respecte les normes les plus élevées en matière de qualité et de scalabilité.",
-    "technicalQualities": {
-      "performance": {
-        "title": "Optimisé pour la performance",
-        "description": "Développement d'applications ultra-rapides avec des temps de chargement optimaux."
+    "paragraph1": "Nous sommes une agence digitale qui transforme vos idées en expériences numériques impactantes. Des sites web aux applications mobiles, nous créons des solutions qui propulsent votre entreprise.",
+    "paragraph2": "Experts en design et développement, nous créons des solutions technologiques innovantes qui s'adaptent à vos besoins. Notre passion pour l'excellence vous aide à prospérer dans un monde digital en constante évolution.",
+    "qualities": {
+      "01": {
+        "title": "Expertise en design et développement",
+        "description": "Une équipe d'experts livrant des solutions numériques exceptionnelles avec précision et créativité."
       },
-      "cleanCode": {
-        "title": "Code de qualité",
-        "description": "Rédaction d’un code maintenable, efficace et soigneusement documenté."
+      "02": {
+        "title": "Approche axée sur l'entreprise",
+        "description": "Des solutions sur mesure pour stimuler la croissance de votre entreprise et atteindre vos objectifs stratégiques."
       },
-      "scalable": {
-        "title": "Solutions évolutives",
-        "description": "Conception de systèmes capables de s'adapter à la croissance de vos besoins."
+      "03": {
+        "title": "Solutions prêtes pour l'avenir",
+        "description": "Faire le lien entre les défis actuels et les opportunités futures grâce à une technologie innovante."
+      }
+    },
+    "secondSection": {
+      "badge": "Pourquoi Collaborer Avec Nous",
+      "title": {
+        "part1": "Nous",
+        "highlight": "Maîtrisons",
+        "part2": "Le Processus, de Bout en Bout"
       },
-      "security": {
-        "title": "Priorité à la sécurité",
-        "description": "Mise en œuvre de mesures de sécurité robustes dans chaque projet."
+      "description": "De la conception au déploiement, nous livrons des solutions haute performance en utilisant des technologies de pointe. Notre équipe d'experts veille à ce que chaque projet respecte les normes les plus élevées en matière de qualité et de scalabilité.",
+      "technicalQualities": {
+        "performance": {
+          "title": "Optimisé pour la performance",
+          "description": "Développement d'applications ultra-rapides avec des temps de chargement optimaux."
+        },
+        "cleanCode": {
+          "title": "Code de qualité",
+          "description": "Rédaction d’un code maintenable, efficace et soigneusement documenté."
+        },
+        "scalable": {
+          "title": "Solutions évolutives",
+          "description": "Conception de systèmes capables de s'adapter à la croissance de vos besoins."
+        },
+        "security": {
+          "title": "Priorité à la sécurité",
+          "description": "Mise en œuvre de mesures de sécurité robustes dans chaque projet."
+        }
       }
     }
-  }
-},
+  },
   "cta": {
     "title": "Adoptez la Révolution Digitale Dès Aujourd'hui !",
     "subtitle": "Lancez votre transformation digitale avec des sites web innovants, des applications performantes et des solutions d'automatisation fluides. Transformez votre entreprise et explorez des possibilités infinies.",
@@ -146,25 +190,42 @@
   },
   "footer": {
     "title": "Transformer vos Idées en Excellence Numérique  Votre Partenaire Technologique de Confiance pour des Solutions Logicielles Innovantes",
-
-    "usefulLinks":{"title": "Liens Utiles", "links": [
-      {"title": "Accueil", "path": "/"},
-      {"title": "À propos", "path": "/#about"},
-      {"title": "Nos Services", "path": "/#services"},
-      {"title": "FAQ", "path": "/#faq"}
-    ]},
-    "socialMedia":{"title": "Nos Réseaux Sociaux", "links": [
-     
-      {"title": "Instagram", "path": "https://www.instagram.com/ohma core/"}
-      
-    ]},
+    "usefulLinks": {
+      "title": "Liens Utiles",
+      "links": [
+        {
+          "title": "Accueil",
+          "path": "/"
+        },
+        {
+          "title": "À propos",
+          "path": "/#about"
+        },
+        {
+          "title": "Nos Services",
+          "path": "/#services"
+        },
+        {
+          "title": "FAQ",
+          "path": "/#faq"
+        }
+      ]
+    },
+    "socialMedia": {
+      "title": "Nos Réseaux Sociaux",
+      "links": [
+        {
+          "title": "Instagram",
+          "path": "https://www.instagram.com/ohma core/"
+        }
+      ]
+    },
     "rights": "Ohma Core. Tous droits réservés"
   },
-
   "contact": {
     "title": "Contactez-nous",
     "subtitle": "Nous sommes là pour vous aider à concrétiser votre projet. N’hésitez pas à nous contacter en utilisant le formulaire ci-dessous ou via nos coordonnées.",
-   "inputName": "Nom complet",
+    "inputName": "Nom complet",
     "inputEmail": "Adresse e-mail",
     "inputSubject": "Objet",
     "inputPhone": "Numéro de téléphone",

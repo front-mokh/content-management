@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Type } from "@prisma/client";
 import { useMemo } from "react";
-import { X } from "lucide-react";
 
 export default function TypeChips({
   types,
@@ -39,7 +38,7 @@ export default function TypeChips({
   return (
     <div className="flex flex-wrap gap-2 mb-6">
       <span className="text-website-text/80 mt-1">
-        {dictionary.mediaLibrary.filterByType || "Filter by type:"}
+        {dictionary.mediaLibrary.filterByType}
       </span>
       {filteredTypes.map((type) => {
         const isSelected = selectedTypes.includes(type.id);

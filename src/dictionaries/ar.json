@@ -7,5 +7,53 @@
     "home": "الرئيسية",
     "resources": "الموارد",
     "submit": "تقديم"
+  },
+  "mediaLibrary": {
+    "title": "مكتبة تراث القبائل الإعلامية",
+    "description": "اكتشف التراث الثقافي الغني لمنطقة القبائل من خلال مجموعتنا الواسعة من النصوص والتسجيلات الصوتية والفيديوهات والصور.",
+    "searchPlaceholder": "البحث بالعنوان أو الوصف أو المؤلف",
+    "sortBy": "ترتيب حسب",
+    "sortByOptions": {
+      "newest": "الأحدث",
+      "oldest": "الأقدم",
+      "mostViewed": "الأكثر مشاهدة",
+      "mostUpvoted": "الأكثر تقييماً"
+    },
+    "browseCategories": "تصفح الفئات",
+    "mostPopular": "الأكثر شعبية",
+    "recentlyAdded": "أضيف مؤخراً",
+    "searchResults": "نتائج البحث عن",
+    "allCategories": "جميع الفئات",
+    "noResults": "لم يتم العثور على نتائج لاستعلامك",
+    "search": "بحث",
+    "popular": "شائع",
+    "recent": "حديث",
+    "contribute": "المساهمة",
+    "contributeCTA": "ساهم في مكتبة القبائل الإعلامية",
+    "featured": "مميز",
+    "resources": "موارد",
+    "filterByType": "تصفية حسب النوع",
+    "backToLibrary": "العودة إلى المكتبة",
+    "details": {
+      "description": "الوصف",
+      "metadata": "البيانات الوصفية",
+      "engagement": "التفاعل",
+      "download": "تنزيل",
+      "preview": "معاينة",
+      "category": "الفئة",
+      "type": "النوع",
+      "author": "المؤلف",
+      "published": "تم النشر في",
+      "views": "المشاهدات",
+      "upvotes": "التقييمات",
+      "upvoted": "لقد قمت بتقييمها",
+      "upvote": "تقييم",
+      "thankYou": "شكراً!"
+    }
+  },
+  "contributeCTA": {
+    "title": "ساهم في مكتبة القبائل الإعلامية لكبيلا",
+    "description": "ساعد في الحفاظ على ومشاركة الشعر الكبير للتكوين من قبل المشاركة في مكتبتنا الرقمية.",
+    "button": "ساهم الآن!"
   }
 }

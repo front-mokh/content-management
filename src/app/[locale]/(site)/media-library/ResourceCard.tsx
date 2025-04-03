@@ -1,5 +1,6 @@
 "use client";
 import { formatDistanceToNow } from "date-fns";
+import { arDZ, enUS, frCA } from "date-fns/locale";
 import Link from "next/link";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -12,8 +13,6 @@ import {
   Music,
   Film,
   Folder,
-  User,
-  CircleUser,
 } from "lucide-react";
 import { FullResource } from "@/lib/types";
 import Image from "next/image";
@@ -32,6 +31,8 @@ interface ResourceCardProps {
 export default function ResourceCard({ resource }: ResourceCardProps) {
   const params = useParams();
   const resourceUrl = `/${params.locale}/media-library/${resource.id}`;
+  const locale =
+    params.locale === "ar" ? arDZ : params.locale === "fr" ? frCA : enUS;
 
   const [videoThumbnail, setVideoThumbnail] = useState<string | null>(null);
   const [videoDuration, setVideoDuration] = useState<number | null>(null);
@@ -331,18 +332,21 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
           </CardContent>
 
           <CardFooter className="border-t border-website-primary/30 mt-3 pt-3 pb-1 text-sm text-website-text/80 flex justify-between">
-            <div className="flex items-center">
-              <Clock className="h-3 w-3 mr-1" />
+            <div className="flex items-center gap-1">
+              <Clock className="h-3 w-3 " />
               {resource.publishedAt &&
-                formatDistanceToNow(resource.publishedAt, { addSuffix: true })}
+                formatDistanceToNow(resource.publishedAt, {
+                  addSuffix: true,
+                  locale: locale,
+                })}
             </div>
             <div className="flex items-center gap-3">
-              <span className="flex items-center">
-                <Eye className="h-3.5 w-3.5 mr-1" />
+              <span className="flex items-center gap-1">
+                <Eye className="h-3.5 w-3.5" />
                 {Number(resource.views).toLocaleString()}
               </span>
-              <span className="flex items-center">
-                <ThumbsUp className="h-3.5 w-3.5 mr-1" />
+              <span className="flex items-center gap-1">
+                <ThumbsUp className="h-3.5 w-3.5" />
                 {Number(resource.upvotes).toLocaleString()}
               </span>
             </div>
