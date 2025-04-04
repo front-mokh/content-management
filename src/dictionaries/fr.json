@@ -1,15 +1,141 @@
 {
-  "hero": {
-    "title": "Ohma Core est votre partenaire vers la réussite",
-    "subtitle": {
-      "part1": "Nous Créons des",
-      "highlight": "Solutions Logicielles",
-      "part2": "Pour les Entreprises"
-    },
-    "description": "Nous sommes une agence numérique spécialisée dans le développement de solutions logicielles personnalisées pour les entreprises de toutes tailles. Des sites web et applications web aux applications mobiles, nos solutions vous aident à atteindre vos objectifs commerciaux",
-    "primaryCTA": "Voir Nos Services",
-    "secondaryCTA": "Contactez-Nous"
+ "hero": {
+    "titlePart1": "Préserver",
+    "titleHighlight": "le Patrimoine Kabyle",
+    "titlePart2": "pour les Générations Futures",
+    "description": "Rejoignez notre mission pour collecter, préserver et partager le riche patrimoine culturel de la Kabylie à travers une archive numérique complète d'audio, de vidéo et d'images.",
+    "exploreCTA": "Explorer la Base de Données",
+    "contributeCTA": "Contribuer",
+    "imageCaption": "Explorez notre riche patrimoine culturel",
+    "stats": [
+      { "value": "1 200+", "label": "Éléments Culturels", "icon": "📚" },
+      { "value": "30+", "label": "Villages Représentés", "icon": "🏡" },
+      { "value": "250+", "label": "Contributeurs", "icon": "👥" },
+      { "value": "5 000+", "label": "Visiteurs Mensuels", "icon": "👁️" }
+    ]
   },
+  "features": {
+    "mission": {
+      "title": "Notre Mission",
+      "description": "En tant qu'étudiants de Kabylie, nous nous consacrons à préserver et à partager le riche patrimoine culturel de notre peuple à travers une archive numérique complète qui relie les générations et célèbre notre identité unique.",
+      "learnMoreCTA": "En savoir plus sur notre mission"
+    },
+    "cards": [
+      {
+        "title": "Accessibilité mondiale",
+        "description": "Rendre le patrimoine culturel kabyle accessible au monde entier, en connectant la diaspora et les audiences mondiales."
+      },
+      {
+        "title": "Ressource éducative",
+        "description": "Fournir des ressources authentiques sur la culture, l'histoire et la langue kabyles pour les chercheurs et les apprenants."
+      },
+      {
+        "title": "Autonomisation communautaire",
+        "description": "Donner à la communauté kabyle les moyens de préserver et de partager son propre patrimoine culturel."
+      }
+    ]
+  },
+  "libraryPreview": {
+    "titlePart1": "Archives",
+    "titlePart2": "Culturelles",
+    "titlePart3": "Tamazight",
+    "description": "Un dépôt numérique complet préservant le riche patrimoine culturel de la Kabylie à travers divers types de médias.",
+    "browseCTA": "Explorer l'Archive Complète",
+    "resourcesAvailable": "Ressources Disponibles",
+    "resourceAvailable": "Ressource Disponible",
+    "categories": [
+      {
+        "title": "Archives Vidéo",
+        "description": "Explorez des documentaires, des interviews et des enregistrements culturels qui donnent vie à l'histoire kabyle.",
+        "count": 237,
+        "href": "/library/video"
+      },
+      {
+        "title": "Galerie d'Images",
+        "description": "Découvrez une riche collection de photographies documentant les traditions, les paysages et la vie quotidienne kabyles.",
+        "count": 1524,
+        "href": "/library/images"
+      },
+      {
+        "title": "Collections Audio",
+        "description": "Écoutez de la musique traditionnelle, des histoires orales et des enregistrements linguistiques préservant le patrimoine kabyle.",
+        "count": 412,
+        "href": "/library/audio"
+      },
+      {
+        "title": "Ressources Textuelles",
+        "description": "Accédez à des articles académiques, des récits personnels et des documents historiques sur la culture kabyle.",
+        "count": 289,
+        "href": "/library/texts"
+      }
+    ]
+  },
+  "cta": {
+    "titlePart1": "Préserver",
+    "titleHighlight": "l'Héritage Kabyle",
+    "description": "Votre contribution peut aider à documenter et protéger le riche héritage culturel de la Kabylie. Partagez les histoires, les objets et les souvenirs de votre famille.",
+    "buttonText": "Contribuer à Notre Archive"
+  },
+  "testimonials": {
+    "titleHighlight": "Voix de la",
+    "titlePart2": "Communauté",
+    "description": "Écoutez ceux qui ont contribué à notre archive culturelle et qui en ont bénéficié, partageant leurs liens personnels et leurs perspectives.",
+    "items": [
+      {
+        "quote": "Ce projet m'a permis de partager les chansons traditionnelles de ma grand-mère avec un public mondial. Je suis reconnaissant pour l'opportunité de préserver ces trésors pour les générations futures.",
+        "author": "Amar B.",
+        "role": "Contributeur Communautaire",
+        "location": "Tizi Ouzou"
+      },
+      {
+        "quote": "En tant que chercheuse étudiant les cultures amazighes, cette base de données a été une ressource inestimable. L'approche multimédia fournit un contexte riche que les archives traditionnelles n'offrent souvent pas.",
+        "author": "Dr. Lynda M.",
+        "role": "Anthropologue Culturelle",
+        "location": "Université d'Alger"
+      },
+      {
+        "quote": "Ayant grandi loin de la Kabylie, cette plateforme m'a aidée à renouer avec mon héritage et à découvrir des traditions culturelles dont j'ignorais l'existence dans la région de ma famille.",
+        "author": "Sabrina T.",
+        "role": "Membre de la Diaspora",
+        "location": "Paris, France"
+      }
+    ]
+  },
+  "about": {
+      "heroTitle": "À propos",
+      "heroSubtitle": "Trésors Tamazight",
+      "heroDescription": "Un projet passionné de deux étudiants kabyles dédiés à la préservation de notre patrimoine culturel à travers une archive numérique.",
+      
+      "storyTitle": "Notre Histoire",
+      "storyDescription": "Nous sommes deux étudiants de Kabylie, unis par une passion commune pour notre patrimoine culturel. Ayant grandi entourés des riches traditions, musiques et histoires de notre peuple, nous avons réalisé à quel point cet héritage risquait de se perdre. C'est pourquoi nous avons créé Trésors Tamazight – un sanctuaire numérique où l'essence de la culture kabyle peut être préservée et partagée avec le monde.",
+      
+      "teamMember1Name": "Sarah",
+      "teamMember1Role": "Co-fondatrice & Chercheuse culturelle",
+      "teamMember1Description": "Amina est une passionnée d'histoire dédiée à documenter les traditions et histoires kabyles.",
+      
+      "teamMember2Name": "Amine",
+      "teamMember2Role": "Co-fondateur & Responsable technique",
+      "teamMember2Description": "Yanis apporte son expertise technique pour construire une plateforme robuste pour la préservation culturelle.",
+      
+      "missionTitle": "Ce que nous construisons",
+      "missionDescription": "Notre mission est de créer une archive vivante de la culture kabyle, motivée par ces initiatives fondamentales.",
+      
+      "initiative1Title": "Collection multimédia",
+      "initiative1Description": "Rassembler des vidéos, des enregistrements audio et des images pour mettre en valeur les traditions et l'histoire kabyles.",
+      
+      "initiative2Title": "Préservation numérique",
+      "initiative2Description": "Sauvegarder notre patrimoine dans une base de données sécurisée et organisée pour les générations futures.",
+      
+      "initiative3Title": "Contributions communautaires",
+      "initiative3Description": "Inviter les Kabyles du monde entier à partager leurs histoires et artefacts avec nous.",
+      
+      "ctaTitle": "Rejoignez notre mission",
+      "ctaDescription": "Aidez-nous à préserver le patrimoine kabyle en contribuant avec vos histoires, médias, ou simplement en explorant notre base de données.",
+      "contributeButton": "Contribuer maintenant",
+      "exploreButton": "Explorer la base de données"
+    },
+  
+
   "mediaLibrary": {
     "title": "Bibliothèque Multimédia du Patrimoine Kabyle",
     "description": "Découvrez le riche patrimoine culturel de la Kabylie à travers notre vaste collection de textes, d'enregistrements audio, de vidéos et d'images.",
@@ -58,191 +184,289 @@
     "description": "Aidez à conserver et à partager la richesse de la culture kabyle en contribuant vos propres ressources à notre bibliothèque numérique.",
     "button": "Contribuer maintenant !"
   },
-  "services": {
-    "title": "Nos Services",
-    "subtitle": "Notre Large Gamme de Services pour Votre Entreprise",
-    "description": "Nous sommes une agence numérique de premier plan qui propose une large gamme de services pour vous aider à atteindre vos objectifs commerciaux."
-  },
-  "features": {
-    "digitalDesign": {
-      "title": "Design Numérique & Image de Marque",
-      "description": "Nous transformons votre identité de marque grâce à des solutions de design complètes, des logos personnalisés et éléments visuels aux interfaces de sites web engageantes."
+
+  "contribution": {
+    "hero": {
+      "title": "Contribuez à",
+      "titleHighlight": "Trésors Tamazight",
+      "description": "Partagez vos histoires, médias et artefacts pour aider à préserver le patrimoine kabyle pour les générations futures."
     },
-    "fullStack": {
-      "title": "Développement Logiciel",
-      "description": "Nous construisons des solutions numériques puissantes à travers des applications web personnalisées, des applications mobiles et des sites web responsifs utilisant des technologies modernes."
+    "howTo": {
+      "title": "Comment Contribuer",
+      "description": "Nous sommes ravis d'inclure vos contributions dans nos archives ! Voici ce que vous devez savoir avant de soumettre."
     },
-    "Web_Applications_Hosting": {
-      "title": "Hébergement Cloud & Sécurité",
-      "description": "Nous garantissons les performances optimales de vos applications avec nos solutions d'hébergement cloud sécurisées, incluant une surveillance 24/7 et une infrastructure de niveau entreprise."
-    },
-    "aiInnovation": {
-      "title": "IA & Automatisation des Processus",
-      "description": "Nous améliorons l'efficacité de votre entreprise grâce à des solutions d'automatisation intelligentes, l'intégration d'IA personnalisée et l'optimisation intelligente des flux de travail."
-    }
-  },
-  "propritary_solutions": {
-    "Badge": "Nos solutions propriétaires",
-    "title": "Nos solutions logicielles prêtes à l'emploi",
-    "description": "Nos solutions propriétaires sont conçues pour répondre aux besoins communs de divers secteurs. Alliant technologie de pointe et design innovant, elles simplifient et optimisent les opérations quotidiennes avec efficacité et fiabilité.",
-    "dzPos": {
-      "title": "DZ-POS : Système de Gestion de Point de Vente",
-      "desc1": "DZ-POS est une solution de point de vente complète conçue pour vous aider à gérer votre magasin et l'ensemble de ses opérations, de la gestion des stocks aux dépenses et à la gestion des clients.",
-      "desc2": "Doté d'une gestion performante des stocks, d'un suivi efficace des ventes, d'une gestion intégrée des achats et d'une prise en charge complète de la clientèle, DZ-POS offre tout ce dont une entreprise de taille moyenne a besoin pour fonctionner en toute fluidité."
-    },
-    "dzClinic": {
-      "title": "DZ-Clinic : Plateforme de Gestion de Soins de Santé",
-      "desc1": "Un système de gestion de clinique intégré qui simplifie les dossiers des patients, la planification des rendez-vous, la facturation et le suivi des antécédents médicaux pour les prestataires de soins de santé.",
-      "desc2": "Comprend une gestion sécurisée des données des patients, des rappels de rendez-vous automatisés, un traitement des demandes d'assurance et des outils de rapport complets."
-    },
-    "digitalStore": {
-      "title": "DigitalStore : Plateforme de Commerce Électronique",
-      "desc1": "DigitalStore est une solution e-commerce de bout en bout, conçue et développée de A à Z pour permettre à vos clients d'effectuer leurs achats directement sur votre site. Elle offre une expérience d'achat fluide, sécurisée et entièrement responsive.",
-      "desc2": "En parallèle, DigitalStore intègre une interface d'administration intuitive qui simplifie la gestion de votre boutique en ligne : ajout et suppression de produits, suivi des commandes, gestion des stocks et des clients, pour une maîtrise totale de vos opérations commerciales."
-    }
-  },
-  "faq": {
-    "title": "Questions Fréquemment Posées",
-    "subtitle": "Nous comprenons les défis de la transformation numérique. Voici quelques questions courantes de nos clients.",
-    "items": {
-      "1": {
-        "quest": "Quelle est la durée nécessaire pour créer un site web ?",
-        "ans": "La durée de création d’un site web dépend de la complexité et des fonctionnalités requises. Pour un site vitrine, il faut compter entre 4 et 8 jours, tandis que des projets plus élaborés peuvent nécessiter plusieurs semains à plusieus mois."
+    "rules": [
+      {
+        "title": "Ce que nous acceptons",
+        "description": "Soumettez des fichiers comme des vidéos (.mp4), des audios (.mp3), des photos (.jpg) ou des documents (.pdf). Gardez-les sous 100 Mo."
       },
-      "2": {
-        "quest": "Quel est le prix d’un site web ?",
-        "ans": "Le coût d’un site web varie en fonction de vos besoins spécifiques : design, fonctionnalités, optimisation SEO, etc. Nous proposons des solutions adaptées à chaque budget, allant de formules clés en main à des développements sur mesure."
+      {
+        "title": "Ce que vous pouvez partager",
+        "description": "Envoyez-nous du contenu lié à la Kabylie - comme des chansons, des photos de famille ou des histoires - que vous avez créé ou que vous avez la permission de partager."
       },
-      "3": {
-        "quest": "Proposez-vous des produits clés en main ainsi que des développements personnalisés ?",
-        "ans": "Oui, nous offrons une gamme de produits déjà développés pour répondre rapidement à des besoins standard, ainsi que des services de développement personnalisé pour des solutions entièrement adaptées à vos exigences spécifiques."
-      },
-      "4": {
-        "quest": "Comment assurez-vous la maintenance et l’évolution continue de vos solutions ?",
-        "ans": "Nous proposons des contrats de maintenance évolutifs et mettons en place des outils de monitoring performants pour garantir la pérennité et l’optimisation continue de vos systèmes, tout en anticipant les évolutions technologiques."
-      },
-      "5": {
-        "quest": "Comment garantissez-vous la qualité et la sécurité de vos développements ?",
-        "ans": "Nous utilisons des méthodologies agiles, des tests automatisés, des revues de code régulières et des audits de sécurité afin d’assurer que chaque solution respecte les normes de qualité et de sécurité les plus strictes."
+      {
+        "title": "Vos droits",
+        "description": "Ne soumettez que du contenu que vous possédez ou sur lequel vous avez des droits. Pas de matériel protégé par copyright sauf si vous avez une approbation."
       }
-    }
-  },
-  "techStack": {
-    "title": "Notre Pile Technologique",
-    "subtitle": "Des outils de pointe pour transformer vos idées en réalité",
-    "description": "Notre équipe de professionnels passionnés utilise les technologies les plus avancées pour concevoir des expériences numériques sur-mesure, robustes et évolutives, répondant aux défis d'un monde digital en constante évolution."
-  },
-  "about": {
-    "badge": "À Propos de Nous",
-    "title": {
-      "part1": "",
-      "highlight": "Solutions Digitales",
-      "part2": "de Confiance"
+    ],
+    "review": {
+      "title": "Notre processus d'examen",
+      "description": "Chaque soumission nous aide à grandir, et nous examinons chacune avec soin pour maintenir la qualité et l'authenticité de nos archives."
     },
-    "paragraph1": "Nous sommes une agence digitale qui transforme vos idées en expériences numériques impactantes. Des sites web aux applications mobiles, nous créons des solutions qui propulsent votre entreprise.",
-    "paragraph2": "Experts en design et développement, nous créons des solutions technologiques innovantes qui s'adaptent à vos besoins. Notre passion pour l'excellence vous aide à prospérer dans un monde digital en constante évolution.",
-    "qualities": {
-      "01": {
-        "title": "Expertise en design et développement",
-        "description": "Une équipe d'experts livrant des solutions numériques exceptionnelles avec précision et créativité."
+    "steps": [
+      {
+        "step": "1. Soumission",
+        "description": "Vous soumettez votre contenu via notre formulaire ci-dessous, en fournissant les détails et le fichier."
       },
-      "02": {
-        "title": "Approche axée sur l'entreprise",
-        "description": "Des solutions sur mesure pour stimuler la croissance de votre entreprise et atteindre vos objectifs stratégiques."
+      {
+        "step": "2. Examen",
+        "description": "Notre équipe évalue la soumission pour sa pertinence, son authenticité et son respect des directives."
       },
-      "03": {
-        "title": "Solutions prêtes pour l'avenir",
-        "description": "Faire le lien entre les défis actuels et les opportunités futures grâce à une technologie innovante."
+      {
+        "step": "3. Publication",
+        "description": "Le contenu approuvé est ajouté à notre base de données, crédité à votre nom et partagé avec la communauté."
       }
-    },
-    "secondSection": {
-      "badge": "Pourquoi Collaborer Avec Nous",
-      "title": {
-        "part1": "Nous",
-        "highlight": "Maîtrisons",
-        "part2": "Le Processus, de Bout en Bout"
-      },
-      "description": "De la conception au déploiement, nous livrons des solutions haute performance en utilisant des technologies de pointe. Notre équipe d'experts veille à ce que chaque projet respecte les normes les plus élevées en matière de qualité et de scalabilité.",
-      "technicalQualities": {
-        "performance": {
-          "title": "Optimisé pour la performance",
-          "description": "Développement d'applications ultra-rapides avec des temps de chargement optimaux."
+    ],
+    "form": {
+      "title": "Soumettez votre contribution",
+      "title2": "Soumettre un document",
+      "description": "Remplissez ce formulaire pour soumettre votre document pour évaluation.",
+      "fields": {
+        "firstName": {
+          "label": "Prénom",
+          "placeholder": "Votre prénom"
         },
-        "cleanCode": {
-          "title": "Code de qualité",
-          "description": "Rédaction d’un code maintenable, efficace et soigneusement documenté."
+        "lastName": {
+          "label": "Nom",
+          "placeholder": "Votre nom de famille"
         },
-        "scalable": {
-          "title": "Solutions évolutives",
-          "description": "Conception de systèmes capables de s'adapter à la croissance de vos besoins."
+        "email": {
+          "label": "Email",
+          "placeholder": "votre.email@exemple.com"
         },
-        "security": {
-          "title": "Priorité à la sécurité",
-          "description": "Mise en œuvre de mesures de sécurité robustes dans chaque projet."
+        "phone": {
+          "label": "Téléphone (optionnel)",
+          "placeholder": "Votre numéro de téléphone"
+        },
+        "author": {
+          "label": "Auteur du document",
+          "placeholder": "Nom de l'auteur"
+        },
+        "message": {
+          "label": "Message (optionnel)",
+          "placeholder": "Informations supplémentaires concernant votre soumission"
+        },
+        "document": {
+          "label": "Document"
         }
+      },
+      "buttons": {
+        "cancel": "Annuler",
+        "submit": "Soumettre le document",
+        "submitting": "Envoi en cours..."
+      },
+      "validation": {
+        "firstNameRequired": "Le prénom est obligatoire",
+        "lastNameRequired": "Le nom est obligatoire",
+        "emailValid": "L'adresse email doit être valide",
+        "authorRequired": "Le nom de l'auteur est obligatoire",
+        "fileRequired": "Le fichier est obligatoire"
+      },
+      "notifications": {
+        "success": "Soumission envoyée avec succès",
+        "error": "Erreur lors de l'envoi de la soumission",
+        "genericError": "Une erreur s'est produite"
       }
     }
   },
-  "cta": {
-    "title": "Adoptez la Révolution Digitale Dès Aujourd'hui !",
-    "subtitle": "Lancez votre transformation digitale avec des sites web innovants, des applications performantes et des solutions d'automatisation fluides. Transformez votre entreprise et explorez des possibilités infinies.",
-    "buttonText": "Contactez Nous"
-  },
+  "submissionForm": {
+      "title": "Soumettre un document",
+      "description": "Remplissez ce formulaire pour soumettre votre document pour évaluation.",
+      "fields": {
+        "firstName": {
+          "label": "Prénom",
+          "placeholder": "Votre prénom"
+        },
+        "lastName": {
+          "label": "Nom",
+          "placeholder": "Votre nom de famille"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "votre.email@exemple.com"
+        },
+        "phone": {
+          "label": "Téléphone (optionnel)",
+          "placeholder": "Votre numéro de téléphone"
+        },
+        "author": {
+          "label": "Auteur du document",
+          "placeholder": "Nom de l'auteur"
+        },
+        "message": {
+          "label": "Message (optionnel)",
+          "placeholder": "Informations supplémentaires concernant votre soumission"
+        },
+        "document": {
+          "label": "Document"
+        }
+      },
+      "buttons": {
+        "cancel": "Annuler",
+        "submit": "Soumettre le document",
+        "submitting": "Envoi en cours..."
+      },
+      "validation": {
+        "firstNameRequired": "Le prénom est obligatoire",
+        "lastNameRequired": "Le nom est obligatoire",
+        "emailValid": "L'adresse email doit être valide",
+        "authorRequired": "Le nom de l'auteur est obligatoire",
+        "fileRequired": "Le fichier est obligatoire"
+      },
+      "notifications": {
+        "success": "Soumission envoyée avec succès",
+        "error": "Erreur lors de l'envoi de la soumission",
+        "genericError": "Une erreur s'est produite"
+      }
+    },
   "footer": {
-    "title": "Transformer vos Idées en Excellence Numérique  Votre Partenaire Technologique de Confiance pour des Solutions Logicielles Innovantes",
-    "usefulLinks": {
-      "title": "Liens Utiles",
-      "links": [
-        {
-          "title": "Accueil",
-          "path": "/"
-        },
-        {
-          "title": "À propos",
-          "path": "/#about"
-        },
-        {
-          "title": "Nos Services",
-          "path": "/#services"
-        },
-        {
-          "title": "FAQ",
-          "path": "/#faq"
-        }
-      ]
+  "logo_1" :"Tamazight",
+  "logo_2" :"Treasures",
+  "tagline": "Préserver et partager le riche patrimoine culturel de la Kabylie pour les générations futures.",
+  "navigation": "Navigation",
+  "navHome": "Accueil",
+  "navAbout": "À Propos",
+  "navDatabase": "Base de Données",
+  "navContribute": "Contribuer",
+  "databaseTitle": "Base de Données",
+  "dbImages": "Images",
+  "dbAudio": "Audio",
+  "dbVideo": "Vidéo",
+  "dbRecent": "Ajouts Récents",
+  "dbText": "Textes",
+  "contactTitle": "Contact",
+  "contactAddress": "Tizi Ouzou, Algérie",
+  "contactEmail": "contact@tamazight-treasures.org",
+  "contactPhone": "+213 XX XXX XXXX",
+  "copyright": "© {year} Tamazight Treasures. Tous droits réservés.",
+  "termsOfService": "Conditions d'Utilisation"
+},
+  "contact": {
+    "hero": {
+      "title": "Contactez",
+      "titleHighlight": "Nous",
+      "description": "Vous avez des questions ou souhaitez vous impliquer ? Nous serions ravis de vous entendre !"
+    },
+    "infoSection": {
+      "title": "Entrez en Contact",
+      "description": "Contactez-nous directement ou utilisez le formulaire ci-dessous pour nous envoyer un message."
+    },
+    "contactDetails": {
+      "email": {
+        "title": "Email",
+        "value": "contact@tamazight-treasures.org"
+      },
+      "phone": {
+        "title": "Téléphone",
+        "value": "+213 123 456 789"
+      },
+      "location": {
+        "title": "Localisation",
+        "value": "Tizi Ouzou, Algérie"
+      }
     },
     "socialMedia": {
-      "title": "Nos Réseaux Sociaux",
-      "links": [
-        {
-          "title": "Instagram",
-          "path": "https://www.instagram.com/ohma core/"
-        }
-      ]
+      "facebook": "#",
+      "twitter": "#",
+      "instagram": "#"
     },
-    "rights": "Ohma Core. Tous droits réservés"
+    "formSection": {
+      "title": "Envoyez-nous un Message"
+    },
+    "form": {
+      "subtitle": "Entrez en Contact",
+      "description": "Nous répondrons à votre message rapidement.",
+      "fields": {
+        "firstName": {
+          "label": "Prénom",
+          "placeholder": "Votre prénom"
+        },
+        "lastName": {
+          "label": "Nom",
+          "placeholder": "Votre nom de famille"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "votre.email@exemple.com"
+        },
+        "phoneNumber": {
+          "label": "Numéro de Téléphone",
+          "placeholder": "Votre numéro de téléphone"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Tapez votre message ici"
+        }
+      },
+      "buttons": {
+        "cancel": "Annuler",
+        "submit": "Envoyer le Message",
+        "submitting": "Envoi en cours..."
+      },
+      "validation": {
+        "firstNameRequired": "Le prénom est requis",
+        "lastNameRequired": "Le nom est requis",
+        "emailValid": "Veuillez entrer une adresse email valide",
+        "phoneRequired": "Le numéro de téléphone est requis",
+        "messageRequired": "Le message est requis"
+      },
+      "notifications": {
+        "success": "Votre message a été envoyé avec succès !",
+        "error": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer."
+      }
+    }
   },
-  "contact": {
-    "title": "Contactez-nous",
-    "subtitle": "Nous sommes là pour vous aider à concrétiser votre projet. N’hésitez pas à nous contacter en utilisant le formulaire ci-dessous ou via nos coordonnées.",
-    "inputName": "Nom complet",
-    "inputEmail": "Adresse e-mail",
-    "inputSubject": "Objet",
-    "inputPhone": "Numéro de téléphone",
-    "inputMessage": "Votre message",
-    "buttonText": "Envoyer le message",
-    "buttonLoading": "envoi ...",
-    "consentText": "J'accepte les conditions et la politique de confidentialité.",
-    "infoParagraph": "Vous trouverez ci-dessous nos coordonnées. Contactez-nous par e-mail ou par téléphone et suivez-nous sur les réseaux sociaux pour les dernières mises à jour.",
-    "contactInfoTitle": "Informations de contact",
-    "email": "info@agencydomain.com",
-    "emailTitle": "E-mail",
-    "phone": "+33 (0)1 23 45 67 89",
-    "phoneTitle": "Téléphone",
-    "errorNameRequired": "Le nom est requis",
-    "errorEmailRequired": "L'email est requis",
-    "errorEmailInvalid": "Adresse e-mail invalide",
-    "errorSubjectRequired": "L'objet est requis",
-    "errorMessageRequired": "Le message est requis"
-  }
+  "termsOfService": {
+  "heroTitle": "Conditions",
+  "heroSubtitle": "d'Utilisation",
+  "heroDescription": "Veuillez lire attentivement ces conditions avant d'utiliser notre plateforme.",
+  "lastUpdated": "Dernière mise à jour: 24 mars 2025",
+  "header": "Conditions d'Utilisation",
+  "section1Title": "1. Introduction",
+  "section1Text": "Bienvenue sur Tamazight Treasures (\"nous\", \"notre\"), une plateforme dédiée à la préservation du patrimoine culturel kabyle. En accédant ou en utilisant notre site web et nos services (collectivement, le \"Service\"), vous acceptez d'être lié par ces Conditions d'Utilisation (\"Conditions\"). Si vous n'êtes pas d'accord, veuillez ne pas utiliser notre Service.",
+  "section2Title": "2. Éligibilité",
+  "section2Text": "Vous devez avoir au moins 13 ans pour utiliser notre Service. En utilisant le Service, vous déclarez et garantissez que vous remplissez cette condition d'âge et que vous avez la capacité juridique de conclure ces Conditions.",
+  "section3Title": "3. Contenu Utilisateur",
+  "section3Text": "Vous pouvez soumettre du contenu tel que des vidéos, de l'audio, des images ou des documents (\"Contenu Utilisateur\") à notre Service. En soumettant du Contenu Utilisateur, vous nous accordez une licence non exclusive, mondiale et libre de redevance pour utiliser, reproduire, modifier et distribuer ce contenu uniquement dans le but d'exploiter et de promouvoir le Service. Vous déclarez que vous possédez ou disposez des droits nécessaires pour soumettre ce contenu et qu'il ne viole aucune loi ni aucun droit de tiers.",
+  "section4Title": "4. Utilisation Acceptable",
+  "section4Text": "Vous acceptez de ne pas utiliser le Service pour :",
+  "section4ListItem1": "Télécharger du contenu illégal, nuisible, offensant ou portant atteinte aux droits d'autrui.",
+  "section4ListItem2": "Vous engager dans toute activité qui perturbe ou interfère avec le Service.",
+  "section4ListItem3": "Tenter d'accéder sans autorisation à nos systèmes ou données.",
+  "section5Title": "5. Propriété Intellectuelle",
+  "section5Text": "Tout le contenu et les matériaux du Service, à l'exclusion du Contenu Utilisateur, appartiennent à Tamazight Treasures ou à nos concédants et sont protégés par le droit d'auteur, les marques et d'autres lois. Vous ne pouvez pas reproduire, distribuer ou créer des œuvres dérivées de notre contenu sans autorisation écrite préalable.",
+  "section6Title": "6. Résiliation",
+  "section6Text": "Nous nous réservons le droit de suspendre ou de résilier votre accès au Service à notre discrétion, avec ou sans préavis, pour toute violation de ces Conditions ou pour toute autre raison que nous jugeons appropriée.",
+  "section7Title": "7. Exclusion de Garanties",
+  "section7Text": "Le Service est fourni \"tel quel\" et \"selon disponibilité\" sans garanties d'aucune sorte, expresses ou implicites, y compris, mais sans s'y limiter, l'adéquation à un usage particulier ou l'absence de contrefaçon.",
+  "section8Title": "8. Limitation de Responsabilité",
+  "section8Text": "Dans toute la mesure permise par la loi, Tamazight Treasures ne sera pas responsable des dommages indirects, accessoires ou consécutifs résultant de votre utilisation du Service.",
+  "section9Title": "9. Modifications des Conditions",
+  "section9Text": "Nous pouvons mettre à jour ces Conditions de temps à autre. La version mise à jour sera publiée sur cette page avec une date de \"Dernière mise à jour\" révisée. Votre utilisation continue du Service après ces modifications constitue l'acceptation des nouvelles Conditions.",
+  "section10Title": "10. Loi Applicable",
+  "section10Text": "Ces Conditions seront régies et interprétées conformément aux lois de l'Algérie, sans égard à ses principes de conflit de lois.",
+  "section11Title": "11. Nous Contacter",
+  "section11Text": "Si vous avez des questions concernant ces Conditions, veuillez nous contacter à",
+  "contactEmail": "contact@tamazight-treasures.org"
+},
+"navbar": {
+  "logo_1" :"Tamazight",
+    "logo_2" :"Treasures",
+  "home": "Accueil",
+  "about": "À Propos",
+  "database": "Base de Données",
+  "contribute": "Contribuer",
+  "contact": "Contactez-nous",
+  "language": "Langue"
+}
 }

@@ -1,13 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useState, useEffect } from 'react';
 import { UploadCloud } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
-
-const CTA = () => {
+import { useParams } from "next/navigation";
+const CTA = ({ dictionary }: { dictionary: any }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  
+  const params = useParams();
+  const locale = params.locale || "en";
+
+
   useEffect(() => {
     setIsLoaded(true);
   }, []);
@@ -54,10 +58,10 @@ const CTA = () => {
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
             <span className="inline-block relative">
-              Preserve 
+              {dictionary.cta.titlePart1}
               <span className="absolute -bottom-1 left-0 w-full h-1 bg-amber-500 transform scale-x-0 origin-left animate-expand"></span>
             </span>{" "}
-            <span className="text-amber-400">Kabyle Heritage</span>
+            <span className="text-amber-400">{dictionary.cta.titleHighlight}</span>
           </h2>
 
           <motion.p
@@ -66,7 +70,7 @@ const CTA = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto"
           >
-            Your contribution can help document and protect the rich cultural legacy of Kabylie. Share your family&apos;s stories, artifacts, and memories.
+            {dictionary.cta.description}
           </motion.p>
 
           <motion.div
@@ -82,9 +86,10 @@ const CTA = () => {
               size="lg" 
               className="bg-amber-500 hover:bg-amber-600 text-white shadow-lg hover:shadow-amber-500/50 transition-all duration-300 transform hover:-translate-y-1"
             >
-              <Link href="/contribution" className="flex items-center">
+            
+                 <Link href={`/${locale}/contribution`} className="flex items-center">
                 <UploadCloud className="mr-2 h-5 w-5" />
-                Contribute to Our Archive
+                {dictionary.cta.buttonText}
               </Link>
             </Button>
           </motion.div>
