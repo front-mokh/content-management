@@ -1,43 +1,24 @@
 // app/about/page.tsx
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {  Video, Archive, Upload } from "lucide-react"; 
+import { Video, Archive, Upload } from "lucide-react"; 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-
 export default function About() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
+  // Simple fade-in variants for consistent animation
+  const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
+    visible: { 
+      opacity: 1, 
       y: 0,
-      transition: { duration: 0.5 },
-    },
+      transition: { duration: 0.5 }
+    }
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      
-
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-website-secondary to-website-secondary/90 shadow-lg py-24 overflow-hidden">
@@ -47,26 +28,21 @@ export default function About() {
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50 }}
-              transition={{ duration: 0.8 }}
+              initial="hidden"
+              animate="visible"
+              variants={fadeIn}
               className="text-center max-w-4xl mx-auto"
             >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 <span className="inline-block relative">
                   About
-                  <span className="absolute -bottom-1 left-0 w-full h-1 bg-amber-500 transform scale-x-0 origin-left animate-expand"></span>
+                  <span className="absolute -bottom-1 left-0 w-full h-1 bg-amber-500"></span>
                 </span>{" "}
                 <span className="text-amber-400">Tamazight Treasures</span>
               </h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-xl text-blue-100"
-              >
+              <p className="text-xl text-blue-100">
                 A passion project by two Kabyle students dedicated to preserving our cultural heritage through a digital archive.
-              </motion.p>
+              </p>
             </motion.div>
           </div>
           
@@ -75,14 +51,14 @@ export default function About() {
             {[...Array(6)].map((_, i) => (
               <div
                 key={i}
-                className="absolute rounded-full bg-amber-500 opacity-10 animate-float-slow"
+                className="absolute rounded-full bg-amber-500 opacity-10"
                 style={{
                   width: `${Math.random() * 80 + 40}px`,
                   height: `${Math.random() * 80 + 40}px`,
                   top: `${Math.random() * 100}%`,
                   left: `${Math.random() * 100}%`,
+                  animation: `float ${Math.random() * 20 + 15}s ease-in-out infinite`,
                   animationDelay: `${Math.random() * 10}s`,
-                  animationDuration: `${Math.random() * 20 + 15}s`,
                 }}
               />
             ))}
@@ -92,27 +68,17 @@ export default function About() {
         {/* Our Story Section */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isLoaded ? "visible" : "hidden"}
-              className="max-w-4xl mx-auto text-center"
-            >
-              <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
                 Our Story
-              </motion.h2>
-              <motion.p variants={itemVariants} className="text-lg text-gray-600 leading-relaxed mb-12">
-                We are two students from Kabylie, united by a shared passion for our cultural heritage. Growing up surrounded by the rich traditions, music, and stories of our people, we realized how much of this legacy was at risk of being lost. That’s why we created Tamazight Treasures – a digital sanctuary where the essence of Kabyle culture can be preserved and shared with the world.
-              </motion.p>
-            </motion.div>
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed mb-12">
+                We are two students from Kabylie, united by a shared passion for our cultural heritage. Growing up surrounded by the rich traditions, music, and stories of our people, we realized how much of this legacy was at risk of being lost. That's why we created Tamazight Treasures – a digital sanctuary where the essence of Kabyle culture can be preserved and shared with the world.
+              </p>
+            </div>
 
             {/* Team Section */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isLoaded ? "visible" : "hidden"}
-              className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
               {[
                 {
                   name: "Sarah",
@@ -127,13 +93,12 @@ export default function About() {
                   image: "/team-yanis.jpg",
                 },
               ].map((member, index) => (
-                <motion.div
+                <div
                   key={index}
-                  variants={itemVariants}
                   className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
                 >
                   <div className="relative w-32 h-32 mx-auto mb-6">
-                    <div className="absolute inset-0 bg-amber-400 rounded-full blur-sm opacity-75 animate-pulse-slow"></div>
+                    <div className="absolute inset-0 bg-amber-400 rounded-full blur-sm opacity-75"></div>
                     <div className="relative w-full h-full bg-gray-200 rounded-full overflow-hidden">
                       {/* Placeholder for team image */}
                       <div className="w-full h-full flex items-center justify-center bg-gray-300">
@@ -144,35 +109,25 @@ export default function About() {
                   <h3 className="text-xl font-bold text-gray-900 text-center">{member.name}</h3>
                   <p className="text-amber-600 text-center mb-4">{member.role}</p>
                   <p className="text-gray-600 text-center">{member.description}</p>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Our Mission Section - Updated */}
         <section className="py-20 bg-gradient-to-r from-blue-50 to-amber-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isLoaded ? "visible" : "hidden"}
-              className="text-center mb-12"
-            >
-              <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                What We’re Building
-              </motion.h2>
-              <motion.p variants={itemVariants} className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                What We're Building
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Our mission is to create a living archive of Kabyle culture, driven by these core initiatives.
-              </motion.p>
-            </motion.div>
+              </p>
+            </div>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isLoaded ? "visible" : "hidden"}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
                   icon: <Video className="h-12 w-12 text-amber-500" />,
@@ -190,9 +145,8 @@ export default function About() {
                   description: "Inviting Kabyles everywhere to share their stories and artifacts with us.",
                 },
               ].map((item, index) => (
-                <motion.div
+                <div
                   key={index}
-                  variants={itemVariants}
                   className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
                 >
                   <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-amber-50 rounded-full">
@@ -200,20 +154,16 @@ export default function About() {
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
                   <p className="text-gray-600">{item.description}</p>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Call to Action */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-              transition={{ duration: 0.8 }}
-            >
+            <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Join Our Mission
               </h2>
@@ -237,12 +187,10 @@ export default function About() {
                   <Link href="/database">Explore Database</Link>
                 </Button>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
       </main>
-
-      
     </div>
   );
 }

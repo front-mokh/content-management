@@ -1,15 +1,107 @@
 {
   "hero": {
-    "title": "Ohma Core is your partner to success",
-    "subtitle": {
-      "part1": "We Build",
-      "highlight": "Software Solutions",
-      "part2": "For Businesses"
-    },
-    "description": "We are a digital agency that specializes in building custom software solutions for businesses of all sizes. From websites and web applications to mobile apps, our solutions help you achieve your business goals",
-    "primaryCTA": "View Our Services",
-    "secondaryCTA": "Contact Us"
+    "titlePart1": "Preserving",
+    "titleHighlight": "Kabyle Heritage",
+    "titlePart2": "for Future Generations",
+    "description": "Join our mission to collect, preserve, and share the rich cultural heritage of Kabylie through a comprehensive digital archive of audio, video, and images.",
+    "exploreCTA": "Explore Database",
+    "contributeCTA": "Contribute",
+    "imageCaption": "Explore our rich cultural heritage",
+    "stats": [
+      { "value": "1,200+", "label": "Cultural Items", "icon": "📚" },
+      { "value": "30+", "label": "Villages Represented", "icon": "🏡" },
+      { "value": "250+", "label": "Contributors", "icon": "👥" },
+      { "value": "5,000+", "label": "Monthly Visitors", "icon": "👁️" }
+    ]
   },
+  "features": {
+    "mission": {
+      "title": "Our Mission",
+      "description": "As students from Kabylie, we are dedicated to preserving and sharing the rich cultural heritage of our people through a comprehensive digital archive that connects generations and celebrates our unique identity.",
+      "learnMoreCTA": "Learn more about our mission"
+    },
+    "cards": [
+      {
+        "title": "Global Accessibility",
+        "description": "Making Kabyle cultural heritage accessible to the world, connecting diaspora and global audiences."
+      },
+      {
+        "title": "Educational Resource",
+        "description": "Providing authentic resources about Kabyle culture, history, and language for researchers and learners."
+      },
+      {
+        "title": "Community Empowerment",
+        "description": "Empowering the Kabyle community to preserve and share their own cultural heritage."
+      }
+    ]
+  },
+  "libraryPreview": {
+    "titlePart1": "Tamazight",
+    "titlePart2": "Cultural",
+    "titlePart3": "Archive",
+    "description": "A comprehensive digital repository preserving the rich cultural heritage of Kabylie through diverse media types.",
+    "browseCTA": "Browse Full Archive",
+    "resourcesAvailable": "Resources Available",
+    "resourceAvailable": "Resource Available",
+    "categories": [
+      {
+        "title": "Video Archives",
+        "description": "Explore documentaries, interviews, and cultural recordings that bring Kabyle history to life.",
+        "count": 237,
+        "href": "/library/video"
+      },
+      {
+        "title": "Image Gallery",
+        "description": "Explore a rich collection of photographs documenting Kabyle traditions, landscapes, and daily life.",
+        "count": 1524,
+        "href": "/library/images"
+      },
+      {
+        "title": "Audio Collections",
+        "description": "Listen to traditional music, oral histories, and linguistic recordings preserving Kabyle heritage.",
+        "count": 412,
+        "href": "/library/audio"
+      },
+      {
+        "title": "Textual Resources",
+        "description": "Access scholarly articles, personal narratives, and historical documents about Kabyle culture.",
+        "count": 289,
+        "href": "/library/texts"
+      }
+    ]
+  },
+  "cta": {
+    "titlePart1": "Preserve",
+    "titleHighlight": "Kabyle Heritage",
+    "description": "Your contribution can help document and protect the rich cultural legacy of Kabylie. Share your family's stories, artifacts, and memories.",
+    "buttonText": "Contribute to Our Archive"
+  },
+  "testimonials": {
+    "titleHighlight": "Community",
+    "titlePart2": "Voices",
+    "description": "Hear from those who have contributed to and benefited from our cultural archive, sharing their personal connections and insights.",
+    "items": [
+      {
+        "quote": "This project has allowed me to share my grandmother's traditional songs with a global audience. I'm grateful for the opportunity to preserve these treasures for future generations.",
+        "author": "Amar B.",
+        "role": "Community Contributor",
+        "location": "Tizi Ouzou"
+      },
+      {
+        "quote": "As a researcher studying Amazigh cultures, this database has been an invaluable resource. The multimedia approach provides a rich context that traditional archives often lack.",
+        "author": "Dr. Lynda M.",
+        "role": "Cultural Anthropologist",
+        "location": "University of Algiers"
+      },
+      {
+        "quote": "Growing up away from Kabylie, this platform has helped me reconnect with my heritage and discover cultural traditions I never knew existed in my family's region.",
+        "author": "Sabrina T.",
+        "role": "Diaspora Member",
+        "location": "Paris, France"
+      }
+    ]
+  },
+
   "services": {
     "title": "Our Services",
     "subtitle": "Our Wide Range of Services for Your Business",
@@ -148,11 +240,7 @@
     },
     "rights": "Ohma Core. All rights reserved"
   },
-  "cta": {
-    "title": "Embrace the Digital Revolution Today!",
-    "subtitle": "Kickstart your digital journey with innovative websites, powerful applications, and seamless automation solutions. Transform your business and unlock endless possibilities.",
-    "buttonText": "Contacte Us"
-  },
+ 
   "contact": {
     "title": "Contact Us",
     "subtitle": "We are here to help you bring your project to life. Feel free to reach out using the form below or through our contact details.",

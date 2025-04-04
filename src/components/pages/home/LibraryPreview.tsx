@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useState } from 'react';
 import {
@@ -7,7 +8,7 @@ import {
   FileText,
   ArrowRight,
   ChevronRight
-} from 'lucide-react';
+} from 'lucide-react';  
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 import { motion } from 'framer-motion';
@@ -64,7 +65,7 @@ const CategoryCard = ({ icon: Icon, title, description, count, href }) => {
             <div className="border-t border-gray-200 pt-4 mt-4">
               <div className="flex justify-between items-center">
                 <span className="text-sm font-medium text-gray-500">
-                  {count} Resources Available
+                  {count} {' '} {count === 1 ? 'Resource Available' : 'Resources Available'}
                 </span>
                 <motion.div
                   animate={{ 
@@ -92,38 +93,7 @@ const CategoryCard = ({ icon: Icon, title, description, count, href }) => {
   );
 };
 
-const LibraryPreview = () => {
-  const categories = [
-    {
-      icon: Film,
-      title: "Video Archives",
-      description: "Explore documentaries, interviews, and cultural recordings that bring Kabyle history to life.",
-      count: 237,
-      href: "/library/video"
-    },
-    {
-      icon: Image,
-      title: "Image Gallery",
-      description: "Explore a rich collection of photographs documenting Kabyle traditions, landscapes, and daily life.",
-      count: 1524,
-      href: "/library/images"
-    },
-    {
-      icon: Music,
-      title: "Audio Collections",
-      description: "Listen to traditional music, oral histories, and linguistic recordings preserving Kabyle heritage.",
-      count: 412,
-      href: "/library/audio"
-    },
-    {
-      icon: FileText,
-      title: "Textual Resources",
-      description: "Access scholarly articles, personal narratives, and historical documents about Kabyle culture.",
-      count: 289,
-      href: "/library/texts"
-    }
-  ];
-
+const LibraryPreview = ({ dictionary }: { dictionary: any }) => {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -134,21 +104,46 @@ const LibraryPreview = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 tracking-tight">
-            <span className="text-blue-600">Tamazight</span> 
-            <span className="text-amber-500"> Cultural</span> Archive
+            <span className="text-blue-600">{dictionary.libraryPreview.titlePart1}</span> 
+            <span className="text-amber-500"> {dictionary.libraryPreview.titlePart2}</span> {dictionary.libraryPreview.titlePart3}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            A comprehensive digital repository preserving the rich cultural heritage of Kabylie through diverse media types.
+            {dictionary.libraryPreview.description}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {categories.map((category, index) => (
-            <CategoryCard
-              key={index}
-              {...category}
-            />
-          ))}
+          {dictionary.libraryPreview.categories.map((category, index) => {
+            // Map the icon based on the category type
+            let IconComponent;
+            switch (index) {
+              case 0:
+                IconComponent = Film;
+                break;
+              case 1:
+                IconComponent = Image;
+                break;
+              case 2:
+                IconComponent = Music;
+                break;
+              case 3:
+                IconComponent = FileText;
+                break;
+              default:
+                IconComponent = FileText;
+            }
+            
+            return (
+              <CategoryCard
+                key={index}
+                icon={IconComponent}
+                title={category.title}
+                description={category.description}
+                count={category.count}
+                href={category.href}
+              />
+            );
+          })}
         </div>
 
         <motion.div 
@@ -163,7 +158,7 @@ const LibraryPreview = () => {
             className="bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-1"
           >
             <Link href="/library" className="flex items-center">
-              Browse Full Archive
+              {dictionary.libraryPreview.browseCTA}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>

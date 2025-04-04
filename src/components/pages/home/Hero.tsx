@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // components/Hero.tsx
 "use client";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
-export default function Hero() {
+export default function Hero({ dictionary }: { dictionary: any }) {
   const [isLoaded, setIsLoaded] = useState(false);
   
   useEffect(() => {
@@ -59,10 +60,10 @@ export default function Hero() {
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
               <span className="inline-block relative">
-                Preserving 
+                {dictionary.hero.titlePart1}
                 <span className="absolute -bottom-1 left-0 w-full h-1 bg-amber-500 transform scale-x-0 origin-left animate-expand"></span>
               </span>{" "}
-              <span className="text-amber-400">Kabyle Heritage</span> for Future Generations
+              <span className="text-amber-400">{dictionary.hero.titleHighlight}</span> {dictionary.hero.titlePart2}
             </h1>
             <motion.p 
               initial={{ y: 20, opacity: 0 }}
@@ -70,7 +71,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mt-6 text-lg md:text-xl text-blue-100"
             >
-              Join our mission to collect, preserve, and share the rich cultural heritage of Kabylie through a comprehensive digital archive of audio, video, and images.
+              {dictionary.hero.description}
             </motion.p>
             <motion.div 
               initial={{ y: 20, opacity: 0 }}
@@ -82,14 +83,14 @@ export default function Hero() {
                 size="lg" 
                 className="bg-amber-400 hover:bg-amber-600 text-white shadow-lg hover:shadow-amber-500/50 transition-all duration-300 transform hover:-translate-y-1"
               >
-                Explore Database
+                {dictionary.hero.exploreCTA}
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
                 className="bg-transparent border-white text-white hover:bg-white hover:text-blue-700 transition-all duration-300 transform hover:-translate-y-1"
               >
-                Contribute
+                {dictionary.hero.contributeCTA}
               </Button>
             </motion.div>
           </motion.div>
@@ -107,7 +108,7 @@ export default function Hero() {
                 <div className="w-full h-full bg-[url('/kabyle_image.png')] bg-cover bg-center flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <span className="text-white text-lg font-semibold px-4 py-2 rounded-full bg-blue-900/70 backdrop-blur-sm">
-                        Explore our rich cultural heritage
+                        {dictionary.hero.imageCaption}
                       </span>
                     </div>
                   </div>
@@ -133,12 +134,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
-          {[
-            { value: "1,200+", label: "Cultural Items", icon: "📚" },
-            { value: "30+", label: "Villages Represented", icon: "🏡" },
-            { value: "250+", label: "Contributors", icon: "👥" },
-            { value: "5,000+", label: "Monthly Visitors", icon: "👁️" }
-          ].map((stat, index) => (
+          {dictionary.hero.stats.map((stat: any, index: number) => (
             <motion.div 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: isLoaded ? 0 : 20, opacity: isLoaded ? 1 : 0 }}

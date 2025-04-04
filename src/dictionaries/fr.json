@@ -1,14 +1,105 @@
 {
-  "hero": {
-    "title": "Ohma Core est votre partenaire vers la réussite",
-    "subtitle": {
-      "part1": "Nous Créons des",
-      "highlight": "Solutions Logicielles",
-      "part2": "Pour les Entreprises"
+ "hero": {
+    "titlePart1": "Préserver",
+    "titleHighlight": "le Patrimoine Kabyle",
+    "titlePart2": "pour les Générations Futures",
+    "description": "Rejoignez notre mission pour collecter, préserver et partager le riche patrimoine culturel de la Kabylie à travers une archive numérique complète d'audio, de vidéo et d'images.",
+    "exploreCTA": "Explorer la Base de Données",
+    "contributeCTA": "Contribuer",
+    "imageCaption": "Explorez notre riche patrimoine culturel",
+    "stats": [
+      { "value": "1 200+", "label": "Éléments Culturels", "icon": "📚" },
+      { "value": "30+", "label": "Villages Représentés", "icon": "🏡" },
+      { "value": "250+", "label": "Contributeurs", "icon": "👥" },
+      { "value": "5 000+", "label": "Visiteurs Mensuels", "icon": "👁️" }
+    ]
+  },
+  "features": {
+    "mission": {
+      "title": "Notre Mission",
+      "description": "En tant qu'étudiants de Kabylie, nous nous consacrons à préserver et à partager le riche patrimoine culturel de notre peuple à travers une archive numérique complète qui relie les générations et célèbre notre identité unique.",
+      "learnMoreCTA": "En savoir plus sur notre mission"
     },
-    "description": "Nous sommes une agence numérique spécialisée dans le développement de solutions logicielles personnalisées pour les entreprises de toutes tailles. Des sites web et applications web aux applications mobiles, nos solutions vous aident à atteindre vos objectifs commerciaux",
-    "primaryCTA": "Voir Nos Services",
-    "secondaryCTA": "Contactez-Nous"
+    "cards": [
+      {
+        "title": "Accessibilité mondiale",
+        "description": "Rendre le patrimoine culturel kabyle accessible au monde entier, en connectant la diaspora et les audiences mondiales."
+      },
+      {
+        "title": "Ressource éducative",
+        "description": "Fournir des ressources authentiques sur la culture, l'histoire et la langue kabyles pour les chercheurs et les apprenants."
+      },
+      {
+        "title": "Autonomisation communautaire",
+        "description": "Donner à la communauté kabyle les moyens de préserver et de partager son propre patrimoine culturel."
+      }
+    ]
+  },
+  "libraryPreview": {
+    "titlePart1": "Archives",
+    "titlePart2": "Culturelles",
+    "titlePart3": "Tamazight",
+    "description": "Un dépôt numérique complet préservant le riche patrimoine culturel de la Kabylie à travers divers types de médias.",
+    "browseCTA": "Explorer l'Archive Complète",
+    "resourcesAvailable": "Ressources Disponibles",
+    "resourceAvailable": "Ressource Disponible",
+    "categories": [
+      {
+        "title": "Archives Vidéo",
+        "description": "Explorez des documentaires, des interviews et des enregistrements culturels qui donnent vie à l'histoire kabyle.",
+        "count": 237,
+        "href": "/library/video"
+      },
+      {
+        "title": "Galerie d'Images",
+        "description": "Découvrez une riche collection de photographies documentant les traditions, les paysages et la vie quotidienne kabyles.",
+        "count": 1524,
+        "href": "/library/images"
+      },
+      {
+        "title": "Collections Audio",
+        "description": "Écoutez de la musique traditionnelle, des histoires orales et des enregistrements linguistiques préservant le patrimoine kabyle.",
+        "count": 412,
+        "href": "/library/audio"
+      },
+      {
+        "title": "Ressources Textuelles",
+        "description": "Accédez à des articles académiques, des récits personnels et des documents historiques sur la culture kabyle.",
+        "count": 289,
+        "href": "/library/texts"
+      }
+    ]
+  },
+  "cta": {
+    "titlePart1": "Préserver",
+    "titleHighlight": "l'Héritage Kabyle",
+    "description": "Votre contribution peut aider à documenter et protéger le riche héritage culturel de la Kabylie. Partagez les histoires, les objets et les souvenirs de votre famille.",
+    "buttonText": "Contribuer à Notre Archive"
+  },
+  "testimonials": {
+    "titleHighlight": "Voix de la",
+    "titlePart2": "Communauté",
+    "description": "Écoutez ceux qui ont contribué à notre archive culturelle et qui en ont bénéficié, partageant leurs liens personnels et leurs perspectives.",
+    "items": [
+      {
+        "quote": "Ce projet m'a permis de partager les chansons traditionnelles de ma grand-mère avec un public mondial. Je suis reconnaissant pour l'opportunité de préserver ces trésors pour les générations futures.",
+        "author": "Amar B.",
+        "role": "Contributeur Communautaire",
+        "location": "Tizi Ouzou"
+      },
+      {
+        "quote": "En tant que chercheuse étudiant les cultures amazighes, cette base de données a été une ressource inestimable. L'approche multimédia fournit un contexte riche que les archives traditionnelles n'offrent souvent pas.",
+        "author": "Dr. Lynda M.",
+        "role": "Anthropologue Culturelle",
+        "location": "Université d'Alger"
+      },
+      {
+        "quote": "Ayant grandi loin de la Kabylie, cette plateforme m'a aidée à renouer avec mon héritage et à découvrir des traditions culturelles dont j'ignorais l'existence dans la région de ma famille.",
+        "author": "Sabrina T.",
+        "role": "Membre de la Diaspora",
+        "location": "Paris, France"
+      }
+    ]
   },
   "mediaLibrary": {
     "title": "Bibliothèque Multimédia du Patrimoine Kabyle",
@@ -63,24 +154,7 @@
     "subtitle": "Notre Large Gamme de Services pour Votre Entreprise",
     "description": "Nous sommes une agence numérique de premier plan qui propose une large gamme de services pour vous aider à atteindre vos objectifs commerciaux."
   },
-  "features": {
-    "digitalDesign": {
-      "title": "Design Numérique & Image de Marque",
-      "description": "Nous transformons votre identité de marque grâce à des solutions de design complètes, des logos personnalisés et éléments visuels aux interfaces de sites web engageantes."
-    },
-    "fullStack": {
-      "title": "Développement Logiciel",
-      "description": "Nous construisons des solutions numériques puissantes à travers des applications web personnalisées, des applications mobiles et des sites web responsifs utilisant des technologies modernes."
-    },
-    "Web_Applications_Hosting": {
-      "title": "Hébergement Cloud & Sécurité",
-      "description": "Nous garantissons les performances optimales de vos applications avec nos solutions d'hébergement cloud sécurisées, incluant une surveillance 24/7 et une infrastructure de niveau entreprise."
-    },
-    "aiInnovation": {
-      "title": "IA & Automatisation des Processus",
-      "description": "Nous améliorons l'efficacité de votre entreprise grâce à des solutions d'automatisation intelligentes, l'intégration d'IA personnalisée et l'optimisation intelligente des flux de travail."
-    }
-  },
+
   "propritary_solutions": {
     "Badge": "Nos solutions propriétaires",
     "title": "Nos solutions logicielles prêtes à l'emploi",
@@ -183,11 +257,7 @@
       }
     }
   },
-  "cta": {
-    "title": "Adoptez la Révolution Digitale Dès Aujourd'hui !",
-    "subtitle": "Lancez votre transformation digitale avec des sites web innovants, des applications performantes et des solutions d'automatisation fluides. Transformez votre entreprise et explorez des possibilités infinies.",
-    "buttonText": "Contactez Nous"
-  },
+ 
   "footer": {
     "title": "Transformer vos Idées en Excellence Numérique  Votre Partenaire Technologique de Confiance pour des Solutions Logicielles Innovantes",
     "usefulLinks": {
