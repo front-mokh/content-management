@@ -25,7 +25,8 @@ export const login = async (provider: string) => {
 };
 
 export const logout = async () => {
-  await signOut({ redirectTo: "/" });
+  await signOut({ redirectTo: "/auth/signin", redirect: true });
+
   revalidatePath("/");
 };
 
@@ -42,7 +43,7 @@ export const loginWithCredentials = async (formData: FormData) => {
 
   try {
     await signIn("credentials", rawFormData);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error instanceof AuthError) {
       switch (error.type) {

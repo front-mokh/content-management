@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import { SessionProvider } from "next-auth/react";
+import { getSession, SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
 import { AppSidebar } from "@/components/app-sidebar";
 import {
@@ -10,6 +10,8 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { UserDropdownMenu } from "@/components/custom/UseDropDownMenu";
+import { redirect } from "next/navigation";
+import { auth } from "../../../auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +34,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
+  console.log({ session });
+
+  if (!session.user) {
+    redirect("/auth/signin");
+  }
   return (
     <html lang={"fr"}>
       <body

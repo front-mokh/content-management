@@ -13,11 +13,12 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { User, Settings, HelpCircle, LogOut } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
+import { logout } from "@/lib/auth";
 
 export function UserDropdownMenu() {
   const session = useSession();
   const handleLogout = async () => {
-    await signOut({ redirect: true, callbackUrl: "/auth/signin" });
+    await logout();
   };
 
   return (
