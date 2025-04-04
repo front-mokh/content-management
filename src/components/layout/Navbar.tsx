@@ -33,8 +33,8 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href={`/${locale}/home`} className="flex items-center">
-              <span className="text-2xl font-bold text-blue-600">Tamazight</span>
-              <span className="text-2xl font-bold text-amber-500">Treasures</span>
+              <span className="text-2xl font-bold text-blue-600"> {dictionary.navbar.logo_1}</span>
+              <span className="text-2xl font-bold text-amber-500">{dictionary.navbar.logo_2}</span>
             </Link>
           </div>
           {/* Desktop Navigation */}

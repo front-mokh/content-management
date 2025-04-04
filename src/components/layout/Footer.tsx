@@ -18,8 +18,8 @@ export default function Footer({ dictionary }: { dictionary: any }) {
           <div className="space-y-4">
          
           <Link href={`/${locale}/home`} className="flex items-center">
-              <span className="text-2xl font-bold text-blue-400">Tamazight</span>
-              <span className="text-2xl font-bold text-amber-400">Treasures</span>
+              <span className="text-2xl font-bold text-blue-400">{dictionary.footer.logo_1}</span>
+              <span className="text-2xl font-bold text-amber-400">{dictionary.footer.logo_2}</span>
             </Link>
             <p className="text-sm">
               {dictionary.footer.tagline}
@@ -57,7 +57,7 @@ export default function Footer({ dictionary }: { dictionary: any }) {
                     >
                       {link.label}
                     </Link>
-                  </li>
+                  </li> 
                 ))}
               </ul>
             </div>

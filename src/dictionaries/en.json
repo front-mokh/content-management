@@ -280,6 +280,8 @@
     }
   },
   "footer": {
+    "logo_1" :"Tamazight",
+    "logo_2" :"Treasures",
   "tagline": "Preserving and sharing the rich cultural heritage of Kabylie for future generations.",
   "navigation": "Navigation",
   "navHome": "Home",
@@ -408,6 +410,8 @@
   "contactEmail": "contact@tamazight-treasures.org"
 },
 "navbar": {
+  "logo_1" :"Tamazight",
+  "logo_2" :"Treasures",
   "home": "Home",
   "about": "About",
   "database": "Database",

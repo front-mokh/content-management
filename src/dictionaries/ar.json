@@ -394,6 +394,8 @@
   "contactEmail": "contact@tamazight-treasures.org"
 },
 "footer": {
+  "logo_1" :"Treasures",
+  "logo_2" :"Tamazight",
   "tagline": "الحفاظ على التراث الثقافي الغني لمنطقة القبائل ومشاركته للأجيال القادمة.",
   "navigation": "التنقل",
   "navHome": "الرئيسية",
@@ -414,6 +416,8 @@
   "termsOfService": "شروط الاستخدام"
 },
 "navbar": {
+  "logo_1" :"Treasures",
+  "logo_2" :"Tamazight",
   "home": "الرئيسية",
   "about": "من نحن",
   "database": "قاعدة البيانات",
