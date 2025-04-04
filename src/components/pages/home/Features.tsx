@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Building, Globe, BookOpen, Users } from "lucide-react";
 import Link from "next/link";
-
+import { useParams } from "next/navigation";
 export default function Features({ dictionary }: { dictionary: any }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const params = useParams();
+  const locale = params.locale || "en";
 
   useEffect(() => {
     setIsLoaded(true);
@@ -62,7 +64,7 @@ export default function Features({ dictionary }: { dictionary: any }) {
               </p>
               
               <Link
-                href="/about"
+                href={`/${locale}/about`}
                 className="inline-flex items-center px-8 py-3 bg-amber-500 text-white font-medium rounded-lg hover:bg-amber-600 hover:shadow-lg shadow-md transition-all duration-300 transform hover:-translate-y-1 group"
               >
                 {dictionary.features.mission.learnMoreCTA}

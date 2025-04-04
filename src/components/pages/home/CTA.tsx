@@ -5,10 +5,13 @@ import { UploadCloud } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
-
+import { useParams } from "next/navigation";
 const CTA = ({ dictionary }: { dictionary: any }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  
+  const params = useParams();
+  const locale = params.locale || "en";
+
+
   useEffect(() => {
     setIsLoaded(true);
   }, []);
@@ -83,7 +86,8 @@ const CTA = ({ dictionary }: { dictionary: any }) => {
               size="lg" 
               className="bg-amber-500 hover:bg-amber-600 text-white shadow-lg hover:shadow-amber-500/50 transition-all duration-300 transform hover:-translate-y-1"
             >
-              <Link href="/contribution" className="flex items-center">
+            
+                 <Link href={`/${locale}/contribution`} className="flex items-center">
                 <UploadCloud className="mr-2 h-5 w-5" />
                 {dictionary.cta.buttonText}
               </Link>

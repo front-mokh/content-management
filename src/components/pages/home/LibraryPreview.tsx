@@ -12,6 +12,7 @@ import {
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 import { motion } from 'framer-motion';
+import { useParams } from "next/navigation";
 
 const CategoryCard = ({ icon: Icon, title, description, count, href }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -94,6 +95,8 @@ const CategoryCard = ({ icon: Icon, title, description, count, href }) => {
 };
 
 const LibraryPreview = ({ dictionary }: { dictionary: any }) => {
+  const params = useParams();
+  const locale = params.locale || "en";
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -157,7 +160,7 @@ const LibraryPreview = ({ dictionary }: { dictionary: any }) => {
             size="lg"
             className="bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-1"
           >
-            <Link href="/library" className="flex items-center">
+            <Link  href={`/${locale}/media-library`} className="flex items-center">
               {dictionary.libraryPreview.browseCTA}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

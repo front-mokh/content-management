@@ -5,9 +5,12 @@ import { motion } from "framer-motion";
 import { Video, Archive, Upload } from "lucide-react"; 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+
 
 export default  function AboutPage({ dictionary }: { dictionary: any }) {
- 
+  const params = useParams();
+  const locale = params.locale || "en";
   
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -177,7 +180,8 @@ export default  function AboutPage({ dictionary }: { dictionary: any }) {
                   size="lg"
                   className="bg-amber-500 hover:bg-amber-600 text-white shadow-lg hover:shadow-amber-500/50 transition-all duration-300 transform hover:-translate-y-1"
                 >
-                   <Link href="/contribution">{dictionary.about.contributeButton}</Link>
+                     <Link href={`/${locale}/contribution`} >{dictionary.about.contributeButton}</Link>
+                
                 </Button>
                 <Button
                   asChild
@@ -185,7 +189,7 @@ export default  function AboutPage({ dictionary }: { dictionary: any }) {
                   variant="outline"
                   className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:-translate-y-1"
                 >
-                     <Link href="/database">{dictionary.about.exploreButton}</Link>
+                     <Link href={`/${locale}/media-library`}>{dictionary.about.exploreButton}</Link>
                 </Button>
               </div>
             </div>

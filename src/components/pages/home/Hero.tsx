@@ -4,10 +4,14 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useParams } from "next/navigation";
+import Link from "next/link";
 
 export default function Hero({ dictionary }: { dictionary: any }) {
   const [isLoaded, setIsLoaded] = useState(false);
-  
+  const params = useParams();
+  const locale = params.locale || "en";
+
   useEffect(() => {
     setIsLoaded(true);
   }, []);
@@ -83,14 +87,16 @@ export default function Hero({ dictionary }: { dictionary: any }) {
                 size="lg" 
                 className="bg-amber-400 hover:bg-amber-600 text-white shadow-lg hover:shadow-amber-500/50 transition-all duration-300 transform hover:-translate-y-1"
               >
-                {dictionary.hero.exploreCTA}
+                 <Link href={`/${locale}/media-library`} > {dictionary.hero.exploreCTA}</Link>
+               
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
                 className="bg-transparent border-white text-white hover:bg-white hover:text-blue-700 transition-all duration-300 transform hover:-translate-y-1"
               >
-                {dictionary.hero.contributeCTA}
+                 <Link href={`/${locale}/contribution`} > {dictionary.hero.contributeCTA}</Link>
+                
               </Button>
             </motion.div>
           </motion.div>
