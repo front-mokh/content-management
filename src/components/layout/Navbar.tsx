@@ -26,7 +26,7 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
     const pathWithoutLocale = pathname.replace(`/${locale}`, '');
     return `/${newLocale}${pathWithoutLocale || '/home'}`;
   };
-
+console.log( dictionary.navbar.logo_1);
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

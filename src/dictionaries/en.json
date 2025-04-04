@@ -411,7 +411,7 @@
 },
 "navbar": {
   "logo_1" :"Tamazight",
-  "logo_2" :"Treasures",
+    "logo_2" :"Treasures",
   "home": "Home",
   "about": "About",
   "database": "Database",
