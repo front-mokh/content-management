@@ -69,7 +69,7 @@ export default function Footer({ dictionary }: { dictionary: any }) {
                   { label: dictionary.footer.dbImages, href: `/${locale}/media-library?category=ebe0731e-229f-40fe-b72e-834c4be7ecbc&page=1` },
                   { label: dictionary.footer.dbAudio, href: `/${locale}/media-library?category=b70baeea-3398-4967-9d67-6c1430deb500&page=1` },
                   { label: dictionary.footer.dbVideo, href: `/${locale}/media-library?category=b70baeea-3398-4967-9d67-6c1430deb500&page=1` },
-                  { label: dictionary.footer.dbTexte, href: `/${locale}/media-library?category=b70baeea-3398-4967-9d67-6c1430deb500&page=1` }
+                  { label: dictionary.footer.dbText, href: `/${locale}/media-library?category=b70baeea-3398-4967-9d67-6c1430deb500&page=1` }
                 ].map((link, index) => (
                   <li key={index}>
                     <Link 
