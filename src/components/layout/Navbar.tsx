@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Navbar({ dictionary }: { dictionary: any }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
