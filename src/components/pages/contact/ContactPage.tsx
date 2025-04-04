@@ -3,36 +3,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram } from "lucide-react";
 
 import ContactForm from "@/components/pages/contact/ContactForm";
 
 export default function ContactPage({ dictionary }: { dictionary: any }) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -45,29 +25,18 @@ export default function ContactPage({ dictionary }: { dictionary: any }) {
           </div>
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50 }}
-              transition={{ duration: 0.8 }}
-              className="text-center max-w-4xl mx-auto"
-            >
+            <div className="text-center max-w-4xl mx-auto">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 <span className="inline-block relative">
                 {dictionary.contact.hero.title}
                   <span className="absolute -bottom-1 left-0 w-full h-1 bg-amber-500 transform scale-x-0 origin-left animate-expand"></span>
                 </span>{" "}
                 <span className="text-amber-400">{dictionary.contact.hero.titleHighlight}</span>
-           
               </h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-xl text-blue-100"
-              >
-                 {dictionary.contact.hero.description}
-              </motion.p>
-            </motion.div>
+              <p className="text-xl text-blue-100">
+                {dictionary.contact.hero.description}
+              </p>
+            </div>
           </div>
 
           {/* Floating decorative elements */}
@@ -92,32 +61,16 @@ export default function ContactPage({ dictionary }: { dictionary: any }) {
         {/* Contact Information Section */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isLoaded ? "visible" : "hidden"}
-              className="max-w-4xl mx-auto text-center"
-            >
-              <motion.h2
-                variants={itemVariants}
-                className="text-3xl md:text-4xl font-bold text-gray-900 mb-8"
-              >
-                  {dictionary.contact.infoSection.title}
-              </motion.h2>
-              <motion.p
-                variants={itemVariants}
-                className="text-lg text-gray-600 leading-relaxed mb-12"
-              >
-              {dictionary.contact.infoSection.description}
-              </motion.p>
-            </motion.div>
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+                {dictionary.contact.infoSection.title}
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed mb-12">
+                {dictionary.contact.infoSection.description}
+              </p>
+            </div>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isLoaded ? "visible" : "hidden"}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
                   icon: <Mail className="h-12 w-12 text-amber-500" />,
@@ -128,19 +81,18 @@ export default function ContactPage({ dictionary }: { dictionary: any }) {
                 {
                   icon: <Phone className="h-12 w-12 text-amber-500" />,
                   title: dictionary.contact.contactDetails.phone.title,
-                  detail:dictionary.contact.contactDetails.phone.value,
+                  detail: dictionary.contact.contactDetails.phone.value,
                   href: `tel:${dictionary.contact.contactDetails.phone.value.replace(/\s/g, '')}`,
                 },
                 {
                   icon: <MapPin className="h-12 w-12 text-amber-500" />,
-                  title:dictionary.contact.contactDetails.location.title,
-                  detail:  dictionary.contact.contactDetails.location.value,
-                  href:"#",
+                  title: dictionary.contact.contactDetails.location.title,
+                  detail: dictionary.contact.contactDetails.location.value,
+                  href: "#",
                 },
               ].map((contact, index) => (
-                <motion.div
+                <div
                   key={index}
-                  variants={itemVariants}
                   className="bg-gradient-to-r from-blue-50 to-amber-50 rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
                 >
                   <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-amber-50 rounded-full">
@@ -153,20 +105,15 @@ export default function ContactPage({ dictionary }: { dictionary: any }) {
                   >
                     {contact.detail}
                   </a>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Social Media Links */}
-            <motion.div
-              variants={itemVariants}
-              initial="hidden"
-              animate={isLoaded ? "visible" : "hidden"}
-              className="mt-12 flex justify-center gap-6"
-            >
+            <div className="mt-12 flex justify-center gap-6">
               {[
                 { icon: <Facebook className="h-8 w-8" />, href: dictionary.contact.socialMedia.facebook || "#" },
-                { icon: <Twitter className="h-8 w-8" />, href: dictionary.contact.socialMedia.twitter  || "#" },
+                { icon: <Twitter className="h-8 w-8" />, href: dictionary.contact.socialMedia.twitter || "#" },
                 { icon: <Instagram className="h-8 w-8" />, href: dictionary.contact.socialMedia.instagram || "#" },
               ].map((social, index) => (
                 <a
@@ -177,27 +124,19 @@ export default function ContactPage({ dictionary }: { dictionary: any }) {
                   {social.icon}
                 </a>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Contact Form Section */}
         <section className="py-20 bg-gradient-to-r from-blue-50 to-amber-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate={isLoaded ? "visible" : "hidden"}
-              className="max-w-2xl mx-auto"
-            >
-              <motion.h2
-                variants={itemVariants}
-                className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center"
-              >
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
                 {dictionary.contact.formSection.title}
-              </motion.h2>
+              </h2>
               <ContactForm dictionary={dictionary} />
-            </motion.div>
+            </div>
           </div>
         </section>
       </main>

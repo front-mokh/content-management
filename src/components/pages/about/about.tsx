@@ -6,9 +6,9 @@ import { Video, Archive, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 
-
-export default  function AboutPage({ dictionary }: { dictionary: any }) {
+export default function AboutPage({ dictionary }: { dictionary: any }) {
   const params = useParams();
   const locale = params.locale || "en";
   
@@ -88,13 +88,14 @@ export default  function AboutPage({ dictionary }: { dictionary: any }) {
                     name: dictionary.about.teamMember1Name,
                     role: dictionary.about.teamMember1Role,
                     description: dictionary.about.teamMember1Description,
-                    image: "/team-amina.jpg",
+                    image: "/sarah_image.png",
+                    
                 },
                 {
                     name: dictionary.about.teamMember2Name,
                     role: dictionary.about.teamMember2Role,
                     description: dictionary.about.teamMember2Description,
-                    image: "/team-yanis.jpg",
+                    image: "/amine_image.png",
                 },
               ].map((member, index) => (
                 <div
@@ -104,10 +105,14 @@ export default  function AboutPage({ dictionary }: { dictionary: any }) {
                   <div className="relative w-32 h-32 mx-auto mb-6">
                     <div className="absolute inset-0 bg-amber-400 rounded-full blur-sm opacity-75"></div>
                     <div className="relative w-full h-full bg-gray-200 rounded-full overflow-hidden">
-                      {/* Placeholder for team image */}
-                      <div className="w-full h-full flex items-center justify-center bg-gray-300">
-                        <span className="text-gray-600">{member.name[0]}</span>
-                      </div>
+                      {/* Display team member image */}
+                      <Image 
+                        src={member.image}
+                        alt={`${member.name} profile`}
+                        fill
+                        sizes="(max-width: 128px) 100vw, 128px"
+                        className="object-cover"
+                      />
                     </div>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 text-center">{member.name}</h3>
