@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // components/ContactForm.tsx
 "use client";
 
@@ -15,20 +16,20 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { createContact } from "@/lib/services/contactService";
 
-const contactSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Please enter a valid email address").optional(),
-  phoneNumber: z.string().min(1, "Phone number is required"),
-  message: z.string().min(1, "Message is required"),
-});
 
-
-export type ContactFormInput = z.infer<typeof contactSchema>;
-export default function ContactForm() {
+export default function ContactForm({ dictionary }: { dictionary: any }){
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const contactSchema = z.object({
+    firstName: z.string().min(1, dictionary.contact.form.validation.firstNameRequired),
+    lastName: z.string().min(1, dictionary.contact.form.validation.lastNameRequired),
+    email: z.string().email(dictionary.contact.form.validation.emailValid).optional(),
+    phoneNumber: z.string().min(1, dictionary.contact.form.validation.phoneRequired),
+    message: z.string().min(1, dictionary.contact.form.validation.messageRequired),
+  });
+
+  type ContactFormInput = z.infer<typeof contactSchema>;
   const form = useForm<ContactFormInput>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -45,12 +46,12 @@ export default function ContactForm() {
     try {
       // Using our contact service to save to database
       await createContact(values);
-      toast.success("Your message has been sent successfully!");
+      toast.success(dictionary.contact.form.notifications.success);
       form.reset();
       router.refresh();
     } catch (error) {
       console.error("Error submitting contact form:", error);
-      toast.error("There was an error sending your message. Please try again.");
+      toast.error(dictionary.contact.form.notifications.error);
     } finally {
       setIsSubmitting(false);
     }
@@ -69,15 +70,15 @@ export default function ContactForm() {
       className="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full border border-gray-100"
     >
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-semibold text-gray-900">Get in Touch</h3>
-        <p className="text-gray-500 mt-2">We&apos;ll respond to your message promptly.</p>
+      <h3 className="text-2xl font-semibold text-gray-900">{dictionary.contact.form.subtitle}</h3>
+      <p className="text-gray-500 mt-2">{dictionary.contact.form.description}</p>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div variants={inputVariants} whileFocus="focus" animate="blur">
               <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
-                First Name
+              {dictionary.contact.form.fields.firstName.label}
               </label>
               <Input
                 id="firstName"
@@ -92,7 +93,7 @@ export default function ContactForm() {
             </motion.div>
             <motion.div variants={inputVariants} whileFocus="focus" animate="blur">
               <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
-                Last Name
+              {dictionary.contact.form.fields.lastName.label}
               </label>
               <Input
                 id="lastName"
@@ -109,7 +110,7 @@ export default function ContactForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <motion.div variants={inputVariants} whileFocus="focus" animate="blur">
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
+              {dictionary.contact.form.fields.email.label}
               </label>
               <Input
                 id="email"
@@ -124,7 +125,7 @@ export default function ContactForm() {
             </motion.div>
             <motion.div variants={inputVariants} whileFocus="focus" animate="blur">
               <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">
-                Phone Number
+              {dictionary.contact.form.fields.phoneNumber.label}
               </label>
               <Input
                 id="phoneNumber"
@@ -140,7 +141,7 @@ export default function ContactForm() {
           </div>
           <motion.div variants={inputVariants} whileFocus="focus" animate="blur">
             <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-              Message
+            {dictionary.contact.form.fields.message.label}
             </label>
             <Textarea
               id="message"
@@ -161,7 +162,7 @@ export default function ContactForm() {
               disabled={isSubmitting}
               className="px-6 py-2 border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 rounded-lg transition-all duration-300 shadow-sm"
             >
-              Cancel
+              {dictionary.contact.form.buttons.cancel}
             </Button>
             <Button
               type="submit"
@@ -170,7 +171,7 @@ export default function ContactForm() {
             >
               {isSubmitting ? "Sending..." : (
                 <>
-                  Send Message
+                   {dictionary.contact.form.buttons.submit}
                   <Send className="ml-2 h-4 w-4" />
                 </>
               )}

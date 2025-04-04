@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // components/Footer.tsx
 "use client";
 
 import Link from "next/link";
 import { Facebook, Twitter, Instagram, Mail } from "lucide-react";
+import { useParams } from "next/navigation";
 
-export default function Footer() {
+export default function Footer({ dictionary }: { dictionary: any }) {
   const currentYear = new Date().getFullYear();
+  const { lang } = useParams();
   
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -17,7 +20,7 @@ export default function Footer() {
               <span className="text-2xl font-bold text-amber-400">Treasures</span>
             </Link>
             <p className="text-sm">
-              Preserving and sharing the rich cultural heritage of Kabylie for future generations.
+              {dictionary.footer.tagline}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="hover:text-blue-400 transition-colors">
@@ -36,13 +39,13 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-4 text-white">Navigation</h3>
+            <h3 className="text-lg font-bold mb-4 text-white">{dictionary.footer.navigation}</h3>
             <ul className="space-y-2">
               {[
-                { label: "Home", href: "/" },
-                { label: "About", href: "/about" },
-                { label: "Database", href: "/database" },
-                { label: "Contribute", href: "/contribution" }
+                { label: dictionary.footer.navHome, href: "/" },
+                { label: dictionary.footer.navAbout, href: "/about" },
+                { label: dictionary.footer.navDatabase, href: "/database" },
+                { label: dictionary.footer.navContribute, href: "/contribution" }
               ].map((link, index) => (
                 <li key={index}>
                   <Link 
@@ -57,13 +60,13 @@ export default function Footer() {
             </div>
             
             <div>
-              <h3 className="text-lg font-bold mb-4 text-white">Database</h3>
+              <h3 className="text-lg font-bold mb-4 text-white">{dictionary.footer.databaseTitle}</h3>
               <ul className="space-y-2">
                 {[
-                  { label: "Images", href: "/database?category=images" },
-                  { label: "Audio", href: "/database?category=audio" },
-                  { label: "Video", href: "/database?category=video" },
-                  { label: "Recent Additions", href: "/database?sort=newest" }
+                  { label: dictionary.footer.dbImages, href: "/database?category=images" },
+                  { label: dictionary.footer.dbAudio, href: "/database?category=audio" },
+                  { label: dictionary.footer.dbVideo, href: "/database?category=video" },
+                  { label: dictionary.footer.dbRecent, href: "/database?sort=newest" }
                 ].map((link, index) => (
                   <li key={index}>
                     <Link 
@@ -78,23 +81,22 @@ export default function Footer() {
             </div>
             
             <div>
-              <h3 className="text-lg font-bold mb-4 text-white">Contact</h3>
+              <h3 className="text-lg font-bold mb-4 text-white">{dictionary.footer.contactTitle}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>Tizi Ouzou, Algeria</li>
-                <li>contact@tamazight-treasures.org</li>
-                <li>+213 XX XXX XXXX</li>
+                <li>{dictionary.footer.contactAddress}</li>
+                <li>{dictionary.footer.contactEmail}</li>
+                <li>{dictionary.footer.contactPhone}</li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
             <div>
-              © {currentYear} Tamazight Treasures. All rights reserved.
+              {dictionary.footer.copyright.replace('{year}', currentYear.toString())}
             </div>
             <div className="mt-4 md:mt-0 space-x-6">
-            
-              <Link href="/en/terms-of-service" className="hover:text-blue-400 transition-colors">
-                Terms of Service
+              <Link href={`/${lang}/terms-of-service`} className="hover:text-blue-400 transition-colors">
+                {dictionary.footer.termsOfService}
               </Link>
             </div>
           </div>
