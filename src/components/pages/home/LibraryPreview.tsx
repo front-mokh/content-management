@@ -14,85 +14,84 @@ import { Button } from "@/components/ui/button";
 import { motion } from 'framer-motion';
 import { useParams } from "next/navigation";
 
-const CategoryCard = ({ icon: Icon, title, description, count, href }) => {
+const CategoryCard = ({ icon: Icon, title, description, count }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Link href={href} className="block">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
-        whileHover={{ 
-          scale: 1.05,
-          transition: { duration: 0.3 }
-        }}
-        className="relative group cursor-pointer"
-      >
-        <div className={`
-          bg-white 
-          rounded-2xl 
-          shadow-lg 
-          border 
-          border-gray-200
-          overflow-hidden 
-          transition-all 
-          duration-300 
-          relative 
-          z-10
-          hover:shadow-xl
-        `}>
-          <div className="p-6 flex items-center border-b border-gray-100">
-            <div className={`
-              bg-blue-50 
-              rounded-full 
-              p-4 
-              mr-5 
-              transition-all 
-              duration-500 
-              group-hover:rotate-[360deg]
-            `}>
-              <Icon className="h-9 w-9 text-blue-600" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-semibold text-gray-800 tracking-tight">{title}</h3>
-            </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      whileHover={{ 
+        scale: 1.05,
+        transition: { duration: 0.3 }
+      }}
+      className="relative group cursor-pointer"
+    >
+      <div className={`
+        bg-white 
+        rounded-2xl 
+        shadow-lg 
+        border 
+        border-gray-200
+        overflow-hidden 
+        transition-all 
+        duration-300 
+        relative 
+        z-10
+        hover:shadow-xl
+      `}>
+        <div className="p-6 flex items-center border-b border-gray-100">
+          <div className={`
+            bg-blue-50 
+            rounded-full 
+            p-4 
+            mr-5 
+            transition-all 
+            duration-500 
+            group-hover:rotate-[360deg]
+          `}>
+            <Icon className="h-9 w-9 text-blue-600" />
           </div>
-          <div className="p-6 pt-4 bg-gray-50/50">
-            <p className="text-gray-600 mb-4 text-base leading-relaxed">{description}</p>
-            
-            <div className="border-t border-gray-200 pt-4 mt-4">
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-gray-500">
-                  {count} {' '} {count === 1 ? 'Resource Available' : 'Resources Available'}
-                </span>
-                <motion.div
-                  animate={{ 
-                    x: isHovered ? 5 : 0,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <ChevronRight 
-                    className={`
-                      h-6 w-6 
-                      ${isHovered ? 'text-amber-500' : 'text-blue-600'} 
-                      opacity-70 
-                      group-hover:opacity-100 
-                      transition-all 
-                      duration-300
-                    `}
-                  />
-                </motion.div>
-              </div>
+          <div>
+            <h3 className="text-2xl font-semibold text-gray-800 tracking-tight">{title}</h3>
+          </div>
+        </div>
+        <div className="p-6 pt-4 bg-gray-50/50">
+          <p className="text-gray-600 mb-4 text-base leading-relaxed">{description}</p>
+          
+          <div className="border-t border-gray-200 pt-4 mt-4">
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium text-gray-500">
+                {count} {' '} {count === 1 ? 'Resource Available' : 'Resources Available'}
+              </span>
+              <motion.div
+                animate={{ 
+                  x: isHovered ? 5 : 0,
+                  transition: { duration: 0.2 }
+                }}
+              >
+                <ChevronRight 
+                  className={`
+                    h-6 w-6 
+                    ${isHovered ? 'text-amber-500' : 'text-blue-600'} 
+                    opacity-70 
+                    group-hover:opacity-100 
+                    transition-all 
+                    duration-300
+                  `}
+                />
+              </motion.div>
             </div>
           </div>
         </div>
-      </motion.div>
-    </Link>
+      </div>
+    </motion.div>
   );
 };
+
 
 const LibraryPreview = ({ dictionary }: { dictionary: any }) => {
   const params = useParams();
@@ -143,7 +142,6 @@ const LibraryPreview = ({ dictionary }: { dictionary: any }) => {
                 title={category.title}
                 description={category.description}
                 count={category.count}
-                href={category.href}
               />
             );
           })}

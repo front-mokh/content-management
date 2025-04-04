@@ -418,5 +418,11 @@
   "contribute": "Contribute",
   "contact": "Contact Us",
   "language": "Language"
-}
+},
+"submission": {
+  "success": {
+    "title": "Submission sent successfully!",
+    "message": "Thank you for your submission. We will review it as soon as possible. You will receive an email notification once your document has been processed.",
+    "buttonText": "Return to home"
+  }}
 }

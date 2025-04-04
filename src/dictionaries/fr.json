@@ -468,5 +468,12 @@
   "contribute": "Contribuer",
   "contact": "Contactez-nous",
   "language": "Langue"
+},
+"submission": {
+  "success": {
+    "title": "Soumission envoyée avec succès!",
+    "message": "Merci pour votre soumission. Nous l'examinerons dans les plus brefs délais. Vous recevrez une notification par email dès que votre document aura été traité.",
+    "buttonText": "Retour à l'accueil"
+  }
 }
 }
