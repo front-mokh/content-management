@@ -1,4 +1,3 @@
-
 import { getAllContacts } from "@/lib/services/contactService";
 import React from "react";
 import ContactsPage from "./ContactsPage";

@@ -65,7 +65,7 @@ export default function ResourceEngagement({
       setHasUpvoted(true);
 
       // Show success toast
-      toast.success("Thank you!", {
+      toast.success(dictionary.mediaLibrary.details.thankYou, {
         duration: 3000,
       });
 
@@ -85,7 +85,7 @@ export default function ResourceEngagement({
     <Card className="h-fit">
       <CardHeader>
         <h3 className="text-lg font-semibold text-website-secondary">
-          Engagement
+          {dictionary.mediaLibrary.details.engagement}
         </h3>
       </CardHeader>
 
@@ -100,7 +100,7 @@ export default function ResourceEngagement({
               {metrics.views.toLocaleString()}
             </span>
             <span className="text-sm text-website-text">
-              {dictionary.views}
+              {dictionary.mediaLibrary.details.views}
             </span>
           </div>
 
@@ -113,7 +113,7 @@ export default function ResourceEngagement({
               {metrics.upvotes.toLocaleString()}
             </span>
             <span className="text-sm text-website-text">
-              {dictionary.upvotes}
+              {dictionary.mediaLibrary.details.upvotes}
             </span>
           </div>
         </div>
@@ -128,7 +128,9 @@ export default function ResourceEngagement({
           disabled={hasUpvoted || isUpvoting || cooldown}
         >
           <ThumbsUp className={`h-5 w-5 mr-2`} />
-          {hasUpvoted ? dictionary.upvoted : dictionary.upvote}
+          {hasUpvoted
+            ? dictionary.mediaLibrary.details.upvoted
+            : dictionary.mediaLibrary.details.upvote}
         </Button>
       </CardContent>
     </Card>

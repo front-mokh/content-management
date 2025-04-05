@@ -10,7 +10,6 @@ import {
 import { FullResource } from "@/lib/types";
 import { FileText, Film, Folder, ImageIcon, Music } from "lucide-react";
 import { formatDuration } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 export function ResourcePreview({ resource }: { resource: FullResource }) {
   const category = resource.category.label.toLowerCase();
@@ -19,7 +18,7 @@ export function ResourcePreview({ resource }: { resource: FullResource }) {
 
   // State for video/audio previews
   const [videoThumbnail, setVideoThumbnail] = useState<string | null>(null);
-  const [videoDuration, setVideoDuration] = useState<number>(0);
+  const [, setVideoDuration] = useState<number>(0);
   const [audioDuration, setAudioDuration] = useState<number>(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -204,16 +203,6 @@ export function ResourcePreview({ resource }: { resource: FullResource }) {
             <p className="text-6xl text-website-accent-1 font-bold mb-4">
               {fileExtensionStyle.text}
             </p>
-            <p className="text-white text-lg">{resource.title}</p>
-            <Button
-              className="mt-6 bg-white text-website-secondary hover:bg-white/90"
-              asChild
-            >
-              <a href={resource.path} target="_blank" rel="noopener noreferrer">
-                <FileText className="h-4 w-4 mr-2" />
-                Open Document
-              </a>
-            </Button>
           </div>
         </div>
       );

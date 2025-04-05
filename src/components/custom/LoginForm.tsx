@@ -61,7 +61,7 @@ export default function LoginPage() {
         setError("Adresse email ou mot de passe invalide");
         setLoading(false);
       } else {
-        router.push("/admin");
+        router.push("/admin/dashboard");
         router.refresh();
       }
     } catch (err) {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
@@ -22,23 +23,23 @@ import TextAreaField from "@/components/custom/TextAreaField";
 import { FileUpload } from "@/components/custom/FileUpload";
 import { createSubmissionWithFile } from "@/lib/createSubmission";
 
-const addSubmissionSchema = z.object({
-  firstName: z.string().min(1, "Le prénom est obligatoire"),
-  lastName: z.string().min(1, "Le nom est obligatoire"),
-  email: z.string().email("L'adresse email doit être valide"),
-  phone: z.string().optional(),
-  message: z.string().optional(),
-  author: z.string().min(1, "Le nom de l'auteur est obligatoire"),
-});
 
-export type CreateSubmissionInput = z.infer<typeof addSubmissionSchema>;
-
-export default function SubmissionForm() {
+export default function SubmissionForm({ dictionary }: { dictionary: any }) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileError, setFileError] = useState<string | null>(null);
 
+  const addSubmissionSchema = z.object({
+    firstName: z.string().min(1, dictionary.form.validation.firstNameRequired),
+    lastName: z.string().min(1, dictionary.form.validation.lastNameRequired),
+    email: z.string().email(dictionary.form.validation.emailValid),
+    phone: z.string().optional(),
+    message: z.string().optional(),
+    author: z.string().min(1, dictionary.form.validation.authorRequired),
+  });
+  
+  type CreateSubmissionInput = z.infer<typeof addSubmissionSchema>;
   const form = useForm<CreateSubmissionInput>({
     resolver: zodResolver(addSubmissionSchema),
     defaultValues: {
@@ -94,9 +95,9 @@ export default function SubmissionForm() {
   return (
     <Card className="max-w-3xl mx-auto">
       <CardHeader>
-        <CardTitle>Soumettre un document</CardTitle>
+        <CardTitle>{dictionary.form.title}</CardTitle>
         <CardDescription>
-          Remplissez ce formulaire pour soumettre votre document pour évaluation.
+        {dictionary.form.description || "Fill out this form to submit your document for evaluation."}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -106,48 +107,50 @@ export default function SubmissionForm() {
               <TextField
                 control={form.control}
                 name="firstName"
-                label="Prénom"
-                placeholder="Votre prénom"
+                label={dictionary.form?.fields?.firstName?.label || "Prénom"}
+                placeholder={dictionary.form?.fields?.firstName?.placeholder || "Votre prénom"}
               />
 
               <TextField
                 control={form.control}
                 name="lastName"
-                label="Nom"
-                placeholder="Votre nom de famille"
+                label={dictionary.form?.fields?.lastName?.label || "Nom"}
+                placeholder={dictionary.form?.fields?.lastName?.placeholder || "Votre nom de famille"}
               />
             </div>
 
             <TextField
               control={form.control}
               name="email"
-              label="Email"
-              placeholder="votre.email@exemple.com"
+              label={dictionary.form?.fields?.email?.label || "Email"}
+              placeholder={dictionary.form?.fields?.email?.placeholder || "votre.email@exemple.com"}
             />
 
             <TextField
               control={form.control}
               name="phone"
-              label="Téléphone (optionnel)"
-              placeholder="Votre numéro de téléphone"
+              label={dictionary.form?.fields?.phone?.label || "Téléphone (optionnel)"}
+              placeholder={dictionary.form?.fields?.phone?.placeholder || "Votre numéro de téléphone"}
             />
 
             <TextField
               control={form.control}
               name="author"
-              label="Auteur du document"
-              placeholder="Nom de l'auteur"
+              label={dictionary.form?.fields?.author?.label || "Auteur du document"}
+              placeholder={dictionary.form?.fields?.author?.placeholder || "Nom de l'auteur"}
             />
 
             <TextAreaField
               control={form.control}
               name="message"
-              label="Message (optionnel)"
-              placeholder="Informations supplémentaires concernant votre soumission"
+              label={dictionary.form?.fields?.message?.label || "Message (optionnel)"}
+              placeholder={dictionary.form?.fields?.message?.placeholder || "Informations supplémentaires concernant votre soumission"}
+            
             />
 
             <div className="space-y-2">
-              <label className="text-sm font-medium">Document</label>
+            <label className="text-sm font-medium">{dictionary.form?.fields?.document?.label || "Document"}</label>
+             
               <FileUpload
                 onFileSelect={handleFileSelect}
                 onFileRemove={handleFileRemove}
@@ -165,14 +168,16 @@ export default function SubmissionForm() {
           onClick={() => router.back()}
           disabled={isSubmitting}
         >
-          Annuler
+         {dictionary.form?.buttons?.cancel || "Annuler"}
         </Button>
         <Button
           type="submit"
           onClick={form.handleSubmit(onSubmit)}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Envoi en cours..." : "Soumettre le document"}
+         {isSubmitting 
+            ? (dictionary.form?.buttons?.submitting || "Envoi en cours...") 
+            : (dictionary.form?.buttons?.submit || "Soumettre le document")}
         </Button>
       </CardFooter>
     </Card>

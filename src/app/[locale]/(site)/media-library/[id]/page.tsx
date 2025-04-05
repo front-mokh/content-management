@@ -4,20 +4,10 @@ import { formatDistanceToNow } from "date-fns";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Eye,
-  ThumbsUp,
-  Clock,
-  Download,
-  Share2,
-  ArrowLeft,
-  FileText,
-  User,
-} from "lucide-react";
+import { Eye, Clock, Download, ArrowLeft, FileText, User } from "lucide-react";
 import { getResourceById, incrementResourceViews } from "@/lib/services";
 import { getDictionary } from "@/lib/i18n";
 import Link from "next/link";
-import ResourceCard from "../ResourceCard";
 import { FullResource } from "@/lib/types";
 import { CATEGORY_COLORS, CategoryColorIndex } from "@/lib/constants";
 import { ResourcePreview } from "./ResourcePreview";
@@ -29,6 +19,8 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils";
+import clsx from "clsx";
+import { arDZ, enUS, frCA } from "date-fns/locale";
 
 export default async function ResourceDetailsPage({
   params,
@@ -66,16 +58,17 @@ export default async function ResourceDetailsPage({
       <div className="mb-6">
         <Button
           asChild
-          className="bg-website-secondary/90 text-white hover:bg-website-secondary/80 hover:text-white/80"
+          className={clsx(
+            "bg-website-secondary/90 text-white hover:bg-website-secondary/80 hover:text-white/80",
+            { "flex-row-reverse": params.locale === "ar" }
+          )}
         >
           <Link
             href={`/${params.locale}/media-library`}
             className="inline-flex items-center  transition-colors duration-200 group"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>
-              {dictionary.mediaLibrary.backToLibrary || "Back to Media Library"}
-            </span>
+            <span>{dictionary.mediaLibrary.backToLibrary}</span>
           </Link>
         </Button>
       </div>
@@ -89,37 +82,47 @@ export default async function ResourceDetailsPage({
 
         {/* Sidebar with consistent styling */}
         <div className="space-y-6">
-          <ResourceMetadata resource={resource} dictionary={dictionary} />
+          <ResourceMetadata
+            locale={params.locale}
+            resource={resource}
+            dictionary={dictionary}
+          />
           <ResourceEngagement resource={resource} dictionary={dictionary} />
-          <div className="bg-white rounded-lg shadow-md p-6 border border-website-primary/10">
-            <Button
-              className="w-full bg-website-primary hover:bg-website-primary/90 mb-3 font-medium"
-              size="lg"
-              asChild
-            >
-              <a
-                href={resource.path}
-                target="_blank"
-                rel="noopener noreferrer"
-                download
+          <Card className="h-fit">
+            <CardContent>
+              <Button
+                className="w-full bg-website-primary hover:bg-website-primary/90 mb-3 font-medium"
+                size="lg"
+                asChild
               >
-                <Download className="h-5 w-5 mr-2" />
-                {dictionary.mediaLibrary.download || "Download"}
-              </a>
-            </Button>
+                <a
+                  href={resource.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                >
+                  <Download className="h-5 w-5 mr-2" />
+                  {dictionary.mediaLibrary.details.download}
+                </a>
+              </Button>
 
-            <Button
-              variant="outline"
-              className="w-full border-website-secondary/30 text-website-secondary hover:bg-website-secondary/10 hover:text-website-secondary hover:border-website-secondary/50"
-              size="lg"
-              asChild
-            >
-              <a href={resource.path} target="_blank" rel="noopener noreferrer">
-                <Eye className="h-5 w-5 mr-2" />
-                {dictionary.mediaLibrary.preview || "Preview"}
-              </a>
-            </Button>
-          </div>
+              <Button
+                variant="outline"
+                className="w-full border-website-secondary/30 text-website-secondary hover:bg-website-secondary/10 hover:text-website-secondary hover:border-website-secondary/50"
+                size="lg"
+                asChild
+              >
+                <a
+                  href={resource.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Eye className="h-5 w-5 mr-2" />
+                  {dictionary.mediaLibrary.details.preview}
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </main>
@@ -159,14 +162,10 @@ function ResourceHeader({
         </CardContent>
         <CardFooter className="flex flex-col items-start border-t border-website-primary/30 text-website-text/80 ">
           <h2 className="mt-4 text-xl font-semibold mb-2 text-website-secondary">
-            {dictionary.mediaLibrary.description || "Description"}
+            {dictionary.mediaLibrary.details.description}
           </h2>
           <p className="text-website-tex/80 whitespace-pre-line leading-relaxed">
-            {resource.description || (
-              <span className="text-gray-400 italic">
-                No description provided
-              </span>
-            )}
+            {resource.description}
           </p>
         </CardFooter>
       </Card>
@@ -175,49 +174,53 @@ function ResourceHeader({
 }
 
 function ResourceMetadata({
+  locale,
   resource,
   dictionary,
 }: {
+  locale: string;
   resource: FullResource;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dictionary: any;
 }) {
+  const currentLocale = locale === "ar" ? arDZ : locale === "fr" ? frCA : enUS;
   return (
     <Card className="h-fit">
       <CardHeader className="flex flex-col items-start justify-between gap-3">
         <h2 className="text-xl font-semibold text-website-secondary">
-          {dictionary.mediaLibrary.metadata || "Metadata"}
+          {dictionary.mediaLibrary.details.metadata}
         </h2>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
           <MetadataItem
             icon={<FileText className="h-4 w-4 text-website-primary/70" />}
-            label={dictionary.mediaLibrary.category || "Category"}
+            label={dictionary.mediaLibrary.details.category}
             value={resource.category?.label || "—"}
           />
 
           <MetadataItem
             icon={<FileText className="h-4 w-4 text-website-primary/70" />}
-            label={dictionary.mediaLibrary.type || "Type"}
+            label={dictionary.mediaLibrary.details.type}
             value={resource.type?.label || "—"}
           />
 
           {resource.author && (
             <MetadataItem
               icon={<User className="h-4 w-4 text-website-primary/70" />}
-              label={dictionary.mediaLibrary.author || "Author"}
+              label={dictionary.mediaLibrary.details.author}
               value={`${resource.author.firstName} ${resource.author.lastName}`}
             />
           )}
 
           <MetadataItem
             icon={<Clock className="h-4 w-4 text-website-primary/70" />}
-            label={dictionary.mediaLibrary.published || "Published At"}
+            label={dictionary.mediaLibrary.details.published}
             value={
               resource.publishedAt
-                ? formatDate(resource.publishedAt) +
+                ? formatDate(resource.publishedAt, locale) +
                   ` (${formatDistanceToNow(new Date(resource.publishedAt), {
-                    addSuffix: true,
+                    locale: currentLocale,
                   })})`
                 : "—"
             }

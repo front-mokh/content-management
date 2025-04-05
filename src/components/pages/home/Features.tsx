@@ -1,33 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Building, Globe, BookOpen, Users } from "lucide-react";
 import Link from "next/link";
-
-export default function Features() {
+import { useParams } from "next/navigation";
+export default function Features({ dictionary }: { dictionary: any }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const params = useParams();
+  const locale = params.locale || "en";
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
-
-  const missionCards = [
-    {
-      icon: <Globe className="h-12 w-12 text-amber-500 group-hover:text-blue-600 transition-colors duration-300" />,
-      title: "Global Accessibility",
-      description: "Making Kabyle cultural heritage accessible to the world, connecting diaspora and global audiences."
-    },
-    {
-      icon: <BookOpen className="h-12 w-12 text-amber-500 group-hover:text-blue-600 transition-colors duration-300" />,
-      title: "Educational Resource",
-      description: "Providing authentic resources about Kabyle culture, history, and language for researchers and learners."
-    },
-    {
-      icon: <Users className="h-12 w-12 text-amber-500 group-hover:text-blue-600 transition-colors duration-300" />,
-      title: "Community Empowerment",
-      description: "Empowering the Kabyle community to preserve and share their own cultural heritage."
-    }
-  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -70,19 +55,19 @@ export default function Features() {
           <div className="relative z-10">
             <div className="flex items-center justify-center mb-6">
               <Building className="h-12 w-12 text-amber-500 mr-4" />
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Our Mission</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">{dictionary.features.mission.title}</h2>
             </div>
             
             <div className="max-w-4xl mx-auto text-center">
               <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
-                As students from Kabylie, we are dedicated to preserving and sharing the rich cultural heritage of our people through a comprehensive digital archive that connects generations and celebrates our unique identity.
+                {dictionary.features.mission.description}
               </p>
               
               <Link
-                href="/about"
+                href={`/${locale}/about`}
                 className="inline-flex items-center px-8 py-3 bg-amber-500 text-white font-medium rounded-lg hover:bg-amber-600 hover:shadow-lg shadow-md transition-all duration-300 transform hover:-translate-y-1 group"
               >
-                Learn more about our mission
+                {dictionary.features.mission.learnMoreCTA}
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
                   transition={{ repeat: Infinity, duration: 1.5, delay: 1 }}
@@ -101,7 +86,7 @@ export default function Features() {
           animate={isLoaded ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
-          {missionCards.map((card, index) => (
+          {dictionary.features.cards.map((card, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -113,7 +98,13 @@ export default function Features() {
               {/* Card content */}
               <div className="relative z-10">
                 <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-amber-50 rounded-full group-hover:bg-amber-100 transition-colors duration-300">
-                  {card.icon}
+                  {index === 0 ? (
+                    <Globe className="h-12 w-12 text-amber-500 group-hover:text-blue-600 transition-colors duration-300" />
+                  ) : index === 1 ? (
+                    <BookOpen className="h-12 w-12 text-amber-500 group-hover:text-blue-600 transition-colors duration-300" />
+                  ) : (
+                    <Users className="h-12 w-12 text-amber-500 group-hover:text-blue-600 transition-colors duration-300" />
+                  )}
                 </div>
                 
                 <h3 className="text-xl font-bold text-gray-900 text-center mb-4 group-hover:text-amber-600 transition-colors duration-300">
@@ -135,4 +126,4 @@ export default function Features() {
       </div>
     </section>
   );
-}   
+}

@@ -1,4 +1,3 @@
-// app/admin/authors/page.tsx
 import { getAllAuthors } from "@/lib/services";
 import React from "react";
 import AuthorsPage from "./AuthorsPage";

@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useMemo } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import {
   Select,
   SelectContent,
@@ -8,13 +8,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Category, Type } from "@prisma/client";
 import ResourceGrid from "./ResourceGrid";
 import Pagination from "./Pagination";
 import TypeChips from "./TypeChips";
 import { FullResource } from "@/lib/types";
+import clsx from "clsx";
 
 export default function MediaLibraryContent({
   resources,
@@ -35,6 +35,8 @@ export default function MediaLibraryContent({
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  const { locale } = useParams();
+
   const query = searchParams.get("q") || "";
   const categoryId = searchParams.get("category") || "all";
   const sortBy = searchParams.get("sortBy") || "publishedAt";
@@ -44,7 +46,7 @@ export default function MediaLibraryContent({
   const selectedTypes = selectedTypesParam ? selectedTypesParam.split(",") : [];
 
   // Items per page
-  const ITEMS_PER_PAGE = 12;
+  const ITEMS_PER_PAGE = 9;
 
   // Filter resources based on search query, category and types
   const filteredResources = useMemo(() => {
@@ -188,6 +190,7 @@ export default function MediaLibraryContent({
             defaultValue={categoryId}
             onValueChange={handleCategoryChange}
             className="w-full md:w-auto overflow-x-auto"
+            dir={locale === "ar" ? "rtl" : "ltr"}
           >
             <TabsList className="h-auto flex-nowrap bg-gradient-to-br from-website-secondary/90 to-website-secondary/80 shadow-lg border border-website-primary/20 text-white/90">
               <TabsTrigger
@@ -211,24 +214,28 @@ export default function MediaLibraryContent({
 
           <div className="flex items-center gap-2">
             <span className="text-website-text/80">
-              {dictionary.mediaLibrary.sortBy || "Sort by:"}
+              {dictionary.mediaLibrary.sortBy}
             </span>
-            <Select defaultValue={sortBy} onValueChange={handleSortChange}>
+            <Select
+              defaultValue={sortBy}
+              onValueChange={handleSortChange}
+              dir={locale === "ar" ? "rtl" : "ltr"}
+            >
               <SelectTrigger className="w-[180px] border-website-primary/60">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="publishedAt">
-                  {dictionary.mediaLibrary.newest || "Newest"}
+                  {dictionary.mediaLibrary.sortByOptions.newest}
                 </SelectItem>
                 <SelectItem value="oldest">
-                  {dictionary.mediaLibrary.oldest || "Oldest"}
+                  {dictionary.mediaLibrary.sortByOptions.oldest}
                 </SelectItem>
                 <SelectItem value="views">
-                  {dictionary.mediaLibrary.mostViewed || "Most Viewed"}
+                  {dictionary.mediaLibrary.sortByOptions.mostViewed}
                 </SelectItem>
                 <SelectItem value="upvotes">
-                  {dictionary.mediaLibrary.mostUpvoted || "Most Upvoted"}
+                  {dictionary.mediaLibrary.sortByOptions.mostUpvoted}
                 </SelectItem>
               </SelectContent>
             </Select>
@@ -251,13 +258,19 @@ export default function MediaLibraryContent({
       {showFilteredResults ? (
         <section className="mb-16">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="heading text-3xl font-bold text-website-text border-l-4 border-website-primary pl-3">
+            <h2
+              className={clsx(
+                "heading text-3xl font-bold text-website-text border-website-primary",
+                {
+                  "border-r-4 pr-3": locale === "ar",
+                  "border-l-4 pl-3": locale !== "ar",
+                }
+              )}
+            >
               {query
-                ? `${
-                    dictionary.mediaLibrary.searchResults +
-                      " for " +
-                      `"${query}"` || "Search Results"
-                  } (${sortedResources.length})`
+                ? `${dictionary.mediaLibrary.searchResults + ` "${query}"`} (${
+                    sortedResources.length
+                  })`
                 : `${
                     categories.find((c) => c.id === categoryId)?.label ||
                     dictionary.mediaLibrary.allCategories
@@ -288,8 +301,14 @@ export default function MediaLibraryContent({
           {/* Recently Added Section */}
           <section className="mb-16">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="heading text-3xl font-bold text-website-text border-l-4 border-website-primary pl-3">
-                {dictionary.mediaLibrary.recentlyAdded || "Recently Added"}
+              <h2
+                className={clsx(
+                  "heading text-3xl font-bold text-website-text  border-website-primary",
+                  { "border-r-4 pr-3": locale === "ar" },
+                  { "border-l-4 pl-3": locale !== "ar" }
+                )}
+              >
+                {dictionary.mediaLibrary.recentlyAdded}
               </h2>
             </div>
             <ResourceGrid resources={recentlyAdded} />
@@ -298,8 +317,16 @@ export default function MediaLibraryContent({
           {/* Most Popular Section */}
           <section className="mb-16">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="heading text-3xl font-bold text-website-text border-l-4 border-website-primary pl-3">
-                {dictionary.mediaLibrary.mostPopular || "Most Popular"}
+              <h2
+                className={clsx(
+                  "heading text-3xl font-bold text-website-text  border-website-primary",
+                  {
+                    "border-r-4 pr-3": locale === "ar",
+                    "border-l-4 pl-3": locale !== "ar",
+                  }
+                )}
+              >
+                {dictionary.mediaLibrary.mostPopular}
               </h2>
             </div>
             <ResourceGrid resources={mostPopular} />

@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "../db";
+import { auth } from "../../../auth";
 
 type ConvertToResourceInput = {
   title: string;
@@ -15,11 +16,21 @@ export async function convertSubmissionToResource(
   submissionId: string,
   data: ConvertToResourceInput
 ) {
+  // Get the current user session
+  const session = await auth();
+  
+  // Check if user is authenticated
+  if (!session?.user?.id) {
+    throw new Error("Vous devez être connecté pour effectuer cette action");
+  }
+  
+  const userId = session.user.id;
+
   // Validate that the submission exists
   const submission = await prisma.submission.findUnique({
     where: { id: submissionId },
   });
-
+  
   if (!submission) {
     throw new Error("Soumission introuvable");
   }
@@ -28,7 +39,7 @@ export async function convertSubmissionToResource(
   const category = await prisma.category.findUnique({
     where: { id: data.categoryId },
   });
-
+  
   if (!category) {
     throw new Error("Catégorie introuvable");
   }
@@ -37,7 +48,7 @@ export async function convertSubmissionToResource(
   const type = await prisma.type.findUnique({
     where: { id: data.typeId },
   });
-
+  
   if (!type) {
     throw new Error("Type de ressource introuvable");
   }
@@ -47,7 +58,7 @@ export async function convertSubmissionToResource(
     const author = await prisma.author.findUnique({
       where: { id: data.authorId },
     });
-
+    
     if (!author) {
       throw new Error("Auteur introuvable");
     }
@@ -65,7 +76,10 @@ export async function convertSubmissionToResource(
         authorId: data.authorId || null,
         path: data.path,
         submissionId: submissionId,
+        handlerId: userId, // Add the current user as handler
         status: "UNPUBLISHED",
+        views: 0,
+        upvotes: 0,
       },
     });
 

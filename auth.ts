@@ -82,8 +82,7 @@ export const authConfig: NextAuthConfig = {
       const isLoggedIn = !!auth?.user;
       const isProtected =
         nextUrl.pathname.startsWith("/protected") ||
-        nextUrl.pathname.startsWith("/admin") ||
-        nextUrl.pathname.startsWith("/submit");
+        nextUrl.pathname.startsWith("/admin");
       if (isProtected) {
         if (isLoggedIn) return true;
         return false; // redirect to login

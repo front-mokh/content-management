@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function SearchBar({ dictionary }: { dictionary: any }) {
   const router = useRouter();
+  const { locale } = useParams();
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
 
@@ -29,7 +30,10 @@ export default function SearchBar({ dictionary }: { dictionary: any }) {
 
   return (
     <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto">
-      <div className="flex border-2 border-website-primary rounded-full ">
+      <div
+        className="flex border-2 border-website-primary rounded-full "
+        dir="ltr"
+      >
         <Input
           type="text"
           name="search"
@@ -38,6 +42,7 @@ export default function SearchBar({ dictionary }: { dictionary: any }) {
           }
           className="data-[placeholder]:text-white placeholder:text-white/70 text-base text-white/90 w-full py-3 px-4 ring-0 focus:ring-0 focus:border-0 focus-visible:outline-0 focus-visible:ring-0 focus-visible:border-none border-none outline-none focus:outline-none"
           defaultValue={query}
+          dir={locale === "ar" ? "rtl" : "ltr"}
         />
         <Button
           size="lg"

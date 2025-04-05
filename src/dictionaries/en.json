@@ -1,132 +1,428 @@
 {
-    "hero": {     
-        "title": "Ohma Core is your partner to success", "subtitle": {"part1":"We Build","highlight": "Software Solutions", "part2":"For Businesses"},  
-        "description": "We are a digital agency that specializes in building custom software solutions for businesses of all sizes. From websites and web applications to mobile apps, our solutions help you achieve your business goals",  
-        "primaryCTA": "View Our Services",
-        "secondaryCTA": "Contact Us"
+  "hero": {
+    "titlePart1": "Preserving",
+    "titleHighlight": "Kabyle Heritage",
+    "titlePart2": "for Future Generations",
+    "description": "Join our mission to collect, preserve, and share the rich cultural heritage of Kabylie through a comprehensive digital archive of audio, video, and images.",
+    "exploreCTA": "Explore Database",
+    "contributeCTA": "Contribute",
+    "imageCaption": "Explore our rich cultural heritage",
+    "stats": [
+      { "value": "1,200+", "label": "Cultural Items", "icon": "📚" },
+      { "value": "30+", "label": "Villages Represented", "icon": "🏡" },
+      { "value": "250+", "label": "Contributors", "icon": "👥" },
+      { "value": "5,000+", "label": "Monthly Visitors", "icon": "👁️" }
+    ]
+  },
+  "features": {
+    "mission": {
+      "title": "Our Mission",
+      "description": "As students from Kabylie, we are dedicated to preserving and sharing the rich cultural heritage of our people through a comprehensive digital archive that connects generations and celebrates our unique identity.",
+      "learnMoreCTA": "Learn more about our mission"
     },
-    "services": {
-        "title":"Our Services",
-        "subtitle": "Our Wide Range of Services for Your Business",
-        "description": "We are a leading digital agency that provides a wide range of services to help you achieve your business goals."
-    },
-   "mediaLibrary": {
-        "title": "Media Library",
-        "subtitle": "Discover the rich cultural heritage of Kabylia through our extensive collection of texts, audio recordings, videos, and images.",
-        "searchBar": "Search for a resource",
-        "browseCategories": "Browse Categories",
-        "mostPopular": "Most Popular",
-        "recentlyAdded": "Recently Added",
-        "searchResults":"Search Results",
-        "allCategories":"All Categories",
-        "searchPlaceholder": "Search for a resource",
-        "search": "Search",
-
-        "popular": "Popular",
-        "recent": "Recent",
-        "contribute": "Contribute",
-        "contributeCTA": "Contribute to the Kabylia Media Library",
-        "featured": "Featured",
-        "resources": "Resources"
-    },
-    
-    "about": {
-      "badge": "About Us",
-      "title": {
-        "part1": "Building",
-        "highlight": "Digital Solutions",
-        "part2": "You Can Trust"
+    "cards": [
+      {
+        "title": "Global Accessibility",
+        "description": "Making Kabyle cultural heritage accessible to the world, connecting diaspora and global audiences."
       },
-      "paragraph1": "We are a digital agency that turns bold ideas into powerful digital experiences. From websites to mobile apps, we build solutions that make a real difference for businesses.",
-      "paragraph2":"We are experts in design and development, with a focus on business-supporting solutions. We're passionate about delivering exceptional results because we see technology as a bridge between today's challenges and tomorrow's opportunities – helping businesses adapt, grow, and thrive in an increasingly digital world.",
-      "qualities": {
-        "01": {
-          "title": "Design & Development Expertise",
-          "description": "Expert team delivering exceptional digital solutions with precision and creativity."
-        },
-        "02": {
-          "title": "Business-Focused Approach",
-          "description": "Solutions tailored to drive your business growth and meet your strategic goals."
-        },
-        "03": {
-          "title": "Future-Ready Solutions",
-          "description": "Bridging today's challenges with tomorrow's opportunities through innovative technology."
-        }
+      {
+        "title": "Educational Resource",
+        "description": "Providing authentic resources about Kabyle culture, history, and language for researchers and learners."
       },
-      "secondSection": {
-        "badge": "Why Partner With Us",
-        "title": {
-          "part1": "We",
-          "highlight": "Master The Process",
-          "part2": ", End-to-End"
-        },
-        "description": "From concept to deployment, we deliver high-performance solutions using cutting-edge technologies. Our expert team ensures every project meets the highest standards of quality and scalability.",
-        "technicalQualities": {
-          "performance": {
-            "title": "Performance Optimized",
-            "description": "Building lightning-fast applications with optimal load times"
-          },
-          "cleanCode": {
-            "title": "Clean Code",
-            "description": "Writing maintainable, efficient, and well-documented code"
-          },
-          "scalable": {
-            "title": "Scalable Solutions",
-            "description": "Designing systems that grow with your business needs"
-          },
-          "security": {
-            "title": "Security First",
-            "description": "Implementing robust security measures in every project"
-          }
-        }
+      {
+        "title": "Community Empowerment",
+        "description": "Empowering the Kabyle community to preserve and share their own cultural heritage."
       }
-    }, 
-  "footer": {
-    "title": "Transforming Ideas into Digital Excellence   Your Trusted Technology Partner for Innovative Software Solutions",
- 
-    "usefulLinks": {
-      "title": "Useful Links",
-    "links": [
-      { "title": "Home", "path": "/" },
-      { "title": "About", "path": "/#about" },
-      { "title": "Our Services", "path": "/#services" },
-      { "title": "FAQ", "path": "/#faq" }
-    
-    ]},
-    "socialMedia":{"title": "Our Social Medias", "links": [
-    
-      {"title": "Instagram", "path": "https://www.instagram.com/ohma core/"}
-   
-    ]},
-    "rights": "Ohma Core. All rights reserved"
+    ]
+  },
+  "libraryPreview": {
+    "titlePart1": "Tamazight",
+    "titlePart2": "Cultural",
+    "titlePart3": "Archive",
+    "description": "A comprehensive digital repository preserving the rich cultural heritage of Kabylie through diverse media types.",
+    "browseCTA": "Browse Full Archive",
+    "resourcesAvailable": "Resources Available",
+    "resourceAvailable": "Resource Available",
+    "categories": [
+      {
+        "title": "Video Archives",
+        "description": "Explore documentaries, interviews, and cultural recordings that bring Kabyle history to life.",
+        "count": 237,
+        "href": "/library/video"
+      },
+      {
+        "title": "Image Gallery",
+        "description": "Explore a rich collection of photographs documenting Kabyle traditions, landscapes, and daily life.",
+        "count": 1524,
+        "href": "/library/images"
+      },
+      {
+        "title": "Audio Collections",
+        "description": "Listen to traditional music, oral histories, and linguistic recordings preserving Kabyle heritage.",
+        "count": 412,
+        "href": "/library/audio"
+      },
+      {
+        "title": "Textual Resources",
+        "description": "Access scholarly articles, personal narratives, and historical documents about Kabyle culture.",
+        "count": 289,
+        "href": "/library/texts"
+      }
+    ]
   },
   "cta": {
-    "title": "Embrace the Digital Revolution Today!",
-    "subtitle": "Kickstart your digital journey with innovative websites, powerful applications, and seamless automation solutions. Transform your business and unlock endless possibilities.",
-    "buttonText": "Contacte Us"
+    "titlePart1": "Preserve",
+    "titleHighlight": "Kabyle Heritage",
+    "description": "Your contribution can help document and protect the rich cultural legacy of Kabylie. Share your family's stories, artifacts, and memories.",
+    "buttonText": "Contribute to Our Archive"
   },
-  "contact": {
-    "title": "Contact Us",
-    "subtitle":   "We are here to help you bring your project to life. Feel free to reach out using the form below or through our contact details.",
-    "inputName": "Full Name",
-    "inputEmail": "Email Address",
-    "inputSubject": "Subject",
-    "inputPhone": "Phone Number",
-    "inputMessage": "Your Message",
-    "buttonText": "Send Message",
-    "buttonLoading": "sending ...",
-    "consentText": "I agree tzo the terms and privacy policy.",
-    "infoParagraph": "Below you'll find our contact details. Reach out via email or phone, and be sure to follow us on social media for the latest updates.",
-    "contactInfoTitle": "Contact Information",
-    "email": "info@agencydomain.com",
-    "emailTitle": "Email",
-    "phone": "+1 (234) 567-890",
-    "phoneTitle": "Phone",
-    "errorNameRequired": "Name is required",
-    "errorEmailRequired": "Email is required",
-    "errorEmailInvalid": "Invalid email address",
-    "errorSubjectRequired": "Subject is required",
-    "errorMessageRequired": "Message is required"
-  }
+  "testimonials": {
+    "titleHighlight": "Community",
+    "titlePart2": "Voices",
+    "description": "Hear from those who have contributed to and benefited from our cultural archive, sharing their personal connections and insights.",
+    "items": [
+      {
+        "quote": "This project has allowed me to share my grandmother's traditional songs with a global audience. I'm grateful for the opportunity to preserve these treasures for future generations.",
+        "author": "Amar B.",
+        "role": "Community Contributor",
+        "location": "Tizi Ouzou"
+      },
+      {
+        "quote": "As a researcher studying Amazigh cultures, this database has been an invaluable resource. The multimedia approach provides a rich context that traditional archives often lack.",
+        "author": "Dr. Lynda M.",
+        "role": "Cultural Anthropologist",
+        "location": "University of Algiers"
+      },
+      {
+        "quote": "Growing up away from Kabylie, this platform has helped me reconnect with my heritage and discover cultural traditions I never knew existed in my family's region.",
+        "author": "Sabrina T.",
+        "role": "Diaspora Member",
+        "location": "Paris, France"
+      }
+    ]
+  },
 
+  "about": {
+    "heroTitle": "About",
+    "heroSubtitle": "Tamazight Treasures",
+    "heroDescription": "A passion project by two Kabyle students dedicated to preserving our cultural heritage through a digital archive.",
+    
+    "storyTitle": "Our Story",
+    "storyDescription": "We are two students from Kabylie, united by a shared passion for our cultural heritage. Growing up surrounded by the rich traditions, music, and stories of our people, we realized how much of this legacy was at risk of being lost. That's why we created Tamazight Treasures – a digital sanctuary where the essence of Kabyle culture can be preserved and shared with the world.",
+    
+    "teamMember1Name": "Sarah",
+    "teamMember1Role": "Co-Founder & Cultural Researcher",
+    "teamMember1Description": "Amina is a history enthusiast dedicated to documenting Kabyle traditions and stories.",
+    
+    "teamMember2Name": "Amine",
+    "teamMember2Role": "Co-Founder & Tech Lead",
+    "teamMember2Description": "Yanis brings technical expertise to build a robust platform for cultural preservation.",
+    
+    "missionTitle": "What We're Building",
+    "missionDescription": "Our mission is to create a living archive of Kabyle culture, driven by these core initiatives.",
+    
+    "initiative1Title": "Multimedia Collection",
+    "initiative1Description": "Gathering videos, audio recordings, and images to showcase Kabyle traditions and history.",
+    
+    "initiative2Title": "Digital Preservation",
+    "initiative2Description": "Safeguarding our heritage in a secure, organized database for future generations.",
+    
+    "initiative3Title": "Community Contributions",
+    "initiative3Description": "Inviting Kabyles everywhere to share their stories and artifacts with us.",
+    
+    "ctaTitle": "Join Our Mission",
+    "ctaDescription": "Help us preserve Kabyle heritage by contributing your stories, media, or simply exploring our database.",
+    "contributeButton": "Contribute Now",
+    "exploreButton": "Explore Database"
+  },
+
+  "mediaLibrary": {
+    "title": "Kabyle Heritage Media Library",
+    "description": "Discover the rich cultural heritage of Kabylia through our extensive collection of texts, audio recordings, videos, and images.",
+    "searchPlaceholder": "Search by title, description or author",
+    "sortBy": "Sort by",
+    "sortByOptions": {
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "mostViewed": "Most Viewed",
+      "mostUpvoted": "Most Upvoted"
+    },
+    "browseCategories": "Browse Categories",
+    "mostPopular": "Most Popular",
+    "recentlyAdded": "Recently Added",
+    "searchResults": "Search Results For",
+    "allCategories": "All Categories",
+    "noResults": "No results found for your query",
+    "search": "Search",
+    "filterByType": "Filter by type",
+    "popular": "Popular",
+    "recent": "Recent",
+    "contribute": "Contribute",
+    "contributeCTA": "Contribute to the Kabylia Media Library",
+    "featured": "Featured",
+    "resources": "Resources",
+    "backToLibrary": "Back to Media Library",
+    "details": {
+      "description": "Description",
+      "metadata": "Metadata",
+      "engagement": "Engagement",
+      "download": "Download",
+      "preview": "Preview",
+      "category": "Category",
+      "type": "Type",
+      "author": "Author",
+      "published": "Published At",
+      "views": "Views",
+      "upvotes": "Upvotes",
+      "upvoted": "You already upvoted",
+      "upvote": "Upvote",
+      "thankYou": "Thank you!"
+    }
+  },
+  "contributeCTA": {
+    "title": "Contribute to the Kabylia Media Library",
+    "description": "Help preserve and share the richness of Kabyle culture by contributing your own resources to our digital library.",
+    "button": "Contribute Now !"
+  },
+ 
+  "contribution": {
+    "hero": {
+      "title": "Contribute to",
+      "titleHighlight": "Tamazight Treasures",
+      "description": "Share your stories, media, and artifacts to help preserve Kabyle heritage for future generations."
+    },
+    "howTo": {
+      "title": "How to Contribute",
+      "description": "We're excited to include your contributions in our archive! Here's what you need to know before submitting."
+    },
+    "rules": [
+      {
+        "title": "What We Accept",
+        "description": "Submit files like videos (.mp4), audio (.mp3), photos (.jpg), or documents (.pdf). Keep them under 100MB."
+      },
+      {
+        "title": "What to Share",
+        "description": "Send us Kabyle-related content—like songs, family photos, or stories—that you created or have permission to share."
+      },
+      {
+        "title": "Your Rights",
+        "description": "Only submit content you own or have rights to. No copyrighted material unless you have approval."
+      }
+    ],
+    "review": {
+      "title": "Our Review Process",
+      "description": "Every submission helps us grow, and we carefully review each one to maintain the quality and authenticity of our archive."
+    },
+    "steps": [
+      {
+        "step": "1. Submission",
+        "description": "You submit your content through our form below, providing details and the file."
+      },
+      {
+        "step": "2. Review",
+        "description": "Our team evaluates the submission for relevance, authenticity, and adherence to guidelines."
+      },
+      {
+        "step": "3. Publication",
+        "description": "Approved content is added to our database, credited to you, and shared with the community."
+      }
+    ],
+    "form": {
+      "title": "Submit Your Contribution",
+      "title2": "Submit Your Document",
+      "description": "Fill out this form to submit your document for evaluation.",
+      "fields": {
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "Your first name"
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "Your last name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your.email@example.com"
+      },
+      "phone": {
+        "label": "Phone (optional)",
+        "placeholder": "Your phone number"
+      },
+      "author": {
+        "label": "Document Author",
+        "placeholder": "Author's name"
+      },
+      "message": {
+        "label": "Message (optional)",
+        "placeholder": "Additional information about your submission"
+      },
+      "document": {
+        "label": "Document"
+      }
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "submit": "Submit Document",
+      "submitting": "Submitting..."
+    },
+    "validation": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "emailValid": "Email address must be valid",
+      "authorRequired": "Author name is required",
+      "fileRequired": "File is required"
+    },
+    "notifications": {
+      "success": "Submission sent successfully",
+      "error": "Error sending submission",
+      "genericError": "An error occurred"
+    }
+    }
+  },
+  "footer": {
+    "logo_1" :"Tamazight",
+    "logo_2" :"Treasures",
+  "tagline": "Preserving and sharing the rich cultural heritage of Kabylie for future generations.",
+  "navigation": "Navigation",
+  "navHome": "Home",
+  "navAbout": "About",
+  "navDatabase": "Database",
+  "navContribute": "Contribute",
+  "databaseTitle": "Database",
+  "dbImages": "Images",
+  "dbAudio": "Audio",
+  "dbVideo": "Video",
+  "dbRecent": "Recent Additions",
+  "dbText": "Texts",
+  "contactTitle": "Contact",
+  "contactAddress": "Tizi Ouzou, Algeria",
+  "contactEmail": "contact@tamazight-treasures.org",
+  "contactPhone": "+213 XX XXX XXXX",
+  "copyright": "© {year} Tamazight Treasures. All rights reserved.",
+  "termsOfService": "Terms of Service"
+},
+    "contact": {
+    "hero": {
+      "title": "Contact",
+      "titleHighlight": "Us",
+      "description": "Have questions or want to get involved? We'd love to hear from you!"
+    },
+    "infoSection": {
+      "title": "Get in Touch",
+      "description": "Reach out to us directly or use the form below to send us a message."
+    },
+    "contactDetails": {
+      "email": {
+        "title": "Email",
+        "value": "contact@tamazight-treasures.org"
+      },
+      "phone": {
+        "title": "Phone",
+        "value": "+213 123 456 789"
+      },
+      "location": {
+        "title": "Location",
+        "value": "Tizi Ouzou, Algeria"
+      }
+    },
+    "socialMedia": {
+      "facebook": "#",
+      "twitter": "#",
+      "instagram": "#"
+    },
+    "formSection": {
+      "title": "Send Us a Message"
+    },
+    "form": {
+      "subtitle": "Get in Touch",
+      "description": "We'll respond to your message promptly.",
+      "fields": {
+        "firstName": {
+          "label": "First Name",
+          "placeholder": "Your first name"
+        },
+        "lastName": {
+          "label": "Last Name",
+          "placeholder": "Your last name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "your.email@example.com"
+        },
+        "phoneNumber": {
+          "label": "Phone Number",
+          "placeholder": "Your phone number"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Type your message here"
+        }
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "submit": "Send Message",
+        "submitting": "Sending..."
+      },
+      "validation": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "emailValid": "Please enter a valid email address",
+        "phoneRequired": "Phone number is required",
+        "messageRequired": "Message is required"
+      },
+      "notifications": {
+        "success": "Your message has been sent successfully!",
+        "error": "There was an error sending your message. Please try again."
+      }
+    }
+  },
+  "termsOfService": {
+  "heroTitle": "Terms of",
+  "heroSubtitle": "Service",
+  "heroDescription": "Please read these terms carefully before using our platform.",
+  "lastUpdated": "Last Updated: March 24, 2025",
+  "header": "Terms of Service",
+  "section1Title": "1. Introduction",
+  "section1Text": "Welcome to Tamazight Treasures (\"we,\" \"us,\" or \"our\"), a platform dedicated to preserving Kabyle cultural heritage. By accessing or using our website and services (collectively, the \"Service\"), you agree to be bound by these Terms of Service (\"Terms\"). If you do not agree, please do not use our Service.",
+  "section2Title": "2. Eligibility",
+  "section2Text": "You must be at least 13 years old to use our Service. By using the Service, you represent and warrant that you meet this age requirement and have the legal capacity to enter into these Terms.",
+  "section3Title": "3. User Content",
+  "section3Text": "You may submit content such as videos, audio, images, or documents (\"User Content\") to our Service. By submitting User Content, you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, modify, and distribute it solely for the purpose of operating and promoting the Service. You represent that you own or have the necessary rights to submit such content and that it does not violate any laws or third-party rights.",
+  "section4Title": "4. Acceptable Use",
+  "section4Text": "You agree not to use the Service to:",
+  "section4ListItem1": "Upload content that is illegal, harmful, offensive, or infringes on others' rights.",
+  "section4ListItem2": "Engage in any activity that disrupts or interferes with the Service.",
+  "section4ListItem3": "Attempt to gain unauthorized access to our systems or data.",
+  "section5Title": "5. Intellectual Property",
+  "section5Text": "All content and materials on the Service, excluding User Content, are owned by Tamazight Treasures or our licensors and are protected by copyright, trademark, and other laws. You may not reproduce, distribute, or create derivative works from our content without prior written permission.",
+  "section6Title": "6. Termination",
+  "section6Text": "We reserve the right to suspend or terminate your access to the Service at our discretion, with or without notice, for any violation of these Terms or for any other reason we deem appropriate.",
+  "section7Title": "7. Disclaimer of Warranties",
+  "section7Text": "The Service is provided \"as is\" and \"as available\" without warranties of any kind, express or implied, including but not limited to fitness for a particular purpose or non-infringement.",
+  "section8Title": "8. Limitation of Liability",
+  "section8Text": "To the fullest extent permitted by law, Tamazight Treasures shall not be liable for any indirect, incidental, or consequential damages arising from your use of the Service.",
+  "section9Title": "9. Changes to Terms",
+  "section9Text": "We may update these Terms from time to time. The updated version will be posted on this page with a revised \"Last Updated\" date. Your continued use of the Service after such changes constitutes acceptance of the new Terms.",
+  "section10Title": "10. Governing Law",
+  "section10Text": "These Terms shall be governed by and construed in accordance with the laws of Algeria, without regard to its conflict of law principles.",
+  "section11Title": "11. Contact Us",
+  "section11Text": "If you have any questions about these Terms, please contact us at",
+  "contactEmail": "contact@tamazight-treasures.org"
+},
+"navbar": {
+  "logo_1" :"Tamazight",
+    "logo_2" :"Treasures",
+  "home": "Home",
+  "about": "About",
+  "database": "Database",
+  "contribute": "Contribute",
+  "contact": "Contact Us",
+  "language": "Language"
+},
+"submission": {
+  "success": {
+    "title": "Submission sent successfully!",
+    "message": "Thank you for your submission. We will review it as soon as possible. You will receive an email notification once your document has been processed.",
+    "buttonText": "Return to home"
+  }}
 }

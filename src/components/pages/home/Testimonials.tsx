@@ -1,58 +1,37 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React from 'react';
 import { Quote, MapPin } from "lucide-react";
 import { motion } from 'framer-motion';
 
-export default function Testimonials() {
-  const testimonials = [
-    {
-      quote: "This project has allowed me to share my grandmother's traditional songs with a global audience. I'm grateful for the opportunity to preserve these treasures for future generations.",
-      author: "Amar B.",
-      role: "Community Contributor",
-      location: "Tizi Ouzou"
-    },
-    {
-      quote: "As a researcher studying Amazigh cultures, this database has been an invaluable resource. The multimedia approach provides a rich context that traditional archives often lack.",
-      author: "Dr. Lynda M.",
-      role: "Cultural Anthropologist",
-      location: "University of Algiers"
-    },
-    {
-      quote: "Growing up away from Kabylie, this platform has helped me reconnect with my heritage and discover cultural traditions I never knew existed in my family's region.",
-      author: "Sabrina T.",
-      role: "Diaspora Member",
-      location: "Paris, France"
-    }
-  ];
-
+export default function Testimonials({ dictionary }: { dictionary: any }) {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 tracking-tight">
-            <span className="text-blue-600">Community</span> Voices
+            <span className="text-blue-600">{dictionary.testimonials.titleHighlight}</span> {dictionary.testimonials.titlePart2}
           </h2>
           <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Hear from those who have contributed to and benefited from our cultural archive, sharing their personal connections and insights.
+            {dictionary.testimonials.description}
           </p>
         </motion.div>
-        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {dictionary.testimonials.items.map((testimonial: any, index: number) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: index * 0.2 
+              transition={{
+                duration: 0.5,
+                delay: index * 0.2
               }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 transition: { duration: 0.3 }
               }}
@@ -65,7 +44,6 @@ export default function Testimonials() {
                     {testimonial.quote}
                   </blockquote>
                 </div>
-                
                 <div className="border-t border-gray-100 pt-6 mt-auto">
                   <div className="flex items-center">
                     <div className="flex-grow">
