@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { FileIcon, Download, Eye } from "lucide-react";
+import { Download, Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Tooltip,
@@ -16,9 +16,16 @@ export function FileDownloader({ path }: { path: string }) {
   const extension = path.split(".").pop() || "";
   const fileName = `resource.${extension}`;
 
+  const getApiPath = (path: string) => {
+    // Extract the filename from the original path
+    const filename = path.split("/").pop();
+    // Return the API path
+    return `/api/uploads/${filename}`;
+  };
+
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = path;
+    link.href = getApiPath(path);
     link.download = fileName;
     document.body.appendChild(link);
     link.click();
@@ -27,7 +34,7 @@ export function FileDownloader({ path }: { path: string }) {
 
   const handlePreview = (e: React.MouseEvent) => {
     e.stopPropagation();
-    window.open(path, "_blank");
+    window.open(getApiPath(path), "_blank");
   };
 
   return (

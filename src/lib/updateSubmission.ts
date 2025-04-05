@@ -85,7 +85,7 @@ async function processUploadedFile(file: File): Promise<string> {
     const fileName = `${randomUUID()}-${file.name.replace(/\s/g, "_")}`;
 
     // Set the upload directory - make sure this directory exists and is writable
-    const uploadDir = join(process.cwd(), "public", "uploads");
+    const uploadDir = join(process.cwd(), "uploads");
 
     // Ensure the directory exists
     await fs.mkdir(uploadDir, { recursive: true });
@@ -109,7 +109,7 @@ async function deleteOldFile(filePath: string) {
     const fileName = filePath.split("/").pop();
     if (!fileName) return;
 
-    const fullPath = join(process.cwd(), "public", filePath);
+    const fullPath = join(process.cwd(), filePath);
 
     try {
       await fs.access(fullPath);

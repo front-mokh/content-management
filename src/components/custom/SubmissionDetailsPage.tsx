@@ -37,12 +37,12 @@ const getSubmissionStatusLabel = (status: string) => {
     case "REJECTED":
       return "Rejetée";
     case "CONVERTED":
-        return "convertis";
+      return "convertis";
     default:
       return status;
   }
 };
-    
+
 const getSubmissionStatusColor = (status: string) => {
   switch (status) {
     case "PENDING":
@@ -63,9 +63,15 @@ export default function SubmissionDetailsPage({
 }: {
   submission: Submission;
 }) {
+  const getApiPath = (path: string) => {
+    // Extract the filename from the original path
+    const filename = path.split("/").pop();
+    // Return the API path
+    return `/api/uploads/${filename}`;
+  };
   const handlePreview = (e: React.MouseEvent, path: string) => {
     e.stopPropagation();
-    window.open(path, "_blank");
+    window.open(getApiPath(path), "_blank");
   };
 
   const getFileExtension = (path: string) => {
@@ -76,7 +82,7 @@ export default function SubmissionDetailsPage({
   return (
     <Page
       title="Détaille de soumission"
-    //   title={`${submission.lastName.toUpperCase()} ${submission.firstName}`}
+      //   title={`${submission.lastName.toUpperCase()} ${submission.firstName}`}
       backButtonHref="/admin/submissions"
       actions={
         <div className="flex gap-2">
@@ -94,7 +100,11 @@ export default function SubmissionDetailsPage({
       }
     >
       <div className="flex items-center gap-3 mb-4">
-        <div className={`px-3 py-1 rounded-full text-sm font-medium ${getSubmissionStatusColor(submission.status)}`}>
+        <div
+          className={`px-3 py-1 rounded-full text-sm font-medium ${getSubmissionStatusColor(
+            submission.status
+          )}`}
+        >
           {getSubmissionStatusLabel(submission.status)}
         </div>
         <p className="text-sm text-muted-foreground">
@@ -111,7 +121,7 @@ export default function SubmissionDetailsPage({
         </CardHeader>
         <CardContent>
           <TwoColumns>
-          <InformationCard
+            <InformationCard
               icon={User}
               label="Nom"
               value={submission.lastName.toUpperCase()}
@@ -190,7 +200,7 @@ export default function SubmissionDetailsPage({
                 Aperçu
               </Button>
               <a
-                href={submission.filepath}
+                href={getApiPath(submission.filepath)}
                 target="_blank"
                 download
                 className="flex-1 sm:flex-none inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50"
