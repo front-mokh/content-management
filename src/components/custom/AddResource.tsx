@@ -102,7 +102,7 @@ export default function AddResourcePage({
       }
 
       toast.success("Ressource ajoutée avec succès");
-      router.push("/admin/resources");
+      router.push("/admin/resources/unpublished");
       router.refresh();
     } catch (error) {
       console.error(error);

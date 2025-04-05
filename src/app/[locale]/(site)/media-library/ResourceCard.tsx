@@ -24,6 +24,13 @@ import {
 } from "@/lib/constants";
 import { useParams } from "next/navigation";
 
+const getApiPath = (path: string) => {
+  // Extract the filename from the original path
+  const filename = path.split("/").pop();
+  // Return the API path
+  return `/api/uploads/${filename}`;
+};
+
 interface ResourceCardProps {
   resource: FullResource;
 }
@@ -98,6 +105,7 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
   };
 
   useEffect(() => {
+    resource.path = resource.path ? getApiPath(resource.path) : null;
     const isVideo = resource.category.label.toLowerCase() === "vidéos";
 
     if (isVideo && resource.path && !videoThumbnail) {
@@ -175,6 +183,7 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
   const renderPreview = () => {
     const category = resource.category.label.toLowerCase();
     const colors = getCategoryColors(category);
+    resource.path = resource.path ? getApiPath(resource.path) : null;
 
     switch (category) {
       case "images":

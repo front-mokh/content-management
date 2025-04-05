@@ -22,6 +22,14 @@ import { formatDate } from "@/lib/utils";
 import clsx from "clsx";
 import { arDZ, enUS, frCA } from "date-fns/locale";
 
+// Helper function to convert resource path to API path
+const getApiPath = (path: string) => {
+  // Extract the filename from the original path
+  const filename = path.split("/").pop();
+  // Return the API path
+  return `/api/uploads/${filename}`;
+};
+
 export default async function ResourceDetailsPage({
   params,
 }: {
@@ -37,20 +45,11 @@ export default async function ResourceDetailsPage({
   // Increment view count
   await incrementResourceViews(params.id);
 
-  // Fetch related resources
-  // const relatedByCategoryPromise = getSimilarResourcesByCategory(
-  //   resource.categoryId,
-  //   resource.id,
-  //   4
-  // );
-  // const relatedByAuthorPromise = resource.authorId
-  //   ? getSimilarResourcesByAuthor(resource.authorId, resource.id, 4)
-  //   : Promise.resolve([]);
-
-  // const [relatedByCategory, relatedByAuthor] = await Promise.all([
-  //   relatedByCategoryPromise,
-  //   relatedByAuthorPromise,
-  // ]);
+  // Create a modified resource with updated path
+  const resourceWithApiPath = {
+    ...resource,
+    apiPath: resource.path ? getApiPath(resource.path) : null,
+  };
 
   return (
     <main className="container mx-auto px-4 py-8">
@@ -77,7 +76,10 @@ export default async function ResourceDetailsPage({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Content - 2/3 width on large screens */}
         <div className="lg:col-span-2">
-          <ResourceHeader resource={resource} dictionary={dictionary} />
+          <ResourceHeader
+            resource={resourceWithApiPath}
+            dictionary={dictionary}
+          />
         </div>
 
         {/* Sidebar with consistent styling */}
@@ -96,7 +98,7 @@ export default async function ResourceDetailsPage({
                 asChild
               >
                 <a
-                  href={resource.path}
+                  href={resourceWithApiPath.apiPath || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                   download
@@ -113,7 +115,7 @@ export default async function ResourceDetailsPage({
                 asChild
               >
                 <a
-                  href={resource.path}
+                  href={resourceWithApiPath.apiPath || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -133,7 +135,7 @@ function ResourceHeader({
   resource,
   dictionary,
 }: {
-  resource: FullResource;
+  resource: FullResource & { apiPath?: string | null };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dictionary: any;
 }) {

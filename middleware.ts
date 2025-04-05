@@ -1,10 +1,58 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
+import fs from "fs/promises";
+import path from "path";
 
 export async function middleware(request: NextRequest) {
+  console.log(
+    "#############################################################################"
+  );
+
   console.log("Middleware running for path:", request.nextUrl.pathname);
-  const { pathname } = request.nextUrl;
+  console.log(
+    "#############################################################################"
+  );
+
+  const url = request.nextUrl;
+
+  const pathname = url.pathname;
+
+  if (request.nextUrl.pathname.startsWith("/uploads/")) {
+    const filePath = path.join(
+      process.cwd(),
+      "uploads",
+      request.nextUrl.pathname.slice("/uploads/".length)
+    );
+
+    try {
+      if (fs.access(filePath)) {
+        const fileBuffer = fs.readFile(filePath);
+        const extension = path.extname(filePath).toLowerCase();
+
+        // Same content type map as before
+        const contentTypeMap = {
+          ".jpg": "image/jpeg",
+          ".jpeg": "image/jpeg",
+          ".png": "image/png",
+          ".gif": "image/gif",
+          ".pdf": "application/pdf",
+        };
+
+        const contentType =
+          contentTypeMap[extension] || "application/octet-stream";
+
+        return new NextResponse(fileBuffer, {
+          headers: {
+            "Content-Type": contentType,
+            "Cache-Control": "no-store",
+          },
+        });
+      }
+    } catch {
+      // Handle error
+    }
+  }
 
   const token = await getToken({
     req: request,
@@ -40,5 +88,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin", "/admin/:path*", "/auth/:path*"],
+  matcher: ["/(.*)", "/uploads/:path*"],
 };

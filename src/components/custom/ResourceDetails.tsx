@@ -40,9 +40,19 @@ export default function ResourceDetailsPage({
   resource: FullResource;
 }) {
   const router = useRouter();
+
+  // Function to convert resource path to API path
+  const getApiPath = (path: string) => {
+    // Extract the filename from the original path
+    const filename = path.split("/").pop();
+    // Return the API path
+    return `/api/uploads/${filename}`;
+  };
+
   const handlePreview = (e: React.MouseEvent, path: string) => {
     e.stopPropagation();
-    window.open(path, "_blank");
+    // Use the API path for preview
+    window.open(getApiPath(path), "_blank");
   };
 
   const getFileExtension = (path: string) => {
@@ -228,7 +238,7 @@ export default function ResourceDetailsPage({
                 Aperçu
               </Button>
               <a
-                href={resource.path}
+                href={getApiPath(resource.path)}
                 target="_blank"
                 download
                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"

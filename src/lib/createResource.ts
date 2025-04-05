@@ -86,7 +86,7 @@ async function processUploadedFile(file: File): Promise<string> {
     const fileName = `${randomUUID()}-${file.name.replace(/\s/g, "_")}`;
 
     // Set the upload directory - make sure this directory exists and is writable
-    const uploadDir = join(process.cwd(), "public", "uploads");
+    const uploadDir = join(process.cwd(), "uploads");
 
     // Ensure the directory exists
     await fs.mkdir(uploadDir, { recursive: true });
@@ -117,7 +117,7 @@ async function getSessionOrThrow() {
 
 export async function cleanupOrphanedFiles() {
   try {
-    const uploadDir = join(process.cwd(), "public", "uploads");
+    const uploadDir = join(process.cwd(), "uploads");
     const files = await fs.readdir(uploadDir);
 
     for (const file of files) {

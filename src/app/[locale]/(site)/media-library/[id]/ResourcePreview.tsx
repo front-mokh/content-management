@@ -11,7 +11,19 @@ import { FullResource } from "@/lib/types";
 import { FileText, Film, Folder, ImageIcon, Music } from "lucide-react";
 import { formatDuration } from "@/lib/utils";
 
-export function ResourcePreview({ resource }: { resource: FullResource }) {
+// Helper function to convert resource path to API path
+const getApiPath = (path: string) => {
+  // Extract the filename from the original path
+  const filename = path.split("/").pop();
+  // Return the API path
+  return `/api/uploads/${filename}`;
+};
+
+export function ResourcePreview({
+  resource,
+}: {
+  resource: FullResource & { apiPath?: string | null };
+}) {
   const category = resource.category.label.toLowerCase();
   const colors =
     CATEGORY_COLORS[category as CategoryColorIndex] || CATEGORY_COLORS.default;
@@ -22,6 +34,10 @@ export function ResourcePreview({ resource }: { resource: FullResource }) {
   const [audioDuration, setAudioDuration] = useState<number>(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Use the API path if provided, otherwise generate it from the original path
+  const filePath =
+    resource.apiPath || (resource.path ? getApiPath(resource.path) : null);
 
   const getFileExtensionStyle = () => {
     const fileName = resource.path || resource.title;
@@ -51,7 +67,7 @@ export function ResourcePreview({ resource }: { resource: FullResource }) {
   useEffect(() => {
     const isVideo = category === "vidéos";
 
-    if (isVideo && resource.path && !videoThumbnail) {
+    if (isVideo && filePath && !videoThumbnail) {
       const video = document.createElement("video");
       video.preload = "metadata";
       video.crossOrigin = "anonymous";
@@ -80,7 +96,7 @@ export function ResourcePreview({ resource }: { resource: FullResource }) {
         }
       };
 
-      video.src = resource.path;
+      video.src = filePath;
       video.onloadedmetadata = () => {
         if (video.duration && !isNaN(video.duration)) {
           setVideoDuration(video.duration);
@@ -95,13 +111,13 @@ export function ResourcePreview({ resource }: { resource: FullResource }) {
         video.src = "";
       };
     }
-  }, [category, resource.path, videoThumbnail]);
+  }, [category, filePath, videoThumbnail]);
 
   // Audio duration extraction
   useEffect(() => {
     const isAudio = category === "audio";
 
-    if (isAudio && resource.path && !audioDuration) {
+    if (isAudio && filePath && !audioDuration) {
       const audio = document.createElement("audio");
       audio.preload = "metadata";
       audio.crossOrigin = "anonymous";
@@ -113,23 +129,23 @@ export function ResourcePreview({ resource }: { resource: FullResource }) {
         }
       };
 
-      audio.src = resource.path;
+      audio.src = filePath;
 
       return () => {
         audio.onloadedmetadata = null;
         audio.src = "";
       };
     }
-  }, [category, resource.path, audioDuration]);
+  }, [category, filePath, audioDuration]);
 
   // Render content based on resource type
   switch (category) {
     case "images":
       return (
         <div className="relative aspect-auto max-h-[600px] flex items-center justify-center bg-gray-100 p-6">
-          {resource.path ? (
+          {filePath ? (
             <Image
-              src={resource.path}
+              src={filePath}
               alt={resource.title}
               width={1200}
               height={800}
@@ -148,9 +164,9 @@ export function ResourcePreview({ resource }: { resource: FullResource }) {
     case "vidéos":
       return (
         <div className="aspect-video w-full bg-black flex items-center justify-center">
-          {resource.path ? (
+          {filePath ? (
             <video
-              src={resource.path}
+              src={filePath}
               controls
               className="max-h-[600px] w-full"
               poster={videoThumbnail ?? undefined}
@@ -170,12 +186,12 @@ export function ResourcePreview({ resource }: { resource: FullResource }) {
     case "audio":
       return (
         <div className={`p-8 bg-gradient-to-tl ${colors.gradient}`}>
-          {resource.path ? (
+          {filePath ? (
             <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6">
               <div className="flex items-center justify-center mb-4">
                 <Music className="h-16 w-16 text-white" />
               </div>
-              <audio src={resource.path} controls className="w-full">
+              <audio src={filePath} controls className="w-full">
                 Your browser does not support the audio element.
               </audio>
               {audioDuration && (
