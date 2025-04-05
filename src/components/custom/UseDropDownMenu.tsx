@@ -1,26 +1,35 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { User, Settings, HelpCircle, LogOut } from "lucide-react";
-import { signOut, useSession } from "next-auth/react";
+import { User, LogOut } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { logout } from "@/lib/auth";
+import { useRouter } from "next/navigation"; // Import router
 
 export function UserDropdownMenu() {
   const session = useSession();
+  const router = useRouter(); // Add router
+  
   const handleLogout = async () => {
-    await logout();
+    try {
+      await logout();
+      // Force a client-side navigation after logout
+      router.push("/auth/signin");
+    } catch (error) {
+      console.error("Logout failed:", error);
+      // Still try to redirect even if there's an error
+      router.push("/auth/signin");
+    }
   };
-
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -48,7 +57,6 @@ export function UserDropdownMenu() {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-
         <DropdownMenuItem
           onClick={handleLogout}
           className="text-destructive focus:text-destructive"
