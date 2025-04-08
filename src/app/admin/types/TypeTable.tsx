@@ -28,7 +28,7 @@ export default function TypesTable({
         <TableHeader>
           <TableRow>
             <TableHead>Nom du type</TableHead>
-            <TableHead>Description</TableHead>
+            <TableHead className="text-center">Description</TableHead>
             <TableHead>Catégorie</TableHead>
             <TableHead>Date de création</TableHead>
             <TableHead>Date de modification</TableHead>
