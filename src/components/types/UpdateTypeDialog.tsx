@@ -17,7 +17,7 @@ import { Type, Category } from "@prisma/client";
 const updateTypeSchema = z.object({
   id: z.string(),
   label: z.string().min(1, "Le nom du type est obligatoire"),
-  description: z.string().min(1, "La description du type est obligatoire"),
+  description: z.string().optional(),
   categoryId: z.string().min(1, "La catégorie est obligatoire"),
 });
 
@@ -115,7 +115,7 @@ export function UpdateTypeDialog({
           <TextAreaField
             control={form.control}
             name="description"
-            label="Description"
+            label="Description (Optionnelle)"
             placeholder="Description du type"
           />
        <SelectField
