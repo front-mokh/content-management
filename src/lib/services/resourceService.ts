@@ -103,6 +103,16 @@ export async function incrementResourceUpvotes(id: string): Promise<Resource> {
   });
 }
 
+// i added this function to handle dislikes
+export async function incrementResourceDislikes(id: string): Promise<Resource> {
+  return prisma.resource.update({
+    where: { id },
+    data: { dislikes: { increment: 1 } },
+  });
+}
+
+
+
 export async function publishResource(id: string) {
   const resource = prisma.resource.update({
     where: { id },

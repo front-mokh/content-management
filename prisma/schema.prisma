@@ -66,6 +66,7 @@ model Resource {
   publishedAt  DateTime?
   views        BigInt         @default(0)
   upvotes      BigInt         @default(0)
+  dislikes     BigInt         @default(0)
   status       ResourceStatus @default(UNPUBLISHED)
   category     Category       @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   type         Type           @relation(fields: [typeId], references: [id], onDelete: Restrict)

@@ -1,16 +1,15 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Eye, ThumbsUp } from "lucide-react";
+import { Eye, ThumbsUp, ThumbsDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { toast } from "sonner";
-import { incrementResourceUpvotes } from "@/lib/services";
+import { incrementResourceUpvotes, incrementResourceDislikes } from "@/lib/services";
 import { FullResource } from "@/lib/types";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function ResourceEngagement({
   resource,
-
   dictionary,
 }: {
   resource: FullResource;
@@ -20,26 +19,33 @@ export default function ResourceEngagement({
   const [metrics, setMetrics] = useState({
     views: Number(resource.views),
     upvotes: Number(resource.upvotes),
+    dislikes: Number(resource.dislikes || 0), // Add dislikes with default value
   });
   const [hasUpvoted, setHasUpvoted] = useState(false);
+  const [hasDisliked, setHasDisliked] = useState(false);
   const [isUpvoting, setIsUpvoting] = useState(false);
+  const [isDisliking, setIsDisliking] = useState(false);
   const [cooldown, setCooldown] = useState(false);
 
-  // Check if user has already upvoted this resource
+  // Check if user has already upvoted or disliked this resource
   useEffect(() => {
-    const checkUpvoteStatus = () => {
-      // Store upvoted resources in localStorage
-      const upvotedResources = JSON.parse(
-        localStorage.getItem("upvotedResources") || "{}"
+    const checkEngagementStatus = () => {
+      // Store engagement in localStorage
+      const engagedResources = JSON.parse(
+        localStorage.getItem("engagedResources") || "{}"
       );
-      setHasUpvoted(!!upvotedResources[resource.id]);
+      
+      if (engagedResources[resource.id]) {
+        setHasUpvoted(engagedResources[resource.id].action === "upvote");
+        setHasDisliked(engagedResources[resource.id].action === "dislike");
+      }
     };
 
-    checkUpvoteStatus();
+    checkEngagementStatus();
   }, [resource.id]);
 
   const handleUpvote = async () => {
-    if (hasUpvoted || cooldown) return;
+    if (hasUpvoted || hasDisliked || cooldown) return;
 
     try {
       setIsUpvoting(true);
@@ -51,14 +57,17 @@ export default function ResourceEngagement({
         upvotes: Number(result.upvotes) || prev.upvotes + 1,
       }));
 
-      // Mark as upvoted in localStorage to prevent multiple votes
-      const upvotedResources = JSON.parse(
-        localStorage.getItem("upvotedResources") || "{}"
+      // Mark as upvoted in localStorage
+      const engagedResources = JSON.parse(
+        localStorage.getItem("engagedResources") || "{}"
       );
-      upvotedResources[resource.id] = Date.now();
+      engagedResources[resource.id] = {
+        action: "upvote",
+        timestamp: Date.now()
+      };
       localStorage.setItem(
-        "upvotedResources",
-        JSON.stringify(upvotedResources)
+        "engagedResources",
+        JSON.stringify(engagedResources)
       );
 
       // Set upvoted state
@@ -81,6 +90,52 @@ export default function ResourceEngagement({
     }
   };
 
+  const handleDislike = async () => {
+    if (hasUpvoted || hasDisliked || cooldown) return;
+
+    try {
+      setIsDisliking(true);
+
+      const result = await incrementResourceDislikes(resource.id);
+
+      setMetrics((prev) => ({
+        ...prev,
+        dislikes: Number(result.dislikes) || prev.dislikes + 1,
+      }));
+
+      // Mark as disliked in localStorage
+      const engagedResources = JSON.parse(
+        localStorage.getItem("engagedResources") || "{}"
+      );
+      engagedResources[resource.id] = {
+        action: "dislike",
+        timestamp: Date.now()
+      };
+      localStorage.setItem(
+        "engagedResources",
+        JSON.stringify(engagedResources)
+      );
+
+      // Set disliked state
+      setHasDisliked(true);
+
+      // Show feedback toast
+      toast.success(dictionary.mediaLibrary.details.thankYou || "Feedback received", {
+        duration: 3000,
+      });
+
+      // Set cooldown to prevent spam clicks
+      setCooldown(true);
+      setTimeout(() => setCooldown(false), 5000); // 5-second cooldown
+    } catch {
+      toast.error("Error", {
+        duration: 3000,
+      });
+    } finally {
+      setIsDisliking(false);
+    }
+  };
+
   return (
     <Card className="h-fit">
       <CardHeader>
@@ -90,7 +145,7 @@ export default function ResourceEngagement({
       </CardHeader>
 
       <CardContent>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           {/* Views metric */}
           <div className="bg-website-secondary/5 rounded-lg p-3 flex flex-col items-center">
             <div className="w-12 h-12 rounded-full bg-website-secondary/15 flex items-center justify-center mb-2">
@@ -116,22 +171,53 @@ export default function ResourceEngagement({
               {dictionary.mediaLibrary.details.upvotes}
             </span>
           </div>
+
+          {/* Dislikes metric */}
+          <div className="bg-red-500/5 rounded-lg p-3 flex flex-col items-center">
+            <div className="w-12 h-12 rounded-full bg-red-500/15 flex items-center justify-center mb-2">
+              <ThumbsDown className="h-6 w-6 text-red-500" />
+            </div>
+            <span className="text-2xl font-bold text-website-text/80">
+              {metrics.dislikes.toLocaleString()}
+            </span>
+            <span className="text-sm text-website-text">
+              {dictionary.mediaLibrary.details.dislikes || "Dislikes"}
+            </span>
+          </div>
         </div>
 
-        <Button
-          className={`mt-2 w-full ${
-            hasUpvoted
-              ? "bg-website-primary/90 "
-              : "bg-website-primary hover:bg-website-primary/90"
-          }`}
-          onClick={handleUpvote}
-          disabled={hasUpvoted || isUpvoting || cooldown}
-        >
-          <ThumbsUp className={`h-5 w-5 mr-2`} />
-          {hasUpvoted
-            ? dictionary.mediaLibrary.details.upvoted
-            : dictionary.mediaLibrary.details.upvote}
-        </Button>
+        <div className="flex gap-2 mt-4">
+          <Button
+            className={`flex-1 ${
+              hasUpvoted
+                ? "bg-website-primary/90 "
+                : "bg-website-primary hover:bg-website-primary/90"
+            }`}
+            onClick={handleUpvote}
+            disabled={hasUpvoted || hasDisliked || isUpvoting || isDisliking || cooldown}
+          >
+            <ThumbsUp className={`h-5 w-5 mr-2`} />
+            {hasUpvoted
+              ? dictionary.mediaLibrary.details.upvoted
+              : dictionary.mediaLibrary.details.upvote}
+          </Button>
+          
+          <Button
+            variant="outline"
+            className={`flex-1 ${
+              hasDisliked
+                ? "border-red-500 bg-red-500/10 text-red-500"
+                : "border-gray-300 hover:border-red-500 hover:bg-red-500/10 hover:text-red-500"
+            }`}
+            onClick={handleDislike}
+            disabled={hasUpvoted || hasDisliked || isUpvoting || isDisliking || cooldown}
+          >
+            <ThumbsDown className={`h-5 w-5 mr-2`} />
+            {hasDisliked
+              ? dictionary.mediaLibrary.details.disliked || "Disliked"
+              : dictionary.mediaLibrary.details.dislike || "Dislike"}
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
