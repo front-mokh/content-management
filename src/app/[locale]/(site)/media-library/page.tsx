@@ -23,8 +23,8 @@ export default async function MediaLibraryPage({
   const resourcesPromise = getPublishedResources();
   const categoriesPromise = getAllCategories();
   const typesPromise = getAllTypes();
-  const recentPromise = getRecentResources(12);
-  const popularPromise = getPopularResources(12);
+  const recentPromise = getRecentResources(12); // i modified in them to enable them to get only published resources
+  const popularPromise = getPopularResources(12); // i modified in them to enable them to get only published resources
 
   const [resources, categories, types, recentlyAdded, mostPopular] =
     await Promise.all([

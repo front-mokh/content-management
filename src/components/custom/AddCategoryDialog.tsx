@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 import AddButton from "@/components/custom/AddButton";
 import CustomDialog from "@/components/custom/CustomDialog";
-import { FileUpload } from "./FileUpload";
+// import { FileUpload } from "./FileUpload";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -18,9 +18,7 @@ import { createCategoryWithThumbnail } from "@/lib/services";
 
 const addCategorySchema = z.object({
   label: z.string().min(1, "Le nom de la catégorie est obligatoire"),
-  description: z
-    .string()
-    .min(1, "La description de la catégorie est obligatoire"),
+  description: z.string().optional(),
 });
 
 export type CreateCategoryInput = z.infer<typeof addCategorySchema>;
@@ -54,13 +52,13 @@ export function AddCategoryDialog() {
     setIsSubmitting(false);
   };
 
-  const handleFileSelect = (file: File) => {
-    setSelectedFile(file);
-  };
+  // const handleFileSelect = (file: File) => {
+  //   setSelectedFile(file);
+  // };
 
-  const handleFileRemove = () => {
-    setSelectedFile(null);
-  };
+  // const handleFileRemove = () => {
+  //   setSelectedFile(null);
+  // };
 
   const onSubmit = async (values: CreateCategoryInput) => {
     setIsSubmitting(true);
@@ -100,11 +98,11 @@ export function AddCategoryDialog() {
           <TextAreaField
             control={form.control}
             name="description"
-            label="Description"
+            label="Description (Optionnelle)"
             placeholder="Description de la catégorie"
           />
 
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <label className="text-sm font-medium">Image de catégorie</label>
             <FileUpload
               onFileSelect={handleFileSelect}
@@ -114,7 +112,7 @@ export function AddCategoryDialog() {
             <p className="text-xs text-gray-500">
               L&apos;image sera utilisée comme miniature pour cette catégorie
             </p>
-          </div>
+          </div> */}
 
           <div className="flex justify-end gap-2 mt-10">
             <Button

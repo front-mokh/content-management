@@ -31,14 +31,13 @@ model Author {
   lastName  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
   resources Resource[]
 }
 
 model Type {
   id          String     @id @default(uuid())
   label       String     @unique
-  description String
+  description String?
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   resources   Resource[]
@@ -49,7 +48,7 @@ model Type {
 model Category {
   id          String     @id @default(uuid())
   label       String     @unique
-  description String
+  description String?
   thumbnail   String?
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
@@ -67,6 +66,7 @@ model Resource {
   publishedAt  DateTime?
   views        BigInt         @default(0)
   upvotes      BigInt         @default(0)
+  dislikes     BigInt         @default(0)
   status       ResourceStatus @default(UNPUBLISHED)
   category     Category       @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   type         Type           @relation(fields: [typeId], references: [id], onDelete: Restrict)

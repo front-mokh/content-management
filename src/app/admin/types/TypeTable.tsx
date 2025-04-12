@@ -28,7 +28,7 @@ export default function TypesTable({
         <TableHeader>
           <TableRow>
             <TableHead>Nom du type</TableHead>
-            <TableHead>Description</TableHead>
+            <TableHead className="text-center">Description</TableHead>
             <TableHead>Catégorie</TableHead>
             <TableHead>Date de création</TableHead>
             <TableHead>Date de modification</TableHead>
@@ -39,8 +39,8 @@ export default function TypesTable({
           {types.map((type) => (
             <TableRow key={type.id}>
               <TableCell className="font-medium">{type.label}</TableCell>
-              <TableCell className="font-medium">
-                {type.description}
+              <TableCell className="font-medium text-center">
+                {type.description ? type.description : "/"}
               </TableCell>
               <TableCell>{type.category.label}</TableCell>
               <TableCell>{formatDate(type.createdAt)}</TableCell>

@@ -214,6 +214,7 @@ export async function getRecentResources(
   take: number
 ): Promise<FullResource[]> {
   return prisma.resource.findMany({
+    where: { status: "PUBLISHED" },
     orderBy: { publishedAt: "desc" },
     take,
     include: { author: true, category: true, type: true, handler: true },
@@ -224,6 +225,7 @@ export async function getPopularResources(
   take: number
 ): Promise<FullResource[]> {
   return prisma.resource.findMany({
+    where: { status: "PUBLISHED" },
     orderBy: { views: "desc" },
     take,
     include: { author: true, category: true, type: true, handler: true },
