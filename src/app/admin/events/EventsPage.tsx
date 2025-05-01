@@ -4,17 +4,14 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter, // Keep if you add pagination
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Event } from "@prisma/client"; // Import the Event type
-import React, { useState } from "react"; // Keep useState if adding filters/pagination
+import { Event } from "@prisma/client";
+import React, { useState } from "react";
 import EventsTable from "./EventsTable";
 import AddButton from "@/components/custom/AddButton";
-// Import pagination/filtering components if you add them later
-// import CustomPagination from "@/components/custom/CustomPagination";
-// import { useEventFiltering } from "@/hooks/use-event-filtering"; // You'd create this hook if needed
 
 interface EventsPageProps {
   events: Event[];
@@ -38,9 +35,7 @@ export default function EventsPage({ events }: EventsPageProps) {
         <div className="flex justify-between items-center">
           <div>
             <CardTitle>Événements</CardTitle>
-            <CardDescription>
-              Gestion des événements (images et vidéos).
-            </CardDescription>
+            <CardDescription>Gestion des événements.</CardDescription>
           </div>
           <div className="flex gap-2">
             {/* Add filter/reset buttons here if implementing filtering */}

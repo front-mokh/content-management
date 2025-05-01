@@ -27,8 +27,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { FileUpload } from "@/components/custom/FileUpload"; // Reuse your component
-import { createEventWithFile } from "@/actions/eventActions"; // Import the server action
+import { FileUpload } from "@/components/custom/FileUpload";
+import { createEventWithFile } from "@/lib/createEvent";
 
 // Schema matching the server action input (excluding the file)
 const addEventSchema = z.object({
@@ -108,7 +108,7 @@ export default function AddEventPage() {
           <CardHeader>
             <CardTitle>Ajouter un nouvel événement</CardTitle>
             <CardDescription>
-              Remplissez ce formulaire pour ajouter une nouvelle image ou vidéo.
+              Remplissez ce formulaire pour ajouter une un nouvel evenements
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 flex-grow">
