@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Card,
   CardContent,
@@ -8,26 +7,38 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Event } from "@prisma/client";
 import React, { useState } from "react";
 import EventsTable from "./EventsTable";
 import AddButton from "@/components/custom/AddButton";
+import { useEventFiltering } from "@/hooks/use-event-filtering";
+import { Filter, FilterX, RefreshCw } from "lucide-react";
+import EventFilters from "@/components/custom/EventsFilters";
+import CustomPagination from "@/components/custom/CustomPagination";
 
 interface EventsPageProps {
   events: Event[];
 }
 
 export default function EventsPage({ events }: EventsPageProps) {
-  // --- Add state/hooks for filtering/pagination if needed later ---
-  // const {
-  //   pageItems,
-  //   currentPage,
-  //   totalPages,
-  //   handlePageChange,
-  //   // ... other filtering/search states/functions
-  // } = useEventFiltering(events, 10); // Example, create useEventFiltering hook
+  const {
+    pageItems,
+    currentPage,
+    totalPages,
+    handlePageChange,
+    searchTerm,
+    setSearchTerm,
+    filteredItems,
+    isActive,
+    resetFilters,
+  } = useEventFiltering(events, 10);
 
-  // const [showFilters, setShowFilters] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+
+  const handleShowFilters = () => {
+    setShowFilters(!showFilters);
+  };
 
   return (
     <Card>
@@ -38,23 +49,38 @@ export default function EventsPage({ events }: EventsPageProps) {
             <CardDescription>Gestion des événements.</CardDescription>
           </div>
           <div className="flex gap-2">
-            {/* Add filter/reset buttons here if implementing filtering */}
+            {isActive && (
+              <Button
+                variant="outline"
+                onClick={resetFilters}
+                className="flex items-center gap-1"
+              >
+                <RefreshCw size={16} />
+                Réinitialiser
+              </Button>
+            )}
+            <Button variant="outline" onClick={handleShowFilters}>
+              {showFilters ? <FilterX size={16} /> : <Filter size={16} />}
+              {showFilters ? "Masquer les filtres" : "Afficher les filtres"}
+            </Button>
             <AddButton label="Ajouter un événement" href="/admin/events/add" />
           </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
-        {/* Add filter component section here if implementing filtering */}
-        {/* {showFilters && <EventFilters ... />} */}
-
-        {/* Add count display if implementing filtering */}
-        {/* {isActive && <div>...</div>} */}
-
-        {/* Pass events directly for now, or pageItems if paginating */}
-        <EventsTable events={events} />
+        {showFilters && (
+          <EventFilters searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        )}
+        {isActive && (
+          <div className="text-sm text-muted-foreground">
+            {filteredItems.length} événement
+            {filteredItems.length > 1 ? "s" : ""} trouvé
+            {filteredItems.length > 1 ? "s" : ""}
+          </div>
+        )}
+        <EventsTable events={pageItems} />
       </CardContent>
-      {/* Add pagination footer if implementing pagination */}
-      {/* {totalPages > 1 && (
+      {totalPages > 1 && (
         <CardFooter>
           <CustomPagination
             currentPage={currentPage}
@@ -62,7 +88,7 @@ export default function EventsPage({ events }: EventsPageProps) {
             totalPages={totalPages}
           />
         </CardFooter>
-      )} */}
+      )}
     </Card>
   );
 }
