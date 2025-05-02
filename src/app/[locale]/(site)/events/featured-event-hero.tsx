@@ -59,14 +59,14 @@ export function StaticFeaturedEventHero({
                   "Our events celebrate and showcase the rich heritage of Tamazight culture through immersive experiences, performances, and gatherings. Join us in preserving and sharing our traditions with the world."}
               </p>
 
-              <div className="flex flex-wrap gap-4">
+              {/* <div className="flex flex-wrap gap-4">
                 <a
                   href={`#upcoming-events`}
                   className="inline-flex items-center px-6 py-3 rounded-lg bg-website-accent text-website-text font-medium shadow-lg hover:shadow-amber-500/30 transition-all duration-300 transform hover:-translate-y-1"
                 >
                   {dictionary.events.exploreEvents || "Explore Events"}
                 </a>
-              </div>
+              </div> */}
             </motion.div>
           </div>
         </div>

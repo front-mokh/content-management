@@ -214,7 +214,7 @@ export default function EventsPage({
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <Link href={`/${locale}/events/${event.id}`}>
-                      <EventCard event={event} />
+                      <EventCard event={event} dictionary={dictionary} />
                     </Link>
                   </motion.div>
                 ))}

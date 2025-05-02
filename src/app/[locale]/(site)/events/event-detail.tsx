@@ -3,29 +3,44 @@ import { Event, MediaType } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
+import { ar, fr, enUS } from "date-fns/locale";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
   Calendar,
-  Share2,
   Clock,
   MapPin,
   Info,
-  Eye,
   RefreshCw,
   Play,
   Type,
+  FileText,
+  Camera,
+  Film,
+  Share2,
+  ChevronRight,
+  GlobeLock,
+  Tag,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-// Helper function to get the API path for media
 const getApiPath = (path: string) => {
-  // Extract the filename from the original path
   const filename = path.split("/").pop();
-  // Return the API path
   return `/api/uploads/${filename}`;
+};
+
+const getDateLocale = (locale: string) => {
+  switch (locale) {
+    case "ar":
+      return ar;
+    case "fr":
+      return fr;
+    case "en":
+    default:
+      return enUS;
+  }
 };
 
 export default function EventDetailPage({
@@ -39,6 +54,8 @@ export default function EventDetailPage({
 }) {
   const isVideo = event.type === MediaType.VIDEO;
   const mediaUrl = getApiPath(event.mediaPath);
+  const dateLocale = getDateLocale(locale);
+  const isRTL = locale === "ar";
 
   const fadeUp = {
     hidden: { opacity: 0, y: 20 },
@@ -50,7 +67,7 @@ export default function EventDetailPage({
   };
 
   const slideIn = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, x: isRTL ? 20 : -20 },
     visible: {
       opacity: 1,
       x: 0,
@@ -58,8 +75,36 @@ export default function EventDetailPage({
     },
   };
 
+  const translations = {
+    backToEvents: dictionary.events.backToEvents || "Back to Events",
+    aboutEvent: dictionary.events.aboutEvent || "About This Event",
+    noDescription:
+      dictionary.events.noDescription ||
+      "No description available for this event.",
+    eventDetails: dictionary.events.eventDetails || "Event Details",
+    createdOn: dictionary.events.createdOn || "Created on",
+    updatedOn: dictionary.events.updatedOn || "Updated on",
+    contentType: dictionary.events.contentType || "Content Type",
+    videoContent: dictionary.events.videoContent || "Video Content",
+    imageContent: dictionary.events.imageContent || "Image Content",
+    readFullDescription:
+      dictionary.events.readFullDescription || "Read Full Description",
+    joinCommunity: dictionary.events.joinCommunity || "Join Our Community",
+    communityDescription:
+      dictionary.events.communityDescription ||
+      "Be part of our growing community and contribute to our cultural heritage",
+    contributeButton: dictionary.events.contributeButton || "Contribute Now",
+    contactButton: dictionary.events.contactButton || "Contact Us",
+    category: dictionary.events.category || "Category",
+    culturalEvent: dictionary.events.culturalEvent || "Cultural Event",
+    viewFullImage: dictionary.events.viewFullImage || "View Full Image",
+    postDate: dictionary.events.postedOn || "Posted on",
+    eventLanguage: dictionary.events.eventLanguage || "Event Language",
+    originalContent: dictionary.events.originalContent || "Original Content",
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50" dir={isRTL ? "rtl" : "ltr"}>
       {/* Back Navigation */}
       <motion.div
         initial="hidden"
@@ -71,8 +116,17 @@ export default function EventDetailPage({
           href={`/${locale}/events`}
           className="inline-flex items-center text-website-primary hover:text-website-primary/80 font-medium transition-colors"
         >
-          <ArrowLeft className="h-5 w-5 mr-2" />
-          {dictionary.events.backToEvents}
+          {isRTL ? (
+            <>
+              {translations.backToEvents}
+              <ArrowLeft className="h-5 w-5 ml-2 transform rotate-180" />
+            </>
+          ) : (
+            <>
+              <ArrowLeft className="h-5 w-5 mr-2" />
+              {translations.backToEvents}
+            </>
+          )}
         </Link>
       </motion.div>
 
@@ -86,7 +140,7 @@ export default function EventDetailPage({
             className="max-w-4xl"
           >
             <Badge className="mb-4 bg-white/20 text-white hover:bg-white/30">
-              {isVideo ? "Video" : "Image"}
+              {isVideo ? translations.videoContent : translations.imageContent}
             </Badge>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               {event.title}
@@ -95,12 +149,22 @@ export default function EventDetailPage({
               <div className="flex items-center bg-white/10 px-3 py-1.5 rounded-full">
                 <Calendar className="h-4 w-4 mr-2" />
                 <time dateTime={event.createdAt.toISOString()}>
-                  {format(new Date(event.createdAt), "MMMM d, yyyy")}
+                  {format(new Date(event.createdAt), "MMMM d, yyyy", {
+                    locale: dateLocale,
+                  })}
                 </time>
               </div>
               <div className="flex items-center bg-white/10 px-3 py-1.5 rounded-full">
                 <Type className="h-4 w-4 mr-2" />
-                <span>{isVideo ? "Video Content" : "Image Content"}</span>
+                <span>
+                  {isVideo
+                    ? translations.videoContent
+                    : translations.imageContent}
+                </span>
+              </div>
+              <div className="flex items-center bg-white/10 px-3 py-1.5 rounded-full">
+                <Tag className="h-4 w-4 mr-2" />
+                <span>{translations.culturalEvent}</span>
               </div>
             </div>
           </motion.div>
@@ -112,14 +176,15 @@ export default function EventDetailPage({
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content Area - Takes 2/3 of the grid */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 space-y-8">
+              {/* Enhanced Media Card */}
               <motion.div
                 initial="hidden"
                 animate="visible"
                 variants={fadeUp}
                 className="bg-white rounded-xl shadow-sm overflow-hidden"
               >
-                {/* Media Display */}
+                {/* Media Display with Badge Overlay */}
                 <div className="relative">
                   {isVideo ? (
                     <div className="aspect-video relative">
@@ -134,7 +199,8 @@ export default function EventDetailPage({
                       />
                       <div className="absolute top-4 right-4 z-10">
                         <Badge className="bg-black/70 text-white py-1">
-                          <Play className="h-3 w-3 mr-1" /> Video
+                          <Film className="h-3 w-3 mr-1" />{" "}
+                          {translations.videoContent}
                         </Badge>
                       </div>
                     </div>
@@ -147,42 +213,37 @@ export default function EventDetailPage({
                         className="object-contain"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
                       />
+                      <div className="absolute top-4 right-4 z-10">
+                        <Badge className="bg-black/70 text-white py-1">
+                          <Camera className="h-3 w-3 mr-1" />{" "}
+                          {translations.imageContent}
+                        </Badge>
+                      </div>
                     </div>
                   )}
                 </div>
+              </motion.div>
 
-                {/* Content */}
-                <div className="p-6 md:p-8">
-                  <h2 className="text-2xl font-bold text-website-primary mb-6">
-                    {dictionary.events.aboutEvent}
-                  </h2>
+              {/* Full Description Section */}
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={fadeUp}
+                transition={{ delay: 0.1 }}
+              >
+                <h2 className="text-2xl font-bold text-website-primary mb-6">
+                  {translations.aboutEvent}
+                </h2>
 
-                  {event.description ? (
-                    <div className="prose prose-lg max-w-none text-gray-700">
-                      <p>{event.description}</p>
-                    </div>
-                  ) : (
-                    <p className="text-gray-500 italic">
-                      {dictionary.events.noDescription}
-                    </p>
-                  )}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="bg-gray-50 px-6 md:px-8 py-4 flex justify-between items-center">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center gap-2 text-gray-600"
-                  >
-                    <Share2 className="h-4 w-4" />
-                    {dictionary.events.shareEvent}
-                  </Button>
-                  <div className="flex items-center text-gray-500 text-sm">
-                    <Eye className="h-4 w-4 mr-1" />
-                    <span>{Math.floor(Math.random() * 1000)} views</span>
+                {event.description ? (
+                  <div className="prose prose-lg prose-headings:text-website-primary prose-a:text-website-secondary max-w-none bg-white rounded-xl shadow-sm p-6 md:p-8">
+                    <p>{event.description}</p>
                   </div>
-                </div>
+                ) : (
+                  <div className="bg-white rounded-xl shadow-sm p-6 md:p-8 text-gray-500 italic">
+                    {translations.noDescription}
+                  </div>
+                )}
               </motion.div>
             </div>
 
@@ -194,50 +255,99 @@ export default function EventDetailPage({
               transition={{ delay: 0.2 }}
               className="space-y-6"
             >
-              {/* Metadata Card */}
+              {/* Enhanced Metadata Card */}
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center text-lg text-website-primary">
-                    <Info className="h-5 w-5 mr-2" />
-                    {dictionary.events.eventDetails || "Event Details"}
+                    <Info className={`h-5 w-5 ${isRTL ? "ml-2" : "mr-2"}`} />
+                    {translations.eventDetails}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-start">
-                    <Calendar className="h-5 w-5 text-website-secondary mt-0.5 mr-3" />
+                    <Calendar
+                      className={`h-5 w-5 text-website-secondary mt-0.5 ${
+                        isRTL ? "ml-4" : "mr-4"
+                      } flex-shrink-0`}
+                    />
                     <div>
                       <span className="block text-sm text-gray-500">
-                        {dictionary.events.createdOn || "Created on"}
+                        {translations.postDate}
                       </span>
                       <span className="font-medium">
-                        {format(new Date(event.createdAt), "PPP")}
+                        {format(new Date(event.createdAt), "PPP", {
+                          locale: dateLocale,
+                        })}
                       </span>
                     </div>
                   </div>
 
                   <div className="flex items-start">
-                    <RefreshCw className="h-5 w-5 text-website-secondary mt-0.5 mr-3" />
+                    <RefreshCw
+                      className={`h-5 w-5 text-website-secondary mt-0.5 ${
+                        isRTL ? "ml-4" : "mr-4"
+                      } flex-shrink-0`}
+                    />
                     <div>
                       <span className="block text-sm text-gray-500">
-                        {dictionary.events.updatedOn || "Updated on"}
+                        {translations.updatedOn}
                       </span>
                       <span className="font-medium">
                         {format(
                           new Date(event.updatedAt || event.createdAt),
-                          "PPP"
+                          "PPP",
+                          { locale: dateLocale }
                         )}
                       </span>
                     </div>
                   </div>
 
                   <div className="flex items-start">
-                    <Type className="h-5 w-5 text-website-secondary mt-0.5 mr-3" />
+                    <Type
+                      className={`h-5 w-5 text-website-secondary mt-0.5 ${
+                        isRTL ? "ml-4" : "mr-4"
+                      } flex-shrink-0`}
+                    />
                     <div>
                       <span className="block text-sm text-gray-500">
-                        {dictionary.events.contentType || "Content Type"}
+                        {translations.contentType}
                       </span>
                       <span className="font-medium">
-                        {isVideo ? "Video" : "Image"}
+                        {isVideo
+                          ? translations.videoContent
+                          : translations.imageContent}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <Tag
+                      className={`h-5 w-5 text-website-secondary mt-0.5 ${
+                        isRTL ? "ml-4" : "mr-4"
+                      } flex-shrink-0`}
+                    />
+                    <div>
+                      <span className="block text-sm text-gray-500">
+                        {translations.category}
+                      </span>
+                      <span className="font-medium">
+                        {translations.culturalEvent}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <GlobeLock
+                      className={`h-5 w-5 text-website-secondary mt-0.5 ${
+                        isRTL ? "ml-4" : "mr-4"
+                      } flex-shrink-0`}
+                    />
+                    <div>
+                      <span className="block text-sm text-gray-500">
+                        {translations.eventLanguage}
+                      </span>
+                      <span className="font-medium">
+                        {translations.originalContent}
                       </span>
                     </div>
                   </div>
@@ -247,29 +357,27 @@ export default function EventDetailPage({
           </div>
         </div>
       </div>
-
       {/* Call to Action Section */}
       <div className="bg-gradient-to-r from-website-primary/5 to-website-accent/5 py-16 mt-12">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-website-primary mb-6">
-            {dictionary.events.joinCommunity || "Join Our Community"}
+            {translations.joinCommunity}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-            {dictionary.events.communityDescription ||
-              "Be part of our growing community and contribute to our cultural heritage"}
+            {translations.communityDescription}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               href={`/${locale}/contribution`}
               className="bg-website-accent hover:bg-website-accent/90 text-white px-6 py-3 rounded-lg font-medium inline-block shadow-md transition-all duration-300 transform hover:-translate-y-1"
             >
-              {dictionary.events.contributeButton || "Contribute Now"}
+              {translations.contributeButton}
             </Link>
             <Link
               href={`/${locale}/contact`}
               className="border border-website-secondary text-website-secondary hover:bg-website-secondary/10 px-6 py-3 rounded-lg font-medium inline-block transition-all duration-300 transform hover:-translate-y-1"
             >
-              {dictionary.events.contactButton || "Contact Us"}
+              {translations.contactButton}
             </Link>
           </div>
         </div>
