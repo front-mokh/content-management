@@ -101,6 +101,10 @@
       }
     ]
   },
+  "common": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
   "about": {
     "heroTitle": "À propos",
     "heroSubtitle": "Trésors Tamazight",

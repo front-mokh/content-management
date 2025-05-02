@@ -101,6 +101,10 @@
       }
     ]
   },
+  "common": {
+    "previous": "Previous",
+    "next": "Next"
+  },
 
   "about": {
     "heroTitle": "About",

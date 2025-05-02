@@ -161,6 +161,10 @@
       }
     ]
   },
+  "common": {
+    "previous": "السابق",
+    "next": "التالي"
+  },
   "about": {
     "heroTitle": "حول",
     "heroSubtitle": "كنوز تامازيغت",

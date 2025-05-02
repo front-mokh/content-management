@@ -8,25 +8,31 @@ import { EventCard } from "./event-card";
 import { StaticFeaturedEventHero } from "./featured-event-hero";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 
-// Pagination component
+// Pagination component with RTL support
 const Pagination = ({
   currentPage,
   totalPages,
   onPageChange,
   dictionary,
+  locale,
 }: {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
   dictionary: any;
+  locale: string;
 }) => {
+  // Check if the current locale is RTL (Arabic)
+  const isRTL = locale === "ar";
+
   return (
     <div className="flex justify-center items-center mt-10 gap-2">
+      {/* Left Button - Previous for LTR, Next for RTL */}
       <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
+        onClick={() => onPageChange(isRTL ? currentPage + 1 : currentPage - 1)}
+        disabled={isRTL ? currentPage === totalPages : currentPage === 1}
         className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label={dictionary.common.previous}
+        aria-label={isRTL ? dictionary.common.next : dictionary.common.previous}
       >
         <ChevronLeft className="h-5 w-5" />
       </button>
@@ -47,11 +53,12 @@ const Pagination = ({
         ))}
       </div>
 
+      {/* Right Button - Next for LTR, Previous for RTL */}
       <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
+        onClick={() => onPageChange(isRTL ? currentPage - 1 : currentPage + 1)}
+        disabled={isRTL ? currentPage === 1 : currentPage === totalPages}
         className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label={dictionary.common.next}
+        aria-label={isRTL ? dictionary.common.previous : dictionary.common.next}
       >
         <ChevronRight className="h-5 w-5" />
       </button>
@@ -90,7 +97,7 @@ export default function EventsPage({
   events: Event[];
   dictionary: any;
 }) {
-  const EVENTS_PER_PAGE = 10;
+  const EVENTS_PER_PAGE = 9;
   const params = useParams();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -227,6 +234,7 @@ export default function EventsPage({
                   totalPages={totalPages}
                   onPageChange={handlePageChange}
                   dictionary={dictionary}
+                  locale={locale.toString()}
                 />
               )}
             </>
