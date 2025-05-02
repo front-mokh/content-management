@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { format } from "date-fns";
+import { enUS, fr, arSA } from "date-fns/locale";
 import { Play, Calendar, Eye, Clock } from "lucide-react";
 import { Event, MediaType } from "@prisma/client";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
 
 // Helper function to get the correct API path
@@ -16,11 +17,6 @@ const getApiPath = (path) => {
   const filename = path.split("/").pop();
   // Return the API path
   return `/api/uploads/${filename}`;
-};
-
-// Helper to generate video thumbnail
-const generateVideoThumbnail = (videoPath) => {
-  return videoPath;
 };
 
 interface EventCardProps {
@@ -37,6 +33,20 @@ export function EventCard({
   const params = useParams();
   const locale = params.locale || "en";
 
+  // Get the correct date locale based on the application locale
+  const getDateLocale = () => {
+    switch (locale) {
+      case "fr":
+        return fr;
+      case "ar":
+        return arSA;
+      default:
+        return enUS;
+    }
+  };
+
+  const dateLocale = getDateLocale();
+
   const translations = {
     videoContent: "Video",
     imageContent: "Image",
@@ -45,9 +55,15 @@ export function EventCard({
   };
 
   const isVideo = event.type === MediaType.VIDEO;
-  const formattedDate = format(new Date(event.createdAt), "MMM d, yyyy");
+  const formattedDate = format(
+    new Date(event.updatedAt || event.createdAt),
+    locale === "ar" ? "dd MMMM yyyy" : "d MMMM yyyy",
+    { locale: dateLocale }
+  );
   const [mediaUrl, setMediaUrl] = useState<string>(event.mediaPath);
   const [thumbnailUrl, setThumbnailUrl] = useState<string>("");
+  const [videoDuration, setVideoDuration] = useState<string>("00:00");
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // Process the path on component mount
   useEffect(() => {
@@ -57,10 +73,66 @@ export function EventCard({
 
       // If it's a video, try to get a thumbnail
       if (isVideo) {
-        setThumbnailUrl(generateVideoThumbnail(apiPath));
+        generateVideoThumbnail(apiPath);
       }
     }
   }, [event.mediaPath, isVideo]);
+
+  // Generate video thumbnail and set duration
+  const generateVideoThumbnail = (videoPath: string) => {
+    if (!isVideo) return;
+
+    const video = document.createElement("video");
+    video.preload = "metadata";
+    video.crossOrigin = "anonymous";
+    videoRef.current = video;
+
+    video.onloadedmetadata = () => {
+      if (video.duration && !isNaN(video.duration)) {
+        // Format duration to MM:SS
+        const minutes = Math.floor(video.duration / 60);
+        const seconds = Math.floor(video.duration % 60);
+        const formattedDuration = `${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        setVideoDuration(formattedDuration);
+      }
+    };
+
+    video.onseeked = () => {
+      try {
+        const canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext("2d");
+
+        if (ctx) {
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const thumbnailUrl = canvas.toDataURL("image/jpeg");
+          setThumbnailUrl(thumbnailUrl);
+        }
+      } catch (error) {
+        console.error("Error generating thumbnail:", error);
+      }
+    };
+
+    video.src = videoPath;
+    video.onloadedmetadata = () => {
+      if (video.duration && !isNaN(video.duration)) {
+        // Format duration to MM:SS
+        const minutes = Math.floor(video.duration / 60);
+        const seconds = Math.floor(video.duration % 60);
+        const formattedDuration = `${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        setVideoDuration(formattedDuration);
+
+        // Seek to a position to generate thumbnail (25% of video)
+        const seekPosition = Math.min(1, video.duration * 0.25);
+        video.currentTime = seekPosition;
+      }
+    };
+  };
 
   // Truncate description to show small portion followed by ...
   const truncateDescription = (text, maxLength = 80) => {
@@ -77,13 +149,23 @@ export function EventCard({
         <div className="p-3">
           {/* Media Preview */}
           <div className="border aspect-video rounded-md flex items-center justify-center text-white p-0 relative overflow-hidden">
-            <Image
-              src={isVideo && thumbnailUrl ? thumbnailUrl : mediaUrl}
-              alt={event.title}
-              layout="fill"
-              objectFit="cover"
-              className="transition-transform duration-500 group-hover:scale-105"
-            />
+            {isVideo && thumbnailUrl ? (
+              <Image
+                src={thumbnailUrl}
+                alt={event.title}
+                layout="fill"
+                objectFit="cover"
+                className="transition-transform duration-500 group-hover:scale-105"
+              />
+            ) : (
+              <Image
+                src={mediaUrl}
+                alt={event.title}
+                layout="fill"
+                objectFit="cover"
+                className="transition-transform duration-500 group-hover:scale-105"
+              />
+            )}
 
             {isVideo && (
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
@@ -93,8 +175,7 @@ export function EventCard({
 
                 <div className="absolute bottom-2 right-2 bg-black/70 px-2 py-1 rounded text-xs font-medium flex items-center">
                   <Clock className="h-3 w-3 mr-1" />
-                  {event.duration || "00:00"}{" "}
-                  {/* Use actual duration if available */}
+                  {videoDuration}
                 </div>
               </div>
             )}
@@ -110,8 +191,10 @@ export function EventCard({
               </h3>
               <Badge className="bg-website-primary/10 text-website-primary text-xs">
                 {isVideo
-                  ? dictionary?.events?.videoContent
-                  : dictionary?.events?.imageContent}
+                  ? dictionary?.events?.videoContent ||
+                    translations.videoContent
+                  : dictionary?.events?.imageContent ||
+                    translations.imageContent}
               </Badge>
             </div>
 
