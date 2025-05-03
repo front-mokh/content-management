@@ -347,6 +347,31 @@
     "contributeButton": "Contribute",
     "contactButton": "Contact Us"
   },
+  "authors": {
+  
+    "pageTitle": "Meet Our Tamazight Authors",
+    "allAuthorsTitle": "All Authors",
+    "allAuthorsDescription": "Discover the talented authors who contribute to preserving and sharing Tamazight culture through their writings, research, and creative work.",
+    "heroDescription": "Meet the talented authors who contribute to preserving and sharing Tamazight culture through their writings, research, and creative work.",
+    
+   
+    "searchPlaceholder": "Search authors...",
+    "noSearchResults": "No authors matching your search",
+    "noAuthors": "No authors available",
+    "tryDifferentSearch": "Try a different search term",
+    "checkBackSoon": "Check back soon for new authors",
+    
+   
+    "resources": "Resources",
+    "joinedOn": "Added on",
+    "viewProfile": "View Profile",
+    
+
+    "ctaTitle": "Want to Contribute?",
+    "ctaDescription": "Join our community of authors and contributors to help preserve and promote Tamazight culture and language.",
+    "contributeButton": "Become a Contributor",
+    "contactButton": "Contact Us"
+  },
   "contact": {
     "hero": {
       "title": "Contact",

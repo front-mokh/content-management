@@ -51,7 +51,7 @@ export default function EventsTable({ events }: { events: Event[] }) {
                 colSpan={6} // Adjust colSpan based on number of columns
                 className="text-muted-foreground text-center"
               >
-                Aucun événement n'a été trouvé
+                Aucun événement n&apos;a été trouvé
               </TableCell>
             </TableRow>
           )}

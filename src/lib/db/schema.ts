@@ -1,3 +1,5 @@
+
+import { z } from "zod";
 import {
   User,
   Author,
@@ -36,6 +38,7 @@ export type UpdateCategoryInput = Partial<Omit<Category, "id">>;
 export type UpdateResourceInput = Partial<Omit<Resource, "id" | "submittedAt">>;
 export type UpdateSubmissionInput = Partial<Omit<Submission, "id">>;
 
+
 // Query filters
 export interface ResourceFilters {
   categoryId?: string;
@@ -54,3 +57,17 @@ export type CreateContactInput = {
 };
 
 export type UpdateContactInput = Partial<CreateContactInput>;
+
+export const CreateAuthorInput = z.object({
+  firstName: z.string().min(1, "Le prénom est obligatoire"),
+  lastName: z.string().min(1, "Le nom est obligatoire"),
+  description: z.string().optional(),
+  imagePath: z.string().optional()
+});
+
+export const UpdateAuthorInput = z.object({
+  firstName: z.string().min(1, "Le prénom est obligatoire"),
+  lastName: z.string().min(1, "Le nom est obligatoire"),
+  description: z.string().optional(),
+  imagePath: z.string().optional()
+});

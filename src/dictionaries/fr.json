@@ -396,6 +396,24 @@
     "contributeButton": "Contribuer",
     "contactButton": "Nous contacter"
   },
+  "authors": {
+    "pageTitle": "Rencontrez nos auteurs tamazight",
+    "allAuthorsTitle": "Tous les auteurs",
+    "allAuthorsDescription": "Découvrez les auteurs talentueux qui contribuent à la préservation et au partage de la culture tamazight à travers leurs écrits, leurs recherches et leurs créations.",
+    "heroDescription": "Rencontrez les auteurs talentueux qui contribuent à la préservation et au partage de la culture tamazight à travers leurs écrits, leurs recherches et leurs créations.",
+    "searchPlaceholder": "Rechercher des auteurs…",
+    "noSearchResults": "Aucun auteur ne correspond à votre recherche",
+    "noAuthors": "Aucun auteur disponible",
+    "tryDifferentSearch": "Essayez un autre terme de recherche",
+    "checkBackSoon": "Revenez bientôt pour de nouveaux auteurs",
+    "resources": "Ressources",
+    "joinedOn": "Ajouté le",
+    "viewProfile": "Voir le profil",
+    "ctaTitle": "Vous voulez contribuer ?",
+    "ctaDescription": "Rejoignez notre communauté d'auteurs et de contributeurs pour aider à préserver et promouvoir la culture et la langue tamazight.",
+    "contributeButton": "Devenir contributeur",
+    "contactButton": "Contactez-nous"
+  },
   "contact": {
     "hero": {
       "title": "Contactez",
