@@ -27,7 +27,7 @@ export function StaticFeaturedAuthorHero({
             >
               <div className="aspect-[16/9] relative">
                 <Image
-                  src="/authors_hero.png"
+                   src="/author_image.png"
                   alt="Tamazight Authors"
                   fill
                   className="object-cover"

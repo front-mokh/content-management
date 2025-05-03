@@ -412,7 +412,23 @@
     "ctaTitle": "Vous voulez contribuer ?",
     "ctaDescription": "Rejoignez notre communauté d'auteurs et de contributeurs pour aider à préserver et promouvoir la culture et la langue tamazight.",
     "contributeButton": "Devenir contributeur",
-    "contactButton": "Contactez-nous"
+    "contactButton": "Contactez-nous",
+    "backToAuthors": "Retour aux auteurs",
+    "aboutAuthor": "À propos de cet auteur",
+    "noDescription": "Aucune description disponible pour cet auteur.",
+    "authorDetails": "Détails de l'auteur",
+    "createdOn": "Créé le",
+    "updatedOn": "Mis à jour le",
+    "resourcesCount": "Ressources",
+    "authorResources": "Ressources de l'auteur",
+    "noResources": "Aucune ressource disponible pour cet auteur pour le moment.",
+    "readMore": "En savoir plus",
+    "joinCommunity": "Rejoignez notre communauté",
+    "communityDescription": "Faites partie de notre communauté grandissante et contribuez à notre patrimoine culturel",
+    "email": "E-mail",
+    "website": "Site Web",
+    "location": "Localisation",
+    "viewResource": "Voir la ressource"
   },
   "contact": {
     "hero": {
