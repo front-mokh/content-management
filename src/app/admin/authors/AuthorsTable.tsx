@@ -2,7 +2,7 @@ import DeleteAction from "@/components/custom/DeleteAction";
 import DeleteAuthorDialog from "@/components/author/DeleteAuthorDialog";
 import TableWrapper from "@/components/custom/TableWrapper";
 import UpdateAction from "@/components/custom/UpdateAction";
-import UpdateAuthorDialog from "@/components/author/UpdateAuthorDialog";
+import ViewAction from "@/components/custom/ViewAction";
 import {
   Table,
   TableBody,
@@ -44,16 +44,16 @@ export default function AuthorsTable({
               <TableCell>{formatDate(author.createdAt)}</TableCell>
               <TableCell>{formatDate(author.updatedAt)}</TableCell>
               <TableCell>
-                <div className="space-x-2">
-                  <UpdateAuthorDialog
-                    trigger={<UpdateAction />}
-                    author={author}
-                  />
+                  <div className="w-fit flex justify-end">
+                  
+                  <ViewAction href={`/admin/authors/${author.id}`} />
+                  <UpdateAction href={`/admin/authors/${author.id}/edit`} />
                   <DeleteAuthorDialog
                     trigger={<DeleteAction />}
                     author={author}
                   />
-                </div>
+              </div>
+            
               </TableCell>
             </TableRow>
           ))}

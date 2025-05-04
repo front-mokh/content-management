@@ -1,5 +1,4 @@
 "use server";
-
 import { revalidatePath } from "next/cache";
 import { prisma } from "../db";
 import { CreateAuthorInput, UpdateAuthorInput } from "../db/schema";
@@ -46,7 +45,6 @@ export async function getAllAuthors(
       }
     }
   });
-
   return authors.map(author => ({
     ...author,
     resourceCount: author._count.resources

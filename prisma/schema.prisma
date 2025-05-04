@@ -26,12 +26,14 @@ model User {
 }
 
 model Author {
-  id        String     @id @default(uuid())
-  firstName String
-  lastName  String
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  resources Resource[]
+  id          String     @id @default(uuid())
+  firstName   String
+  lastName    String
+  description String? // Optional field
+  imagePath   String? // Optional field for author image
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  resources   Resource[]
 }
 
 model Type {
@@ -113,4 +115,20 @@ model Contact {
   message     String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Event {
+  id          String    @id @default(uuid())
+  title       String
+  description String? // Optional description
+  mediaPath   String // Path to the image or video file
+  type        MediaType // Enum to specify Image or Video
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// --- New MediaType Enum ---
+enum MediaType {
+  IMAGE
+  VIDEO
 }

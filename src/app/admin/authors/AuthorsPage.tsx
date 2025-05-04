@@ -1,6 +1,7 @@
 // AuthorsPage.tsx
 "use client";
-import AddAuthorDialog from "@/components/author/AddAuthorDialog";
+
+import AddButton from "@/components/custom/AddButton";
 import CustomPagination from "@/components/custom/CustomPagination";
 import {
   Card,
@@ -29,7 +30,8 @@ export default function AuthorsPage({
       <Card className="h-full">
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>Gestion des Auteurs</CardTitle>
-          <AddAuthorDialog />
+        <AddButton label="Ajouter un Auteur" href="/admin/authors/add" />
+          {/* <AddAuthorDialog /> */}
         </CardHeader>
         <CardContent>
           <AuthorsTable authors={pageItems} />
