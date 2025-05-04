@@ -5,11 +5,11 @@ import Link from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 
-// Define the structure for locales and their flags
+
 interface LocaleInfo {
   code: "en" | "fr" | "ar";
-  flag: string; // Using emoji flags
-  name: string; // Kept for aria-label and title
+  flag: string; 
+  name: string; 
 }
 
 const availableLocales: LocaleInfo[] = [
@@ -26,14 +26,14 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
   const pathname = usePathname();
   const locale = (params.locale || "en") as "en" | "fr" | "ar";
 
-  // Use separate refs for desktop and mobile dropdowns to avoid conflicts
+
   const languageMenuRefDesktop = useRef<HTMLDivElement>(null);
   const languageMenuRefMobile = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     if (!isMenuOpen) {
-      setIsLanguageMenuOpen(false); // Close lang menu if opening main menu
+      setIsLanguageMenuOpen(false);
     }
   };
 
@@ -41,10 +41,9 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
     setIsLanguageMenuOpen(!isLanguageMenuOpen);
   };
 
-  // Close language dropdown if clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Check both refs
+
       if (
         languageMenuRefDesktop.current &&
         !languageMenuRefDesktop.current.contains(event.target as Node) &&
@@ -88,6 +87,7 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
     { hrefKey: "about", labelKey: "about" },
     { hrefKey: "media-library", labelKey: "database" },
     { hrefKey: "events", labelKey: "events" },
+    { hrefKey: "authors", labelKey: "authors" },
     { hrefKey: "contribution", labelKey: "contribute" },
     { hrefKey: "contact", labelKey: "contact" },
   ];
@@ -95,37 +95,37 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
   const currentLocaleInfo =
     availableLocales.find((l) => l.code === locale) || availableLocales[0];
 
-  // Reusable component for dropdown content
+ 
   const LanguageMenuItems = () => (
     <>
       {availableLocales.map((langInfo) => {
         const isCurrent = locale === langInfo.code;
         if (isCurrent) {
-          // Render current language as non-interactive, styled item
+     
           return (
             <div
               key={langInfo.code}
-              className="flex justify-center items-center px-4 py-2 text-sm bg-blue-50 opacity-70 cursor-default" // Centered flag
+              className="flex justify-center items-center px-4 py-2 text-sm bg-blue-50 opacity-70 cursor-default" 
               aria-label={`Current language: ${langInfo.name}`}
               title={`Current language: ${langInfo.name}`}
             >
               <span className="text-2xl">{langInfo.flag}</span>{" "}
-              {/* Increased size slightly */}
+             
             </div>
           );
         } else {
-          // Render other languages as links
+          
           return (
             <Link
               key={langInfo.code}
               href={getLocalizedPath(langInfo.code)}
-              className="flex justify-center items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors" // Centered flag
-              onClick={() => setIsLanguageMenuOpen(false)} // Just close menu on click
+              className="flex justify-center items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors" 
+              onClick={() => setIsLanguageMenuOpen(false)} 
               aria-label={`Switch to ${langInfo.name}`}
-              title={`Switch to ${langInfo.name}`} // Tooltip for flag meaning
+              title={`Switch to ${langInfo.name}`} 
             >
               <span className="text-2xl">{langInfo.flag}</span>{" "}
-              {/* Increased size slightly */}
+           
             </Link>
           );
         }
@@ -149,7 +149,7 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+       
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navItems.map((item) => {
               const isActive = isLinkActive(item.hrefKey);
@@ -171,10 +171,10 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
               );
             })}
 
-            {/* Language Dropdown - Desktop */}
+       
             <div className="relative" ref={languageMenuRefDesktop}>
               {" "}
-              {/* Added Ref */}
+           
               <button
                 className="flex items-center space-x-1 px-3 py-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 transition-colors"
                 onClick={toggleLanguageMenu}
@@ -194,19 +194,19 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
               {isLanguageMenuOpen && (
                 <div className="absolute right-0 mt-2 w-auto bg-white rounded-md shadow-lg py-1 z-50 ring-1 ring-black ring-opacity-5 min-w-[60px]">
                   {" "}
-                  {/* Adjusted width & added min-width */}
+              
                   <LanguageMenuItems />
                 </div>
               )}
             </div>
           </nav>
 
-          {/* Mobile Controls */}
+         
           <div className="md:hidden flex items-center space-x-2">
-            {/* Language Dropdown - Mobile */}
+          
             <div className="relative" ref={languageMenuRefMobile}>
               {" "}
-              {/* Added Ref */}
+          
               <button
                 className="flex items-center space-x-1 p-2 rounded-md hover:bg-gray-100 focus:outline-none transition-colors"
                 onClick={toggleLanguageMenu}
@@ -222,17 +222,17 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
                   }`}
                 />
               </button>
-              {/* Dropdown Menu - Mobile */}
+           
               {isLanguageMenuOpen && (
                 <div className="absolute right-0 mt-2 w-auto bg-white rounded-md shadow-lg py-1 z-50 ring-1 ring-black ring-opacity-5 min-w-[60px]">
                   {" "}
-                  {/* Adjusted width & added min-width */}
+               
                   <LanguageMenuItems />
                 </div>
               )}
             </div>
 
-            {/* Mobile menu button */}
+           
             <button
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 focus:outline-none"
@@ -247,7 +247,7 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
+    
       {isMenuOpen && (
         <div className="md:hidden" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">

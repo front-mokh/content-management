@@ -338,6 +338,7 @@
   "footer": {
     "logo_1": "Tamazight",
     "logo_2": "Treasures",
+    "authors": "Auteurs",
     "tagline": "Préserver et partager le riche patrimoine culturel de la Kabylie pour les générations futures.",
     "navigation": "Navigation",
     "navHome": "Accueil",
@@ -545,6 +546,7 @@
     "about": "À Propos",
     "database": "Base de Données",
     "events": "Événements",
+    "authors": "Auteurs",
     "contribute": "Contribuer",
     "contact": "Contactez-nous",
     "language": "Langue"

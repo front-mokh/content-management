@@ -475,6 +475,7 @@
   "footer": {
     "logo_1": "Treasures",
     "logo_2": "Tamazight",
+    "authors": "المؤلفون",
     "events": "الفعاليات",
     "tagline": "الحفاظ على التراث الثقافي الغني لمنطقة القبائل ومشاركته للأجيال القادمة.",
     "navigation": "التنقل",
@@ -502,6 +503,7 @@
     "about": "من نحن",
     "database": "قاعدة البيانات",
     "events": "الفعاليات",
+    "authors": "المؤلفون",
     "contribute": "المساهمة",
     "contact": "اتصل بنا",
     "language": "اللغة"
