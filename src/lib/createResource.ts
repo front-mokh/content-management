@@ -31,6 +31,8 @@ export async function createResourceWithFile(
     const session = await getSessionOrThrow();
     const userId = session.user.id;
 
+    console.log({ userId });
+
     const fileUrl = await processUploadedFile(file);
 
     const resource = await prisma.$transaction(async (tx) => {

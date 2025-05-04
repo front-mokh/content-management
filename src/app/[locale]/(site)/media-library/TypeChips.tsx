@@ -4,7 +4,6 @@ import { useMemo } from "react";
 
 export default function TypeChips({
   types,
-  categoryId,
   selectedTypes,
   onTypeToggle,
   dictionary,
@@ -16,31 +15,24 @@ export default function TypeChips({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dictionary: any;
 }) {
-  const filteredTypes = useMemo(() => {
-    if (categoryId && categoryId !== "all") {
-      return types.filter((type) => type.categoryId === categoryId);
-    }
-    return types;
-  }, [types, categoryId]);
-
   useMemo(() => {
     const typesToDeselect = selectedTypes.filter(
-      (typeId) => !filteredTypes.some((type) => type.id === typeId)
+      (typeId) => !types.some((type) => type.id === typeId)
     );
 
     typesToDeselect.forEach((typeId) => {
       onTypeToggle(typeId);
     });
-  }, [filteredTypes, selectedTypes, onTypeToggle]);
+  }, [types, selectedTypes, onTypeToggle]);
 
-  if (filteredTypes.length === 0) return null;
+  if (types.length === 0) return null;
 
   return (
     <div className="flex flex-wrap gap-2 mb-6">
       <span className="text-website-text/80 mt-1">
         {dictionary.mediaLibrary.filterByType}
       </span>
-      {filteredTypes.map((type) => {
+      {types.map((type) => {
         const isSelected = selectedTypes.includes(type.id);
         return (
           <Badge

@@ -38,7 +38,7 @@ import {
 const data = [
   [
     {
-      label: "Customize Page",
+      label: "Soumissions",
       icon: Settings2,
     },
     {

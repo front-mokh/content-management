@@ -111,8 +111,6 @@ export async function incrementResourceDislikes(id: string): Promise<Resource> {
   });
 }
 
-
-
 export async function publishResource(id: string) {
   const resource = prisma.resource.update({
     where: { id },
@@ -196,7 +194,9 @@ export const getResourcesByCategory = async ({
   };
 };
 
-export async function getPopularResourcesByUpvotes(take: number = 5): Promise<FullResource[]> {
+export async function getPopularResourcesByUpvotes(
+  take: number = 5
+): Promise<FullResource[]> {
   return prisma.resource.findMany({
     where: { status: "PUBLISHED" },
     orderBy: { upvotes: "desc" },
@@ -215,20 +215,119 @@ export async function getPopularResourcesByUpvotes(take: number = 5): Promise<Fu
  */
 export async function getResourcesByCategory_d() {
   const categories = await prisma.category.findMany();
-  
+
   const categoryResources = await Promise.all(
     categories.map(async (category) => {
       const count = await prisma.resource.count({
         where: { categoryId: category.id },
       });
-      
+
       return {
         category,
         count,
       };
     })
   );
-  
+
   // Filter out categories with 0 resources
   return categoryResources.filter((item) => item.count > 0);
+}
+
+// Function to get a specific category by ID
+export async function getCategoryById(id: string) {
+  try {
+    const category = await prisma.category.findUnique({
+      where: { id },
+    });
+    return category;
+  } catch (error) {
+    console.error("Error fetching category by ID:", error);
+    throw error;
+  }
+}
+
+// Function to get all published resources for a specific category
+export async function getPublishedResourcesByCategory(
+  categoryId: string
+): Promise<FullResource[]> {
+  try {
+    const resources = await prisma.resource.findMany({
+      where: {
+        categoryId,
+        status: "PUBLISHED",
+      },
+      include: {
+        author: true,
+        handler: true,
+
+        category: true,
+        type: true,
+      },
+      orderBy: {
+        publishedAt: "desc",
+      },
+    });
+    return resources;
+  } catch (error) {
+    console.error("Error fetching resources by category:", error);
+    throw error;
+  }
+}
+
+// Function to get recent resources for a specific category
+export async function getRecentResourcesByCategory(
+  categoryId: string,
+  limit = 12
+): Promise<FullResource[]> {
+  try {
+    const resources = await prisma.resource.findMany({
+      where: {
+        categoryId,
+        status: "PUBLISHED",
+      },
+      include: {
+        author: true,
+        handler: true,
+        category: true,
+        type: true,
+      },
+      orderBy: {
+        publishedAt: "desc",
+      },
+      take: limit,
+    });
+    return resources;
+  } catch (error) {
+    console.error("Error fetching recent resources by category:", error);
+    throw error;
+  }
+}
+
+// Function to get popular resources for a specific category
+export async function getPopularResourcesByCategory(
+  categoryId: string,
+  limit = 12
+): Promise<FullResource[]> {
+  try {
+    const resources = await prisma.resource.findMany({
+      where: {
+        categoryId,
+        status: "PUBLISHED",
+      },
+      include: {
+        handler: true,
+        author: true,
+        category: true,
+        type: true,
+      },
+      orderBy: {
+        views: "desc",
+      },
+      take: limit,
+    });
+    return resources;
+  } catch (error) {
+    console.error("Error fetching popular resources by category:", error);
+    throw error;
+  }
 }

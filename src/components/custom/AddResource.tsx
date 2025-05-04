@@ -50,10 +50,7 @@ export default function AddResourcePage({
 }) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
-  const [filteredTypes, setFilteredTypes] = useState<
-    { id: string; label: string }[]
-  >([]);
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileError, setFileError] = useState<string | null>(null);
 
@@ -70,12 +67,7 @@ export default function AddResourcePage({
 
   // Update filtered types when category changes
   const handleCategoryChange = (value: string) => {
-    setSelectedCategoryId(value);
     form.setValue("categoryId", value);
-    form.setValue("typeId", ""); // Reset type when category changes
-
-    const filtered = types.filter((type) => type.categoryId === value);
-    setFilteredTypes(filtered);
   };
 
   const handleFileSelect = (file: File) => {
@@ -173,19 +165,13 @@ export default function AddResourcePage({
                 <Select
                   onValueChange={(value) => form.setValue("typeId", value)}
                   defaultValue={form.getValues("typeId")}
-                  disabled={!selectedCategoryId || isSubmitting}
+                  disabled={isSubmitting}
                 >
                   <SelectTrigger>
-                    <SelectValue
-                      placeholder={
-                        selectedCategoryId
-                          ? "Sélectionnez un type"
-                          : "Sélectionnez d'abord une catégorie"
-                      }
-                    />
+                    <SelectValue placeholder={"Sélectionnez un type"} />
                   </SelectTrigger>
                   <SelectContent>
-                    {filteredTypes.map((type) => (
+                    {types.map((type) => (
                       <SelectItem key={type.id} value={type.id}>
                         {type.label}
                       </SelectItem>

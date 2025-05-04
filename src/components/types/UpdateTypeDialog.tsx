@@ -8,31 +8,26 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import TextField from "../custom/TextField";
 import TextAreaField from "../custom/TextAreaField";
-import SelectField from "../fields/SelectField";
 import { toast } from "sonner";
 import { updateType } from "@/lib/services";
-import { Type, Category } from "@prisma/client";
-
+import { Type } from "@prisma/client";
 
 const updateTypeSchema = z.object({
   id: z.string(),
   label: z.string().min(1, "Le nom du type est obligatoire"),
   description: z.string().optional(),
-  categoryId: z.string().min(1, "La catégorie est obligatoire"),
 });
 
 export type UpdateTypeInput = z.infer<typeof updateTypeSchema>;
 
 interface UpdateTypeDialogProps {
   trigger: React.ReactNode;
-  type: Type & { category: Category };
-  categories: Category[];
+  type: Type;
 }
 
 export function UpdateTypeDialog({
   trigger,
   type: typeData,
-  categories,
 }: UpdateTypeDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,7 +45,6 @@ export function UpdateTypeDialog({
       id: typeData.id,
       label: typeData.label,
       description: typeData.description,
-      categoryId: typeData.categoryId,
     },
   });
 
@@ -60,7 +54,6 @@ export function UpdateTypeDialog({
         id: typeData.id,
         label: typeData.label,
         description: typeData.description,
-        categoryId: typeData.categoryId,
       });
     }
   }, [typeData, form]);
@@ -70,7 +63,6 @@ export function UpdateTypeDialog({
       id: typeData.id,
       label: typeData.label,
       description: typeData.description,
-      categoryId: typeData.categoryId,
     });
     setIsSubmitting(false);
   };
@@ -83,7 +75,6 @@ export function UpdateTypeDialog({
       toast?.success("Type mis à jour avec succès");
       handleOpenChange(false);
       // Revalidate the path to refresh the data
-     
     } catch (error) {
       console.error(error);
       toast?.error("Erreur lors de la mise à jour du type");
@@ -91,11 +82,6 @@ export function UpdateTypeDialog({
       setIsSubmitting(false);
     }
   };
-
-  const categoryOptions = categories.map(category => ({
-    value: category.id,
-    label: category.label
-  }));
 
   return (
     <CustomDialog
@@ -118,13 +104,7 @@ export function UpdateTypeDialog({
             label="Description (Optionnelle)"
             placeholder="Description du type"
           />
-       <SelectField
-            control={form.control}
-            name="categoryId"
-            label="Catégorie"
-            placeholder="Sélectionner une catégorie"
-            options={categoryOptions}
-            />
+
           <div className="flex justify-end gap-2 mt-10">
             <Button
               type="button"

@@ -22,6 +22,14 @@ export default function ResourcesTable({
 }: {
   resources: FullResource[];
 }) {
+    const getApiPath = (path: string) => {
+      // Extract the filename from the original path
+      const filename = path.split("/").pop();
+      // Return the API path
+      return `/api/uploads/${filename}`;
+    };
+
+
   return (
     <TableWrapper>
       <Table>

@@ -1,5 +1,5 @@
 {
- "hero": {
+  "hero": {
     "titlePart1": "Préserver",
     "titleHighlight": "le Patrimoine Kabyle",
     "titlePart2": "pour les Générations Futures",
@@ -8,10 +8,26 @@
     "contributeCTA": "Contribuer",
     "imageCaption": "Explorez notre riche patrimoine culturel",
     "stats": [
-      { "value": "1 200+", "label": "Éléments Culturels", "icon": "📚" },
-      { "value": "30+", "label": "Villages Représentés", "icon": "🏡" },
-      { "value": "250+", "label": "Contributeurs", "icon": "👥" },
-      { "value": "5 000+", "label": "Visiteurs Mensuels", "icon": "👁️" }
+      {
+        "value": "1 200+",
+        "label": "Éléments Culturels",
+        "icon": "📚"
+      },
+      {
+        "value": "30+",
+        "label": "Villages Représentés",
+        "icon": "🏡"
+      },
+      {
+        "value": "250+",
+        "label": "Contributeurs",
+        "icon": "👥"
+      },
+      {
+        "value": "5 000+",
+        "label": "Visiteurs Mensuels",
+        "icon": "👁️"
+      }
     ]
   },
   "features": {
@@ -102,40 +118,30 @@
     ]
   },
   "about": {
-      "heroTitle": "À propos",
-      "heroSubtitle": "Trésors Tamazight",
-      "heroDescription": "Un projet passionné de deux étudiants kabyles dédiés à la préservation de notre patrimoine culturel à travers une archive numérique.",
-      
-      "storyTitle": "Notre Histoire",
-      "storyDescription": "Nous sommes deux étudiants de Kabylie, unis par une passion commune pour notre patrimoine culturel. Ayant grandi entourés des riches traditions, musiques et histoires de notre peuple, nous avons réalisé à quel point cet héritage risquait de se perdre. C'est pourquoi nous avons créé Trésors Tamazight – un sanctuaire numérique où l'essence de la culture kabyle peut être préservée et partagée avec le monde.",
-      
-      "teamMember1Name": "Sarah",
-      "teamMember1Role": "Co-fondatrice & Chercheuse culturelle",
-      "teamMember1Description": "Amina est une passionnée d'histoire dédiée à documenter les traditions et histoires kabyles.",
-      
-      "teamMember2Name": "Amine",
-      "teamMember2Role": "Co-fondateur & Responsable technique",
-      "teamMember2Description": "Yanis apporte son expertise technique pour construire une plateforme robuste pour la préservation culturelle.",
-      
-      "missionTitle": "Ce que nous construisons",
-      "missionDescription": "Notre mission est de créer une archive vivante de la culture kabyle, motivée par ces initiatives fondamentales.",
-      
-      "initiative1Title": "Collection multimédia",
-      "initiative1Description": "Rassembler des vidéos, des enregistrements audio et des images pour mettre en valeur les traditions et l'histoire kabyles.",
-      
-      "initiative2Title": "Préservation numérique",
-      "initiative2Description": "Sauvegarder notre patrimoine dans une base de données sécurisée et organisée pour les générations futures.",
-      
-      "initiative3Title": "Contributions communautaires",
-      "initiative3Description": "Inviter les Kabyles du monde entier à partager leurs histoires et artefacts avec nous.",
-      
-      "ctaTitle": "Rejoignez notre mission",
-      "ctaDescription": "Aidez-nous à préserver le patrimoine kabyle en contribuant avec vos histoires, médias, ou simplement en explorant notre base de données.",
-      "contributeButton": "Contribuer maintenant",
-      "exploreButton": "Explorer la base de données"
-    },
-  
-
+    "heroTitle": "À propos",
+    "heroSubtitle": "Trésors Tamazight",
+    "heroDescription": "Un projet passionné de deux étudiants kabyles dédiés à la préservation de notre patrimoine culturel à travers une archive numérique.",
+    "storyTitle": "Notre Histoire",
+    "storyDescription": "Nous sommes deux étudiants de Kabylie, unis par une passion commune pour notre patrimoine culturel. Ayant grandi entourés des riches traditions, musiques et histoires de notre peuple, nous avons réalisé à quel point cet héritage risquait de se perdre. C'est pourquoi nous avons créé Trésors Tamazight – un sanctuaire numérique où l'essence de la culture kabyle peut être préservée et partagée avec le monde.",
+    "teamMember1Name": "Sarah",
+    "teamMember1Role": "Co-fondatrice & Chercheuse culturelle",
+    "teamMember1Description": "Amina est une passionnée d'histoire dédiée à documenter les traditions et histoires kabyles.",
+    "teamMember2Name": "Amine",
+    "teamMember2Role": "Co-fondateur & Responsable technique",
+    "teamMember2Description": "Yanis apporte son expertise technique pour construire une plateforme robuste pour la préservation culturelle.",
+    "missionTitle": "Ce que nous construisons",
+    "missionDescription": "Notre mission est de créer une archive vivante de la culture kabyle, motivée par ces initiatives fondamentales.",
+    "initiative1Title": "Collection multimédia",
+    "initiative1Description": "Rassembler des vidéos, des enregistrements audio et des images pour mettre en valeur les traditions et l'histoire kabyles.",
+    "initiative2Title": "Préservation numérique",
+    "initiative2Description": "Sauvegarder notre patrimoine dans une base de données sécurisée et organisée pour les générations futures.",
+    "initiative3Title": "Contributions communautaires",
+    "initiative3Description": "Inviter les Kabyles du monde entier à partager leurs histoires et artefacts avec nous.",
+    "ctaTitle": "Rejoignez notre mission",
+    "ctaDescription": "Aidez-nous à préserver le patrimoine kabyle en contribuant avec vos histoires, médias, ou simplement en explorant notre base de données.",
+    "contributeButton": "Contribuer maintenant",
+    "exploreButton": "Explorer la base de données"
+  },
   "mediaLibrary": {
     "title": "Bibliothèque Multimédia du Patrimoine Kabyle",
     "description": "Découvrez le riche patrimoine culturel de la Kabylie à travers notre vaste collection de textes, d'enregistrements audio, de vidéos et d'images.",
@@ -162,6 +168,7 @@
     "featured": "À la une",
     "resources": "Ressources",
     "backToLibrary": "Retour à la Bibliothèque",
+    "allResources": "Toutes les Ressources",
     "details": {
       "description": "Description",
       "metadata": "Métadonnées",
@@ -187,7 +194,6 @@
     "description": "Aidez à conserver et à partager la richesse de la culture kabyle en contribuant vos propres ressources à notre bibliothèque numérique.",
     "button": "Contribuer maintenant !"
   },
-
   "contribution": {
     "hero": {
       "title": "Contribuez à",
@@ -283,77 +289,77 @@
     }
   },
   "submissionForm": {
-      "title": "Soumettre un document",
-      "description": "Remplissez ce formulaire pour soumettre votre document pour évaluation.",
-      "fields": {
-        "firstName": {
-          "label": "Prénom",
-          "placeholder": "Votre prénom"
-        },
-        "lastName": {
-          "label": "Nom",
-          "placeholder": "Votre nom de famille"
-        },
-        "email": {
-          "label": "Email",
-          "placeholder": "votre.email@exemple.com"
-        },
-        "phone": {
-          "label": "Téléphone (optionnel)",
-          "placeholder": "Votre numéro de téléphone"
-        },
-        "author": {
-          "label": "Auteur du document",
-          "placeholder": "Nom de l'auteur"
-        },
-        "message": {
-          "label": "Message (optionnel)",
-          "placeholder": "Informations supplémentaires concernant votre soumission"
-        },
-        "document": {
-          "label": "Document"
-        }
+    "title": "Soumettre un document",
+    "description": "Remplissez ce formulaire pour soumettre votre document pour évaluation.",
+    "fields": {
+      "firstName": {
+        "label": "Prénom",
+        "placeholder": "Votre prénom"
       },
-      "buttons": {
-        "cancel": "Annuler",
-        "submit": "Soumettre le document",
-        "submitting": "Envoi en cours..."
+      "lastName": {
+        "label": "Nom",
+        "placeholder": "Votre nom de famille"
       },
-      "validation": {
-        "firstNameRequired": "Le prénom est obligatoire",
-        "lastNameRequired": "Le nom est obligatoire",
-        "emailValid": "L'adresse email doit être valide",
-        "authorRequired": "Le nom de l'auteur est obligatoire",
-        "fileRequired": "Le fichier est obligatoire"
+      "email": {
+        "label": "Email",
+        "placeholder": "votre.email@exemple.com"
       },
-      "notifications": {
-        "success": "Soumission envoyée avec succès",
-        "error": "Erreur lors de l'envoi de la soumission",
-        "genericError": "Une erreur s'est produite"
+      "phone": {
+        "label": "Téléphone (optionnel)",
+        "placeholder": "Votre numéro de téléphone"
+      },
+      "author": {
+        "label": "Auteur du document",
+        "placeholder": "Nom de l'auteur"
+      },
+      "message": {
+        "label": "Message (optionnel)",
+        "placeholder": "Informations supplémentaires concernant votre soumission"
+      },
+      "document": {
+        "label": "Document"
       }
     },
+    "buttons": {
+      "cancel": "Annuler",
+      "submit": "Soumettre le document",
+      "submitting": "Envoi en cours..."
+    },
+    "validation": {
+      "firstNameRequired": "Le prénom est obligatoire",
+      "lastNameRequired": "Le nom est obligatoire",
+      "emailValid": "L'adresse email doit être valide",
+      "authorRequired": "Le nom de l'auteur est obligatoire",
+      "fileRequired": "Le fichier est obligatoire"
+    },
+    "notifications": {
+      "success": "Soumission envoyée avec succès",
+      "error": "Erreur lors de l'envoi de la soumission",
+      "genericError": "Une erreur s'est produite"
+    }
+  },
   "footer": {
-  "logo_1" :"Tamazight",
-  "logo_2" :"Treasures",
-  "tagline": "Préserver et partager le riche patrimoine culturel de la Kabylie pour les générations futures.",
-  "navigation": "Navigation",
-  "navHome": "Accueil",
-  "navAbout": "À Propos",
-  "navDatabase": "Base de Données",
-  "navContribute": "Contribuer",
-  "databaseTitle": "Base de Données",
-  "dbImages": "Images",
-  "dbAudio": "Audio",
-  "dbVideo": "Vidéo",
-  "dbRecent": "Ajouts Récents",
-  "dbText": "Textes",
-  "contactTitle": "Contact",
-  "contactAddress": "Tizi Ouzou, Algérie",
-  "contactEmail": "contact@tamazight-treasures.org",
-  "contactPhone": "+213 XX XXX XXXX",
-  "copyright": "© {year} Tamazight Treasures. Tous droits réservés.",
-  "termsOfService": "Conditions d'Utilisation"
-},
+    "logo_1": "Tamazight",
+    "logo_2": "Treasures",
+    "tagline": "Préserver et partager le riche patrimoine culturel de la Kabylie pour les générations futures.",
+    "navigation": "Navigation",
+    "navHome": "Accueil",
+    "navAbout": "À Propos",
+    "navDatabase": "Base de Données",
+    "navContribute": "Contribuer",
+    "databaseTitle": "Base de Données",
+    "dbImages": "Images",
+    "dbAudio": "Audio",
+    "dbVideo": "Vidéo",
+    "dbRecent": "Ajouts Récents",
+    "dbText": "Textes",
+    "contactTitle": "Contact",
+    "contactAddress": "Tizi Ouzou, Algérie",
+    "contactEmail": "contact@tamazight-treasures.org",
+    "contactPhone": "+213 XX XXX XXXX",
+    "copyright": "© {year} Tamazight Treasures. Tous droits réservés.",
+    "termsOfService": "Conditions d'Utilisation"
+  },
   "contact": {
     "hero": {
       "title": "Contactez",
@@ -430,53 +436,53 @@
     }
   },
   "termsOfService": {
-  "heroTitle": "Conditions",
-  "heroSubtitle": "d'Utilisation",
-  "heroDescription": "Veuillez lire attentivement ces conditions avant d'utiliser notre plateforme.",
-  "lastUpdated": "Dernière mise à jour: 24 mars 2025",
-  "header": "Conditions d'Utilisation",
-  "section1Title": "1. Introduction",
-  "section1Text": "Bienvenue sur Tamazight Treasures (\"nous\", \"notre\"), une plateforme dédiée à la préservation du patrimoine culturel kabyle. En accédant ou en utilisant notre site web et nos services (collectivement, le \"Service\"), vous acceptez d'être lié par ces Conditions d'Utilisation (\"Conditions\"). Si vous n'êtes pas d'accord, veuillez ne pas utiliser notre Service.",
-  "section2Title": "2. Éligibilité",
-  "section2Text": "Vous devez avoir au moins 13 ans pour utiliser notre Service. En utilisant le Service, vous déclarez et garantissez que vous remplissez cette condition d'âge et que vous avez la capacité juridique de conclure ces Conditions.",
-  "section3Title": "3. Contenu Utilisateur",
-  "section3Text": "Vous pouvez soumettre du contenu tel que des vidéos, de l'audio, des images ou des documents (\"Contenu Utilisateur\") à notre Service. En soumettant du Contenu Utilisateur, vous nous accordez une licence non exclusive, mondiale et libre de redevance pour utiliser, reproduire, modifier et distribuer ce contenu uniquement dans le but d'exploiter et de promouvoir le Service. Vous déclarez que vous possédez ou disposez des droits nécessaires pour soumettre ce contenu et qu'il ne viole aucune loi ni aucun droit de tiers.",
-  "section4Title": "4. Utilisation Acceptable",
-  "section4Text": "Vous acceptez de ne pas utiliser le Service pour :",
-  "section4ListItem1": "Télécharger du contenu illégal, nuisible, offensant ou portant atteinte aux droits d'autrui.",
-  "section4ListItem2": "Vous engager dans toute activité qui perturbe ou interfère avec le Service.",
-  "section4ListItem3": "Tenter d'accéder sans autorisation à nos systèmes ou données.",
-  "section5Title": "5. Propriété Intellectuelle",
-  "section5Text": "Tout le contenu et les matériaux du Service, à l'exclusion du Contenu Utilisateur, appartiennent à Tamazight Treasures ou à nos concédants et sont protégés par le droit d'auteur, les marques et d'autres lois. Vous ne pouvez pas reproduire, distribuer ou créer des œuvres dérivées de notre contenu sans autorisation écrite préalable.",
-  "section6Title": "6. Résiliation",
-  "section6Text": "Nous nous réservons le droit de suspendre ou de résilier votre accès au Service à notre discrétion, avec ou sans préavis, pour toute violation de ces Conditions ou pour toute autre raison que nous jugeons appropriée.",
-  "section7Title": "7. Exclusion de Garanties",
-  "section7Text": "Le Service est fourni \"tel quel\" et \"selon disponibilité\" sans garanties d'aucune sorte, expresses ou implicites, y compris, mais sans s'y limiter, l'adéquation à un usage particulier ou l'absence de contrefaçon.",
-  "section8Title": "8. Limitation de Responsabilité",
-  "section8Text": "Dans toute la mesure permise par la loi, Tamazight Treasures ne sera pas responsable des dommages indirects, accessoires ou consécutifs résultant de votre utilisation du Service.",
-  "section9Title": "9. Modifications des Conditions",
-  "section9Text": "Nous pouvons mettre à jour ces Conditions de temps à autre. La version mise à jour sera publiée sur cette page avec une date de \"Dernière mise à jour\" révisée. Votre utilisation continue du Service après ces modifications constitue l'acceptation des nouvelles Conditions.",
-  "section10Title": "10. Loi Applicable",
-  "section10Text": "Ces Conditions seront régies et interprétées conformément aux lois de l'Algérie, sans égard à ses principes de conflit de lois.",
-  "section11Title": "11. Nous Contacter",
-  "section11Text": "Si vous avez des questions concernant ces Conditions, veuillez nous contacter à",
-  "contactEmail": "contact@tamazight-treasures.org"
-},
-"navbar": {
-  "logo_1" :"Tamazight",
-    "logo_2" :"Treasures",
-  "home": "Accueil",
-  "about": "À Propos",
-  "database": "Base de Données",
-  "contribute": "Contribuer",
-  "contact": "Contactez-nous",
-  "language": "Langue"
-},
-"submission": {
-  "success": {
-    "title": "Soumission envoyée avec succès!",
-    "message": "Merci pour votre soumission. Nous l'examinerons dans les plus brefs délais. Vous recevrez une notification par email dès que votre document aura été traité.",
-    "buttonText": "Retour à l'accueil"
+    "heroTitle": "Conditions",
+    "heroSubtitle": "d'Utilisation",
+    "heroDescription": "Veuillez lire attentivement ces conditions avant d'utiliser notre plateforme.",
+    "lastUpdated": "Dernière mise à jour: 24 mars 2025",
+    "header": "Conditions d'Utilisation",
+    "section1Title": "1. Introduction",
+    "section1Text": "Bienvenue sur Tamazight Treasures (\"nous\", \"notre\"), une plateforme dédiée à la préservation du patrimoine culturel kabyle. En accédant ou en utilisant notre site web et nos services (collectivement, le \"Service\"), vous acceptez d'être lié par ces Conditions d'Utilisation (\"Conditions\"). Si vous n'êtes pas d'accord, veuillez ne pas utiliser notre Service.",
+    "section2Title": "2. Éligibilité",
+    "section2Text": "Vous devez avoir au moins 13 ans pour utiliser notre Service. En utilisant le Service, vous déclarez et garantissez que vous remplissez cette condition d'âge et que vous avez la capacité juridique de conclure ces Conditions.",
+    "section3Title": "3. Contenu Utilisateur",
+    "section3Text": "Vous pouvez soumettre du contenu tel que des vidéos, de l'audio, des images ou des documents (\"Contenu Utilisateur\") à notre Service. En soumettant du Contenu Utilisateur, vous nous accordez une licence non exclusive, mondiale et libre de redevance pour utiliser, reproduire, modifier et distribuer ce contenu uniquement dans le but d'exploiter et de promouvoir le Service. Vous déclarez que vous possédez ou disposez des droits nécessaires pour soumettre ce contenu et qu'il ne viole aucune loi ni aucun droit de tiers.",
+    "section4Title": "4. Utilisation Acceptable",
+    "section4Text": "Vous acceptez de ne pas utiliser le Service pour :",
+    "section4ListItem1": "Télécharger du contenu illégal, nuisible, offensant ou portant atteinte aux droits d'autrui.",
+    "section4ListItem2": "Vous engager dans toute activité qui perturbe ou interfère avec le Service.",
+    "section4ListItem3": "Tenter d'accéder sans autorisation à nos systèmes ou données.",
+    "section5Title": "5. Propriété Intellectuelle",
+    "section5Text": "Tout le contenu et les matériaux du Service, à l'exclusion du Contenu Utilisateur, appartiennent à Tamazight Treasures ou à nos concédants et sont protégés par le droit d'auteur, les marques et d'autres lois. Vous ne pouvez pas reproduire, distribuer ou créer des œuvres dérivées de notre contenu sans autorisation écrite préalable.",
+    "section6Title": "6. Résiliation",
+    "section6Text": "Nous nous réservons le droit de suspendre ou de résilier votre accès au Service à notre discrétion, avec ou sans préavis, pour toute violation de ces Conditions ou pour toute autre raison que nous jugeons appropriée.",
+    "section7Title": "7. Exclusion de Garanties",
+    "section7Text": "Le Service est fourni \"tel quel\" et \"selon disponibilité\" sans garanties d'aucune sorte, expresses ou implicites, y compris, mais sans s'y limiter, l'adéquation à un usage particulier ou l'absence de contrefaçon.",
+    "section8Title": "8. Limitation de Responsabilité",
+    "section8Text": "Dans toute la mesure permise par la loi, Tamazight Treasures ne sera pas responsable des dommages indirects, accessoires ou consécutifs résultant de votre utilisation du Service.",
+    "section9Title": "9. Modifications des Conditions",
+    "section9Text": "Nous pouvons mettre à jour ces Conditions de temps à autre. La version mise à jour sera publiée sur cette page avec une date de \"Dernière mise à jour\" révisée. Votre utilisation continue du Service après ces modifications constitue l'acceptation des nouvelles Conditions.",
+    "section10Title": "10. Loi Applicable",
+    "section10Text": "Ces Conditions seront régies et interprétées conformément aux lois de l'Algérie, sans égard à ses principes de conflit de lois.",
+    "section11Title": "11. Nous Contacter",
+    "section11Text": "Si vous avez des questions concernant ces Conditions, veuillez nous contacter à",
+    "contactEmail": "contact@tamazight-treasures.org"
+  },
+  "navbar": {
+    "logo_1": "Tamazight",
+    "logo_2": "Treasures",
+    "home": "Accueil",
+    "about": "À Propos",
+    "database": "Base de Données",
+    "contribute": "Contribuer",
+    "contact": "Contactez-nous",
+    "language": "Langue"
+  },
+  "submission": {
+    "success": {
+      "title": "Soumission envoyée avec succès!",
+      "message": "Merci pour votre soumission. Nous l'examinerons dans les plus brefs délais. Vous recevrez une notification par email dès que votre document aura été traité.",
+      "buttonText": "Retour à l'accueil"
+    }
   }
-}
 }

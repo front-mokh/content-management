@@ -8,10 +8,26 @@
     "contributeCTA": "Contribute",
     "imageCaption": "Explore our rich cultural heritage",
     "stats": [
-      { "value": "1,200+", "label": "Cultural Items", "icon": "📚" },
-      { "value": "30+", "label": "Villages Represented", "icon": "🏡" },
-      { "value": "250+", "label": "Contributors", "icon": "👥" },
-      { "value": "5,000+", "label": "Monthly Visitors", "icon": "👁️" }
+      {
+        "value": "1,200+",
+        "label": "Cultural Items",
+        "icon": "📚"
+      },
+      {
+        "value": "30+",
+        "label": "Villages Represented",
+        "icon": "🏡"
+      },
+      {
+        "value": "250+",
+        "label": "Contributors",
+        "icon": "👥"
+      },
+      {
+        "value": "5,000+",
+        "label": "Monthly Visitors",
+        "icon": "👁️"
+      }
     ]
   },
   "features": {
@@ -101,41 +117,31 @@
       }
     ]
   },
-
   "about": {
     "heroTitle": "About",
     "heroSubtitle": "Tamazight Treasures",
     "heroDescription": "A passion project by two Kabyle students dedicated to preserving our cultural heritage through a digital archive.",
-    
     "storyTitle": "Our Story",
     "storyDescription": "We are two students from Kabylie, united by a shared passion for our cultural heritage. Growing up surrounded by the rich traditions, music, and stories of our people, we realized how much of this legacy was at risk of being lost. That's why we created Tamazight Treasures – a digital sanctuary where the essence of Kabyle culture can be preserved and shared with the world.",
-    
     "teamMember1Name": "Sarah",
     "teamMember1Role": "Co-Founder & Cultural Researcher",
     "teamMember1Description": "Amina is a history enthusiast dedicated to documenting Kabyle traditions and stories.",
-    
     "teamMember2Name": "Amine",
     "teamMember2Role": "Co-Founder & Tech Lead",
     "teamMember2Description": "Yanis brings technical expertise to build a robust platform for cultural preservation.",
-    
     "missionTitle": "What We're Building",
     "missionDescription": "Our mission is to create a living archive of Kabyle culture, driven by these core initiatives.",
-    
     "initiative1Title": "Multimedia Collection",
     "initiative1Description": "Gathering videos, audio recordings, and images to showcase Kabyle traditions and history.",
-    
     "initiative2Title": "Digital Preservation",
     "initiative2Description": "Safeguarding our heritage in a secure, organized database for future generations.",
-    
     "initiative3Title": "Community Contributions",
     "initiative3Description": "Inviting Kabyles everywhere to share their stories and artifacts with us.",
-    
     "ctaTitle": "Join Our Mission",
     "ctaDescription": "Help us preserve Kabyle heritage by contributing your stories, media, or simply exploring our database.",
     "contributeButton": "Contribute Now",
     "exploreButton": "Explore Database"
   },
-
   "mediaLibrary": {
     "title": "Kabyle Heritage Media Library",
     "description": "Discover the rich cultural heritage of Kabylia through our extensive collection of texts, audio recordings, videos, and images.",
@@ -162,6 +168,7 @@
     "featured": "Featured",
     "resources": "Resources",
     "backToLibrary": "Back to Media Library",
+    "allResources": "All Resources",
     "details": {
       "description": "Description",
       "metadata": "Metadata",
@@ -187,7 +194,6 @@
     "description": "Help preserve and share the richness of Kabyle culture by contributing your own resources to our digital library.",
     "button": "Contribute Now !"
   },
- 
   "contribution": {
     "hero": {
       "title": "Contribute to",
@@ -235,76 +241,76 @@
       "title2": "Submit Your Document",
       "description": "Fill out this form to submit your document for evaluation.",
       "fields": {
-      "firstName": {
-        "label": "First Name",
-        "placeholder": "Your first name"
+        "firstName": {
+          "label": "First Name",
+          "placeholder": "Your first name"
+        },
+        "lastName": {
+          "label": "Last Name",
+          "placeholder": "Your last name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "your.email@example.com"
+        },
+        "phone": {
+          "label": "Phone (optional)",
+          "placeholder": "Your phone number"
+        },
+        "author": {
+          "label": "Document Author",
+          "placeholder": "Author's name"
+        },
+        "message": {
+          "label": "Message (optional)",
+          "placeholder": "Additional information about your submission"
+        },
+        "document": {
+          "label": "Document"
+        }
       },
-      "lastName": {
-        "label": "Last Name",
-        "placeholder": "Your last name"
+      "buttons": {
+        "cancel": "Cancel",
+        "submit": "Submit Document",
+        "submitting": "Submitting..."
       },
-      "email": {
-        "label": "Email",
-        "placeholder": "your.email@example.com"
+      "validation": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "emailValid": "Email address must be valid",
+        "authorRequired": "Author name is required",
+        "fileRequired": "File is required"
       },
-      "phone": {
-        "label": "Phone (optional)",
-        "placeholder": "Your phone number"
-      },
-      "author": {
-        "label": "Document Author",
-        "placeholder": "Author's name"
-      },
-      "message": {
-        "label": "Message (optional)",
-        "placeholder": "Additional information about your submission"
-      },
-      "document": {
-        "label": "Document"
+      "notifications": {
+        "success": "Submission sent successfully",
+        "error": "Error sending submission",
+        "genericError": "An error occurred"
       }
-    },
-    "buttons": {
-      "cancel": "Cancel",
-      "submit": "Submit Document",
-      "submitting": "Submitting..."
-    },
-    "validation": {
-      "firstNameRequired": "First name is required",
-      "lastNameRequired": "Last name is required",
-      "emailValid": "Email address must be valid",
-      "authorRequired": "Author name is required",
-      "fileRequired": "File is required"
-    },
-    "notifications": {
-      "success": "Submission sent successfully",
-      "error": "Error sending submission",
-      "genericError": "An error occurred"
-    }
     }
   },
   "footer": {
-    "logo_1" :"Tamazight",
-    "logo_2" :"Treasures",
-  "tagline": "Preserving and sharing the rich cultural heritage of Kabylie for future generations.",
-  "navigation": "Navigation",
-  "navHome": "Home",
-  "navAbout": "About",
-  "navDatabase": "Database",
-  "navContribute": "Contribute",
-  "databaseTitle": "Database",
-  "dbImages": "Images",
-  "dbAudio": "Audio",
-  "dbVideo": "Video",
-  "dbRecent": "Recent Additions",
-  "dbText": "Texts",
-  "contactTitle": "Contact",
-  "contactAddress": "Tizi Ouzou, Algeria",
-  "contactEmail": "contact@tamazight-treasures.org",
-  "contactPhone": "+213 XX XXX XXXX",
-  "copyright": "© {year} Tamazight Treasures. All rights reserved.",
-  "termsOfService": "Terms of Service"
-},
-    "contact": {
+    "logo_1": "Tamazight",
+    "logo_2": "Treasures",
+    "tagline": "Preserving and sharing the rich cultural heritage of Kabylie for future generations.",
+    "navigation": "Navigation",
+    "navHome": "Home",
+    "navAbout": "About",
+    "navDatabase": "Database",
+    "navContribute": "Contribute",
+    "databaseTitle": "Database",
+    "dbImages": "Images",
+    "dbAudio": "Audio",
+    "dbVideo": "Video",
+    "dbRecent": "Recent Additions",
+    "dbText": "Texts",
+    "contactTitle": "Contact",
+    "contactAddress": "Tizi Ouzou, Algeria",
+    "contactEmail": "contact@tamazight-treasures.org",
+    "contactPhone": "+213 XX XXX XXXX",
+    "copyright": "© {year} Tamazight Treasures. All rights reserved.",
+    "termsOfService": "Terms of Service"
+  },
+  "contact": {
     "hero": {
       "title": "Contact",
       "titleHighlight": "Us",
@@ -380,52 +386,53 @@
     }
   },
   "termsOfService": {
-  "heroTitle": "Terms of",
-  "heroSubtitle": "Service",
-  "heroDescription": "Please read these terms carefully before using our platform.",
-  "lastUpdated": "Last Updated: March 24, 2025",
-  "header": "Terms of Service",
-  "section1Title": "1. Introduction",
-  "section1Text": "Welcome to Tamazight Treasures (\"we,\" \"us,\" or \"our\"), a platform dedicated to preserving Kabyle cultural heritage. By accessing or using our website and services (collectively, the \"Service\"), you agree to be bound by these Terms of Service (\"Terms\"). If you do not agree, please do not use our Service.",
-  "section2Title": "2. Eligibility",
-  "section2Text": "You must be at least 13 years old to use our Service. By using the Service, you represent and warrant that you meet this age requirement and have the legal capacity to enter into these Terms.",
-  "section3Title": "3. User Content",
-  "section3Text": "You may submit content such as videos, audio, images, or documents (\"User Content\") to our Service. By submitting User Content, you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, modify, and distribute it solely for the purpose of operating and promoting the Service. You represent that you own or have the necessary rights to submit such content and that it does not violate any laws or third-party rights.",
-  "section4Title": "4. Acceptable Use",
-  "section4Text": "You agree not to use the Service to:",
-  "section4ListItem1": "Upload content that is illegal, harmful, offensive, or infringes on others' rights.",
-  "section4ListItem2": "Engage in any activity that disrupts or interferes with the Service.",
-  "section4ListItem3": "Attempt to gain unauthorized access to our systems or data.",
-  "section5Title": "5. Intellectual Property",
-  "section5Text": "All content and materials on the Service, excluding User Content, are owned by Tamazight Treasures or our licensors and are protected by copyright, trademark, and other laws. You may not reproduce, distribute, or create derivative works from our content without prior written permission.",
-  "section6Title": "6. Termination",
-  "section6Text": "We reserve the right to suspend or terminate your access to the Service at our discretion, with or without notice, for any violation of these Terms or for any other reason we deem appropriate.",
-  "section7Title": "7. Disclaimer of Warranties",
-  "section7Text": "The Service is provided \"as is\" and \"as available\" without warranties of any kind, express or implied, including but not limited to fitness for a particular purpose or non-infringement.",
-  "section8Title": "8. Limitation of Liability",
-  "section8Text": "To the fullest extent permitted by law, Tamazight Treasures shall not be liable for any indirect, incidental, or consequential damages arising from your use of the Service.",
-  "section9Title": "9. Changes to Terms",
-  "section9Text": "We may update these Terms from time to time. The updated version will be posted on this page with a revised \"Last Updated\" date. Your continued use of the Service after such changes constitutes acceptance of the new Terms.",
-  "section10Title": "10. Governing Law",
-  "section10Text": "These Terms shall be governed by and construed in accordance with the laws of Algeria, without regard to its conflict of law principles.",
-  "section11Title": "11. Contact Us",
-  "section11Text": "If you have any questions about these Terms, please contact us at",
-  "contactEmail": "contact@tamazight-treasures.org"
-},
-"navbar": {
-  "logo_1" :"Tamazight",
-    "logo_2" :"Treasures",
-  "home": "Home",
-  "about": "About",
-  "database": "Database",
-  "contribute": "Contribute",
-  "contact": "Contact Us",
-  "language": "Language"
-},
-"submission": {
-  "success": {
-    "title": "Submission sent successfully!",
-    "message": "Thank you for your submission. We will review it as soon as possible. You will receive an email notification once your document has been processed.",
-    "buttonText": "Return to home"
-  }}
+    "heroTitle": "Terms of",
+    "heroSubtitle": "Service",
+    "heroDescription": "Please read these terms carefully before using our platform.",
+    "lastUpdated": "Last Updated: March 24, 2025",
+    "header": "Terms of Service",
+    "section1Title": "1. Introduction",
+    "section1Text": "Welcome to Tamazight Treasures (\"we,\" \"us,\" or \"our\"), a platform dedicated to preserving Kabyle cultural heritage. By accessing or using our website and services (collectively, the \"Service\"), you agree to be bound by these Terms of Service (\"Terms\"). If you do not agree, please do not use our Service.",
+    "section2Title": "2. Eligibility",
+    "section2Text": "You must be at least 13 years old to use our Service. By using the Service, you represent and warrant that you meet this age requirement and have the legal capacity to enter into these Terms.",
+    "section3Title": "3. User Content",
+    "section3Text": "You may submit content such as videos, audio, images, or documents (\"User Content\") to our Service. By submitting User Content, you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, modify, and distribute it solely for the purpose of operating and promoting the Service. You represent that you own or have the necessary rights to submit such content and that it does not violate any laws or third-party rights.",
+    "section4Title": "4. Acceptable Use",
+    "section4Text": "You agree not to use the Service to:",
+    "section4ListItem1": "Upload content that is illegal, harmful, offensive, or infringes on others' rights.",
+    "section4ListItem2": "Engage in any activity that disrupts or interferes with the Service.",
+    "section4ListItem3": "Attempt to gain unauthorized access to our systems or data.",
+    "section5Title": "5. Intellectual Property",
+    "section5Text": "All content and materials on the Service, excluding User Content, are owned by Tamazight Treasures or our licensors and are protected by copyright, trademark, and other laws. You may not reproduce, distribute, or create derivative works from our content without prior written permission.",
+    "section6Title": "6. Termination",
+    "section6Text": "We reserve the right to suspend or terminate your access to the Service at our discretion, with or without notice, for any violation of these Terms or for any other reason we deem appropriate.",
+    "section7Title": "7. Disclaimer of Warranties",
+    "section7Text": "The Service is provided \"as is\" and \"as available\" without warranties of any kind, express or implied, including but not limited to fitness for a particular purpose or non-infringement.",
+    "section8Title": "8. Limitation of Liability",
+    "section8Text": "To the fullest extent permitted by law, Tamazight Treasures shall not be liable for any indirect, incidental, or consequential damages arising from your use of the Service.",
+    "section9Title": "9. Changes to Terms",
+    "section9Text": "We may update these Terms from time to time. The updated version will be posted on this page with a revised \"Last Updated\" date. Your continued use of the Service after such changes constitutes acceptance of the new Terms.",
+    "section10Title": "10. Governing Law",
+    "section10Text": "These Terms shall be governed by and construed in accordance with the laws of Algeria, without regard to its conflict of law principles.",
+    "section11Title": "11. Contact Us",
+    "section11Text": "If you have any questions about these Terms, please contact us at",
+    "contactEmail": "contact@tamazight-treasures.org"
+  },
+  "navbar": {
+    "logo_1": "Tamazight",
+    "logo_2": "Treasures",
+    "home": "Home",
+    "about": "About",
+    "database": "Database",
+    "contribute": "Contribute",
+    "contact": "Contact Us",
+    "language": "Language"
+  },
+  "submission": {
+    "success": {
+      "title": "Submission sent successfully!",
+      "message": "Thank you for your submission. We will review it as soon as possible. You will receive an email notification once your document has been processed.",
+      "buttonText": "Return to home"
+    }
+  }
 }

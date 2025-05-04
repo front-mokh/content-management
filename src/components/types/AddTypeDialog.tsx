@@ -9,21 +9,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import TextField from "../custom/TextField";
 import TextAreaField from "../custom/TextAreaField";
-import SelectField from "../fields/SelectField";
 import { toast } from "sonner";
 import { createType } from "@/lib/services";
-import { Category } from "@prisma/client";
-
 
 const addTypeSchema = z.object({
   label: z.string().min(1, "Le nom du type est obligatoire"),
   description: z.string().optional(),
-  categoryId: z.string().min(1, "La catégorie est obligatoire"),
 });
 
 export type CreateTypeInput = z.infer<typeof addTypeSchema>;
 
-export function AddTypeDialog({ categories }: { categories: Category[] }) {
+export function AddTypeDialog() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -39,7 +35,6 @@ export function AddTypeDialog({ categories }: { categories: Category[] }) {
     defaultValues: {
       label: "",
       description: "",
-      categoryId: "",
     },
   });
 
@@ -47,7 +42,6 @@ export function AddTypeDialog({ categories }: { categories: Category[] }) {
     form.reset({
       label: "",
       description: "",
-      categoryId: "",
     });
     setIsSubmitting(false);
   };
@@ -59,7 +53,6 @@ export function AddTypeDialog({ categories }: { categories: Category[] }) {
       toast?.success("Type ajouté avec succès");
       handleOpenChange(false);
       // Revalidate the path to refresh the data
-    
     } catch (error) {
       console.error(error);
       toast?.error("Erreur lors de l'ajout du type");
@@ -67,11 +60,6 @@ export function AddTypeDialog({ categories }: { categories: Category[] }) {
       setIsSubmitting(false);
     }
   };
-
-  const categoryOptions = categories.map(category => ({
-    value: category.id,
-    label: category.label
-  }));
 
   return (
     <CustomDialog
@@ -94,13 +82,7 @@ export function AddTypeDialog({ categories }: { categories: Category[] }) {
             label="Description (Optionnelle)"
             placeholder="Description du type"
           />
-       <SelectField
-            control={form.control}
-            name="categoryId"
-            label="Catégorie"
-            placeholder="Sélectionner une catégorie"
-            options={categoryOptions}
-            />
+
           <div className="flex justify-end gap-2 mt-10">
             <Button
               type="button"

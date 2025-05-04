@@ -13,6 +13,7 @@ import TextAreaField from "./TextAreaField";
 import { toast } from "sonner";
 import { updateCategoryWithThumbnail } from "@/lib/services";
 import { Category } from "@prisma/client";
+import { FileUpload } from "./FileUpload";
 
 const updateCategorySchema = z.object({
   label: z.string().min(1, "Le nom de la catégorie est obligatoire"),
@@ -75,18 +76,18 @@ export function UpdateCategoryDialog({
     setIsSubmitting(false);
   };
 
-  // const handleFileSelect = (file: File) => {
-  //   setSelectedFile(file);
-  //   setShouldRemoveThumbnail(false);
-  //   // Create a temporary URL to display the selected file
-  //   setThumbnailToDisplay(URL.createObjectURL(file));
-  // };
+  const handleFileSelect = (file: File) => {
+    setSelectedFile(file);
+    setShouldRemoveThumbnail(false);
+    // Create a temporary URL to display the selected file
+    setThumbnailToDisplay(URL.createObjectURL(file));
+  };
 
-  // const handleFileRemove = () => {
-  //   setSelectedFile(null);
-  //   setThumbnailToDisplay(null);
-  //   setShouldRemoveThumbnail(true);
-  // };
+  const handleFileRemove = () => {
+    setSelectedFile(null);
+    setThumbnailToDisplay(null);
+    setShouldRemoveThumbnail(true);
+  };
 
   const onSubmit = async (values: UpdateCategoryInput) => {
     setIsSubmitting(true);
@@ -137,7 +138,7 @@ export function UpdateCategoryDialog({
             placeholder="Description de la catégorie"
           />
 
-          {/* <div className="space-y-2">
+          <div className="space-y-2">
             <label className="text-sm font-medium">Image de catégorie</label>
 
             {thumbnailToDisplay && !shouldRemoveThumbnail ? (
@@ -173,7 +174,7 @@ export function UpdateCategoryDialog({
             <p className="text-xs text-gray-500">
               L&apos;image sera utilisée comme miniature pour cette catégorie
             </p>
-          </div> */}
+          </div>
 
           <div className="flex justify-end gap-2 mt-10">
             <Button

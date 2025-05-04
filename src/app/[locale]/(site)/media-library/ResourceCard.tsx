@@ -31,6 +31,54 @@ const getApiPath = (path: string) => {
   return `/api/uploads/${filename}`;
 };
 
+// Helper function to normalize type labels for consistent matching
+const normalizeTypeLabel = (typeLabel: string) => {
+  const label = typeLabel.toLowerCase().trim();
+
+  // Image variations
+  if (
+    label.includes("imag") ||
+    label === "photo" ||
+    label === "photos" ||
+    label === "image" ||
+    label === "images"
+  ) {
+    return "image";
+  }
+
+  // Video variations
+  if (label.includes("vid") || label === "film" || label === "films") {
+    return "video";
+  }
+
+  // Audio variations
+  if (
+    label.includes("audio") ||
+    label.includes("son") ||
+    label === "musique" ||
+    label === "music" ||
+    label === "mp3" ||
+    label === "song" ||
+    label === "sound"
+  ) {
+    return "audio";
+  }
+
+  // Text/Document variations
+  if (
+    label.includes("text") ||
+    label.includes("document") ||
+    label.includes("doc") ||
+    label.includes("file") ||
+    label.includes("fichier") ||
+    label.includes("texte")
+  ) {
+    return "text";
+  }
+
+  return "default";
+};
+
 interface ResourceCardProps {
   resource: FullResource;
 }
@@ -47,26 +95,27 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const getCategoryColors = (category: string) => {
-    const normalizedCategory = category.toLowerCase();
+  const getTypeColors = (typeLabel: string) => {
+    const normalizedType = normalizeTypeLabel(typeLabel);
     return (
-      CATEGORY_COLORS[normalizedCategory as CategoryColorIndex] ||
+      CATEGORY_COLORS[normalizedType as CategoryColorIndex] ||
       CATEGORY_COLORS.default
     );
   };
 
-  // Helper function to get category icon
-  const getCategoryIcon = () => {
-    const category = resource.category.label.toLowerCase();
+  // Helper function to get type icon
+  const getTypeIcon = () => {
+    const normalizedType = normalizeTypeLabel(resource.type.label);
     const iconMap = {
-      images: ImageIcon,
-      vidéos: Film,
+      image: ImageIcon,
+      video: Film,
       audio: Music,
-      texte: FileText,
+      text: FileText,
       default: FileText,
     };
 
-    const Icon = iconMap[category as CategoryColorIndex] || iconMap.default;
+    const Icon =
+      iconMap[normalizedType as CategoryColorIndex] || iconMap.default;
     return <Icon className="h-5 w-5" />;
   };
 
@@ -106,7 +155,7 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
 
   useEffect(() => {
     resource.path = resource.path ? getApiPath(resource.path) : null;
-    const isVideo = resource.category.label.toLowerCase() === "vidéos";
+    const isVideo = normalizeTypeLabel(resource.type.label) === "video";
 
     if (isVideo && resource.path && !videoThumbnail) {
       const video = document.createElement("video");
@@ -152,11 +201,11 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
         video.src = "";
       };
     }
-  }, [resource.category.label, resource.path, videoThumbnail]);
+  }, [resource.type.label, resource.path, videoThumbnail]);
 
-  // Audio duration extraction (unchanged)
+  // Audio duration extraction
   useEffect(() => {
-    const isAudio = resource.category.label.toLowerCase() === "audio";
+    const isAudio = normalizeTypeLabel(resource.type.label) === "audio";
 
     if (isAudio && resource.path && !audioDuration) {
       const audio = document.createElement("audio");
@@ -177,16 +226,16 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
         audio.src = "";
       };
     }
-  }, [resource.category.label, resource.path, audioDuration]);
+  }, [resource.type.label, resource.path, audioDuration]);
 
   // Render preview content
   const renderPreview = () => {
-    const category = resource.category.label.toLowerCase();
-    const colors = getCategoryColors(category);
+    const normalizedType = normalizeTypeLabel(resource.type.label);
+    const colors = getTypeColors(resource.type.label);
     resource.path = resource.path ? getApiPath(resource.path) : null;
 
-    switch (category) {
-      case "images":
+    switch (normalizedType) {
+      case "image":
         return (
           <div className="border aspect-video rounded-md flex items-center justify-center text-white p-0 relative overflow-hidden">
             {resource.path ? (
@@ -208,13 +257,13 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
           </div>
         );
 
-      case "vidéos":
+      case "video":
         return (
           <div className="border aspect-video rounded-md flex items-center justify-center text-white relative overflow-hidden">
             {resource.path ? (
               <div className="w-full h-full relative">
                 <Image
-                  src={videoThumbnail || resource.path}
+                  src={videoThumbnail || "/api/placeholder/400/320"}
                   alt={resource.title}
                   layout="fill"
                   objectFit="cover"
@@ -272,11 +321,11 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
           </div>
         );
 
-      case "texte":
+      case "text":
         const fileExtensionStyle = getFileExtensionStyle();
         return (
           <div
-            className={`border aspect-video bg-gradient-to-tl ${colors.gradient} rounded-md flex items-center justify-center p-2 relative`}
+            className={`border aspect-video bg-gradient-to-tl from-website-secondary/90 to-website-secondary/90 rounded-md flex items-center justify-center p-2 relative`}
           >
             <Folder className="h-12 w-12 text-website-accent-1/70 mr-2" />
             <p className="text-5xl text-website-accent-1/70 font-bold">
@@ -296,7 +345,7 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
     }
   };
 
-  const colors = getCategoryColors(resource.category.label);
+  const colors = getTypeColors(resource.type.label);
 
   return (
     <Link href={resourceUrl}>
@@ -314,7 +363,7 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
               >
                 {resource.title}
               </h3>
-              <div className={`${colors.icon}`}>{getCategoryIcon()}</div>
+              <div className={`${colors.icon}`}>{getTypeIcon()}</div>
             </div>
 
             <p
@@ -326,7 +375,7 @@ export default function ResourceCard({ resource }: ResourceCardProps) {
 
             <div className="flex items-center justify-between">
               <Badge className={`${colors.badge} text-xs`}>
-                {resource.type.label}
+                {resource.category.label}
               </Badge>
 
               {resource.author && (

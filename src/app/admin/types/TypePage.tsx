@@ -11,27 +11,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useTypeFiltering } from "@/hooks/use-type-filtering";
-import { Type, Category } from "@prisma/client";
+import { Type } from "@prisma/client";
 import React, { useState } from "react";
 import TypesTable from "./TypeTable";
 import { Button } from "@/components/ui/button";
 import { Filter, FilterX, RefreshCw } from "lucide-react";
 import TypeFilters from "@/components/types/TypeFilters";
 
-export default function TypesPage({
-  types,
-  categories,
-}: {
-  types: (Type & { category: Category })[];
-  categories: Category[];
-}) {
+export default function TypesPage({ types }: { types: Type[] }) {
   const {
     pageItems,
     currentPage,
     totalPages,
     handlePageChange,
-    filters,
-    setFilter,
+
     resetFilters,
     searchTerm,
     setSearchTerm,
@@ -40,7 +33,7 @@ export default function TypesPage({
   } = useTypeFiltering(types, 8);
 
   const [showFilters, setShowFilters] = useState(false);
-  
+
   const handleShowFilters = () => {
     setShowFilters(!showFilters);
     if (showFilters) resetFilters();
@@ -71,15 +64,12 @@ export default function TypesPage({
               {showFilters ? <FilterX size={16} /> : <Filter size={16} />}
               {showFilters ? "Masquer les filtres" : "Afficher les filtres"}
             </Button>
-            <AddTypeDialog categories={categories} />
+            <AddTypeDialog />
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
           {showFilters && (
             <TypeFilters
-              filters={filters}
-              setFilter={setFilter}
-              categories={categories}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
             />
@@ -91,7 +81,7 @@ export default function TypesPage({
               {filteredItems.length > 1 ? "s" : ""}
             </div>
           )}
-          <TypesTable types={pageItems} categories={categories} />
+          <TypesTable types={pageItems} />
         </CardContent>
         {totalPages > 1 && (
           <CardFooter>

@@ -9,7 +9,7 @@ export default function DeleteTypeDialog({
   type,
   trigger,
 }: {
-  type: Type & { category: { label: string } };
+  type: Type;
   trigger: ReactNode;
 }) {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -19,8 +19,6 @@ export default function DeleteTypeDialog({
     try {
       await deleteType(type.id);
       toast.success("Type supprimé avec succès");
-   
-     
     } catch (error) {
       console.error(error);
       toast.error("Échec de la suppression du type");
@@ -33,7 +31,7 @@ export default function DeleteTypeDialog({
     <DeleteConfirmationDialog
       trigger={trigger}
       title={`Supprimer le type "${type.label}"`}
-      description={`Êtes-vous sûr de vouloir supprimer le type ${type.label} de la catégorie ${type.category.label} ?`}
+      description={`Êtes-vous sûr de vouloir supprimer le type ${type.label}?`}
       isDeleting={isDeleting}
       onConfirm={handleDelete}
     />

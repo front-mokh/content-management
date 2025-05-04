@@ -26,11 +26,11 @@ model User {
 }
 
 model Author {
-  id        String   @id @default(uuid())
+  id        String     @id @default(uuid())
   firstName String
   lastName  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   resources Resource[]
 }
 
@@ -41,8 +41,6 @@ model Type {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   resources   Resource[]
-  category    Category   @relation(fields: [categoryId], references: [id], onDelete: Restrict)
-  categoryId  String
 }
 
 model Category {
@@ -53,7 +51,6 @@ model Category {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   resources   Resource[]
-  types       Type[]
 }
 
 model Resource {

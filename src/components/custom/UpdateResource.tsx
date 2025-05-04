@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -55,12 +55,7 @@ export default function UpdateResourcePage({
 }) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>(
-    resource.categoryId
-  );
-  const [filteredTypes, setFilteredTypes] = useState<
-    { id: string; label: string }[]
-  >([]);
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileError, setFileError] = useState<string | null>(null);
 
@@ -76,24 +71,9 @@ export default function UpdateResourcePage({
     },
   });
 
-  // Initialize filtered types based on the selected category
-  useEffect(() => {
-    if (selectedCategoryId) {
-      const filtered = types.filter(
-        (type) => type.categoryId === selectedCategoryId
-      );
-      setFilteredTypes(filtered);
-    }
-  }, [selectedCategoryId, types]);
-
   // Update filtered types when category changes
   const handleCategoryChange = (value: string) => {
-    setSelectedCategoryId(value);
     form.setValue("categoryId", value);
-    form.setValue("typeId", ""); // Reset type when category changes
-
-    const filtered = types.filter((type) => type.categoryId === value);
-    setFilteredTypes(filtered);
   };
 
   const handleFileSelect = (file: File) => {
@@ -190,19 +170,13 @@ export default function UpdateResourcePage({
                 <Select
                   onValueChange={(value) => form.setValue("typeId", value)}
                   defaultValue={resource.typeId}
-                  disabled={!selectedCategoryId || isSubmitting}
+                  disabled={isSubmitting}
                 >
                   <SelectTrigger>
-                    <SelectValue
-                      placeholder={
-                        selectedCategoryId
-                          ? "Sélectionnez un type"
-                          : "Sélectionnez d'abord une catégorie"
-                      }
-                    />
+                    <SelectValue placeholder={"Sélectionnez un type"} />
                   </SelectTrigger>
                   <SelectContent>
-                    {filteredTypes.map((type) => (
+                    {types.map((type) => (
                       <SelectItem key={type.id} value={type.id}>
                         {type.label}
                       </SelectItem>

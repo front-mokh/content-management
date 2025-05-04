@@ -3,7 +3,7 @@
 
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { useDebounce } from "@/hooks/use-debounce";
-import { Category, Type } from "@prisma/client";
+import { Type } from "@prisma/client";
 
 export interface TypeFilteringParams {
   searchTerm?: string | null;
@@ -32,14 +32,13 @@ interface TypeFilteringResult<T> {
   setSearchTerm: (value: string) => void;
 }
 
-export function useTypeFiltering<T extends Type & { category: Category }>(
+export function useTypeFiltering<T extends Type>(
   items: T[],
   defaultLimit = 10,
   initialFilters: TypeFilteringParams = {}
 ): TypeFilteringResult<T> {
   // Filtering state
-  const [filters, setFilters] =
-    useState<TypeFilteringParams>(initialFilters);
+  const [filters, setFilters] = useState<TypeFilteringParams>(initialFilters);
 
   // Search term with debounce
   const [searchValue, setSearchValue] = useDebounce(

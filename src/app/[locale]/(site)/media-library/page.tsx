@@ -12,6 +12,9 @@ import ContributeCTA from "./ContributeCTA";
 import { getDictionary } from "@/lib/i18n";
 import MediaLibraryContent from "./MediaLibraryContent";
 import LibraryContentSkeleton from "./LibraryContentSkeleton";
+import Image from "next/image";
+import clsx from "clsx";
+import Link from "next/link";
 
 export default async function MediaLibraryPage({
   params,
@@ -54,6 +57,49 @@ export default async function MediaLibraryPage({
           </Suspense>
         </div>
       </section>
+
+      {/* categories crads display with thumbnial image preview */}
+      <div>
+        <h2
+          className={clsx(
+            "heading text-3xl font-bold text-website-text  border-website-primary",
+            { "border-r-4 pr-3": params.locale === "ar" },
+            { "border-l-4 pl-3": params.locale !== "ar" }
+          )}
+        >
+          {dictionary.mediaLibrary.browseCategories}
+        </h2>
+        {categories.length > 0 && (
+          <div className="mt-6 grid  grid-cols-3 w-full  gap-4 mb-8">
+            {categories.map((category) => (
+              <Link
+                href={`/${params.locale}/media-library/categories/${category.id}`}
+                key={category.id}
+              >
+                <div
+                  key={category.id}
+                  className="bg-gradient-to-br from-website-secondary to-website-secondary/90 overflow-hidden relative aspect-[2/1] flex flex-col items-center justify-center rounded-lg border border-website-primary/20 p-4 shadow-lg"
+                >
+                  {category.thumbnail && (
+                    <>
+                      <Image
+                        src={category.thumbnail}
+                        alt={category.label}
+                        className="h-48 w-full object-cover rounded-lg"
+                        layout="fill"
+                      />
+                      <div className="w-full h-full bg-radial from-black/50  to-black/20 absolute top-0 left-0 right-0 bottom-0" />
+                    </>
+                  )}
+                  <p className="z-50 text-3xl font-bold text-center text-website-accent-1 mt-2">
+                    {category.label}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
 
       {/* Media Library Content */}
       <Suspense fallback={<LibraryContentSkeleton />}>

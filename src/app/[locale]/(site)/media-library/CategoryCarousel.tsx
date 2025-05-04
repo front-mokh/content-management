@@ -4,9 +4,10 @@ import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ResourceCard from "./ResourceCard";
 import { Button } from "@/components/ui/button";
+import { FullResource } from "@/lib/types";
 
 interface CategoryCarouselProps {
-  resources: any[];
+  resources: FullResource[];
 }
 
 export default function CategoryCarousel({ resources }: CategoryCarouselProps) {

@@ -12,16 +12,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { formatDate } from "@/lib/utils";
-import { Type, Category } from "@prisma/client";
+import { Type } from "@prisma/client";
 import React from "react";
 
-export default function TypesTable({
-  types,
-  categories,
-}: {
-  types: (Type & { category: Category })[];
-  categories: Category[];
-}) {
+export default function TypesTable({ types }: { types: Type[] }) {
   return (
     <TableWrapper>
       <Table>
@@ -29,7 +23,6 @@ export default function TypesTable({
           <TableRow>
             <TableHead>Nom du type</TableHead>
             <TableHead className="text-center">Description</TableHead>
-            <TableHead>Catégorie</TableHead>
             <TableHead>Date de création</TableHead>
             <TableHead>Date de modification</TableHead>
             <TableHead>Actions</TableHead>
@@ -42,20 +35,12 @@ export default function TypesTable({
               <TableCell className="font-medium text-center">
                 {type.description ? type.description : "/"}
               </TableCell>
-              <TableCell>{type.category.label}</TableCell>
               <TableCell>{formatDate(type.createdAt)}</TableCell>
               <TableCell>{formatDate(type.updatedAt)}</TableCell>
               <TableCell>
                 <div className="space-x-2">
-                  <UpdateTypeDialog
-                    trigger={<UpdateAction />}
-                    type={type}
-                    categories={categories}
-                  />
-                  <DeleteTypeDialog
-                    trigger={<DeleteAction />}
-                    type={type}
-                  />
+                  <UpdateTypeDialog trigger={<UpdateAction />} type={type} />
+                  <DeleteTypeDialog trigger={<DeleteAction />} type={type} />
                 </div>
               </TableCell>
             </TableRow>

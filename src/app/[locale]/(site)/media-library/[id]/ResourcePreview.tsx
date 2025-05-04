@@ -19,18 +19,68 @@ const getApiPath = (path: string) => {
   return `/api/uploads/${filename}`;
 };
 
+// Helper function to normalize type labels for consistent matching
+const normalizeTypeLabel = (typeLabel: string) => {
+  const label = typeLabel.toLowerCase().trim();
+
+  // Image variations
+  if (
+    label.includes("imag") ||
+    label === "photo" ||
+    label === "photos" ||
+    label === "image" ||
+    label === "images"
+  ) {
+    return "image";
+  }
+
+  // Video variations
+  if (label.includes("vid") || label === "film" || label === "films") {
+    return "video";
+  }
+
+  // Audio variations
+  if (
+    label.includes("audio") ||
+    label.includes("son") ||
+    label === "musique" ||
+    label === "music" ||
+    label === "mp3" ||
+    label === "song" ||
+    label === "sound"
+  ) {
+    return "audio";
+  }
+
+  // Text/Document variations
+  if (
+    label.includes("text") ||
+    label.includes("document") ||
+    label.includes("doc") ||
+    label.includes("file") ||
+    label.includes("fichier") ||
+    label.includes("texte")
+  ) {
+    return "text";
+  }
+
+  return "default";
+};
+
 export function ResourcePreview({
   resource,
 }: {
   resource: FullResource & { apiPath?: string | null };
 }) {
-  const category = resource.category.label.toLowerCase();
+  // Normalize the type for consistent handling
+  const normalizedType = normalizeTypeLabel(resource.type.label);
   const colors =
-    CATEGORY_COLORS[category as CategoryColorIndex] || CATEGORY_COLORS.default;
+    CATEGORY_COLORS[normalizedType as CategoryColorIndex] ||
+    CATEGORY_COLORS.default;
 
   // State for video/audio previews
   const [videoThumbnail, setVideoThumbnail] = useState<string | null>(null);
-  const [, setVideoDuration] = useState<number>(0);
+  const [videoDuration, setVideoDuration] = useState<number>(0);
   const [audioDuration, setAudioDuration] = useState<number>(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -65,7 +115,7 @@ export function ResourcePreview({
 
   // Video thumbnail and duration extraction
   useEffect(() => {
-    const isVideo = category === "vidéos";
+    const isVideo = normalizedType === "video";
 
     if (isVideo && filePath && !videoThumbnail) {
       const video = document.createElement("video");
@@ -111,11 +161,11 @@ export function ResourcePreview({
         video.src = "";
       };
     }
-  }, [category, filePath, videoThumbnail]);
+  }, [normalizedType, filePath, videoThumbnail]);
 
   // Audio duration extraction
   useEffect(() => {
-    const isAudio = category === "audio";
+    const isAudio = normalizedType === "audio";
 
     if (isAudio && filePath && !audioDuration) {
       const audio = document.createElement("audio");
@@ -136,11 +186,11 @@ export function ResourcePreview({
         audio.src = "";
       };
     }
-  }, [category, filePath, audioDuration]);
+  }, [normalizedType, filePath, audioDuration]);
 
-  // Render content based on resource type
-  switch (category) {
-    case "images":
+  // Render content based on normalized type
+  switch (normalizedType) {
+    case "image":
       return (
         <div className="relative aspect-auto max-h-[600px] flex items-center justify-center bg-gray-100 p-6">
           {filePath ? (
@@ -161,7 +211,7 @@ export function ResourcePreview({
         </div>
       );
 
-    case "vidéos":
+    case "video":
       return (
         <div className="aspect-video w-full bg-black flex items-center justify-center">
           {filePath ? (
@@ -192,11 +242,11 @@ export function ResourcePreview({
                 <Music className="h-16 w-16 text-white" />
               </div>
               <audio src={filePath} controls className="w-full">
-                Your browser does not support the audio element.
+                Votre navigateur ne supporte pas l'élément audio
               </audio>
-              {audioDuration && (
+              {audioDuration > 0 && (
                 <div className="text-center text-white mt-4">
-                  Duration: {formatDuration(audioDuration)}
+                  Durée: {formatDuration(audioDuration)}
                 </div>
               )}
             </div>
@@ -208,11 +258,11 @@ export function ResourcePreview({
         </div>
       );
 
-    case "texte":
+    case "text":
       const fileExtensionStyle = getFileExtensionStyle();
       return (
         <div
-          className={`p-8 bg-gradient-to-tl ${colors.gradient} min-h-[300px] flex items-center justify-center`}
+          className={`p-8 bg-gradient-to-tl from-website-secondary/90 to-website-secondary/90 min-h-[300px] flex items-center justify-center`}
         >
           <div className="bg-white/20 backdrop-blur-sm rounded-lg p-6 text-center">
             <Folder className="h-20 w-20 text-website-accent-1/90 mx-auto mb-4" />

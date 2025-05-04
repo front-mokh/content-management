@@ -15,6 +15,7 @@ import TextField from "./TextField";
 import TextAreaField from "./TextAreaField";
 import { toast } from "sonner";
 import { createCategoryWithThumbnail } from "@/lib/services";
+import { FileUpload } from "./FileUpload";
 
 const addCategorySchema = z.object({
   label: z.string().min(1, "Le nom de la catégorie est obligatoire"),
@@ -52,13 +53,13 @@ export function AddCategoryDialog() {
     setIsSubmitting(false);
   };
 
-  // const handleFileSelect = (file: File) => {
-  //   setSelectedFile(file);
-  // };
+  const handleFileSelect = (file: File) => {
+    setSelectedFile(file);
+  };
 
-  // const handleFileRemove = () => {
-  //   setSelectedFile(null);
-  // };
+  const handleFileRemove = () => {
+    setSelectedFile(null);
+  };
 
   const onSubmit = async (values: CreateCategoryInput) => {
     setIsSubmitting(true);
@@ -102,7 +103,7 @@ export function AddCategoryDialog() {
             placeholder="Description de la catégorie"
           />
 
-          {/* <div className="space-y-2">
+          <div className="space-y-2">
             <label className="text-sm font-medium">Image de catégorie</label>
             <FileUpload
               onFileSelect={handleFileSelect}
@@ -112,7 +113,7 @@ export function AddCategoryDialog() {
             <p className="text-xs text-gray-500">
               L&apos;image sera utilisée comme miniature pour cette catégorie
             </p>
-          </div> */}
+          </div>
 
           <div className="flex justify-end gap-2 mt-10">
             <Button
