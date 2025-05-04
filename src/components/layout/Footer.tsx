@@ -73,7 +73,7 @@ export default function Footer({ dictionary }: { dictionary: any }) {
                   label: dictionary.footer.events,
                   href: `/${locale}/events`,
                 },
-                {
+                {0
                   label: dictionary.footer.authors,
                   href: `/${locale}/events`,
                 },
