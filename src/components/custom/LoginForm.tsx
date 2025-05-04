@@ -50,12 +50,16 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
+    console.log("Submitting login form with values:", values);
+
     try {
       const result = await signIn("credentials", {
         redirect: false,
         email: values.email,
         password: values.password,
       });
+
+      console.log({ result });
 
       if (result?.error) {
         setError("Adresse email ou mot de passe invalide");

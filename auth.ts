@@ -1,9 +1,7 @@
-// app/auth.ts
 import NextAuth from "next-auth";
 import { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "@/lib/db";
-import { saltAndHashPassword } from "@/utils/hashAndSaltPassword";
 import bcrypt from "bcryptjs";
 
 export const authConfig: NextAuthConfig = {
@@ -20,17 +18,21 @@ export const authConfig: NextAuthConfig = {
       },
       async authorize(credentials) {
         try {
+          console.log({ credentials });
+
           if (!credentials || !credentials.email || !credentials.password) {
             return null;
           }
 
           const email = credentials.email as string;
 
-          let user = await prisma.user.findUnique({
+          const user = await prisma.user.findUnique({
             where: {
               email,
             },
           });
+
+          console.log({ user });
 
           if (!user) {
             return null;
@@ -40,6 +42,8 @@ export const authConfig: NextAuthConfig = {
             credentials.password as string,
             user.password
           );
+
+          console.log({ isMatch });
 
           if (!isMatch) {
             console.log("Password mismatch");
@@ -96,8 +100,6 @@ export const authConfig: NextAuthConfig = {
   trustHost: true,
   debug: process.env.NODE_ENV === "development",
   secret: process.env.NEXTAUTH_SECRET,
-
-  trustHost: true, 
 };
 
 export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);

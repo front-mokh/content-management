@@ -4,7 +4,15 @@ import { formatDistanceToNow } from "date-fns";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Clock, Download, ArrowLeft, FileText, User } from "lucide-react";
+import {
+  Eye,
+  Clock,
+  Download,
+  ArrowLeft,
+  FileText,
+  User,
+  SquareArrowOutUpRight,
+} from "lucide-react";
 import { getResourceById, incrementResourceViews } from "@/lib/services";
 import { getDictionary } from "@/lib/i18n";
 import Link from "next/link";
@@ -212,6 +220,7 @@ function ResourceMetadata({
               icon={<User className="h-4 w-4 text-website-primary/70" />}
               label={dictionary.mediaLibrary.details.author}
               value={`${resource.author.firstName} ${resource.author.lastName}`}
+              link={`/${locale}/authors/${resource.author.id}`}
             />
           )}
 
@@ -237,17 +246,29 @@ function MetadataItem({
   icon,
   label,
   value,
+  link,
 }: {
   icon: React.ReactNode;
   label: string;
   value: string;
+  link?: string;
 }) {
   return (
     <div className="flex items-center py-1.5 px-1">
       <div className="mr-2">{icon}</div>
       <div className="flex-1 flex justify-between">
         <span className="text-gray-500 mr-2">{label}</span>
-        <span className="font-medium text-gray-800">{value}</span>
+        {link ? (
+          <Link href={link}>
+            <span className="inline-flex items-center gap-2 font-medium text-primary">
+              {value} <SquareArrowOutUpRight size={16} />
+            </span>
+          </Link>
+        ) : (
+          <span className="inline-flex items-center gap-2 font-medium text-gray-800">
+            {value}
+          </span>
+        )}
       </div>
     </div>
   );
