@@ -17,7 +17,10 @@ export default function Hero({ dictionary }: { dictionary: any }) {
   }, []);
 
   return (
-    <div className="relative bg-gradient-to-br from-website-secondary to-website-secondary/90 shadow-lg overflow-hidden">
+    <div className="relative overflow-hidden bg-[url('/hero_home.png')] bg-cover bg-center">
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/50"></div>
+      
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0 bg-[url('/pattern-kabyle.svg')] bg-repeat opacity-20 animate-pulse"></div>
@@ -87,16 +90,14 @@ export default function Hero({ dictionary }: { dictionary: any }) {
                 size="lg" 
                 className="bg-amber-400 hover:bg-amber-600 text-white shadow-lg hover:shadow-amber-500/50 transition-all duration-300 transform hover:-translate-y-1"
               >
-                 <Link href={`/${locale}/media-library`} > {dictionary.hero.exploreCTA}</Link>
-               
+                <Link href={`/${locale}/media-library`}>{dictionary.hero.exploreCTA}</Link>
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
                 className="bg-transparent border-white text-white hover:bg-white hover:text-blue-700 transition-all duration-300 transform hover:-translate-y-1"
               >
-                 <Link href={`/${locale}/contribution`} > {dictionary.hero.contributeCTA}</Link>
-                
+                <Link href={`/${locale}/contribution`}>{dictionary.hero.contributeCTA}</Link>
               </Button>
             </motion.div>
           </motion.div>
@@ -105,30 +106,17 @@ export default function Hero({ dictionary }: { dictionary: any }) {
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: isLoaded ? 0 : 50, opacity: isLoaded ? 1 : 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="hidden md:block"
+            className="hidden md:flex items-center justify-center"
           >
             <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 to-amber-600 rounded-lg blur-sm opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
-              <div className="relative bg-white p-2 rounded-lg shadow-2xl overflow-hidden">
-                <div className="aspect-video rounded overflow-hidden bg-gray-100">
-                <div className="w-full h-full bg-[url('/kabyle_image.png')] bg-cover bg-center flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-white text-lg font-semibold px-4 py-2 rounded-full bg-blue-900/70 backdrop-blur-sm">
-                        {dictionary.hero.imageCaption}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+              {/* Traditional Kabyle symbol */}
+              <div className="w-60 h-60 bg-white/5 backdrop-blur-sm rounded-full flex items-center justify-center animate-float-slow">
+                <div className="w-40 h-40 bg-[url('/kabyle-symbol.svg')] bg-contain bg-no-repeat bg-center"></div>
               </div>
               
               {/* Animated decorative elements */}
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-amber-500 rounded-full opacity-20 animate-pulse-slow"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-600 rounded-full opacity-20 animate-float-slow"></div>
-              
-              {/* Traditional Kabyle symbol overlay */}
-              <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
-                <div className="w-10 h-10 bg-[url('/kabyle-symbol.svg')] bg-contain bg-no-repeat bg-center"></div>
-              </div>
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-amber-600 rounded-full opacity-20 animate-float-slow"></div>
             </div>
           </motion.div>
         </motion.div>

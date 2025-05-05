@@ -4,16 +4,15 @@ import { useState, useEffect } from "react";
 import { format } from "date-fns";
 
 // Utility imports
-import { getApiPath, getDateLocale, createAnimationVariants } from "./utils/authorUtils";
-import { getAuthorTranslations } from "./translations/authorTranslations";
-
+import { getApiPath, getDateLocale, createAnimationVariants} from "./utils/authorUtils";
+import { getAuthorTranslations } from "./utils/authorTranslations";
 // Component imports
-import BackNavigation from "./components/authors/BackNavigation";
-import AuthorBanner from "./components/authors/AuthorBanner";
-import AuthorAboutSection from "./components/authors/AuthorAboutSection";
-import AuthorDetailsCard from "./components/authors/AuthorDetailsCard";
-import AuthorResourcesSection from "./components/authors/AuthorResourcesSection";
-import CTASection from "./components/authors/CTASection";
+import BackNavigation from "./BackNavigation";
+import AuthorBanner from "./AuthorBanner";
+import AuthorAboutSection from "./AuthorAboutSection";
+import AuthorDetailsCard from "./AuthorDetailsCard";
+import AuthorResourcesSection from "./AuthorResourcesSection";
+import CTASection from "./CTASection";
 
 export default function AuthorDetailPage({
   author,
@@ -102,11 +101,11 @@ export default function AuthorDetailPage({
           </div>
 
           {/* Resources Section */}
-          <AuthorResourcesSection 
+          {/* <AuthorResourcesSection 
             resources={resources}
             translations={translations}
             variants={animations.fadeUp}
-          />
+          /> */}
         </div>
       </div>
       
