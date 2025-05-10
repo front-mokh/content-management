@@ -1,65 +1,64 @@
-// lib/deleteEvent.ts
 "use server";
-
 import { PrismaClient } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import fs from "fs/promises";
-import path from "path"; // Import path
+import path from "path";
 
 const prisma = new PrismaClient();
 
-// --- Server Action to Delete Event and its File ---
+// Helper function to delete a file safely
+async function deleteFileIfExists(filePath: string | null): Promise<void> {
+  if (!filePath) return;
+  
+  try {
+    // Handle paths starting with /uploads differently than relative paths
+    const resolvedPath = filePath.startsWith('/uploads')
+      ? path.join(process.cwd(), filePath.substring(1)) // Remove the leading slash
+      : path.join(process.cwd(), "uploads", path.basename(filePath));
+      
+    await fs.access(resolvedPath);
+    await fs.unlink(resolvedPath);
+    console.log(`Deleted file: ${filePath}`);
+  } catch (error: any) {
+    if (error.code === "ENOENT") {
+      console.warn(`File not found, skipping deletion: ${filePath}`);
+    } else {
+      console.error(`Failed to delete file ${filePath}:`, error);
+    }
+  }
+}
+
+// --- Server Action to Delete Event and its Files ---
 export async function deleteEvent(eventId: string) {
   try {
     // --- Optional: Authentication/Authorization Check ---
     // const session = await auth(); // Or getSessionOrThrow()
-    // Check if user has permission
-
-    // 1. Find the event to get the mediaPath
+    
+    // 1. Find the event to get the mediaPath and pdfPath
     const event = await prisma.event.findUnique({
       where: { id: eventId },
-      select: { mediaPath: true },
+      select: { mediaPath: true, pdfPath: true },
     });
-
+    
     if (!event) {
       console.log(`Event not found for deletion: ${eventId}`);
       return { success: true, message: "Événement non trouvé." };
     }
-
+    
     // 2. Delete the event record from the database
     await prisma.event.delete({
       where: { id: eventId },
     });
-
-    // 3. Delete the associated media file from the server
-    if (event.mediaPath) {
-      try {
-        // IMPORTANT: Adjust this path construction if needed!
-        const filePath = path.join(
-          process.cwd(),
-          "uploads",
-          path.basename(event.mediaPath)
-        );
-        // console.log(`Attempting to delete file at: ${filePath}`); // Debugging
-
-        await fs.unlink(filePath);
-        console.log(`Deleted media file: ${event.mediaPath}`);
-      } catch (fileError: any) {
-        if (fileError.code === "ENOENT") {
-          console.warn(
-            `Media file not found, skipping deletion: ${event.mediaPath}`
-          );
-        } else {
-          console.error(
-            `Failed to delete media file ${event.mediaPath}:`,
-            fileError.message
-          );
-        }
-      }
+    
+    // 3. Delete the associated media file
+    await deleteFileIfExists(event.mediaPath);
+    
+    // 4. Delete the associated PDF file if it exists
+    if (event.pdfPath) {
+      await deleteFileIfExists(event.pdfPath);
     }
-
+    
     revalidatePath("/admin/events");
-
     return { success: true };
   } catch (error) {
     console.error("Error deleting event:", error);

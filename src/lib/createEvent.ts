@@ -1,6 +1,5 @@
 // lib/createEvent.ts
 "use server";
-
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { PrismaClient, MediaType } from "@prisma/client";
@@ -8,29 +7,36 @@ import { join } from "path";
 import { randomUUID } from "crypto";
 import fs from "fs/promises";
 // import { auth } from "@/auth"; // Uncomment if auth is needed
-
 const prisma = new PrismaClient();
 
 // --- Reusable File Processing Utility ---
-// (Ensure this is consistent with your setup, especially the 'uploads' directory)
-async function processUploadedFile(file: File): Promise<string> {
+async function processUploadedFile(file: File, subfolder: string = ""): Promise<string> {
   try {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
     const fileName = `${randomUUID()}-${file.name.replace(/\s/g, "_")}`;
-    const uploadDir = join(process.cwd(), "uploads"); // Or "public/uploads" if served directly
+    
+    // Create base upload directory
+    const baseUploadDir = join(process.cwd(), "uploads");
+    await fs.mkdir(baseUploadDir, { recursive: true });
+    
+    // Create subfolder if specified
+    const uploadDir = subfolder 
+      ? join(baseUploadDir, subfolder) 
+      : baseUploadDir;
+    
     await fs.mkdir(uploadDir, { recursive: true });
     const filePath = join(uploadDir, fileName);
     await fs.writeFile(filePath, buffer);
-    return `/uploads/${fileName}`; // Path accessible by the client
+    
+    return subfolder 
+      ? `/uploads/${subfolder}/${fileName}` 
+      : `/uploads/${fileName}`;
   } catch (error) {
     console.error("Error processing file:", error);
-    throw new Error("Erreur lors du traitement du fichier média.");
+    throw new Error("Erreur lors du traitement du fichier.");
   }
 }
-
-// --- Optional Auth Check Utility ---
-// async function getSessionOrThrow() { ... } // If needed
 
 // --- Zod Schema for Event Creation ---
 const addEventSchema = z.object({
@@ -42,41 +48,56 @@ const addEventSchema = z.object({
 export type CreateEventInput = z.infer<typeof addEventSchema>;
 
 // --- Server Action to Create Event with File Upload ---
-export async function createEventWithFile(data: CreateEventInput, file: File) {
+export async function createEventWithFile(
+  data: CreateEventInput, 
+  mediaFile: File, 
+  pdfFile?: File | null
+) {
   try {
     // --- Optional: Authentication Check ---
     // const session = await getSessionOrThrow();
-
     const validatedData = addEventSchema.parse(data);
 
-    // --- Optional: File Type Validation ---
+    // --- Media File Type Validation ---
     if (
       validatedData.type === MediaType.IMAGE &&
-      !file.type.startsWith("image/")
+      !mediaFile.type.startsWith("image/")
     ) {
-      throw new Error("Le fichier fourni doit être une image.");
+      throw new Error("Le fichier média fourni doit être une image.");
     }
     if (
       validatedData.type === MediaType.VIDEO &&
-      !file.type.startsWith("video/")
+      !mediaFile.type.startsWith("video/")
     ) {
-      throw new Error("Le fichier fourni doit être une vidéo.");
+      throw new Error("Le fichier média fourni doit être une vidéo.");
     }
 
-    const mediaPath = await processUploadedFile(file);
+    // --- PDF File Type Validation (if provided) ---
+    if (pdfFile && !pdfFile.type.includes("pdf")) {
+      throw new Error("Le document supplémentaire doit être un fichier PDF.");
+    }
 
+    // Process the media file
+    const mediaPath = await processUploadedFile(mediaFile, "media");
+    
+    // Process the PDF file if provided
+    let pdfPath: string | null = null;
+    if (pdfFile) {
+      pdfPath = await processUploadedFile(pdfFile, "pdf");
+    }
+
+    // Create the event with both media and optional PDF
     const event = await prisma.event.create({
       data: {
         title: validatedData.title,
         description: validatedData.description,
         type: validatedData.type,
         mediaPath: mediaPath,
-        // createdById: userId, // If linking event to user
+        ...(pdfPath && { pdfPath }), // Add pdfPath only if it exists
       },
     });
 
     revalidatePath("/admin/events");
-
     return { success: true, data: event };
   } catch (error) {
     console.error("Error creating event:", error);

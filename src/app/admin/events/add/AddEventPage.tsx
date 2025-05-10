@@ -28,6 +28,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { FileUpload } from "@/components/custom/FileUpload";
+import { PDFFileUpload } from "@/components/custom/PDFFileUpload"; // Import the new PDFFileUpload component
 import { createEventWithFile } from "@/lib/createEvent";
 
 // Schema matching the server action input (excluding the file)
@@ -45,6 +46,7 @@ export default function AddEventPage() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedPdfFile, setSelectedPdfFile] = useState<File | null>(null); // New state for PDF file
   const [fileError, setFileError] = useState<string | null>(null);
 
   const form = useForm<CreateEventInput>({
@@ -65,6 +67,15 @@ export default function AddEventPage() {
     setSelectedFile(null);
   };
 
+  // New handlers for PDF file
+  const handlePdfSelect = (file: File) => {
+    setSelectedPdfFile(file);
+  };
+
+  const handlePdfRemove = () => {
+    setSelectedPdfFile(null);
+  };
+
   const onSubmit = async (values: CreateEventInput) => {
     if (!selectedFile) {
       setFileError("Le fichier média est obligatoire");
@@ -75,8 +86,8 @@ export default function AddEventPage() {
 
     setIsSubmitting(true);
     try {
-      // Call the server action
-      const result = await createEventWithFile(values, selectedFile);
+      // Call the server action with both media file and optional PDF file
+      const result = await createEventWithFile(values, selectedFile, selectedPdfFile);
 
       if (!result.success) {
         throw new Error(result.error || "Une erreur s'est produite");
@@ -108,12 +119,10 @@ export default function AddEventPage() {
           <CardHeader>
             <CardTitle>Ajouter un nouvel événement</CardTitle>
             <CardDescription>
-              Remplissez ce formulaire pour ajouter une un nouvel evenements
+              Remplissez ce formulaire pour ajouter un nouvel événement
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 flex-grow">
-            {" "}
-            {/* Allow content to grow */}
             <TextField
               control={form.control}
               name="title"
@@ -156,7 +165,7 @@ export default function AddEventPage() {
               )}
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium">Fichier Média</label>
+              <label className="text-sm font-medium">Fichier Média <span className="text-red-500">*</span></label>
               <FileUpload
                 onFileSelect={handleFileSelect}
                 onFileRemove={handleFileRemove}
@@ -164,12 +173,22 @@ export default function AddEventPage() {
                 // Optionally add accept="image/*,video/*" to <input type="file"> inside FileUpload
               />
               {fileError && <p className="text-sm text-red-500">{fileError}</p>}
-              {/* Display validation errors for the file if needed */}
+            </div>
+            
+            {/* New PDF File Upload section */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Document PDF (optionnel)</label>
+              <PDFFileUpload
+                onFileSelect={handlePdfSelect}
+                onFileRemove={handlePdfRemove}
+                isSubmitting={isSubmitting}
+              />
+              <p className="text-xs text-gray-500">
+                Vous pouvez ajouter un fichier PDF associé à cet événement (brochure, programme, etc.)
+              </p>
             </div>
           </CardContent>
           <CardFooter className="flex justify-end gap-2 border-t pt-6">
-            {" "}
-            {/* Add border & padding */}
             <Button
               type="button" // Important: type="button" for cancel
               variant="outline"

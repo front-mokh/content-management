@@ -1,6 +1,5 @@
 // lib/services/eventService.ts
 import { PrismaClient, Event, Prisma } from "@prisma/client";
-
 const prisma = new PrismaClient();
 
 /**
@@ -34,10 +33,6 @@ export async function getEventById(id: string): Promise<Event | null> {
     throw new Error("Could not fetch event.");
   }
 }
-
-// --- Placeholders or simplified versions ---
-// Note: Prefer using server actions for create/update/delete
-//       to handle file operations and revalidation together.
 
 /**
  * Creates a new event record in the database.
@@ -95,5 +90,21 @@ export async function deleteEventRecord(id: string): Promise<Event> {
   } catch (error) {
     console.error(`Error deleting event record ${id}:`, error);
     throw new Error("Could not delete event record.");
+  }
+}
+
+/**
+ * Checks if an event has an associated PDF file.
+ */
+export async function hasPdfFile(id: string): Promise<boolean> {
+  try {
+    const event = await prisma.event.findUnique({
+      where: { id },
+      select: { pdfPath: true },
+    });
+    return !!event?.pdfPath;
+  } catch (error) {
+    console.error(`Error checking PDF for event ${id}:`, error);
+    return false;
   }
 }

@@ -120,8 +120,9 @@ model Contact {
 model Event {
   id          String    @id @default(uuid())
   title       String
-  description String? // Optional description
-  mediaPath   String // Path to the image or video file
+  description String?   // Optional description
+  mediaPath   String    // Path to the image or video file
+  pdfPath     String?   // Optional path to the PDF file (new field)
   type        MediaType // Enum to specify Image or Video
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

@@ -28,7 +28,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { FileUpload } from "@/components/custom/FileUpload";
-import { updateEventWithFile } from "@/lib/updateEvent"; // You'll need to create this
+import { PDFFileUpload } from "@/components/custom/PDFFileUpload"; // Import the PDF component
+import { updateEventWithFile } from "@/lib/updateEvent";
+import { FileText } from "lucide-react"; // Import for PDF icon
 
 // Define the schema for event update
 const updateEventSchema = z.object({
@@ -46,7 +48,9 @@ export default function UpdateEventPage({ event }: { event: Event }) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedPdfFile, setSelectedPdfFile] = useState<File | null>(null); // New state for PDF
   const [fileError, setFileError] = useState<string | null>(null);
+  const [removePdf, setRemovePdf] = useState(false); // Track if PDF should be removed
 
   const form = useForm<UpdateEventInput>({
     resolver: zodResolver(updateEventSchema),
@@ -67,6 +71,25 @@ export default function UpdateEventPage({ event }: { event: Event }) {
     setSelectedFile(null);
   };
 
+  // New handlers for PDF
+  const handlePdfSelect = (file: File) => {
+    setSelectedPdfFile(file);
+    setRemovePdf(false); // If selecting a new PDF, cancel any removal
+  };
+
+  const handlePdfRemove = () => {
+    setSelectedPdfFile(null);
+    // If there was an existing PDF, mark it for removal
+    if (event.pdfPath) {
+      setRemovePdf(true);
+    }
+  };
+
+  // Cancel PDF removal
+  const cancelPdfRemoval = () => {
+    setRemovePdf(false);
+  };
+
   const onSubmit = async (values: UpdateEventInput) => {
     setIsSubmitting(true);
     try {
@@ -83,7 +106,10 @@ export default function UpdateEventPage({ event }: { event: Event }) {
       const result = await updateEventWithFile(
         values,
         selectedFile,
-        event.mediaPath
+        event.mediaPath,
+        selectedPdfFile,
+        event.pdfPath || null,
+        removePdf
       );
 
       if (!result.success) {
@@ -103,6 +129,12 @@ export default function UpdateEventPage({ event }: { event: Event }) {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Helper function to get filename from path
+  const getFilename = (filePath: string | null | undefined) => {
+    if (!filePath) return "";
+    return filePath.split("/").pop() || "";
   };
 
   return (
@@ -156,10 +188,10 @@ export default function UpdateEventPage({ event }: { event: Event }) {
 
             <div className="space-y-2">
               <label className="text-sm font-medium">
-                Fichier média (optionnel)
+                Fichier média <span className="text-red-500">*</span>
               </label>
               <div className="mb-2 text-sm text-gray-500">
-                Fichier actuel: {event.mediaPath.split("/").pop()}
+                Fichier actuel: {getFilename(event.mediaPath)}
               </div>
               <FileUpload
                 onFileSelect={handleFileSelect}
@@ -170,6 +202,61 @@ export default function UpdateEventPage({ event }: { event: Event }) {
               <p className="text-xs text-gray-500 mt-1">
                 Laissez vide pour conserver le fichier actuel
               </p>
+            </div>
+
+            {/* PDF File Section */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium">
+                Document PDF (optionnel)
+              </label>
+              
+              {event.pdfPath && !removePdf ? (
+                <div className="mb-4">
+                  <div className="flex items-center space-x-2 mb-2 p-3 bg-gray-50 rounded-md">
+                    <FileText className="h-5 w-5 text-gray-500" />
+                    <span className="text-sm">
+                      Fichier actuel: {getFilename(event.pdfPath)}
+                    </span>
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => setRemovePdf(true)}
+                      disabled={isSubmitting}
+                    >
+                      Supprimer
+                    </Button>
+                  </div>
+                </div>
+              ) : event.pdfPath && removePdf ? (
+                <div className="mb-4 p-3 bg-red-50 rounded-md">
+                  <p className="text-sm text-red-600 mb-2">
+                    Le PDF sera supprimé lors de la mise à jour
+                  </p>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={cancelPdfRemoval}
+                    disabled={isSubmitting}
+                  >
+                    Annuler la suppression
+                  </Button>
+                </div>
+              ) : null}
+
+              {!event.pdfPath || removePdf ? (
+                <>
+                  <PDFFileUpload
+                    onFileSelect={handlePdfSelect}
+                    onFileRemove={handlePdfRemove}
+                    isSubmitting={isSubmitting}
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Vous pouvez ajouter un fichier PDF associé à cet événement
+                  </p>
+                </>
+              ) : null}
             </div>
           </form>
         </Form>

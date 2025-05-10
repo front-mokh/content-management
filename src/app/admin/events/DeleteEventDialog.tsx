@@ -42,11 +42,22 @@ export default function DeleteEventDialog({
     }
   };
 
+  // Create the appropriate description based on whether the event has a PDF
+  const getDescription = () => {
+    const baseMessage = `Êtes-vous sûr de vouloir supprimer l'événement "${event.title}" ?`;
+    
+    if (event.pdfPath) {
+      return `${baseMessage} Cette action supprimera également le fichier média et le document PDF associés.`;
+    } else {
+      return `${baseMessage} Cette action supprimera également le fichier média associé.`;
+    }
+  };
+
   return (
     <DeleteConfirmationDialog
       trigger={trigger}
       title={`Supprimer l'événement "${event.title}"`}
-      description={`Êtes-vous sûr de vouloir supprimer l'événement ${event.title} ? Cette action supprimera également le fichier média associé.`}
+      description={getDescription()}
       isDeleting={isDeleting}
       onConfirm={handleDelete}
     />

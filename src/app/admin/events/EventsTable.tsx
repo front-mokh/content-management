@@ -15,7 +15,7 @@ import UpdateAction from "@/components/custom/UpdateAction";
 import DeleteEventDialog from "./DeleteEventDialog";
 import DeleteAction from "@/components/custom/DeleteAction";
 
-import { FileDownloader } from "@/components/custom/FileDownloader";
+import { FileDownloader } from "@/components/custom/FileDownloader_2";
 import Image from "next/image"; // For image previews
 
 export default function EventsTable({ events }: { events: Event[] }) {
@@ -39,6 +39,7 @@ export default function EventsTable({ events }: { events: Event[] }) {
             <TableHead>Description</TableHead>
             <TableHead>Type</TableHead>
             <TableHead className=" text-center">Chemin Fichier</TableHead>
+            <TableHead className=" text-center">Chemin du pdf</TableHead>
             <TableHead>Date Création</TableHead>
             <TableHead>Date de Modification</TableHead>
             <TableHead className="w-[100px] text-center">Actions</TableHead>
@@ -67,6 +68,13 @@ export default function EventsTable({ events }: { events: Event[] }) {
               <TableCell className="text-xs font-mono">
                 <FileDownloader path={event.mediaPath} />
               </TableCell>
+              <TableCell className="text-xs font-mono text-center">
+              {event.pdfPath ? (
+                <FileDownloader path={event.pdfPath} />
+              ) : (
+                "Pas de pdf"
+              )}
+            </TableCell>
               <TableCell>{formatDate(event.createdAt)}</TableCell>
               <TableCell>{formatDate(event.updatedAt)}</TableCell>
               <TableCell className="w-[100px] text-right">
