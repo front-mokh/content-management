@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -35,16 +35,12 @@ export default function ConvertToResourceDialog({
   trigger: React.ReactNode;
   submission: Submission;
   categories: { id: string; label: string }[];
-  types: { id: string; label: string; categoryId: string }[];
+  types: { id: string; label: string }[];
   authors: { id: string; firstName: string; lastName: string }[];
 }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
-  const [filteredTypes, setFilteredTypes] = useState<
-    { value: string; label: string }[]
-  >([]);
 
   const form = useForm<ConvertToResourceInput>({
     resolver: zodResolver(convertToResourceSchema),
@@ -72,35 +68,8 @@ export default function ConvertToResourceDialog({
       typeId: "",
       authorId: "",
     });
-    setSelectedCategoryId("");
-    setFilteredTypes([]);
     setIsSubmitting(false);
   };
-
-  // Watch for changes to categoryId
-  useEffect(() => {
-    const subscription = form.watch((value, { name }) => {
-      if (name === "categoryId" && value.categoryId) {
-        const categoryId = value.categoryId as string;
-        setSelectedCategoryId(categoryId);
-        
-        // Filter types based on selected category
-        const filtered = types
-          .filter((type) => type.categoryId === categoryId)
-          .map(type => ({
-            value: type.id,
-            label: type.label
-          }));
-        
-        setFilteredTypes(filtered);
-        
-        // Reset typeId when category changes
-        form.setValue("typeId", "");
-      }
-    });
-    
-    return () => subscription.unsubscribe();
-  }, [form, types]);
 
   const onSubmit = async (values: ConvertToResourceInput) => {
     setIsSubmitting(true);
@@ -134,6 +103,11 @@ export default function ConvertToResourceDialog({
   const categoryOptions = categories.map(category => ({
     value: category.id,
     label: category.label
+  }));
+
+  const typeOptions = types.map(type => ({
+    value: type.id,
+    label: type.label
   }));
 
   const authorOptions = authors.map(author => ({
@@ -177,9 +151,9 @@ export default function ConvertToResourceDialog({
               control={form.control}
               name="typeId"
               label="Type"
-              placeholder={selectedCategoryId ? "Sélectionnez un type" : "Sélectionnez d'abord une catégorie"}
-              options={filteredTypes}
-              disabled={!selectedCategoryId || isSubmitting}
+              placeholder="Sélectionnez un type"
+              options={typeOptions}
+              disabled={isSubmitting}
             />
           </div>
 
