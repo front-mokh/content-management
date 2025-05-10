@@ -84,11 +84,11 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
 
   const navItems = [
     { hrefKey: "home", labelKey: "home" },
-    { hrefKey: "about", labelKey: "about" },
     { hrefKey: "media-library", labelKey: "database" },
     { hrefKey: "events", labelKey: "events" },
     { hrefKey: "authors", labelKey: "authors" },
     { hrefKey: "contribution", labelKey: "contribute" },
+    { hrefKey: "about", labelKey: "about" },
     { hrefKey: "contact", labelKey: "contact" },
   ];
 

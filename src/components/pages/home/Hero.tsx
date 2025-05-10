@@ -17,7 +17,7 @@ export default function Hero({ dictionary }: { dictionary: any }) {
   }, []);
 
   return (
-    <div className="relative overflow-hidden bg-[url('/hero_home.png')] bg-cover bg-center">
+    <div className="relative overflow-hidden bg-[url('/new_hero2.png')] bg-cover bg-center">
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black/50"></div>
       
@@ -110,13 +110,13 @@ export default function Hero({ dictionary }: { dictionary: any }) {
           >
             <div className="relative group">
               {/* Traditional Kabyle symbol */}
-              <div className="w-60 h-60 bg-white/5 backdrop-blur-sm rounded-full flex items-center justify-center animate-float-slow">
+              {/* <div className="w-60 h-60 bg-white/5 backdrop-blur-sm rounded-full flex items-center justify-center animate-float-slow">
                 <div className="w-40 h-40 bg-[url('/kabyle-symbol.svg')] bg-contain bg-no-repeat bg-center"></div>
-              </div>
+              </div> */}
               
               {/* Animated decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-amber-500 rounded-full opacity-20 animate-pulse-slow"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-amber-600 rounded-full opacity-20 animate-float-slow"></div>
+              {/* <div className="absolute -top-4 -right-4 w-24 h-24 bg-amber-500 rounded-full opacity-20 animate-pulse-slow"></div>
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-amber-600 rounded-full opacity-20 animate-float-slow"></div> */}
             </div>
           </motion.div>
         </motion.div>
