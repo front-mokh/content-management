@@ -94,7 +94,7 @@ async function processUploadedFile(file: File): Promise<string> {
     const fileName = `${randomUUID()}-${file.name.replace(/\s/g, "_")}`;
 
     // Set the upload directory - make sure this directory exists and is writable
-    const uploadDir = join(process.cwd(), "public", "uploads", "thumbnails");
+    const uploadDir = join(process.cwd(), "uploads");
 
     // Ensure the directory exists
     await fs.mkdir(uploadDir, { recursive: true });
@@ -106,7 +106,7 @@ async function processUploadedFile(file: File): Promise<string> {
     await fs.writeFile(filePath, buffer);
 
     // Return the URL that can be used to access the file
-    return `/uploads/thumbnails/${fileName}`;
+    return `/uploads/${fileName}`;
   } catch (error) {
     console.error("Error processing file:", error);
     throw new Error("Erreur lors du traitement du fichier");
@@ -118,7 +118,7 @@ async function deleteOldFile(filePath: string) {
   try {
     if (!filePath || filePath === "") return;
 
-    const fullPath = join(process.cwd(), "public", filePath);
+    const fullPath = join(process.cwd(), filePath);
 
     try {
       await fs.access(fullPath);

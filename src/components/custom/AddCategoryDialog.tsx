@@ -88,7 +88,7 @@ export function AddCategoryDialog() {
       onOpenChange={handleOpenChange}
     >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <TextField
             control={form.control}
             name="label"
@@ -101,6 +101,7 @@ export function AddCategoryDialog() {
             name="description"
             label="Description (Optionnelle)"
             placeholder="Description de la catégorie"
+            rows={1}
           />
 
           <div className="space-y-2">
@@ -115,7 +116,7 @@ export function AddCategoryDialog() {
             </p>
           </div>
 
-          <div className="flex justify-end gap-2 mt-10">
+          <div className="flex justify-end gap-2 mt-2">
             <Button
               type="button"
               variant="outline"

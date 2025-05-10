@@ -73,14 +73,14 @@ export function FileUpload({
 
   return (
     <div
-      className={`border-2 border-dashed rounded-lg p-6 transition-all ${
+      className={`border-2 border-dashed rounded-lg px-4 py-3 transition-all ${
         file ? "border-gray-300" : "border-gray-300 hover:border-gray-400"
       }`}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
       {!file && (
-        <div className="flex flex-col items-center justify-center gap-4">
+        <div className="flex flex-col items-center justify-center gap-2">
           <Upload className="h-10 w-10 text-gray-400" />
           <label htmlFor="file-upload" className="cursor-pointer text-center">
             <span className="text-sm font-medium text-blue-600 hover:underline">
@@ -102,7 +102,7 @@ export function FileUpload({
       )}
 
       {file && (
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <div className="flex-shrink-0 h-10 w-10 bg-gray-100 rounded-md flex items-center justify-center">

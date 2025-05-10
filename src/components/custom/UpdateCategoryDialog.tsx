@@ -115,6 +115,13 @@ export function UpdateCategoryDialog({
     }
   };
 
+  const getApiPath = (path: string) => {
+    // Extract the filename from the original path
+    const filename = path.split("/").pop();
+    // Return the API path
+    return `/api/uploads/${filename}`;
+  };
+
   return (
     <CustomDialog
       trigger={trigger}
@@ -123,7 +130,7 @@ export function UpdateCategoryDialog({
       onOpenChange={handleOpenChange}
     >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <TextField
             control={form.control}
             name="label"
@@ -136,6 +143,7 @@ export function UpdateCategoryDialog({
             name="description"
             label="Description (Optionnelle)"
             placeholder="Description de la catégorie"
+            rows={3}
           />
 
           <div className="space-y-2">
@@ -146,7 +154,9 @@ export function UpdateCategoryDialog({
                 <div className="relative rounded-md overflow-hidden border border-gray-200">
                   <img
                     src={
-                      selectedFile ? thumbnailToDisplay : categoryData.thumbnail
+                      selectedFile
+                        ? thumbnailToDisplay
+                        : getApiPath(categoryData.thumbnail)
                     }
                     alt="Miniature"
                     className="w-full h-auto max-h-32 object-cover"
@@ -176,7 +186,7 @@ export function UpdateCategoryDialog({
             </p>
           </div>
 
-          <div className="flex justify-end gap-2 mt-10">
+          <div className="flex justify-end gap-2 mt-4">
             <Button
               type="button"
               variant="outline"

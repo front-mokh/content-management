@@ -14,12 +14,14 @@ export default function TextAreaField({
   name,
   label,
   placeholder,
+  rows = 4,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>;
   name: string;
   label: string;
   placeholder: string;
+  rows?: number;
 }) {
   return (
     <FormField
@@ -31,8 +33,9 @@ export default function TextAreaField({
           <FormControl>
             <Textarea
               placeholder={placeholder}
-              className="h-32 resize-none"
+              className="resize-none"
               {...field}
+              rows={rows}
             />
           </FormControl>
           <FormMessage />

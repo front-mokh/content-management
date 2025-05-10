@@ -21,7 +21,12 @@ export default async function CategoryPage({
   params: { locale: string; id: string };
 }) {
   const dictionary = await getDictionary(params.locale);
-
+  const getApiPath = (path: string) => {
+    // Extract the filename from the original path
+    const filename = path.split("/").pop();
+    // Return the API path
+    return `/api/uploads/${filename}`;
+  };
   try {
     const categoryPromise = getCategoryById(params.id);
     const resourcesPromise = getPublishedResourcesByCategory(params.id);
@@ -49,7 +54,7 @@ export default async function CategoryPage({
             <>
               <div className="absolute inset-0 z-10">
                 <Image
-                  src={category.thumbnail}
+                  src={getApiPath(category.thumbnail)}
                   alt={category.label}
                   className="object-cover object-center"
                   fill

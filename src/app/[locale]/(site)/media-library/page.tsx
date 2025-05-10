@@ -38,6 +38,13 @@ export default async function MediaLibraryPage({
       popularPromise,
     ]);
 
+  const getApiPath = (path: string) => {
+    // Extract the filename from the original path
+    const filename = path.split("/").pop();
+    // Return the API path
+    return `/api/uploads/${filename}`;
+  };
+
   return (
     <main className="container mx-auto px-4 py-8">
       <section className="relative rounded-lg overflow-hidden mb-12 bg-gradient-to-br from-website-secondary to-website-secondary/90 shadow-lg border border-website-primary/20">
@@ -83,7 +90,7 @@ export default async function MediaLibraryPage({
                   {category.thumbnail && (
                     <>
                       <Image
-                        src={category.thumbnail}
+                        src={getApiPath(category.thumbnail)}
                         alt={category.label}
                         className="h-48 w-full object-cover rounded-lg"
                         layout="fill"
