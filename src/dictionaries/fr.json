@@ -402,7 +402,13 @@
     "ctaTitle": "Faites partie de notre voyage culturel",
     "ctaDescription": "Aidez-nous à préserver et promouvoir la culture amazighe en participant à nos événements ou en contribuant à nos initiatives.",
     "contributeButton": "Contribuer",
-    "contactButton": "Nous contacter"
+    "contactButton": "Nous contacter",
+    "documentContent":   "Contenu du document",
+    "downloadPdf":       "Télécharger le PDF",
+    "viewPdf":           "Voir le PDF",
+    "relatedDocument":   "Document lié",
+    "noPdfAvailable":    "Aucun PDF disponible pour cet événement",
+    "downloadDocument":  "Télécharger le document"
   },
   "authors": {
     "pageTitle": "Rencontrez nos auteurs tamazight",

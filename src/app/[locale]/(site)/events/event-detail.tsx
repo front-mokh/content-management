@@ -8,27 +8,31 @@ import { motion } from "framer-motion";
 import {
   ArrowLeft,
   Calendar,
-  Clock,
-  MapPin,
   Info,
+  Eye,
   RefreshCw,
-  Play,
   Type,
   FileText,
   Camera,
   Film,
-  Share2,
-  ChevronRight,
   GlobeLock,
   Tag,
+  Download
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const getApiPath = (path: string) => {
+  if (!path) return null;
   const filename = path.split("/").pop();
-  return `/api/uploads/${filename}`;
+  return `/api/uploads/media/${filename}`;
+};
+
+const getApiPath_pdf = (path: string) => {
+  if (!path) return null;
+  const filename = path.split("/").pop();
+  return `/api/uploads/pdf/${filename}`;
 };
 
 const getDateLocale = (locale: string) => {
@@ -54,6 +58,8 @@ export default function EventDetailPage({
 }) {
   const isVideo = event.type === MediaType.VIDEO;
   const mediaUrl = getApiPath(event.mediaPath);
+  const pdfUrl = event.pdfPath ? getApiPath_pdf(event.pdfPath) : null;
+  const pdfFilename = event.pdfPath ? event.pdfPath.split("/").pop() : null;
   const dateLocale = getDateLocale(locale);
   const isRTL = locale === "ar";
 
@@ -101,6 +107,23 @@ export default function EventDetailPage({
     postDate: dictionary.events.postedOn || "Posted on",
     eventLanguage: dictionary.events.eventLanguage || "Event Language",
     originalContent: dictionary.events.originalContent || "Original Content",
+    // New PDF-related translations
+    documentContent: dictionary.events.documentContent || "Document Content",
+    downloadPdf: dictionary.events.downloadPdf || "Download PDF",
+    viewPdf: dictionary.events.viewPdf || "View PDF",
+    relatedDocument: dictionary.events.relatedDocument || "Related Document",
+    noPdfAvailable: dictionary.events.noPdfAvailable || "No PDF available for this event",
+    downloadDocument: dictionary.events.downloadDocument || "Download Document",
+  };
+  
+  const handlePdfDownload = () => {
+    if (!pdfUrl) return;
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.download = pdfFilename || 'document.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -223,13 +246,12 @@ export default function EventDetailPage({
                   )}
                 </div>
               </motion.div>
-
-              {/* Full Description Section */}
-              <motion.div
+                    {/* Full Description Section */}
+                    <motion.div
                 initial="hidden"
                 animate="visible"
                 variants={fadeUp}
-                transition={{ delay: 0.1 }}
+                transition={{ delay: 0.2 }}
               >
                 <h2 className="text-2xl font-bold text-website-primary mb-6">
                   {translations.aboutEvent}
@@ -245,6 +267,63 @@ export default function EventDetailPage({
                   </div>
                 )}
               </motion.div>
+              {/* PDF Document Card (if available) */}
+              {pdfUrl && (
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={fadeUp}
+                  transition={{ delay: 0.1 }}
+                  className="bg-white rounded-xl shadow-sm overflow-hidden"
+                >
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-medium flex items-center text-website-primary">
+                        <FileText className="h-5 w-5 mr-2" />
+                        {translations.relatedDocument}
+                      </h3>
+                      <Badge variant="outline" className="bg-website-primary/5">
+                        PDF
+                      </Badge>
+                    </div>
+                    
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 border border-gray-100 rounded-lg bg-gray-50">
+                      <div className="flex items-center mb-3 sm:mb-0">
+                        <div className="h-10 w-10 flex items-center justify-center bg-website-primary/10 text-website-primary rounded-lg mr-3">
+                          <FileText className="h-5 w-5" />
+                        </div>
+                        <div className="truncate max-w-[200px]">
+                          <p className="font-medium text-gray-900 truncate">{pdfFilename}</p>
+                          <p className="text-xs text-gray-500">PDF Document</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex space-x-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          className="text-website-secondary border-website-secondary hover:bg-website-secondary/10"
+                          onClick={() => window.open(pdfUrl, '_blank')}
+                        >
+                          <Eye className="h-4 w-4 mr-1" />
+                          {translations.viewPdf}
+                        </Button>
+                        <Button 
+                          variant="default" 
+                          size="sm" 
+                          className="bg-website-primary hover:bg-website-primary/90"
+                          onClick={handlePdfDownload}
+                        >
+                          <Download className="h-4 w-4 mr-1" />
+                          {translations.downloadPdf}
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+        
             </div>
 
             {/* Sidebar - Takes 1/3 of the grid */}
@@ -320,6 +399,35 @@ export default function EventDetailPage({
                     </div>
                   </div>
 
+                  {/* Document Status Section */}
+                  <div className="flex items-start">
+                    <FileText
+                      className={`h-5 w-5 text-website-secondary mt-0.5 ${
+                        isRTL ? "ml-4" : "mr-4"
+                      } flex-shrink-0`}
+                    />
+                    <div>
+                      <span className="block text-sm text-gray-500">
+                        {translations.documentContent}
+                      </span>
+                      {pdfUrl ? (
+                        <div>
+                          <span className="font-medium">PDF</span>
+                          <Button 
+                            variant="link" 
+                            className="p-0 h-auto text-website-primary font-medium" 
+                            onClick={handlePdfDownload}
+                          >
+                            {translations.downloadDocument}
+                            <Download className="h-3 w-3 ml-1" />
+                          </Button>
+                        </div>
+                      ) : (
+                        <span className="text-gray-500 italic">{translations.noPdfAvailable}</span>
+                      )}
+                    </div>
+                  </div>
+
                   <div className="flex items-start">
                     <Tag
                       className={`h-5 w-5 text-website-secondary mt-0.5 ${
@@ -357,31 +465,7 @@ export default function EventDetailPage({
           </div>
         </div>
       </div>
-      {/* Call to Action Section */}
-      <div className="bg-gradient-to-r from-website-primary/5 to-website-accent/5 py-16 mt-12">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-website-primary mb-6">
-            {translations.joinCommunity}
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-            {translations.communityDescription}
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              href={`/${locale}/contribution`}
-              className="bg-website-accent hover:bg-website-accent/90 text-white px-6 py-3 rounded-lg font-medium inline-block shadow-md transition-all duration-300 transform hover:-translate-y-1"
-            >
-              {translations.contributeButton}
-            </Link>
-            <Link
-              href={`/${locale}/contact`}
-              className="border border-website-secondary text-website-secondary hover:bg-website-secondary/10 px-6 py-3 rounded-lg font-medium inline-block transition-all duration-300 transform hover:-translate-y-1"
-            >
-              {translations.contactButton}
-            </Link>
-          </div>
-        </div>
-      </div>
+
     </div>
   );
 }

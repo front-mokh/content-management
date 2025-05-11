@@ -16,7 +16,7 @@ const getApiPath = (path) => {
   // Extract the filename from the original path
   const filename = path.split("/").pop();
   // Return the API path
-  return `/api/uploads/${filename}`;
+  return `/api/uploads/media/${filename}`;
 };
 
 interface EventCardProps {

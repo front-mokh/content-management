@@ -479,7 +479,13 @@
     "ctaTitle": "كن جزءاً من رحلتنا الثقافية",
     "ctaDescription": "ساعدنا في صون وتعزيز الثقافة الأمازيغية من خلال المشاركة في فعالياتنا أو المساهمة في مبادراتنا.",
     "contributeButton": "ساهم",
-    "contactButton": "اتصل بنا"
+    "contactButton": "اتصل بنا",
+    "documentContent":   "محتوى المستند",
+    "downloadPdf":       "تحميل ملف PDF",
+    "viewPdf":           "عرض ملف PDF",
+    "relatedDocument":   "المستند ذو الصلة",
+    "noPdfAvailable":    "لا يوجد ملف PDF متاح لهذا الحدث",
+    "downloadDocument":  "تحميل المستند"
   },
   "footer": {
     "logo_1": "Treasures",

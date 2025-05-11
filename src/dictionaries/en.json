@@ -352,7 +352,13 @@
     "ctaTitle": "Be Part of Our Cultural Journey",
     "ctaDescription": "Help us preserve and promote Tamazight culture by participating in our events or contributing to our initiatives.",
     "contributeButton": "Contribute",
-    "contactButton": "Contact Us"
+    "contactButton": "Contact Us",
+    "documentContent":   "Document Content",
+    "downloadPdf":       "Download PDF",
+    "viewPdf":           "View PDF",
+    "relatedDocument":   "Related Document",
+    "noPdfAvailable":    "No PDF available for this event",
+    "downloadDocument":  "Download Document"
   },
   "authors": {
     "pageTitle": "Meet Our Tamazight Authors",
