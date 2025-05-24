@@ -402,13 +402,19 @@
     "ctaTitle": "Faites partie de notre voyage culturel",
     "ctaDescription": "Aidez-nous à préserver et promouvoir la culture amazighe en participant à nos événements ou en contribuant à nos initiatives.",
     "contributeButton": "Contribuer",
-    "contactButton": "Nous contacter"
+    "contactButton": "Nous contacter",
+    "documentContent":   "Contenu du document",
+    "downloadPdf":       "Télécharger le PDF",
+    "viewPdf":           "Voir le PDF",
+    "relatedDocument":   "Document lié",
+    "noPdfAvailable":    "Aucun PDF disponible pour cet événement",
+    "downloadDocument":  "Télécharger le document"
   },
   "authors": {
     "pageTitle": "Rencontrez nos auteurs tamazight",
     "allAuthorsTitle": "Tous les auteurs",
-    "allAuthorsDescription": "Découvrez les auteurs talentueux qui contribuent à la préservation et au partage de la culture tamazight à travers leurs écrits, leurs recherches et leurs créations.",
-    "heroDescription": "Rencontrez les auteurs talentueux qui contribuent à la préservation et au partage de la culture tamazight à travers leurs écrits, leurs recherches et leurs créations.",
+    "allAuthorsDescription": "Plongez dans l’univers de celles et ceux qui ont consacré leur plume, leur savoir et leur passion à valoriser la culture tamazight.",
+    "heroDescription": "À travers leurs œuvres, leurs recherches et leur engagement, ils ont œuvré avec détermination pour faire rayonner notre héritage et lui redonner la place qu’il mérite.",
     "searchPlaceholder": "Rechercher des auteurs…",
     "noSearchResults": "Aucun auteur ne correspond à votre recherche",
     "noAuthors": "Aucun auteur disponible",

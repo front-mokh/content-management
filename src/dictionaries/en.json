@@ -352,13 +352,19 @@
     "ctaTitle": "Be Part of Our Cultural Journey",
     "ctaDescription": "Help us preserve and promote Tamazight culture by participating in our events or contributing to our initiatives.",
     "contributeButton": "Contribute",
-    "contactButton": "Contact Us"
+    "contactButton": "Contact Us",
+    "documentContent":   "Document Content",
+    "downloadPdf":       "Download PDF",
+    "viewPdf":           "View PDF",
+    "relatedDocument":   "Related Document",
+    "noPdfAvailable":    "No PDF available for this event",
+    "downloadDocument":  "Download Document"
   },
   "authors": {
     "pageTitle": "Meet Our Tamazight Authors",
     "allAuthorsTitle": "All Authors",
-    "allAuthorsDescription": "Discover the talented authors who contribute to preserving and sharing Tamazight culture through their writings, research, and creative work.",
-    "heroDescription": "Meet the talented authors who contribute to preserving and sharing Tamazight culture through their writings, research, and creative work.",
+    "allAuthorsDescription": "Dive into the world of those who have devoted their pen, their knowledge, and their passion to celebrating Tamazight culture.",
+    "heroDescription": "Through their works, their research, and their commitment, they have worked with unwavering determination to make our heritage shine and to restore it to the place it deserves.",
     "searchPlaceholder": "Search authors...",
     "noSearchResults": "No authors matching your search",
     "noAuthors": "No authors available",

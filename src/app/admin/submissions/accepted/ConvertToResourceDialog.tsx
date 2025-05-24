@@ -10,7 +10,7 @@ import CustomDialog from "@/components/custom/CustomDialog";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import TextField from "@/components/custom/TextField";
-import TextAreaField from "@/components/custom/TextAreaField";
+import TextAreaField from "@/components/custom/TextAreaField_2";
 import SelectField from "@/components/fields/SelectField";
 import { convertSubmissionToResource } from "@/lib/services/convert-submission";
 import { FileText } from "lucide-react";
@@ -129,13 +129,16 @@ export default function ConvertToResourceDialog({
             name="title"
             label="Titre"
             placeholder="Titre de la ressource"
+            disabled={isSubmitting}
           />
-
+      
           <TextAreaField
             control={form.control}
             name="description"
             label="Description"
             placeholder="Description détaillée de la ressource"
+            rows={6}
+            disabled={isSubmitting}
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -145,6 +148,7 @@ export default function ConvertToResourceDialog({
               label="Catégorie"
               placeholder="Sélectionnez une catégorie"
               options={categoryOptions}
+              disabled={isSubmitting}
             />
 
             <SelectField
@@ -163,6 +167,7 @@ export default function ConvertToResourceDialog({
             label="Auteur (optionnel)"
             placeholder="Sélectionnez un auteur"
             options={authorOptions}
+            disabled={isSubmitting}
           />
 
           <div className="p-4 border rounded-md bg-slate-50">
