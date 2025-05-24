@@ -98,7 +98,7 @@ export default async function MediaLibraryPage({
                       <div className="w-full h-full bg-radial from-black/50  to-black/20 absolute top-0 left-0 right-0 bottom-0" />
                     </>
                   )}
-                  <p className="z-50 text-3xl font-bold text-center text-website-accent-1 mt-2">
+                  <p className="z-10 text-3xl font-bold text-center text-website-accent-1 mt-2">
                     {category.label}
                   </p>
                 </div>
