@@ -24,8 +24,12 @@ export default function AboutPage({ dictionary }: { dictionary: any }) {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-website-secondary to-website-secondary/90 shadow-lg py-24 overflow-hidden">
+        {/* Hero Section with Background Image */}
+        <section className="relative bg-[url('/new_hero2.png')] bg-cover bg-center shadow-lg py-24 overflow-hidden">
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
+          
+          {/* Animated Background Pattern */}
           <div className="absolute inset-0 opacity-15">
             <div className="absolute inset-0 bg-[url('/pattern-kabyle.svg')] bg-repeat opacity-20 animate-pulse"></div>
           </div>

@@ -11,7 +11,15 @@ export default function TermsOfServicePage({ dictionary }: { dictionary: any }) 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
-
+  
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -35,55 +43,55 @@ export default function TermsOfServicePage({ dictionary }: { dictionary: any }) 
     <div className="min-h-screen flex flex-col bg-gray-50">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-website-secondary to-website-secondary/90 shadow-lg py-24 overflow-hidden">
+    
+        {/* test */}
+        <section className="relative bg-[url('/new_hero2.png')] bg-cover bg-center shadow-lg py-24 overflow-hidden">
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
+          
+          {/* Animated Background Pattern */}
           <div className="absolute inset-0 opacity-15">
             <div className="absolute inset-0 bg-[url('/pattern-kabyle.svg')] bg-repeat opacity-20 animate-pulse"></div>
           </div>
-
+          
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50 }}
-              transition={{ duration: 0.8 }}
+              initial="hidden"
+              animate="visible"
+              variants={fadeIn}
               className="text-center max-w-4xl mx-auto"
             >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 <span className="inline-block relative">
-                  {dictionary.termsOfService.heroTitle}
-                  <span className="absolute -bottom-1 left-0 w-full h-1 bg-amber-500 transform scale-x-0 origin-left animate-expand"></span>
+                {dictionary.termsOfService.heroTitle}
+                  <span className="absolute -bottom-1 left-0 w-full h-1 bg-amber-500"></span>
                 </span>{" "}
                 <span className="text-amber-400">{dictionary.termsOfService.heroSubtitle}</span>
               </h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-xl text-blue-100"
-              >
-                {dictionary.termsOfService.heroDescription}
-              </motion.p>
+              <p className="text-xl text-blue-100">
+              {dictionary.termsOfService.heroDescription}
+              </p>
             </motion.div>
           </div>
-
+          
           {/* Floating decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
             {[...Array(6)].map((_, i) => (
               <div
                 key={i}
-                className="absolute rounded-full bg-amber-500 opacity-10 animate-float-slow"
+                className="absolute rounded-full bg-amber-500 opacity-10"
                 style={{
                   width: `${Math.random() * 80 + 40}px`,
                   height: `${Math.random() * 80 + 40}px`,
                   top: `${Math.random() * 100}%`,
                   left: `${Math.random() * 100}%`,
+                  animation: `float ${Math.random() * 20 + 15}s ease-in-out infinite`,
                   animationDelay: `${Math.random() * 10}s`,
-                  animationDuration: `${Math.random() * 20 + 15}s`,
                 }}
               />
             ))}
           </div>
         </section>
-
         {/* Terms Content Section */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">

@@ -4,10 +4,18 @@
 
 import { Upload, CheckCircle, Clock } from "lucide-react";
 import SubmissionForm from "@/components/submission/SubmissionForm";
+import { motion } from "framer-motion";
 
 export default function ContributionPage({ dictionary }: { dictionary: any }) {
   const { contribution } = dictionary;
-
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
   const icons = [
     <Upload key="upload" className="h-12 w-12 text-amber-500" />,
     <CheckCircle key="check" className="h-12 w-12 text-amber-500" />,
@@ -17,27 +25,37 @@ export default function ContributionPage({ dictionary }: { dictionary: any }) {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-website-secondary to-website-secondary/90 shadow-lg py-24 overflow-hidden">
+                 
+          {/* Hero Section with Background Image */}
+        <section className="relative bg-[url('/new_hero2.png')] bg-cover bg-center shadow-lg py-24 overflow-hidden">
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
+          
+          {/* Animated Background Pattern */}
           <div className="absolute inset-0 opacity-15">
             <div className="absolute inset-0 bg-[url('/pattern-kabyle.svg')] bg-repeat opacity-20 animate-pulse"></div>
           </div>
-
+          
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center max-w-4xl mx-auto">
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={fadeIn}
+              className="text-center max-w-4xl mx-auto"
+            >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 <span className="inline-block relative">
-                  {contribution.hero.title}
+                {contribution.hero.title}
                   <span className="absolute -bottom-1 left-0 w-full h-1 bg-amber-500"></span>
                 </span>{" "}
                 <span className="text-amber-400">{contribution.hero.titleHighlight}</span>
               </h1>
               <p className="text-xl text-blue-100">
-                {contribution.hero.description}
+              {contribution.hero.description}
               </p>
-            </div>
+            </motion.div>
           </div>
-
+          
           {/* Floating decorative elements */}
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
             {[...Array(6)].map((_, i) => (
