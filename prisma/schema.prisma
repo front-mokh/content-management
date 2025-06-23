@@ -26,15 +26,17 @@ model User {
 }
 
 model Author {
-  id          String     @id @default(uuid())
+  id          String        @id @default(uuid())
   firstName   String
   lastName    String
-  description String? // Optional field
-  imagePath   String? // Optional field for author image
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  description String?       // Optional field
+  imagePath   String?       // Optional field for author image
+  category    AuthorCategory @default(ECRIVAINS) // New field with default
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
   resources   Resource[]
 }
+
 
 model Type {
   id          String     @id @default(uuid())
@@ -132,4 +134,12 @@ model Event {
 enum MediaType {
   IMAGE
   VIDEO
+}
+
+enum AuthorCategory {
+  ECRIVAINS
+  POETES
+  CHANTEURS
+  PERSONNAGES_DE_GUERRES
+  PERSONNAGES_LEGENDS
 }

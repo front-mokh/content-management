@@ -570,5 +570,13 @@
       "message": "Merci pour votre soumission. Nous l'examinerons dans les plus brefs délais. Vous recevrez une notification par email dès que votre document aura été traité.",
       "buttonText": "Retour à l'accueil"
     }
+  }, 
+ "authorCategories": {
+    "ECRIVAINS": "Écrivains",
+    "POETES": "Poètes", 
+    "CHANTEURS": "Chanteurs",
+    "PERSONNAGES_DE_GUERRES": "Personnages de guerres",
+    "PERSONNAGES_LEGENDS": "Personnages légendaires"
   }
+  
 }

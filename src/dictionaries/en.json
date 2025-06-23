@@ -520,5 +520,12 @@
       "message": "Thank you for your submission. We will review it as soon as possible. You will receive an email notification once your document has been processed.",
       "buttonText": "Return to home"
     }
+  }, 
+  "authorCategories": {
+    "ECRIVAINS": "Writers",
+    "POETES": "Poets", 
+    "CHANTEURS": "Singers",
+    "PERSONNAGES_DE_GUERRES": "War figures",
+    "PERSONNAGES_LEGENDS": "Legendary figures"
   }
 }

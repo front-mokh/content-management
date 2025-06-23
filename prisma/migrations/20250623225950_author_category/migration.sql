@@ -1,0 +1,5 @@
+-- CreateEnum
+CREATE TYPE "AuthorCategory" AS ENUM ('ECRIVAINS', 'POETES', 'CHANTEURS', 'PERSONNAGES_DE_GUERRES', 'PERSONNAGES_LEGENDS');
+
+-- AlterTable
+ALTER TABLE "Author" ADD COLUMN     "category" "AuthorCategory" NOT NULL DEFAULT 'ECRIVAINS';

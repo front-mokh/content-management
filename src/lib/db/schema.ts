@@ -1,5 +1,7 @@
 
 import { z } from "zod";
+import { AuthorCategory } from "@prisma/client";
+
 import {
   User,
   Author,
