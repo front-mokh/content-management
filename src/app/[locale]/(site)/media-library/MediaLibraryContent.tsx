@@ -256,7 +256,7 @@ export default function MediaLibraryContent({
 
       {/* Resource Grid */}
       {showFilteredResults ? (
-        <section className="mb-16">
+        <section className="mb-16" id="search-results-section">
           <div className="flex items-center justify-between mb-6">
             <h2
               className={clsx(

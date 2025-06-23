@@ -1,9 +1,8 @@
 "use client";
-
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useEffect, useRef } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function SearchBar({ dictionary }: { dictionary: any }) {
@@ -11,13 +10,33 @@ export default function SearchBar({ dictionary }: { dictionary: any }) {
   const { locale } = useParams();
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
+  const hasSearchedRef = useRef(false);
+
+  // Scroll to results when search query changes
+  useEffect(() => {
+    if (query && hasSearchedRef.current) {
+      const timer = setTimeout(() => {
+        const resultsElement = document.getElementById('search-results-section');
+        if (resultsElement) {
+          resultsElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+        hasSearchedRef.current = false;
+      }, 100); // Small delay to ensure content is rendered
+
+      return () => clearTimeout(timer);
+    }
+  }, [query]);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const searchQuery = formData.get("search") as string;
-
+    
     if (searchQuery.trim()) {
+      hasSearchedRef.current = true; // Mark that we're performing a search
       const params = new URLSearchParams(searchParams);
       params.set("q", searchQuery);
       router.push(`?${params.toString()}`);

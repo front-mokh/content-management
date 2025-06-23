@@ -81,7 +81,6 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
       pathSegment === "home" ? "/home" : `/${pathSegment}`;
     return currentPathSegment === targetPathSegment;
   };
-
   const navItems = [
     { hrefKey: "home", labelKey: "home" },
     { hrefKey: "media-library", labelKey: "database" },
@@ -91,7 +90,6 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
     { hrefKey: "about", labelKey: "about" },
     { hrefKey: "contact", labelKey: "contact" },
   ];
-
   const currentLocaleInfo =
     availableLocales.find((l) => l.code === locale) || availableLocales[0];
 
@@ -132,7 +130,6 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
       })}
     </>
   );
-
   return (
     <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -147,9 +144,7 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
                 {dictionary.navbar.logo_2 || "Part2"}
               </span>
             </Link>
-          </div>
-
-       
+          </div>       
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navItems.map((item) => {
               const isActive = isLinkActive(item.hrefKey);
@@ -171,7 +166,6 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
               );
             })}
 
-       
             <div className="relative" ref={languageMenuRefDesktop}>
               {" "}
            
@@ -201,7 +195,6 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
             </div>
           </nav>
 
-         
           <div className="md:hidden flex items-center space-x-2">
           
             <div className="relative" ref={languageMenuRefMobile}>
@@ -225,14 +218,11 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
            
               {isLanguageMenuOpen && (
                 <div className="absolute right-0 mt-2 w-auto bg-white rounded-md shadow-lg py-1 z-50 ring-1 ring-black ring-opacity-5 min-w-[60px]">
-                  {" "}
-               
+                  {" "}   
                   <LanguageMenuItems />
                 </div>
               )}
-            </div>
-
-           
+            </div>         
             <button
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 focus:outline-none"
