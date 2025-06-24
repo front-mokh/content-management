@@ -607,7 +607,8 @@
     "ctaTitle": "Participez à notre aventure culturelle",
     "ctaDescription": "Aidez-nous à préserver et promouvoir la culture amazighe en visitant nos villages ou en soutenant nos initiatives.",
     "contributeButton": "Contribuer",
-    "contactButton": "Nous contacter"
+    "contactButton": "Nous contacter", 
+    "format": "L'image"
   }
   
 }
