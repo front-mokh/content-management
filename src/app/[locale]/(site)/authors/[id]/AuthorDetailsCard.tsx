@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { UserCheck, CalendarDays, BookOpen, MapPin, Mail, Globe, ExternalLink } from "lucide-react";
+import { UserCheck, CalendarDays, BookOpen, MapPin, Mail, Globe, ExternalLink, Tag } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 const DetailItem = ({ icon: Icon, label, value, isRTL, isLink, href }) => {
@@ -50,6 +50,12 @@ const AuthorDetailsCard = ({ author, formattedJoinDate, resourcesCount, translat
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
+        <DetailItem
+            icon={Tag}
+            label={translations.joinedOn}
+            value={author.category }
+            isRTL={isRTL}
+          />
           <DetailItem
             icon={CalendarDays}
             label={translations.joinedOn}

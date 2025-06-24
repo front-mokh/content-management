@@ -2,10 +2,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useParams, useSearchParams, useRouter } from "next/navigation";
+import { useParams, useSearchParams, useRouter, usePathname } from "next/navigation"; 
+
 import { AuthorCard } from "./AuthorCard";
 import { StaticFeaturedAuthorHero } from "./static-featured-author-hero";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { Author } from "@prisma/client";
 
 // Pagination component with RTL support
 const Pagination = ({
@@ -94,12 +96,14 @@ export default function AuthorsPage({
   dictionary,
 }: {
   authors: (Author & { resourceCount: number })[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dictionary: any;
 }) {
   const AUTHORS_PER_PAGE = 9;
   const params = useParams();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname(); 
 
   const locale = params.locale || "en";
   const pageParam = searchParams.get("page");
@@ -134,11 +138,11 @@ export default function AuthorsPage({
     if (searchQuery) params.set("search", searchQuery);
 
     const query = params.toString();
-    const url = `/${locale}/authors${query ? `?${query}` : ""}`;
+    const url = `${pathname}${query ? `?${query}` : ""}`;
 
     // Update URL without full page reload
     router.push(url, { scroll: false });
-  }, [currentPage, searchQuery, locale, router]);
+  }, [currentPage, searchQuery, locale, router, pathname]);
 
   const totalPages = Math.ceil(filteredAuthors.length / AUTHORS_PER_PAGE);
   const paginatedAuthors = filteredAuthors.slice(
