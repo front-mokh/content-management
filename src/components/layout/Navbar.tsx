@@ -117,6 +117,7 @@ export default function Navbar({ dictionary }: { dictionary: any }) {
     { hrefKey: "media-library", labelKey: "database" },
     { hrefKey: "events", labelKey: "events" },
     { hrefKey: "authors", labelKey: "authors", isDropdown: true },
+    { hrefKey: "villages", labelKey: "villages" },
     { hrefKey: "contribution", labelKey: "contribute" },
     { hrefKey: "about", labelKey: "about" },
     { hrefKey: "contact", labelKey: "contact" },
