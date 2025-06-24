@@ -14,6 +14,8 @@ import {
 import { formatDate } from "@/lib/utils";
 import { Author } from "@prisma/client";
 import React from "react";
+import CategoryTag from "@/components/custom/CategoryTag";
+import { AuthorCategory } from "@/utils/authorUtils";
 
 type AuthorWithResourceCount = Author & { resourceCount: number };
 
@@ -29,6 +31,7 @@ export default function AuthorsTable({
           <TableRow>
             <TableHead>Nom</TableHead>
             <TableHead>Prénom</TableHead>
+            <TableHead>Catégorie</TableHead>
             <TableHead>Nombre de ressources</TableHead>
             <TableHead>Date de création</TableHead>
             <TableHead>Date de modification</TableHead>
@@ -40,6 +43,7 @@ export default function AuthorsTable({
             <TableRow key={author.id}>
               <TableCell className="font-medium">{author.lastName}</TableCell>
               <TableCell className="font-medium">{author.firstName}</TableCell>
+              <TableCell className="font-medium">  <CategoryTag category={author.category as AuthorCategory} /></TableCell>
               <TableCell>{author.resourceCount}</TableCell>
               <TableCell>{formatDate(author.createdAt)}</TableCell>
               <TableCell>{formatDate(author.updatedAt)}</TableCell>

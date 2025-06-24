@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { AuthorCategory } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
@@ -17,16 +18,32 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import TextField from "@/components/custom/TextField";
 import TextAreaField from "@/components/custom/TextAreaField";
 import { FileUpload } from "@/components/custom/FileUpload";
 import { createAuthorWithImage } from "@/lib/createAuthorWIthImage";
 
-// Schema for author creation
+// Import the utility functions
+import { 
+  authorCategoriesFr, 
+  getAuthorCategoryOptions,
+  getSortedAuthorCategoryOptions 
+} from "@/lib/translations/authorCategories";
+
+// Schema for author creation with category
 const addAuthorSchema = z.object({
   firstName: z.string().min(1, "Le prénom est obligatoire"),
   lastName: z.string().min(1, "Le nom est obligatoire"),
   description: z.string().optional(),
+  category: z.nativeEnum(AuthorCategory).default(AuthorCategory.ECRIVAINS),
 });
 
 export type CreateAuthorInput = z.infer<typeof addAuthorSchema>;
@@ -36,12 +53,16 @@ export default function AddAuthorPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
+  // Get sorted category options for better UX
+  const categoryOptions = getSortedAuthorCategoryOptions();
+
   const form = useForm<CreateAuthorInput>({
     resolver: zodResolver(addAuthorSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
       description: "",
+      category: AuthorCategory.ECRIVAINS,
     },
   });
 
@@ -56,16 +77,18 @@ export default function AddAuthorPage() {
   const onSubmit = async (values: CreateAuthorInput) => {
     setIsSubmitting(true);
     try {
+      console.log("Submitting values:", values); // Debug log
+      
       // Call the server action
       const result = await createAuthorWithImage(values, selectedFile);
-
+      console.log("Server action result:", result); // Debug log
       if (!result.success) {
         throw new Error(result.error || "Une erreur s'est produite");
       }
 
-      toast.success("Auteur ajouté avec succès");
-      router.push("/admin/authors"); // Redirect to the authors list
-      router.refresh(); // Ensure the list page data is refreshed
+      // toast.success("Auteur ajouté avec succès");
+      // router.push("/admin/authors");
+      // router.refresh();
     } catch (error) {
       console.error(error);
       toast.error(
@@ -81,7 +104,6 @@ export default function AddAuthorPage() {
   return (
     <Card className="h-full">
       <Form {...form}>
-        {/* Use form tag here to ensure proper submit handling */}
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col h-full"
@@ -107,6 +129,40 @@ export default function AddAuthorPage() {
               placeholder="Nom de l'auteur"
               disabled={isSubmitting}
             />
+            
+            {/* Fixed Category Selection Field */}
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Catégorie</FormLabel>
+                  <Select 
+                    onValueChange={(value) => {
+                      console.log("Category changed to:", value); // Debug log
+                      field.onChange(value);
+                    }}
+                    value={field.value} // Use value instead of defaultValue
+                    disabled={isSubmitting}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Sélectionner une catégorie" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {categoryOptions.map(({ value, label }) => (
+                        <SelectItem key={value} value={value}>
+                          {label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <TextAreaField
               control={form.control}
               name="description"
@@ -120,15 +176,15 @@ export default function AddAuthorPage() {
                 onFileSelect={handleFileSelect}
                 onFileRemove={handleFileRemove}
                 isSubmitting={isSubmitting}
-                accept="image/*" // Only accept images
+                accept="image/*"
               />
             </div>
           </CardContent>
           <CardFooter className="flex justify-end gap-2 border-t pt-6">
             <Button
-              type="button" // Important: type="button" for cancel
+              type="button"
               variant="outline"
-              onClick={() => router.back()} // Go back to previous page
+              onClick={() => router.back()}
               disabled={isSubmitting}
             >
               Annuler

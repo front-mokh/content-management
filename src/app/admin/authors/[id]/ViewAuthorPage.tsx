@@ -31,6 +31,8 @@ import { deleteAuthor } from "@/lib/services/authorService";
 import { CalendarIcon, BookOpen, Pencil, Trash2 } from "lucide-react";
 import { formatDistance } from "date-fns";
 import { fr } from "date-fns/locale";
+import { AuthorCategory } from "@/utils/authorUtils";
+import CategoryTag from "@/components/custom/CategoryTag";
 
 interface ViewAuthorPageProps {
   author: Author;
@@ -70,9 +72,12 @@ export default function ViewAuthorPage({ author, resources }: ViewAuthorPageProp
         <CardHeader className="bg-muted/50">
           <div className="flex justify-between items-start">
             <div>
-              <CardTitle className="text-2xl font-bold">
-                {author.firstName} {author.lastName}
-              </CardTitle>
+              <div className="flex items-center gap-3">
+                <CardTitle className="text-2xl font-bold">
+                  {author.firstName} {author.lastName}
+                </CardTitle>
+                <CategoryTag category={author.category as AuthorCategory} />
+              </div>
               <CardDescription className="mt-2 flex items-center gap-1">
                 <CalendarIcon className="h-4 w-4" />
                 Ajouté {formattedCreatedAt}
@@ -98,8 +103,8 @@ export default function ViewAuthorPage({ author, resources }: ViewAuthorPageProp
                   <AlertDialogHeader>
                     <AlertDialogTitle>Êtes-vous certain ?</AlertDialogTitle>
                     <AlertDialogDescription>
-                      Cette action est irréversible et supprimera définitivement l'auteur 
-                      "{author.firstName} {author.lastName}" ainsi que toutes ses associations 
+                      Cette action est irréversible et supprimera définitivement l&apos;auteur 
+                      &quot;{author.firstName} {author.lastName}&quot; ainsi que toutes ses associations 
                       avec les ressources.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
@@ -155,7 +160,6 @@ export default function ViewAuthorPage({ author, resources }: ViewAuthorPageProp
                     <div>
                       <span className="text-sm font-medium text-muted-foreground">Nom complet</span>
                       <p className="mt-1">
-                       
                         {author.firstName} {author.lastName}
                       </p>
                     </div>
@@ -164,6 +168,12 @@ export default function ViewAuthorPage({ author, resources }: ViewAuthorPageProp
                       <p className="mt-1 text-sm font-mono bg-muted p-1 rounded">
                         {author.id}
                       </p>
+                    </div>
+                    <div>
+                      <span className="text-sm font-medium text-muted-foreground">Catégorie</span>
+                      <div className="mt-1">
+                      <CategoryTag category={author.category as AuthorCategory} />
+                      </div>
                     </div>
                     <div>
                       <span className="text-sm font-medium text-muted-foreground">Ressources</span>

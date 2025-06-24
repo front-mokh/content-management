@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 import { join } from "path";
 import { randomUUID } from "crypto";
 import fs from "fs/promises";
-
+import { AuthorCategory } from "@prisma/client";
 const prisma = new PrismaClient();
 
 // Reusable File Processing Utility
@@ -38,6 +38,7 @@ const updateAuthorSchema = z.object({
   firstName: z.string().min(1, "Le prénom est obligatoire"),
   lastName: z.string().min(1, "Le nom est obligatoire"),
   description: z.string().optional(),
+  category: z.nativeEnum(AuthorCategory).optional().default(AuthorCategory.ECRIVAINS)
 });
 
 export type UpdateAuthorWithImageInput = z.infer<typeof updateAuthorSchema>;
@@ -84,6 +85,7 @@ export async function updateAuthorWithImage(
         lastName: validatedData.lastName,
         description: validatedData.description,
         imagePath: imagePath,
+        category: validatedData.category || "ECRIVAINS", // Default to ECRIVAINS if not provided
       },
     });
     

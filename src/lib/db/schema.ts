@@ -1,7 +1,5 @@
-
 import { z } from "zod";
 import { AuthorCategory } from "@prisma/client";
-
 import {
   User,
   Author,
@@ -40,7 +38,6 @@ export type UpdateCategoryInput = Partial<Omit<Category, "id">>;
 export type UpdateResourceInput = Partial<Omit<Resource, "id" | "submittedAt">>;
 export type UpdateSubmissionInput = Partial<Omit<Submission, "id">>;
 
-
 // Query filters
 export interface ResourceFilters {
   categoryId?: string;
@@ -60,16 +57,31 @@ export type CreateContactInput = {
 
 export type UpdateContactInput = Partial<CreateContactInput>;
 
-export const CreateAuthorInput = z.object({
+// Zod Schemas (renamed to avoid conflicts with TypeScript types)
+export const CreateAuthorSchema = z.object({
   firstName: z.string().min(1, "Le prénom est obligatoire"),
   lastName: z.string().min(1, "Le nom est obligatoire"),
   description: z.string().optional(),
-  imagePath: z.string().optional()
+  imagePath: z.string().optional(),
+  category: z.nativeEnum(AuthorCategory).optional().default(AuthorCategory.ECRIVAINS)
 });
 
-export const UpdateAuthorInput = z.object({
-  firstName: z.string().min(1, "Le prénom est obligatoire"),
-  lastName: z.string().min(1, "Le nom est obligatoire"),
+export const UpdateAuthorSchema = z.object({
+  firstName: z.string().min(1, "Le prénom est obligatoire").optional(),
+  lastName: z.string().min(1, "Le nom est obligatoire").optional(),
   description: z.string().optional(),
-  imagePath: z.string().optional()
+  imagePath: z.string().optional(),
+  category: z.nativeEnum(AuthorCategory).optional()
 });
+
+// Additional filter schema for author category filtering
+export const AuthorFiltersSchema = z.object({
+  category: z.nativeEnum(AuthorCategory).optional(),
+  skip: z.number().optional(),
+  take: z.number().optional()
+});
+
+// Type inference from Zod schemas
+export type CreateAuthorSchemaType = z.infer<typeof CreateAuthorSchema>;
+export type UpdateAuthorSchemaType = z.infer<typeof UpdateAuthorSchema>;
+export type AuthorFiltersType = z.infer<typeof AuthorFiltersSchema>;
