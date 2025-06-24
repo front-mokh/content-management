@@ -12,6 +12,7 @@ import {
   Contact,
   FolderOpenDot,
   MessageCircleMore,
+  House,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -84,6 +85,11 @@ const links = [
     title: "Types",
     url: "/admin/types",
     icon: Inbox,
+  },
+  {
+    title: "Villages",
+    url: "/admin/villages",
+    icon: House,
   },
   {
     title: "Auteurs",
