@@ -179,3 +179,31 @@ export async function getAllAuthorsWithFilters(
     resourceCount: author._count.resources
   }));
 }
+
+
+export async function getAuthorsByCcategory(
+  category: AuthorCategory,
+  skip?: number,
+  take?: number
+): Promise<(Author & { resourceCount: number })[]> {
+  const authors = await prisma.author.findMany({
+    where: {
+      category: category
+    },
+    skip,
+    take,
+    orderBy: { lastName: "asc" },
+    include: {
+      _count: {
+        select: {
+          resources: true
+        }
+      }
+    }
+  });
+
+  return authors.map(author => ({
+    ...author,
+    resourceCount: author._count.resources
+  }));
+}
