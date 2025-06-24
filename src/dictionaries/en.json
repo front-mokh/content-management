@@ -527,5 +527,37 @@
     "CHANTEURS": "Singers",
     "PERSONNAGES_DE_GUERRES": "War figures",
     "PERSONNAGES_LEGENDS": "Legendary figures"
-  }
+  }, 
+  
+    "villages": {
+      "backToVillages": "Back to Villages",
+      "searchPlaceholder": "Search Villages",
+      "aboutVillage": "About This Village",
+      "noDescription": "No description available for this village.",
+      "villageDetails": "Village Details",
+      "type": "Village",
+      "createdOn": "Created on",
+      "updatedOn": "Updated on",
+      "summary": "Summary",
+      "readFullDescription": "Read Full Description",
+      "viewFullImage": "View Full Image",
+      "pageTitle": "Villages",
+      "allVillagesTitle": "Discover Our Villages",
+      "allVillagesDescription": "Experience the richness of Tamazight culture through our villages.",
+      "noVillages": "No villages added at the moment",
+      "checkBackSoon": "Please check back soon",
+      "posted": "Posted on",
+      "postedOn": "Posted on",
+      "readMore": "Read More",
+      "viewDetails": "View Details",
+      "heroDescription": "Our villages celebrate and showcase the rich heritage of Tamazight culture through immersive experiences, performances, and community gatherings. Join us in preserving and sharing our traditions with the world.",
+      "exploreEvents": "Explore Villages",
+      "filterAll": "All Villages",
+      "filterRecent": "Recently Added Villages",
+      "filterPopular": "Popular Villages",
+      "ctaTitle": "Be Part of Our Cultural Journey",
+      "ctaDescription": "Help us preserve and promote Tamazight culture by visiting our villages or supporting our initiatives.",
+      "contributeButton": "Contribute",
+      "contactButton": "Contact Us"
+    }
 }

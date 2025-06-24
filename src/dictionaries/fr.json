@@ -577,6 +577,37 @@
     "CHANTEURS": "Chanteurs",
     "PERSONNAGES_DE_GUERRES": "Personnages de guerres",
     "PERSONNAGES_LEGENDS": "Personnages légendaires"
+  },
+  "villages": {
+    "backToVillages": "Retour aux villages",
+    "searchPlaceholder": "Rechercher des villages",
+    "aboutVillage": "À propos de ce village",
+    "noDescription": "Aucune description disponible pour ce village.",
+    "villageDetails": "Détails du village",
+    "type": "village",
+    "createdOn": "Créé le",
+    "updatedOn": "Mis à jour le",
+    "summary": "Résumé",
+    "readFullDescription": "Lire la description complète",
+    "viewFullImage": "Voir l’image en grand",
+    "pageTitle": "Villages",
+    "allVillagesTitle": "Découvrez nos villages",
+    "allVillagesDescription": "Découvrez la richesse de la culture amazighe à travers nos villages.",
+    "noVillages": "Aucun village ajouté pour le moment",
+    "checkBackSoon": "Veuillez revenir bientôt",
+    "posted": "Publié le",
+    "postedOn": "Publié le",
+    "readMore": "Lire la suite",
+    "viewDetails": "Voir les détails",
+    "heroDescription": "Nos villages célèbrent et mettent en valeur le riche patrimoine de la culture amazighe au moyen d’expériences immersives, de spectacles et de rassemblements communautaires. Rejoignez-nous pour préserver et partager nos traditions avec le monde.",
+    "exploreEvents": "Explorer les villages",
+    "filterAll": "Tous les villages",
+    "filterRecent": "Villages récemment ajoutés",
+    "filterPopular": "Villages populaires",
+    "ctaTitle": "Participez à notre aventure culturelle",
+    "ctaDescription": "Aidez-nous à préserver et promouvoir la culture amazighe en visitant nos villages ou en soutenant nos initiatives.",
+    "contributeButton": "Contribuer",
+    "contactButton": "Nous contacter"
   }
   
 }
